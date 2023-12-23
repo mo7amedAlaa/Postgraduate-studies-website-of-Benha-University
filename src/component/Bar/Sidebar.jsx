@@ -1,6 +1,9 @@
+import Body from "./Body";
+
 export default function Sidebar({ userImg, userName, children }) {
   return (
-    <div className="sidebar hidden md:block    right-0.5  max-h-[calc(100vh)] overflow-y-hidden     min-w-[20%] max-w-[25%] rounded-2xl    ">
+    <div className="flex gap-3">
+        <div className="sidebar hidden md:block  right-0.5  max-h-[calc(100vh)] overflow-y-hidden     min-w-[20%] max-w-[25%] rounded-2xl    ">
       <div className="user-info flex justify-start gap-2  rounded-t-2xl p-2 items-center w-100  bg-[#51ACD0] ">
         <div className="w-6 h-6  rounded-full  ">
           <img
@@ -16,6 +19,12 @@ export default function Sidebar({ userImg, userName, children }) {
       <div className="nav--lists__holder flex max-h-[85vh] overflow-y-scroll  flex-col p-2   items-center  gap-5 ">
         {children}
       </div>
+      <Body/>
     </div>
+    <div className="border border-[#3d85a2] p-2  w-full rounded-2xl mb-3">
+      <Body/>      
+    </div>
+    </div>
+   
   );
 }
