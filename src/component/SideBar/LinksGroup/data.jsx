@@ -5,23 +5,23 @@ export const linksGroupInfo = [
     links: [
       {
         Ltitle: 'الائحة الداخلية للدرسات العليا',
-        href: '/page1',
+        href: '/admin/page1',
       },
       {
         Ltitle: 'شروط القيد بالكليات المؤهل ',
-        href: '/page2',
+        href: '/admin/page2',
       },
       {
         Ltitle: ' تقديرات عامة على مستوى الكلية     ',
-        href: '/page3',
+        href: '/admin/page3',
       },
       {
         Ltitle: '  تعريف العام الاكاديمى        ',
-        href: '/page4',
+        href: '/admin/page4',
       },
       {
         Ltitle: 'متغيرات الدرجات الممنوحة من اقسام وشعب',
-        href: '/page5',
+        href: '/admin/page5',
       },
     ],
   },
