@@ -1,35 +1,36 @@
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
-import perPicTest from './assets/images/persona-logo.jpg';
-import { Route, Routes } from 'react-router-dom';
-import Navbar from './component/NavBar/Navbar';
-import Sidebar from './component/SideBar/Sidebar';
-import LinksGroup from './component/SideBar/LinksGroup/LinksGroup';
-import Body from './component/Body/Body';
-import About from './component/Body/pages/About';
-import Contact from './component/Body/pages/Contact';
-import Home from './component/Body/pages/Home';
-import { linksGroupInfo } from './component/SideBar/LinksGroup/data';
+import Layout from './pages/Layout';
+import Page1 from './pages/usr-adminPages/page1';
+import Page2 from './pages/usr-adminPages/page2';
+import Page3 from './pages/usr-adminPages/page3';
+import Page4 from './pages/usr-adminPages/page4';
+import Page5 from './pages/usr-adminPages/page5';
+import Home from './pages/Home';
+import Signin from './pages/usr-adminPages/Signin';
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Home />,
+    },
+    {
+      path: '/admin',
+      element: <Layout />,
+      children: [
+        { path: '/admin/page1', element: <Page1 /> },
+        { path: '/admin/page2', element: <Page2 /> },
+        { path: '/admin/page3', element: <Page3 /> },
+        { path: '/admin/page4', element: <Page4 /> },
+        { path: '/admin/page5', element: <Page5 /> },
+      ],
+    },
+    { path: '/signin', element: <Signin /> },
+  ]);
   return (
-    <>
-      <div className="Navbar">
-        <Navbar />
-      </div>
-      <div className="flex justify-between w-full items-center h-[90vh]">
-        <Sidebar userImg={perPicTest} userName={'مدام ليلي مسعد'}>
-          {linksGroupInfo.map((data) => (
-            <LinksGroup key={data.id} title={data.title} links={data.links} />
-          ))}
-        </Sidebar>
-        <Body>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </Body>
-      </div>
-    </>
+    <div className="font-bodyFont min-h-screen">
+      <RouterProvider router={router} />
+    </div>
   );
 }
 

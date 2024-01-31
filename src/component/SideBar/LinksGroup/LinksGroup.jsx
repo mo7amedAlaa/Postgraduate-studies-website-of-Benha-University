@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { HiArrowSmDown, HiArrowSmUp } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function LinksGroup({ title, links }) {
   const [open, setOpen] = useState(true);
@@ -28,13 +28,9 @@ export default function LinksGroup({ title, links }) {
         <div className="links flex flex-wrap flex-col  items-start ps-10 py-3 text-[16px]  leading-relaxed  tracking-tighter   ">
           <div className="flex flex-col">
             {links.map((link, index) => (
-              <Link
-                to={link.href}
-                key={index}
-                className={link.current ? 'text-green-500  ' : null}
-              >
+              <NavLink to={link.href} key={index}>
                 {link.Ltitle}
-              </Link>
+              </NavLink>
             ))}
           </div>
         </div>

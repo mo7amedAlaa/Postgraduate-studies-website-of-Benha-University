@@ -5,28 +5,23 @@ export const linksGroupInfo = [
     links: [
       {
         Ltitle: 'الائحة الداخلية للدرسات العليا',
-        href: '/about',
-        current: true,
+        href: '/page1',
       },
       {
-        Ltitle: 'شروط القيد بالكليات المؤهل   ',
-        href: '/about',
-        current: false,
+        Ltitle: 'شروط القيد بالكليات المؤهل ',
+        href: '/page2',
       },
       {
         Ltitle: ' تقديرات عامة على مستوى الكلية     ',
-        href: '/about',
-        current: false,
+        href: '/page3',
       },
       {
         Ltitle: '  تعريف العام الاكاديمى        ',
-        href: '/about',
-        current: false,
+        href: '/page4',
       },
       {
         Ltitle: 'متغيرات الدرجات الممنوحة من اقسام وشعب',
-        href: '/#',
-        current: false,
+        href: '/page5',
       },
     ],
   },
@@ -37,27 +32,22 @@ export const linksGroupInfo = [
       {
         Ltitle: 'بيانات الطالب',
         href: '/#',
-        current: true,
       },
       {
         Ltitle: ' تقرير بطلاب الدراسات العليا الغير مسجل لهم ارقام قومية',
         href: '/#',
-        current: false,
       },
       {
         Ltitle: ' رفع البيانات الاساسية للطالب',
         href: '/#',
-        current: false,
       },
       {
         Ltitle: '    رفع صور الطلاب',
         href: '/#',
-        current: false,
       },
       {
         Ltitle: ' قبول الطلاب الجدد   ',
         href: '/#',
-        current: false,
       },
     ],
   },
@@ -65,70 +55,67 @@ export const linksGroupInfo = [
     id: 3,
     title: 'ادارة التسجيل الاكتروني',
     links: [
-      { Ltitle: 'صلاحيات التسجيل الالكتروني', href: '/#', current: true },
-      { Ltitle: 'اعدادات التسجيل الالكتروني', href: '/#', current: false },
-      { Ltitle: 'الطلاب الممنوعين من التسجيل ', href: '/#', current: false },
-      { Ltitle: 'مقترح التسجيل الالكترونى ', href: '/#', current: false },
-      { Ltitle: 'ادارة كلمات المرور ', href: '/#', current: false },
-
-
+      { Ltitle: 'صلاحيات التسجيل الالكتروني', href: '/#' },
+      { Ltitle: 'اعدادات التسجيل الالكتروني', href: '/#' },
+      { Ltitle: 'الطلاب الممنوعين من التسجيل ', href: '/#' },
+      { Ltitle: 'مقترح التسجيل الالكترونى ', href: '/#' },
+      { Ltitle: 'ادارة كلمات المرور ', href: '/#' },
     ],
   },
   {
     id: 4,
     title: '  متابعة الطلاب ',
     links: [
-      { Ltitle: 'المصروفات', href: '/#', current: true },
-      { Ltitle: '  تقارير المصروفات', href: '/#', current: false },
-      { Ltitle: 'اعذار ومخالفات وعقوبات الطلاب ', href: '/#', current: false },
-      { Ltitle: '  اضافة سجلات الطلاب ', href: '/#', current: false },
+      { Ltitle: 'المصروفات', href: '/#' },
+      { Ltitle: '  تقارير المصروفات', href: '/#' },
+      { Ltitle: 'اعذار ومخالفات وعقوبات الطلاب ', href: '/#' },
+      { Ltitle: '  اضافة سجلات الطلاب ', href: '/#' },
     ],
   },
   {
     id: 5,
     title: '   ارقام الجلوس ',
     links: [
-      { Ltitle: 'ارقام الجلوس', href: '/#', current: true },
-      { Ltitle: '  ارقام الجلوس من والى ملف الاكسل ', href: '/#', current: false },
-      
+      { Ltitle: 'ارقام الجلوس', href: '/#' },
+      {
+        Ltitle: '  ارقام الجلوس من والى ملف الاكسل ',
+        href: '/#',
+      },
     ],
   },
   {
     id: 6,
     title: '  تسجيل نتائج الطلاب ',
     links: [
-      { Ltitle: ' نظام السنوات الدراسية', href: '/#', current: true },
-      { Ltitle: '   نظام الساعات المعتمدة', href: '/#', current: false },
-      { Ltitle: '     الالتماس', href: '/#', current: false },
-      { Ltitle: '   الرفع  ', href: '/#', current: false },
-      { Ltitle: '   تسجيل نتائج مقرر  ', href: '/#', current: false },
-      { Ltitle: '     رصدالمقرارات بجميع طرق التقييم', href: '/#', current: false },
-
-
-
-      
+      { Ltitle: ' نظام السنوات الدراسية', href: '/#' },
+      { Ltitle: '   نظام الساعات المعتمدة', href: '/#' },
+      { Ltitle: '     الالتماس', href: '/#' },
+      { Ltitle: '   الرفع  ', href: '/#' },
+      { Ltitle: '   تسجيل نتائج مقرر  ', href: '/#' },
+      {
+        Ltitle: '     رصدالمقرارات بجميع طرق التقييم',
+        href: '/#',
+      },
     ],
   },
   {
     id: 7,
     title: '    منح الدرجة للطلاب الخريجين ',
     links: [
-      { Ltitle: '   منح الدرجة للطلاب الخريجين', href: '/#', current: true },
-      { Ltitle: '     اجتياز الطلاب للمراحل التمهيدية', href: '/#', current: false },
-   
-
-
-      
+      { Ltitle: '   منح الدرجة للطلاب الخريجين', href: '/#' },
+      {
+        Ltitle: '     اجتياز الطلاب للمراحل التمهيدية',
+        href: '/#',
+      },
     ],
   },
   {
     id: 8,
     title: '       تقارير ',
     links: [
-      { Ltitle: '   تقاريرالتسجيل الالكترونى', href: '/#', current: true },
-      { Ltitle: '      تقربر اللوائح', href: '/#', current: false },
-      { Ltitle: '      تقارير المقيدين ', href: '/#', current: false },
-
+      { Ltitle: '   تقاريرالتسجيل الالكترونى', href: '/#' },
+      { Ltitle: '      تقربر اللوائح', href: '/#' },
+      { Ltitle: '      تقارير المقيدين ', href: '/#' },
     ],
   },
 ];
