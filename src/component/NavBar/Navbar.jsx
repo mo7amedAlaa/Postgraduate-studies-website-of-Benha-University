@@ -2,7 +2,7 @@ import { facLogo, graduatedMenIcon, uniLogo } from '../../assets';
 
 export default function Navbar() {
   return (
-    <nav className="nav bg-gradient-to-t from-[#51ACD0] to-[#5dc6f0] px-2  py-2 h-16 lg:mb-3 ">
+    <nav className="nav bg-gradient-to-t from-[#51ACD0] to-[#5dc6f0] px-2  py-2 h-16 lg:mb-3 font-sans ">
       <div className="container mx-auto flex flex-row justify-between  items-center">
         <div className="logo flex items-center justify-between gap-2 ">
           <img

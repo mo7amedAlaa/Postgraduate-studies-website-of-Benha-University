@@ -8,11 +8,16 @@ import Page4 from './pages/usr-adminPages/page4';
 import Page5 from './pages/usr-adminPages/page5';
 import Home from './pages/Home';
 import Signin from './pages/usr-adminPages/Signin';
+import MainPage from './component/MainPage/MainPage';
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
       element: <Home />,
+    },
+    {
+      path: '/mainpage',
+      element: <MainPage />,
     },
     {
       path: '/admin',
