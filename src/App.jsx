@@ -7,8 +7,10 @@ import Page3 from './pages/usr-adminPages/page3';
 import Page4 from './pages/usr-adminPages/page4';
 import Page5 from './pages/usr-adminPages/page5';
 import Home from './pages/Home';
-import Signin from './pages/usr-adminPages/Signin';
+
 import Studentinformation from './pages/AdminPages/Studentinformation';
+import Login from './pages/usr-adminPages/Login';
+import Petition from './pages/AdminPages/Petition';
 function App() {
   const router = createBrowserRouter([
     {
@@ -25,9 +27,10 @@ function App() {
         { path: '/admin/page4', element: <Page4 /> },
         { path: '/admin/page5', element: <Page5 /> },
         { path: '/admin/studentinformation', element: <Studentinformation /> },
+        { path: '/admin/petition', element: <Petition /> },
       ],
     },
-    { path: '/signin', element: <Signin /> },
+    { path: '/login', element: <Login /> },
   ]);
   return (
     <div className="font-bodyFont min-h-screen  ">

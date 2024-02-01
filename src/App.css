@@ -17,11 +17,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-<<<<<<< HEAD
-
-/*صورة الدراسات العليا*/
 .image {
-  background-image: url('./assets//images/graduate.jpg');
+  background-image: url('./assets/images/bg-gradute1.png');
   background-repeat: no-repeat; /* لعدم تكرار الصورة */
   background-size: cover; /* تكبير أو تصغير الصورة لتغطية الخلفية بالكامل */
   background-position: center center; /* وسط الخلفية */
@@ -49,5 +46,3 @@
   font-weight: bold; /* سمك الخط */
   color: red; /* لون النص */
 }
-=======
->>>>>>> parent of 708262b (Last)
