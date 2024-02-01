@@ -1,7 +1,9 @@
-import Navbar from '../NavBar/Navbar';
-import LogoUniversity from '../../assets/images/شعار_جامعة_بنها.png';
+import Navbar from '../component/NavBar/Navbar';
+
 import { TfiEmail } from 'react-icons/tfi';
 import { MdOutlinePhoneEnabled } from 'react-icons/md';
+import { uniLogo } from '../assets';
+import { Link } from 'react-router-dom';
 function Home() {
   return (
     <>
@@ -16,7 +18,7 @@ function Home() {
         </div>
         <div className=" flex justify-center items-center">
           <img
-            src={LogoUniversity}
+            src={uniLogo}
             className=""
             style={{ width: '170px' }}
             alt="شعار الجامعة"
@@ -65,9 +67,12 @@ function Home() {
             النتائج
           </p>
           <div className="flex items-end">
-            <button className=" bg-gradient-to-t w-[13rem] from-[#51ACD0] to-[#5dc6f0] p-2 rounded-md  text-2xl mt-9 text-white font-serif font-semibold cursor-pointer hover:bg-teal-400  ">
+            <Link
+              to={'/login'}
+              className=" bg-gradient-to-t w-[13rem] from-[#51ACD0] to-[#5dc6f0] p-2 rounded-md  text-2xl mt-9 text-white font-serif font-semibold cursor-pointer hover:bg-teal-400  "
+            >
               تسجيل الدخول
-            </button>
+            </Link>
           </div>
         </div>
       </div>
