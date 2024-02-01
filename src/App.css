@@ -17,34 +17,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
-/*صورة الدراسات العليا*/
-.image{
-  background-image: url('./assets//images/graduate.jpg');
-  background-repeat: no-repeat; /* لعدم تكرار الصورة */
-  background-size: cover; /* تكبير أو تصغير الصورة لتغطية الخلفية بالكامل */
-  background-position: center center; /* وسط الخلفية */ 
-  position: relative;
-}
-.image .overlay{
- /* display: flex;
- justify-content: end;
- flex-direction: column;
- align-items: center; */
-}
-.overlay{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  z-index: 2;
-  text-align: center;
-  width: 95%;
-  }
-.services-name h1::after{
-  content:  ""; /* المحتوى الذي سيتم إضافته */
-  width: 90px;
-  height: 100px;
-  font-weight: bold; /* سمك الخط */
-  color: red; /* لون النص */ 
-}
