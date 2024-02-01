@@ -8,12 +8,20 @@ import Page4 from './pages/usr-adminPages/page4';
 import Page5 from './pages/usr-adminPages/page5';
 import Home from './pages/Home';
 import Signin from './pages/usr-adminPages/Signin';
+<<<<<<< HEAD
 import Studentinformation from './pages/AdminPages/Studentinformation';
+=======
+import MainPage from './component/MainPage/MainPage';
+>>>>>>> aba7f9573758f6220b6bf17876210e06c633006e
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
       element: <Home />,
+    },
+    {
+      path: '/mainpage',
+      element: <MainPage />,
     },
     {
       path: '/admin',
