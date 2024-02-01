@@ -1,5 +1,5 @@
-import Navbar from '../component/NavBar/Navbar';
-import LogoUniversity from '../assets/images/شعار_جامعة_بنها.png';
+import Navbar from '../NavBar/Navbar';
+import LogoUniversity from '../../assets/images/شعار_جامعة_بنها.png';
 import { TfiEmail } from 'react-icons/tfi';
 import { MdOutlinePhoneEnabled } from 'react-icons/md';
 function Home() {
