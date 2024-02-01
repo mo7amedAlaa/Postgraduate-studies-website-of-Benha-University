@@ -1,9 +1,13 @@
 import { facLogo, graduatedMenIcon, uniLogo } from '../../assets';
+import { IoReorderThreeOutline } from 'react-icons/io5';
 
-export default function Navbar() {
+export default function Navbar({ handleSidebarOpen }) {
   return (
-    <nav className="nav bg-gradient-to-t from-[#51ACD0] to-[#5dc6f0] px-2  py-2 h-16 lg:mb-3 ">
+    <nav className="nav bg-gradient-to-t from-main to-[#5dc6f0] px-2  py-2 h-16  mb-3 ">
       <div className="container mx-auto flex flex-row justify-between  items-center">
+        <div className="text-5xl md:hidden " onClick={handleSidebarOpen}>
+          <IoReorderThreeOutline />
+        </div>
         <div className="logo flex items-center justify-between gap-2 ">
           <img
             src={graduatedMenIcon}

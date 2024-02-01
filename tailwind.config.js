@@ -26,6 +26,7 @@ export default {
         amazon_yellow: '#febd69',
         whiteText: '#ffffff',
         lightText: '#ccc',
+        main: '#51ACD0',
         quantity_box: '#F0F2F2',
         footerBottom: '#131A22',
       },

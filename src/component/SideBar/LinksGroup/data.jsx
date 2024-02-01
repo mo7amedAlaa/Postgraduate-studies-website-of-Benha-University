@@ -31,7 +31,7 @@ export const linksGroupInfo = [
     links: [
       {
         Ltitle: 'بيانات الطالب',
-        href: '/#',
+        href: '/admin/studentinformation',
       },
       {
         Ltitle: ' تقرير بطلاب الدراسات العليا الغير مسجل لهم ارقام قومية',

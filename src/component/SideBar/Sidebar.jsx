@@ -1,7 +1,13 @@
-export default function Sidebar({ userImg, userName, children }) {
+export default function Sidebar({ side, userImg, userName, children }) {
   return (
-    <div className="sidebar  hidden md:flex flex-col  h-[calc(100vh-(5rem+.75rem))] rounded-2xl ">
-      <div className="user-info flex justify-start gap-2  rounded-t-2xl p-2 items-center w-full  bg-[#51ACD0] ">
+    <div
+      className={
+        side == true
+          ? 'sidebar absolute z-30 bg-slate-200   md:relative  md:top-0   md:flex flex-col  h-[calc(100vh-(5.3rem))] rounded-2xl'
+          : 'sidebar absolute z-30 bg-slate-200   md:relative  md:top-0   md:flex flex-col  h-[calc(100vh-(5.3rem))] rounded-2xl hidden'
+      }
+    >
+      <div className="user-info flex justify-start gap-2 h-[5%] py-1  rounded-t-2xl  px-3 items-center w-full  bg-main ">
         <div className="w-6 h-6  rounded-full  ">
           <img
             src={userImg}
@@ -13,7 +19,7 @@ export default function Sidebar({ userImg, userName, children }) {
           <p>مرحبا:{userName}</p>
         </div>
       </div>
-      <div className="nav--lists__holder  h-full overflow-y-scroll   flex-col p-2   items-center  gap-5 ">
+      <div className="nav--lists__holder  h-[89vh] bg-slate-100   md:h-full overflow-y-scroll   flex-col p-2   items-center  gap-5 ">
         {children}
       </div>
     </div>

@@ -2,6 +2,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components {
+  .lableStyle {
+    @apply w-32  inline-block;
+  }
+  .inputStyle {
+    @apply w-[170px] outline-none  border border-neutral-950 rounded-sm  px-1 focus:scale-105 h-5 border-solid;
+  }
+  .main-btn {
+    @apply p-1 w-32  text-black font-semibold shadow   bg-main hover:shadow-main transition-shadow duration-200 shadow-slate-600  rounded-md;
+  }
+}
 .active {
   color: rgb(0, 248, 29);
 }

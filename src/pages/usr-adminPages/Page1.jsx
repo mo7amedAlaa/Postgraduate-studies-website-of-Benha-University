@@ -1,7 +1,5 @@
+import MainLayout from '../../component/Main/MainLayout';
+
 export default function Page1() {
-  return (
-    <div>
-      <h1>الائحةالداخلية للدرسات العليا</h1>
-    </div>
-  );
+  return <MainLayout></MainLayout>;
 }
