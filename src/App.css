@@ -26,10 +26,12 @@
 }
 .image2{
   background-image: url('./assets/images/last.webp');
-  background-repeat: no-repeat; /* لعدم تكرار الصورة */
-  background-size: cover; /* تكبير أو تصغير الصورة لتغطية الخلفية بالكامل */
-  background-position: center center; /* وسط الخلفية */
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: center center; 
   position: relative;
+  filter: brightness(0.4); 
+
 }
 .overlay2 {
   position: absolute;
@@ -37,8 +39,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  text-align: center;
-  width: 95%;
+  
 }
 .image .overlay {
   /* display: flex;
@@ -58,7 +59,9 @@
 .services-name {
   position: relative;
 }
-.services-name h1::before {
+.services-name h1::before ,
+.program-name h1::before
+{
   content: '';
    position: absolute;
    top: 75px;
@@ -67,4 +70,15 @@
    height: 10px;
    border-radius: 10px;
    background-color:linear-gradient(#51ACD0 , #5dc6f0);
+}
+.program-name{
+  position: relative;
+
+}
+.program-name h1::before{
+  width:20rem; 
+
+}
+.hh{
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
