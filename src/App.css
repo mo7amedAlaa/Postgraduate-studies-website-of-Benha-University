@@ -24,6 +24,22 @@
   background-position: center center; /* وسط الخلفية */
   position: relative;
 }
+.image2{
+  background-image: url('./assets/images/last.webp');
+  background-repeat: no-repeat; /* لعدم تكرار الصورة */
+  background-size: cover; /* تكبير أو تصغير الصورة لتغطية الخلفية بالكامل */
+  background-position: center center; /* وسط الخلفية */
+  position: relative;
+}
+.overlay2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+  width: 95%;
+}
 .image .overlay {
   /* display: flex;
  justify-content: end;
