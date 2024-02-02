@@ -39,10 +39,16 @@
   text-align: center;
   width: 95%;
 }
-.services-name h1::after {
-  content: ''; /* المحتوى الذي سيتم إضافته */
-  width: 90px;
-  height: 100px;
-  font-weight: bold; /* سمك الخط */
-  color: red; /* لون النص */
+.services-name {
+  position: relative;
+}
+.services-name h1::before {
+  content: '';
+   position: absolute;
+   top: 75px;
+   background-color: #5dc6f0;
+   width:18rem; 
+   height: 10px;
+   border-radius: 10px;
+   background-color:linear-gradient(#51ACD0 , #5dc6f0);
 }
