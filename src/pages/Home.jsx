@@ -175,7 +175,7 @@ function Home() {
           </h1>
           <p className="font-sans text-2xl font-medium text-white text-end mt-9">
             كل مايحتاجه الطالب من مدخل واحد: تسجيل المقررات، دفع المصروفات
-            <br />، منصة التعليم الإلكترونى، الجداول الدراسية، جداول الامتحانات،
+            <br />، منصة التعليم الإلكترونى، الجداول الدراسية، جداول الامتحانات، <div className=""></div>
             النتائج
           </p>
           <div className="flex items-end justify-end">
