@@ -1,14 +1,9 @@
 import Navbar from "../component/NavBar/Navbar";
-import {
-  BsFillArrowRightCircleFill,
-  BsFillArrowLeftCircleFill,
-} from "react-icons/bs";
 import { TfiEmail } from "react-icons/tfi";
 import { MdOutlinePhoneEnabled } from "react-icons/md";
 import { uniLogo } from "../assets";
 import { Link } from "react-router-dom";
 import ImageProgram from '../assets/images/program.jpg'
-import { useState } from "react";
 function Home() {
   return (
     <>
