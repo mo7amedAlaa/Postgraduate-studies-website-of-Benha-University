@@ -1,9 +1,14 @@
 import Navbar from "../component/NavBar/Navbar";
-
+import {
+  BsFillArrowRightCircleFill,
+  BsFillArrowLeftCircleFill,
+} from "react-icons/bs";
 import { TfiEmail } from "react-icons/tfi";
 import { MdOutlinePhoneEnabled } from "react-icons/md";
 import { uniLogo } from "../assets";
 import { Link } from "react-router-dom";
+import ImageProgram from '../assets/images/program.jpg'
+import { useState } from "react";
 function Home() {
   return (
     <>
@@ -167,27 +172,96 @@ function Home() {
 
 
       </div>
-      <div className="image2 bg-red-500 h-[550px] mt-10 mb-10">
+      <div className="image2  bg-red-500 h-[550px] mt-10 mb-10">
         <div className="overlay2">
-          <h1 className="font-sans text-6xl font-semibold text-white text-end">
+          <h1 className="font-sans text-6xl font-semibold text-white text-center">
             {" "}
-            الدراسات العليا
+             BU<span className="text-[#5dc6f0] text-[66px]">2</span>LEARN
           </h1>
-          <p className="font-sans text-2xl font-medium text-white text-end mt-9">
-            كل مايحتاجه الطالب من مدخل واحد: تسجيل المقررات، دفع المصروفات
-            <br />، منصة التعليم الإلكترونى، الجداول الدراسية، جداول الامتحانات، <div className=""></div>
-            النتائج
+          <p className="font-sans text-3xl font-medium text-white text-center mt-9">
+          DISTANE EDUCATION PLATFORM  
           </p>
-          <div className="flex items-end justify-end">
+          <div className="flex items-end justify-center">
             <Link
-              to={"/login"}
-              className=" bg-gradient-to-t w-[13rem] from-[#51ACD0] to-[#5dc6f0] p-2 rounded-md  text-2xl mt-9 text-white font-serif font-semibold cursor-pointer hover:bg-teal-400  "
+              to={"/"}
+              className=" bg-gradient-to-t w-[13rem] from-[#51ACD0] to-[#5dc6f0] p-2 rounded-md  text-2xl mt-9 text-white font-serif font-semibold cursor-pointer hover:bg-teal-400 text-center "
             >
-              تسجيل الدخول
+               اقرأ المزيد
             </Link>
           </div>
         </div>
       </div>
+      <div className='program-name ms-10 mt-20 mb-20 before:content-[""] before:block'>
+        <h1 className="font-sans text-5xl font-semibold  text-start">
+        البرامج الأكاديمية
+
+        </h1>
+      </div>
+      <div className="programs flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
+        <div className="w-[70%] grid grid-cols-3  gap-3 ">
+       
+        <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all ">
+        <img src="https://www.asu.edu.eg/images/3faf5cd9-e1a6-443a-ab3f-9be87e867a28.jpg" className="w-[100%]" alt="program"/>
+
+          <p className="text-center font-sans text-2xl p-4">الدبلومات التأهيلية</p>
+        </div>
+        <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all">
+        <img src="https://www.asu.edu.eg/images/83825ccf-58e5-4c2c-86d7-596c64fd902b.png" className="w-[100%]" alt="program"/>
+
+          <p className="text-center font-sans text-2xl p-4">الماجيستير</p>
+        </div>
+        <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all">
+        <img src={ImageProgram} className="w-[100%]" alt="program"/>
+
+          <p className="text-center font-sans text-2xl p-4">الدكتوراه</p>
+        </div>
+      
+        </div>
+       
+      </div>
+      <div className="tot_num bg-black mt-15 h-96 flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20 " >
+        <div className="w-[80%] grid grid-cols-4 gap-4 text-center">
+          <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all p-2">
+            <div className="">
+            <p className="font-sans text-5xl font-medium text-white text-center mt-5">54</p>
+            <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">طالب دراسات عليا </h1>
+            </div>
+         
+             </div>
+             <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all p-2">
+             <div className="">
+             <p className="font-sans text-5xl font-medium text-white text-center mt-5">55</p>
+            <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">  برنامج للساعات المعتمدة </h1>
+            </div>
+         
+             </div>
+             <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all">
+             <div className="">
+            <p className="font-sans text-5xl font-medium text-white text-center mt-5">78</p>
+            <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">  مشروع بحثي </h1>
+            </div>
+         
+             </div>
+             <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all">
+             <div className="">
+            <p className="font-sans text-5xl font-medium text-white text-center mt-5">99</p>
+            <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">  برنامج دولي مشترك </h1>
+            </div>
+         
+             </div>
+          
+
+        </div>
+ 
+      </div>
+
+
+
+
+     
+
+
+     
       
       
     </>
