@@ -328,16 +328,7 @@ function Home() {
             </p>
             <div className="flex items-end">
             <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">اقرأ المزيد</button>
-      <div className="flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
-        <div className="w-[70%] grid grid-cols-3 gap-3 bg-red-400 text-center">
-        <div>HEllo WOrld !</div>
-        <div>HEllo WOrld !</div>
-        <div>HEllo WOrld !</div>
-        </div>
-       
-
-      </div>
-
+      
             </div>
           </div>
           <div className="imagee  text-center mt-[50px] sm:mt-[3rem]">
