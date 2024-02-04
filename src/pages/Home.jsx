@@ -1,7 +1,9 @@
-import Navbar from '../NavBar/Navbar';
-import LogoUniversity from '../../assets/images/شعار_جامعة_بنها.png';
-import { TfiEmail } from 'react-icons/tfi';
-import { MdOutlinePhoneEnabled } from 'react-icons/md';
+import Navbar from "../component/NavBar/Navbar";
+import { TfiEmail } from "react-icons/tfi";
+import { MdOutlinePhoneEnabled } from "react-icons/md";
+import { uniLogo } from "../assets";
+import { Link } from "react-router-dom";
+import ImageProgram from '../assets/images/program.jpg'
 function Home() {
   return (
     <>
@@ -147,7 +149,7 @@ function Home() {
 
             <h3 className="mt-5 mb-5 font-Poppins text-xl">      الشكاوى </h3>
           </div>
-
+         
         </div>
       </div>
       <div className="graduates mt-5 mb-5">
@@ -172,7 +174,7 @@ function Home() {
              BU<span className="text-[#5dc6f0] text-[66px]">2</span>LEARN
           </h1>
           <p className="font-sans text-3xl font-medium text-white text-center mt-9">
-          DISTANE EDUCATION PLATFORM
+          DISTANE EDUCATION PLATFORM  
           </p>
           <div className="flex items-end justify-center">
             <Link
@@ -192,7 +194,7 @@ function Home() {
       </div>
       <div className="programs flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
         <div className="w-[70%] grid grid-cols-3  gap-3 ">
-
+       
         <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all ">
         <img src="https://www.asu.edu.eg/images/3faf5cd9-e1a6-443a-ab3f-9be87e867a28.jpg" className="w-[100%]" alt="program"/>
 
@@ -208,9 +210,9 @@ function Home() {
 
           <p className="text-center font-sans text-2xl p-4">الدكتوراه</p>
         </div>
-
+      
         </div>
-
+       
       </div>
       <div className="tot_num bg-black mt-15 h-96 flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20 " >
         <div className="w-[80%] grid grid-cols-4 gap-4 text-center">
@@ -219,44 +221,44 @@ function Home() {
             <p className="font-sans text-5xl font-medium text-white text-center mt-5">54</p>
             <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">طالب دراسات عليا </h1>
             </div>
-
+         
              </div>
              <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all p-2">
              <div className="">
              <p className="font-sans text-5xl font-medium text-white text-center mt-5">55</p>
             <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">  برنامج للساعات المعتمدة </h1>
             </div>
-
+         
              </div>
              <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all">
              <div className="">
             <p className="font-sans text-5xl font-medium text-white text-center mt-5">78</p>
             <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">  مشروع بحثي </h1>
             </div>
-
+         
              </div>
              <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all">
              <div className="">
             <p className="font-sans text-5xl font-medium text-white text-center mt-5">99</p>
             <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">  برنامج دولي مشترك </h1>
             </div>
-
+         
              </div>
-
+          
 
         </div>
-
+ 
       </div>
 
 
 
 
+     
 
 
-
-
-
-
+     
+      
+      
     </>
   );
 }

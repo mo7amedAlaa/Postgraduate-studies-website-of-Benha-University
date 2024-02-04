@@ -9,15 +9,10 @@ import Page5 from './pages/usr-adminPages/page5';
 import Home from './pages/Home';
 
 import Studentinformation from './pages/AdminPages/Studentinformation';
-<<<<<<< Updated upstream
 import Login from './pages/usr-adminPages/Login';
 import Petition from './pages/AdminPages/Petition';
 import Payment from './pages/UserPages/Payment';
 import RegistrationToApply from './pages/UserPages/RegistrationToApply';
-=======
-import Petition from './pages/AdminPages/Petition';
-import Login from './pages/usr-adminPages/Login';
->>>>>>> Stashed changes
 function App() {
   const router = createBrowserRouter([
     {
@@ -34,22 +29,12 @@ function App() {
         { path: '/admin/page4', element: <Page4 /> },
         { path: '/admin/page5', element: <Page5 /> },
         { path: '/admin/studentinformation', element: <Studentinformation /> },
-<<<<<<< Updated upstream
         { path: '/admin/petition', element: <Petition /> },
       ],
     },
     { path: '/login', element: <Login /> },
     { path: '/payment', element: <Payment /> },
     { path: '/Registration', element: <RegistrationToApply /> },
-=======
-        {
-          path: '/admin/petition',
-          element: <Petition />,
-        },
-      ],
-    },
-    { path: '/login', element: <Login /> },
->>>>>>> Stashed changes
   ]);
   return (
     <div className="font-bodyFont min-h-screen  ">
