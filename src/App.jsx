@@ -13,6 +13,7 @@ import Login from './pages/usr-adminPages/Login';
 import Petition from './pages/AdminPages/Petition';
 import Payment from './pages/UserPages/Payment';
 import RegistrationToApply from './pages/UserPages/RegistrationToApply';
+import UploadData from './pages/UserPages/UploadData';
 function App() {
   const router = createBrowserRouter([
     {
@@ -35,6 +36,7 @@ function App() {
     { path: '/login', element: <Login /> },
     { path: '/payment', element: <Payment /> },
     { path: '/Registration', element: <RegistrationToApply /> },
+    { path: '/upload-data', element: <UploadData /> },
   ]);
   return (
     <div className="font-bodyFont min-h-screen  ">
