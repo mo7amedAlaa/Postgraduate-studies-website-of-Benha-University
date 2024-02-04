@@ -5,7 +5,7 @@ import { graduatedMenIcon, personaLogo, uniLogo } from '../../assets';
 
 export default function RegistrationToApply() {
   return (
-    <div className=" bg-blue-800  min-h-screen">
+    <div className=" bg-slate-300    min-h-screen">
       <div className="flex container mx-auto items-center justify-around">
         <div>
           <img src={uniLogo} alt="" width={'100px'} height={'100px'} />
