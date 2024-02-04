@@ -247,7 +247,7 @@ function Home() {
               الجامعة، واستمارات التقدم والمستندات المطلوبة للالتحاق، إضافة إلى
               المصروفات المطلوبة من المصريين والوافدين، إلى جانب الدورات
               التدريبية المتاحة لطلاب الدراسات العليا.. وفيما يلي شرحًا توضيحًا
-              يتضمن كل هذه الجوانب وأكثر.
+              يتضمن كل هذه الجوانب وأكثر..
             </p>
             <div className="flex items-end">
             <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">اقرأ المزيد</button>
@@ -259,7 +259,9 @@ function Home() {
             </div>
         </div>
       </div>
-      <div className="tot_num bg-black mt-15 h-96 flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20 ">
+    
+      
+      <div className="tot_num mb-20 bg-black mt-15 h-96 flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20 " >
         <div className="w-[80%] grid grid-cols-4 gap-4 text-center">
           <div className="border rounded-sm text-white h-[200px] hh text-center hover:border-main transition-all p-3">
             <div className="">
@@ -326,6 +328,15 @@ function Home() {
             </p>
             <div className="flex items-end">
             <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">اقرأ المزيد</button>
+      <div className="flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
+        <div className="w-[70%] grid grid-cols-3 gap-3 bg-red-400 text-center">
+        <div>HEllo WOrld !</div>
+        <div>HEllo WOrld !</div>
+        <div>HEllo WOrld !</div>
+        </div>
+       
+
+      </div>
 
             </div>
           </div>
