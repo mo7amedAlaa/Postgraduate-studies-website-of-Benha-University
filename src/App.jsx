@@ -11,8 +11,8 @@ import Home from './pages/Home';
 import Studentinformation from './pages/AdminPages/Studentinformation';
 import Login from './pages/usr-adminPages/Login';
 import Petition from './pages/AdminPages/Petition';
+import Payment from './pages/UserPages/Payment';
 function App() {
-  
   const router = createBrowserRouter([
     {
       path: '/',
@@ -32,6 +32,7 @@ function App() {
       ],
     },
     { path: '/login', element: <Login /> },
+    { path: '/payment', element: <Payment /> },
   ]);
   return (
     <div className="font-bodyFont min-h-screen  ">
