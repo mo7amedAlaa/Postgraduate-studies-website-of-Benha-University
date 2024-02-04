@@ -239,7 +239,9 @@ function Home() {
       <div className="descri flex justify-center mb-10 mt-20">
         <div className="grid grid-cols-2  w-[80%] gap-5 text-center">
           <div className="overlay_content">
-            <h1 className="text-start font-sans text-5xl font-semibold">دليل الدراسات العليا</h1>
+            <h1 className="text-start font-sans text-5xl font-semibold">
+              دليل الدراسات العليا
+            </h1>
             <p className="text-start font-sans text-2xl mt-5">
               يلتزم طلاب الدراسات العليا بالعديد من الجوانب الإدارية المتعلقة
               بشروط الالتحاق بالدراسات العليا والتي تختلف ما بين درجة علمية
@@ -250,18 +252,22 @@ function Home() {
               يتضمن كل هذه الجوانب وأكثر..
             </p>
             <div className="flex items-end">
-            <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">اقرأ المزيد</button>
-
+              <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">
+                اقرأ المزيد
+              </button>
             </div>
           </div>
           <div className="imagee  text-center">
-             <img src="https://www.asu.edu.eg/images/guide.jpg" className="w-[100%] rounded-lg" alt=""/>
-            </div>
+            <img
+              src="https://www.asu.edu.eg/images/guide.jpg"
+              className="w-[100%] rounded-lg"
+              alt=""
+            />
+          </div>
         </div>
       </div>
-    
-      
-      <div className="tot_num mb-20 bg-black mt-15 h-96 flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20 " >
+
+      <div className="tot_num mb-20 bg-black mt-15 h-96 flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20 ">
         <div className="w-[80%] grid grid-cols-4 gap-4 text-center">
           <div className="border rounded-sm text-white h-[200px] hh text-center hover:border-main transition-all p-3">
             <div className="">
@@ -309,31 +315,34 @@ function Home() {
         </div>
       </div>
       <div className="sec_search  flex justify-center mb-10  bg-">
-      <div className="grid grid-cols-2  w-[80%] gap-5 text-center p-3">
+        <div className="grid grid-cols-2  w-[80%] gap-5 text-center p-3">
           <div className="overlay_content p-5">
-            <h1 className="text-start font-sans text-5xl font-semibold"> البحث العلمى  </h1>
+            <h1 className="text-start font-sans text-5xl font-semibold">
+              {" "}
+              البحث العلمى{" "}
+            </h1>
             <p className="text-start font-sans text-2xl mt-5">
-              
-                            								
-            يعد الباحثين من بين الفئات المهمة في جامعة  بنها.. لذا يحرص قطاع الدراسات العليا والبحوث
-                            على
-                            توفير كافة السبل وأفضلها لتقديم الخدمات العلمية والبحثية والتعليمة التي تساهم في مساعدتهم
-                            على
-                            الرقي بالبحث العلمي وتكون في الوقت نفسه عاملا محفزا لهم على الإبداع والتفوق والتميز ليتمكنوا
-                            من
-                            المساهمة في حل مشاكل المجتمع من ناحية والنهوض بالبحث العلمي من ناحية ثانية والصعود بتصنيف
-                            الجامعة عالميا من ناحية ثالثة.
-                            
-                                                    
+              يعد الباحثين من بين الفئات المهمة في جامعة بنها.. لذا يحرص قطاع
+              الدراسات العليا والبحوث على توفير كافة السبل وأفضلها لتقديم
+              الخدمات العلمية والبحثية والتعليمة التي تساهم في مساعدتهم على
+              الرقي بالبحث العلمي وتكون في الوقت نفسه عاملا محفزا لهم على
+              الإبداع والتفوق والتميز ليتمكنوا من المساهمة في حل مشاكل المجتمع
+              من ناحية والنهوض بالبحث العلمي من ناحية ثانية والصعود بتصنيف
+              الجامعة عالميا من ناحية ثالثة.
             </p>
             <div className="flex items-end">
-            <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">اقرأ المزيد</button>
-      
+              <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">
+                اقرأ المزيد
+              </button>
             </div>
           </div>
           <div className="imagee  text-center mt-[50px] sm:mt-[3rem]">
-             <img src="https://www.asu.edu.eg/images/16.jpg" className="w-[100%] rounded-lg" alt=""/>
-            </div>
+            <img
+              src="https://www.asu.edu.eg/images/16.jpg"
+              className="w-[100%] rounded-lg"
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </>
