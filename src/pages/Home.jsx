@@ -3,7 +3,7 @@ import { TfiEmail } from "react-icons/tfi";
 import { MdOutlinePhoneEnabled } from "react-icons/md";
 import { uniLogo } from "../assets";
 import { Link } from "react-router-dom";
-import ImageProgram from '../assets/images/program.jpg'
+import ImageProgram from "../assets/images/program.jpg";
 function Home() {
   return (
     <>
@@ -82,8 +82,8 @@ function Home() {
         </h1>
       </div>
       <div className="services flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
-        <div className="w-[70%] grid grid-cols-4  gap-3 ">
-          <div className="shadow-lg text-center mb-10 rounded-lg w-60 p-5 hover:scale-110 transition-all">
+        <div className="w-[80%] grid grid-cols-4  gap-3 ">
+          <div className="shadow-lg text-center mb-10 rounded-lg w-70 p-5 hover:scale-110 transition-all">
             <div className="flex items-center justify-center">
               <img
                 src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/372c6de72afbddfc800432ce0f8b178b.png"
@@ -92,9 +92,11 @@ function Home() {
               />
             </div>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">التقدم للدراسات العليا</h3>
+            <h3 className="mt-5 mb-5 font-Poppins text-xl">
+              التقدم للدراسات العليا
+            </h3>
           </div>
-          <div className="shadow-lg text-center mb-10 rounded-lg w-60 p-5 hover:scale-110 transition-all">
+          <div className="shadow-lg text-center mb-10 rounded-lg w-70 p-5 hover:scale-110 transition-all">
             <div className="flex items-center justify-center">
               <img
                 src="https://www.asu.edu.eg/141090/_mediacenter/2021/png/6cb561a4bbfa874570ca82c711886eeb.png"
@@ -103,9 +105,12 @@ function Home() {
               />
             </div>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">  تسجيل واختيار المواد</h3>
+            <h3 className="mt-5 mb-5 font-Poppins text-xl">
+              {" "}
+              تسجيل واختيار المواد
+            </h3>
           </div>
-          <div className="shadow-lg text-center mb-10 rounded-lg w-60 p-5 hover:scale-110 transition-all">
+          <div className="shadow-lg text-center mb-10 rounded-lg w-70 p-5 hover:scale-110 transition-all">
             <div className="flex items-center justify-center">
               <img
                 src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/ec5aecb3aadf2077d1f2756ede50ee97.png"
@@ -114,9 +119,12 @@ function Home() {
               />
             </div>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">  تسجيل واختيار المواد</h3>
+            <h3 className="mt-5 mb-5 font-Poppins text-xl">
+              {" "}
+              تسجيل واختيار المواد
+            </h3>
           </div>
-          <div className="shadow-lg text-center mb-10 rounded-lg w-60 p-5 hover:scale-110 transition-all">
+          <div className="shadow-lg text-center mb-10 rounded-lg w-70 p-5 hover:scale-110 transition-all">
             <div className="flex items-center justify-center">
               <img
                 src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/8f8b9a7cc9c5d1c4df4e229124bfe7e0.png"
@@ -125,9 +133,12 @@ function Home() {
               />
             </div>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">   نتائج الدراسات العليا </h3>
+            <h3 className="mt-5 mb-5 font-Poppins text-xl">
+              {" "}
+              نتائج الدراسات العليا{" "}
+            </h3>
           </div>
-          <div className="shadow-lg text-center mb-10 rounded-lg w-60 p-5 hover:scale-110 transition-all">
+          <div className="shadow-lg text-center mb-10 rounded-lg w-70 p-5 hover:scale-110 transition-all">
             <div className="flex items-center justify-center">
               <img
                 src="https://www.asu.edu.eg/141090/_mediacenter/2022/jpg/becd7d7bdb32c94bde115a7e10927cec.jpg"
@@ -136,9 +147,9 @@ function Home() {
               />
             </div>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">     كورسات كورسيرا </h3>
+            <h3 className="mt-5 mb-5 font-Poppins text-xl"> كورسات كورسيرا </h3>
           </div>
-          <div className="shadow-lg text-center mb-10 rounded-lg w-60 p-5 hover:scale-110 transition-all">
+          <div className="shadow-lg text-center mb-10 rounded-lg w-70 p-5 hover:scale-110 transition-all">
             <div className="flex items-center justify-center">
               <img
                 src="https://www.asu.edu.eg/141090/_mediacenter/2021/png/4aa70b2c4a21785c4b872fe5e6be37d2.png"
@@ -147,118 +158,181 @@ function Home() {
               />
             </div>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">      الشكاوى </h3>
+            <h3 className="mt-5 mb-5 font-Poppins text-xl"> الشكاوى </h3>
           </div>
-         
         </div>
       </div>
       <div className="graduates mt-5 mb-5">
         <div className="ms-10 ">
-        <h2 className="bg-main text-white text-4xl p-2 font-sans w-[80%] text-center rounded-md">دراسات العليا</h2>
-
+          <h2 className="bg-main text-white text-4xl p-2 font-sans w-[80%] text-center rounded-md">
+            دراسات العليا
+          </h2>
         </div>
-        <div className="ms-10" >
-          <div className="text-2xl p-2 font-semibold font-sans w-[80%] text-start mt-3 flex flex-col" >
-            <Link to="">1.  الإجراءات المطلوب إتباعها للطلاب المصريين والوافدين للالتحاق بمرحلة الدراسات العليا </Link>
-            <Link to="" className="mt-5">2.لائحة الدراسات العليا بالكليات</Link>
-            <Link  to="" className="mt-5">3. دليل الدراسات العليا</Link>
+        <div className="ms-10">
+          <div className="text-2xl p-2 font-semibold font-sans w-[80%] text-start mt-3 flex flex-col">
+            <Link to="">
+              1. الإجراءات المطلوب إتباعها للطلاب المصريين والوافدين للالتحاق
+              بمرحلة الدراسات العليا{" "}
+            </Link>
+            <Link to="" className="mt-5">
+              2.لائحة الدراسات العليا بالكليات
+            </Link>
+            <Link to="" className="mt-5">
+              3. دليل الدراسات العليا
+            </Link>
           </div>
         </div>
-
-
       </div>
       <div className="image2  bg-red-500 h-[550px] mt-10 mb-10">
         <div className="overlay2">
           <h1 className="font-sans text-6xl font-semibold text-white text-center">
             {" "}
-             BU<span className="text-[#5dc6f0] text-[66px]">2</span>LEARN
+            BU<span className="text-[#5dc6f0] text-[66px]">2</span>LEARN
           </h1>
           <p className="font-sans text-3xl font-medium text-white text-center mt-9">
-          DISTANE EDUCATION PLATFORM  
+            DISTANE EDUCATION PLATFORM
           </p>
           <div className="flex items-end justify-center">
             <Link
               to={"/"}
               className=" bg-gradient-to-t w-[13rem] from-[#51ACD0] to-[#5dc6f0] p-2 rounded-md  text-2xl mt-9 text-white font-serif font-semibold cursor-pointer hover:bg-teal-400 text-center "
             >
-               اقرأ المزيد
+              اقرأ المزيد
             </Link>
           </div>
         </div>
       </div>
       <div className='program-name ms-10 mt-20 mb-20 before:content-[""] before:block'>
         <h1 className="font-sans text-5xl font-semibold  text-start">
-        البرامج الأكاديمية
-
+          البرامج الأكاديمية
         </h1>
       </div>
       <div className="programs flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
-        <div className="w-[70%] grid grid-cols-3  gap-3 ">
-       
-        <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all ">
-        <img src="https://www.asu.edu.eg/images/3faf5cd9-e1a6-443a-ab3f-9be87e867a28.jpg" className="w-[100%]" alt="program"/>
+        <div className="w-[80%] grid grid-cols-3  gap-3 ">
+          <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all ">
+            <img
+              src="https://www.asu.edu.eg/images/3faf5cd9-e1a6-443a-ab3f-9be87e867a28.jpg"
+              className="w-[100%]"
+              alt="program"
+            />
 
-          <p className="text-center font-sans text-2xl p-4">الدبلومات التأهيلية</p>
-        </div>
-        <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all">
-        <img src="https://www.asu.edu.eg/images/83825ccf-58e5-4c2c-86d7-596c64fd902b.png" className="w-[100%]" alt="program"/>
+            <p className="text-center font-sans text-2xl p-4">
+              الدبلومات التأهيلية
+            </p>
+          </div>
+          <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all">
+            <img
+              src="https://www.asu.edu.eg/images/83825ccf-58e5-4c2c-86d7-596c64fd902b.png"
+              className="w-[100%]"
+              alt="program"
+            />
 
-          <p className="text-center font-sans text-2xl p-4">الماجيستير</p>
-        </div>
-        <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all">
-        <img src={ImageProgram} className="w-[100%]" alt="program"/>
+            <p className="text-center font-sans text-2xl p-4">الماجيستير</p>
+          </div>
+          <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all">
+            <img src={ImageProgram} className="w-[100%]" alt="program" />
 
-          <p className="text-center font-sans text-2xl p-4">الدكتوراه</p>
+            <p className="text-center font-sans text-2xl p-4">الدكتوراه</p>
+          </div>
         </div>
-      
-        </div>
-       
       </div>
-      <div className="tot_num bg-black mt-15 h-96 flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20 " >
+      <div className="descri flex justify-center mb-10 mt-20">
+        <div className="grid grid-cols-2  w-[80%] gap-5 text-center">
+          <div className="overlay_content">
+            <h1 className="text-start font-sans text-5xl font-semibold">دليل الدراسات العليا</h1>
+            <p className="text-start font-sans text-2xl mt-5">
+              يلتزم طلاب الدراسات العليا بالعديد من الجوانب الإدارية المتعلقة
+              بشروط الالتحاق بالدراسات العليا والتي تختلف ما بين درجة علمية
+              وأخرى، إضافة إلى البرامج العلمية المميزة في كل كلية من كليات
+              الجامعة، واستمارات التقدم والمستندات المطلوبة للالتحاق، إضافة إلى
+              المصروفات المطلوبة من المصريين والوافدين، إلى جانب الدورات
+              التدريبية المتاحة لطلاب الدراسات العليا.. وفيما يلي شرحًا توضيحًا
+              يتضمن كل هذه الجوانب وأكثر.
+            </p>
+            <div className="flex items-end">
+            <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">اقرأ المزيد</button>
+
+            </div>
+          </div>
+          <div className="imagee  text-center">
+             <img src="https://www.asu.edu.eg/images/guide.jpg" className="w-[100%] rounded-lg" alt=""/>
+            </div>
+        </div>
+      </div>
+      <div className="tot_num bg-black mt-15 h-96 flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans mb-20 mt-20  ">
         <div className="w-[80%] grid grid-cols-4 gap-4 text-center">
           <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all p-2">
             <div className="">
-            <p className="font-sans text-5xl font-medium text-white text-center mt-5">54</p>
-            <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">طالب دراسات عليا </h1>
+              <p className="font-sans text-5xl font-medium text-white text-center mt-5">
+                54
+              </p>
+              <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">
+                طالب دراسات عليا{" "}
+              </h1>
             </div>
-         
-             </div>
-             <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all p-2">
-             <div className="">
-             <p className="font-sans text-5xl font-medium text-white text-center mt-5">55</p>
-            <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">  برنامج للساعات المعتمدة </h1>
+          </div>
+          <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all p-2">
+            <div className="">
+              <p className="font-sans text-5xl font-medium text-white text-center mt-5">
+                55
+              </p>
+              <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">
+                {" "}
+                برنامج للساعات المعتمدة{" "}
+              </h1>
             </div>
-         
-             </div>
-             <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all">
-             <div className="">
-            <p className="font-sans text-5xl font-medium text-white text-center mt-5">78</p>
-            <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">  مشروع بحثي </h1>
+          </div>
+          <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all">
+            <div className="">
+              <p className="font-sans text-5xl font-medium text-white text-center mt-5">
+                78
+              </p>
+              <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">
+                {" "}
+                مشروع بحثي{" "}
+              </h1>
             </div>
-         
-             </div>
-             <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all">
-             <div className="">
-            <p className="font-sans text-5xl font-medium text-white text-center mt-5">99</p>
-            <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">  برنامج دولي مشترك </h1>
+          </div>
+          <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all">
+            <div className="">
+              <p className="font-sans text-5xl font-medium text-white text-center mt-5">
+                99
+              </p>
+              <h1 className=" font-sans text-3xl font-semibold  text-white mt-9">
+                {" "}
+                برنامج دولي مشترك{" "}
+              </h1>
             </div>
-         
-             </div>
-          
-
+          </div>
         </div>
- 
       </div>
+      <div className="descri flex justify-center mb-10 mt-20">
+        <div className="grid grid-cols-2  w-[80%] gap-10 text-center">
+          <div className="overlay_content">
+            <h1 className="text-start font-sans text-5xl font-semibold">دليل الدراسات العليا</h1>
+            <p className="text-start font-sans text-2xl mt-5">
+                            								
+                                            يعد الباحثين من بين الفئات المهمة في جامعة عين شمس.. لذا يحرص قطاع الدراسات العليا والبحوث
+                                            على
+                                            توفير كافة السبل وأفضلها لتقديم الخدمات العلمية والبحثية والتعليمة التي تساهم في مساعدتهم
+                                            على
+                                            الرقي بالبحث العلمي وتكون في الوقت نفسه عاملا محفزا لهم على الإبداع والتفوق والتميز ليتمكنوا
+                                            من
+                                            المساهمة في حل مشاكل المجتمع من ناحية والنهوض بالبحث العلمي من ناحية ثانية والصعود بتصنيف
+                                            الجامعة عالميا من ناحية ثالثة.
+                                            
+                                                                    
+            </p>
+            <div className="flex items-end">
+            <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">اقرأ المزيد</button>
 
-
-
-
-     
-
-
-     
-      
-      
+            </div>
+          </div>
+          <div className="imagee  text-center">
+             <img src="https://www.asu.edu.eg/images/16.jpg" className="w-[100%] rounded-lg" alt=""/>
+            </div>
+        </div>
+      </div>
     </>
   );
 }
