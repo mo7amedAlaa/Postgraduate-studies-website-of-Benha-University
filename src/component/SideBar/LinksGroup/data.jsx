@@ -89,7 +89,7 @@ export const linksGroupInfo = [
     links: [
       { Ltitle: ' نظام السنوات الدراسية', href: '/#' },
       { Ltitle: '   نظام الساعات المعتمدة', href: '/#' },
-      { Ltitle: '     الالتماس', href: '/#' },
+      { Ltitle: '     الالتماس', href: '/admin/petition' },
       { Ltitle: '   الرفع  ', href: '/#' },
       { Ltitle: '   تسجيل نتائج مقرر  ', href: '/#' },
       {

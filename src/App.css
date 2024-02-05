@@ -17,3 +17,99 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+.image {
+  background-image: url('./assets/images/bg-gradute1.png');
+  background-repeat: no-repeat; /* لعدم تكرار الصورة */
+  background-size: cover; /* تكبير أو تصغير الصورة لتغطية الخلفية بالكامل */
+  background-position: center center; /* وسط الخلفية */
+  position: relative;
+}
+.image2{
+  background-image: url('./assets/images/last.webp');
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: center center; 
+  position: relative;
+  filter: brightness(0.4); 
+
+}
+.overlay2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  
+}
+.image .overlay {
+  /* display: flex;
+ justify-content: end;
+ flex-direction: column;
+ align-items: center; */
+}
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+  width: 95%;
+}
+.services-name {
+  position: relative;
+}
+.services-name h1::before ,
+.program-name h1::before
+{
+  content: '';
+   position: absolute;
+   top: 75px;
+   background-color: #5dc6f0;
+   width:18rem; 
+   height: 10px;
+   border-radius: 10px;
+   background-color:linear-gradient(#51ACD0 , #5dc6f0);
+}
+.program-name{
+  position: relative;
+
+}
+.program-name h1::before{
+  width:20rem; 
+
+}
+.hh{
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.p{
+  color: rgba(255, 255, 255, 0.7);
+}
+.nav {
+  color: rgba(0,0,0,0.55);
+}
+.to{
+  position: relative;
+}
+.EN::after{
+  content: '';
+  position: absolute;
+  top: 1px;
+  background-color: #5dc6f0;
+  left: 75%;
+  width: 2px;
+  height: 25px;
+  border-radius: 10px;
+  background-color:linear-gradient(#51ACD0 , #5dc6f0);
+}
+.AR::after{
+  content: '';
+  position: absolute;
+  top: 1px;
+  background-color: #5dc6f0;
+  left: 35%;
+  width: 2px;
+  height: 27px;
+  border-radius: 10px;
+  background-color:linear-gradient(#51ACD0 , #5dc6f0);
+}
