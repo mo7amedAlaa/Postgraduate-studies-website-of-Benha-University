@@ -8,13 +8,13 @@ import { FiPhone } from "react-icons/fi";
 import { CiLocationOn } from "react-icons/ci";
 import { HiOutlineMail } from "react-icons/hi";
 import Footer from "../component/Footer/Footer";
-
-
+import Main from "../component/NavbarHomePage/Main";
+import Graduate from "../assets/images/post.png";
 function Home() {
   return (
     <>
-      <Navbar />
-      <div className="grid grid-cols-3 justify-center items-center gap-4 p-1 font-sans   ">
+      {/* <Navbar /> */}
+      {/* <div className="grid grid-cols-3 justify-center items-center gap-4 p-1 font-sans   ">
         <div className=" text-center flex justify-center items-center gap-5">
           <MdOutlinePhoneEnabled size={43} />
           <div className=" ">
@@ -37,8 +37,8 @@ function Home() {
             <p className="text-gray-400">اترك لنا رسالة لنتواصل معك</p>
           </div>
         </div>
-      </div>
-      <div className="bg-gradient-to-t from-[#51ACD0] to-[#5dc6f0] mt-3 flex justify-center items-center flex-wrap gap-[6rem] p-3 font-sans">
+      </div> */}
+      {/* <div className="bg-gradient-to-t from-[#51ACD0] to-[#5dc6f0] mt-3 flex justify-center items-center flex-wrap gap-[6rem] p-3 font-sans">
         <div className="">
           <i className="fas fa-book-reader  rounded-md p-1 ml-2"></i>
           الطلاب
@@ -59,6 +59,35 @@ function Home() {
         </div>
         <div>
           الزائرون <i className="fas fa-globe  rounded-md p-1 ml-2"></i>
+        </div>
+      </div> */}
+      <Main />
+      <div className="flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans shadow-2xl">
+        <div className="w-[90%] grid grid-cols-9  gap-3 mt-20 p-5">
+          <div className="flex items-center justify-center gap-10 nav hover:bg-main h-10 transition-all hover:rounded-md">
+            <img src={Graduate} style={{width:"100px"}} className="text-center" alt="graduate" />{" "}
+            <button className="nav hover:bg-main h-10 transition-all hover:rounded-md"> الدراسات </button>
+          </div>
+          <button className="nav hover:bg-main h-10 transition-all hover:rounded-md">عن القطاع </button>
+          <button className="nav hover:bg-main h-10 transition-all hover:rounded-md">خدمات الدراسات العليا </button>
+          <select className="nav hover:bg-main h-10 transition-all hover:rounded-md">
+            <option value=" 1">العلاقات الثقافية</option>
+            <option value=" 2">العلاقات الثقافية</option>
+            <option value=" 3">العلاقات الثقافية</option>
+          </select>
+          <select className="nav hover:bg-main h-10 transition-all hover:rounded-md">
+            <option value=" 1"> الدراسات العليا</option>
+            <option value=" 2">العلاقات الثقافية</option>
+            <option value=" 3">العلاقات الثقافية</option>
+          </select>{" "}
+          <button className="nav hover:bg-main h-10 transition-all hover:rounded-md">المكتبات </button>
+          <select className="nav hover:bg-main h-10 transition-all hover:rounded-md">
+            <option value=" 1"> الجوائز</option>
+            <option value=" 2">العلاقات الثقافية</option>
+            <option value=" 3">العلاقات الثقافية</option>
+          </select>
+          <button className="nav hover:bg-main h-10 transition-all hover:rounded-md"> نماذج استمارات </button>
+          <button className="nav hover:bg-main h-10 transition-all hover:rounded-md"> عن الدراسات العليا </button>
         </div>
       </div>
       <div className="image bg-red-500 h-[550px]">

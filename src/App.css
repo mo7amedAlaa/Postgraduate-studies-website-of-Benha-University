@@ -85,3 +85,31 @@
 .p{
   color: rgba(255, 255, 255, 0.7);
 }
+.nav {
+  color: rgba(0,0,0,0.55);
+}
+.to{
+  position: relative;
+}
+.EN::after{
+  content: '';
+  position: absolute;
+  top: 1px;
+  background-color: #5dc6f0;
+  left: 75%;
+  width: 2px;
+  height: 25px;
+  border-radius: 10px;
+  background-color:linear-gradient(#51ACD0 , #5dc6f0);
+}
+.AR::after{
+  content: '';
+  position: absolute;
+  top: 1px;
+  background-color: #5dc6f0;
+  left: 35%;
+  width: 2px;
+  height: 27px;
+  border-radius: 10px;
+  background-color:linear-gradient(#51ACD0 , #5dc6f0);
+}
