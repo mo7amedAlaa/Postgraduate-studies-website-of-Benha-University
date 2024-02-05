@@ -46,7 +46,7 @@ function UploadMaterial() {
             <fieldset className="border my-2 border-gray-600 p-3 ">
               <legend> كل مايتعلق بالمقرر</legend>
               <div className="grid grid-cols-4">
-                <div className=" flex  my-2">
+              <div className=" flex items-center my-2">
                   <label htmlFor="" className="lableStyle   mx-5 ">
                     محاضرات المقرر
                   </label>
@@ -60,7 +60,7 @@ function UploadMaterial() {
                     </button>
                   </div>
                 </div>
-                <div className=" flex  my-2">
+                <div className=" flex items-center my-2">
                   <label htmlFor="" className="lableStyle   mx-5 ">
                     التمارين
                   </label>
@@ -74,7 +74,7 @@ function UploadMaterial() {
                     </button>
                   </div>
                 </div>
-                <div className=" flex  my-2">
+                <div className=" flex items-center my-2">
                   <label htmlFor="" className="lableStyle   mx-5 ">
                     المشاريع
                   </label>
@@ -88,7 +88,7 @@ function UploadMaterial() {
                     </button>
                   </div>
                 </div>
-                <div className=" flex  my-2">
+                <div className=" flex items-center my-2">
                   <label htmlFor="" className="lableStyle   mx-5 ">
                     مصادر اخرى
                   </label>
