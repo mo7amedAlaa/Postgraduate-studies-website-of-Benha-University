@@ -14,6 +14,8 @@ import Petition from './pages/AdminPages/Petition';
 import Payment from './pages/UserPages/Payment';
 import RegistrationToApply from './pages/UserPages/RegistrationToApply';
 import UploadData from './pages/UserPages/UploadData';
+import GradesStudent from './pages/ProfessorPages/GradesStudent';
+import UploadMaterial from './pages/ProfessorPages/UploadMaterial';
 function App() {
   const router = createBrowserRouter([
     {
@@ -31,6 +33,17 @@ function App() {
         { path: '/admin/page5', element: <Page5 /> },
         { path: '/admin/studentinformation', element: <Studentinformation /> },
         { path: '/admin/petition', element: <Petition /> },
+      ],
+    },
+    {
+      path: '/professor',
+      element: <Layout />,
+      children: [
+        { path: '/professor/gradesstudent', element: <GradesStudent /> },
+        { path: '/professor/uploadmaterial', element: <UploadMaterial /> },
+
+
+     
       ],
     },
     { path: '/login', element: <Login /> },
