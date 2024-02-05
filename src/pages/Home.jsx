@@ -2,7 +2,7 @@ import Navbar from "../component/NavBar/Navbar";
 import { TfiEmail } from "react-icons/tfi";
 import { MdOutlinePhoneEnabled } from "react-icons/md";
 import { uniLogo } from "../assets";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ImageProgram from "../assets/images/program.jpg";
 import { FiPhone } from "react-icons/fi";
 import { CiLocationOn } from "react-icons/ci";
@@ -176,7 +176,7 @@ function Home() {
         </div>
         <div className="ms-10">
           <div className="text-2xl p-2 font-semibold font-sans w-[80%] text-start mt-3 flex flex-col">
-            <Link to="">
+            <Link to="/upload-data">
               1. الإجراءات المطلوب إتباعها للطلاب المصريين والوافدين للالتحاق
               بمرحلة الدراسات العليا{" "}
             </Link>
