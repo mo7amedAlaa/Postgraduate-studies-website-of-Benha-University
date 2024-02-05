@@ -4,6 +4,11 @@ import { MdOutlinePhoneEnabled } from "react-icons/md";
 import { uniLogo } from "../assets";
 import { Link } from "react-router-dom";
 import ImageProgram from "../assets/images/program.jpg";
+import { FiPhone } from "react-icons/fi";
+import { CiLocationOn } from "react-icons/ci";
+import { HiOutlineMail } from "react-icons/hi";
+import Footer from "../component/Footer/Footer";
+
 function Home() {
   return (
     <>
@@ -162,10 +167,10 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="graduates mt-5 mb-5">
-        <div className="ms-10 ">
+      <div className="graduates mt-5 mb-5 flex justify-center flex-col">
+        <div className="ms-10  w-[80%] gap-10 text-center">
           <h2 className="bg-main text-white text-4xl p-2 font-sans w-[80%] text-center rounded-md">
-            دراسات العليا
+            الدراسات العليا
           </h2>
         </div>
         <div className="ms-10">
@@ -239,7 +244,9 @@ function Home() {
       <div className="descri flex justify-center mb-10 mt-20">
         <div className="grid grid-cols-2  w-[80%] gap-5 text-center">
           <div className="overlay_content">
-            <h1 className="text-start font-sans text-5xl font-semibold">دليل الدراسات العليا</h1>
+            <h1 className="text-start font-sans text-5xl font-semibold">
+              دليل الدراسات العليا
+            </h1>
             <p className="text-start font-sans text-2xl mt-5">
               يلتزم طلاب الدراسات العليا بالعديد من الجوانب الإدارية المتعلقة
               بشروط الالتحاق بالدراسات العليا والتي تختلف ما بين درجة علمية
@@ -250,18 +257,23 @@ function Home() {
               يتضمن كل هذه الجوانب وأكثر.
             </p>
             <div className="flex items-end">
-            <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">اقرأ المزيد</button>
-
+              <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">
+                اقرأ المزيد
+              </button>
             </div>
           </div>
           <div className="imagee  text-center">
-             <img src="https://www.asu.edu.eg/images/guide.jpg" className="w-[100%] rounded-lg" alt=""/>
-            </div>
+            <img
+              src="https://www.asu.edu.eg/images/guide.jpg"
+              className="w-[100%] rounded-lg"
+              alt=""
+            />
+          </div>
         </div>
       </div>
       <div className="tot_num bg-black mt-15 h-96 flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans mb-20 mt-20  ">
         <div className="w-[80%] grid grid-cols-4 gap-4 text-center">
-          <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all p-2">
+          <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-main transition-all p-2">
             <div className="">
               <p className="font-sans text-5xl font-medium text-white text-center mt-5">
                 54
@@ -271,7 +283,7 @@ function Home() {
               </h1>
             </div>
           </div>
-          <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all p-2">
+          <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-main transition-all p-2">
             <div className="">
               <p className="font-sans text-5xl font-medium text-white text-center mt-5">
                 55
@@ -282,7 +294,7 @@ function Home() {
               </h1>
             </div>
           </div>
-          <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all">
+          <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-main transition-all">
             <div className="">
               <p className="font-sans text-5xl font-medium text-white text-center mt-5">
                 78
@@ -293,7 +305,7 @@ function Home() {
               </h1>
             </div>
           </div>
-          <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-red-600 transition-all">
+          <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-main transition-all">
             <div className="">
               <p className="font-sans text-5xl font-medium text-white text-center mt-5">
                 99
@@ -306,33 +318,82 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="descri flex justify-center mb-10 mt-20">
+      <div className="descri flex justify-center mb-10 mt-20 b">
         <div className="grid grid-cols-2  w-[80%] gap-10 text-center">
           <div className="overlay_content">
-            <h1 className="text-start font-sans text-5xl font-semibold">دليل الدراسات العليا</h1>
+            <h1 className="text-start font-sans text-5xl font-semibold">
+              البحث العلمى
+            </h1>
             <p className="text-start font-sans text-2xl mt-5">
-                            								
-                                            يعد الباحثين من بين الفئات المهمة في جامعة عين شمس.. لذا يحرص قطاع الدراسات العليا والبحوث
-                                            على
-                                            توفير كافة السبل وأفضلها لتقديم الخدمات العلمية والبحثية والتعليمة التي تساهم في مساعدتهم
-                                            على
-                                            الرقي بالبحث العلمي وتكون في الوقت نفسه عاملا محفزا لهم على الإبداع والتفوق والتميز ليتمكنوا
-                                            من
-                                            المساهمة في حل مشاكل المجتمع من ناحية والنهوض بالبحث العلمي من ناحية ثانية والصعود بتصنيف
-                                            الجامعة عالميا من ناحية ثالثة.
-                                            
-                                                                    
+              يعد الباحثين من بين الفئات المهمة في جامعة عين شمس.. لذا يحرص قطاع
+              الدراسات العليا والبحوث على توفير كافة السبل وأفضلها لتقديم
+              الخدمات العلمية والبحثية والتعليمة التي تساهم في مساعدتهم على
+              الرقي بالبحث العلمي وتكون في الوقت نفسه عاملا محفزا لهم على
+              الإبداع والتفوق والتميز ليتمكنوا من المساهمة في حل مشاكل المجتمع
+              من ناحية والنهوض بالبحث العلمي من ناحية ثانية والصعود بتصنيف
+              الجامعة عالميا من ناحية ثالثة.
             </p>
             <div className="flex items-end">
-            <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">اقرأ المزيد</button>
-
+              <button className="text-white bg-main hover:bg-[#5dc6f0]  w-[13rem]  text-2xl mt-9 p-2 font-serif font-semibold cursor-pointer rounded-md transition-[2rem]">
+                اقرأ المزيد
+              </button>
             </div>
           </div>
           <div className="imagee  text-center">
-             <img src="https://www.asu.edu.eg/images/16.jpg" className="w-[100%] rounded-lg" alt=""/>
-            </div>
+            <img
+              src="https://www.asu.edu.eg/images/16.jpg"
+              className="w-[100%] rounded-lg"
+              alt=""
+            />
+          </div>
         </div>
       </div>
+      <div className="address_details flex justify-center mt-20 shadow-2xl">
+        <div className="content grid grid-cols-3  w-[80%] gap-10 text-center bg-black  rounded-3xl p-5 ">
+          <div className="flex flex-col items-center">
+            <CiLocationOn
+              className="color-white flex justify-center items-center  "
+              size={30}
+              color="white"
+            />
+            <h1 className="font-sans text-2xl font-semibold text-white mt-3">
+              العنوان
+            </h1>
+            <p className="p color-white font-sans text-xl mt-5">
+              طريق اسكندرية الزراعى
+            </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <FiPhone
+              className="color-white flex justify-center items-center  "
+              size={30}
+              color="white"
+            />
+            <h1 className="font-sans text-2xl font-semibold text-white mt-3">
+              رقم التليفون
+            </h1>
+            <p className="p color-white font-sans text-xl mt-5">
+              {" "}
+              +20 106 528 4676
+            </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <HiOutlineMail
+              className="color-white flex justify-center items-center  "
+              size={30}
+              color="white"
+            />
+            <h1 className="font-sans text-2xl font-semibold text-white mt-3">
+              البريد الالكترونى
+            </h1>
+            <p className="p color-white font-sans text-xl mt-5">
+              {" "}
+              mohamedalsayedabdullah@gmail.com
+            </p>
+          </div>{" "}
+        </div>
+      </div>
+      <Footer />
     </>
   );
 }
