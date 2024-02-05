@@ -3,7 +3,8 @@ import Copyrights from "./Copyrights";
 
 function Footer() {
   return (
-    <div>
+    <>
+        <div>
       <footer class="bg-white dark:bg-black">
         <div class="mx-auto w-full max-w-screen-xl font-sans">
           <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
@@ -102,6 +103,8 @@ function Footer() {
         </div>
       </footer>
     </div>
+    </>
+
   );
 }
 

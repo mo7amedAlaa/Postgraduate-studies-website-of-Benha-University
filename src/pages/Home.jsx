@@ -9,6 +9,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { HiOutlineMail } from "react-icons/hi";
 import Footer from "../component/Footer/Footer";
 
+
 function Home() {
   return (
     <>
@@ -393,6 +394,7 @@ function Home() {
           </div>{" "}
         </div>
       </div>
+
       <Footer />
     </>
   );
