@@ -80,7 +80,7 @@ function Footer() {
               </h2>
               <ul class="text-gray-500 dark:text-gray-400 font-medium">
                 <li class="mb-4 text-center">
-                  <div className="bg-slate-600 rounded-[20rem] text-center p-3 border-main">
+                  <div className="bg-main rounded-[20rem] text-center p-3 border-main">
                     <h1 className="font-sans text-3xl font-semibold text-white mt-3">
                       {" "}
                       18 milion{" "}
@@ -96,7 +96,7 @@ function Footer() {
               </ul>
             </div>
           </div>
-          <div class="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between shadow-lg rounded-md text-white">
+          <div class="px-4 py-6 bg-gray-100 dark:bg-main md:flex md:items-center md:justify-between shadow-lg rounded-md text-white">
             <Copyrights />
           </div>
         </div>
