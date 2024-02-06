@@ -156,7 +156,7 @@ function Home() {
 
             <h3 className="mt-5 mb-5 font-Poppins text-xl">
               {" "}
-              تسجيل واختيار المواد
+              الاشعارات لتحديد المواعيد
             </h3>
           </div>
           <div className="shadow-lg text-center mb-10 rounded-lg w-70 p-5 hover:scale-110 transition-all">
@@ -182,7 +182,7 @@ function Home() {
               />
             </div>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl"> كورسات كورسيرا </h3>
+            <h3 className="mt-5 mb-5 font-Poppins text-xl">  متابعة الطلاب </h3>
           </div>
           <div className="shadow-lg text-center mb-10 rounded-lg w-70 p-5 hover:scale-110 transition-all">
             <div className="flex items-center justify-center">
@@ -193,7 +193,7 @@ function Home() {
               />
             </div>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl"> الشكاوى </h3>
+            <h3 className="mt-5 mb-5 font-Poppins text-xl"> chatbot لمساعدة الطالب  </h3>
           </div>
         </div>
       </div>
