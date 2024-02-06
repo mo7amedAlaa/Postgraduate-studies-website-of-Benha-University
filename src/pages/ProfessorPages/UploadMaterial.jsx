@@ -1,8 +1,9 @@
-import React from 'react';
-import { cx, graduatedMenIcon, ifoPdf, uniLogo } from '../../assets';
+import React, { useState } from 'react';
+// import { cx, graduatedMenIcon, ifoPdf, uniLogo } from '../../assets';
 import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
-
+// import LayoutProf from './LayoutProf';
+// import LayoutProf from './LayoutProf';
 const handleUpload = async () => {
   const { value: file } = await Swal.fire({
     title: 'Select image',
@@ -26,6 +27,7 @@ const handleUpload = async () => {
 };
 function UploadMaterial() {
   return (
+    <>
     <div>
       <div className="main container mx-auto">
         <p className="font-bold text-sm mt-3 flex items-center  ">
@@ -43,14 +45,15 @@ function UploadMaterial() {
           }}
         >
           <div>
+            <h2 className=' font-sans text-3xl font-semibold  text-center mb-5'>  مقرر العام الدراسي</h2>
             <fieldset className="border my-2 border-gray-600 p-3 ">
               <legend> كل مايتعلق بالمقرر</legend>
-              <div className="grid grid-cols-4">
+              <div className="grid grid-cols-4 ">
                 <div className=" flex items-center my-2">
-                  <label htmlFor="" className="lableStyle   mx-5 ">
+                  <label htmlFor="" className="   mx-5 ">
                     محاضرات المقرر
                   </label>
-                  <div className="flex w-1/6 gap-10">
+                  <div className="flex  gap-10">
                     <button
                       className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
                       onClick={handleUpload}
@@ -61,10 +64,10 @@ function UploadMaterial() {
                   </div>
                 </div>
                 <div className=" flex items-center my-2">
-                  <label htmlFor="" className="lableStyle   mx-5 ">
+                  <label htmlFor="" className="   mx-5 ">
                     التمارين
                   </label>
-                  <div className="flex w-1/6 gap-10">
+                  <div className="flex  gap-10">
                     <button
                       className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
                       onClick={handleUpload}
@@ -75,10 +78,10 @@ function UploadMaterial() {
                   </div>
                 </div>
                 <div className=" flex items-center my-2">
-                  <label htmlFor="" className="lableStyle   mx-5 ">
+                  <label htmlFor="" className="   mx-5 ">
                     المشاريع
                   </label>
-                  <div className="flex w-1/6 gap-10">
+                  <div className="flex  gap-10">
                     <button
                       className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
                       onClick={handleUpload}
@@ -89,10 +92,10 @@ function UploadMaterial() {
                   </div>
                 </div>
                 <div className=" flex items-center my-2">
-                  <label htmlFor="" className="lableStyle   mx-5 ">
+                  <label htmlFor="" className="   mx-5 ">
                     مصادر اخرى
                   </label>
-                  <div className="flex w-1/6 gap-10">
+                  <div className="flex  gap-10">
                     <button
                       className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
                       onClick={handleUpload}
@@ -107,8 +110,8 @@ function UploadMaterial() {
           </div>
         </form>
       </div>
-      <div className="programs flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
-        <div className="w-[80%] grid grid-cols-3  gap-3 ">
+      <div className="programs flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  ">
+        <div className="w-[80%] grid grid-cols-3  gap-[2rem] ">
           <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all border-main ">
             <img
               src="https://png.pngtree.com/element_origin_min_pic/17/03/29/e90c1dab2691c73f7a37bdf3da6e3b52.jpg"
@@ -143,6 +146,8 @@ function UploadMaterial() {
         </div>
       </div>
     </div>
+    </>
+    
   );
 }
 

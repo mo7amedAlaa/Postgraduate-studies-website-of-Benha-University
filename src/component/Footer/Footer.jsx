@@ -86,7 +86,7 @@ function Footer() {
                       {" "}
                       18 مليون{" "}
                     </h1>
-                    <p className="color-white font-sans text-xl mt-3">
+                    <p className="text-white font-sans text-2xl mt-3">
                       الزائرون
                     </p>
                   </div>

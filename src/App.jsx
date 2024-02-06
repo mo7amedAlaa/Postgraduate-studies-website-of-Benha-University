@@ -19,6 +19,7 @@ import UploadMaterial from './pages/ProfessorPages/UploadMaterial';
 import EnrolCourse from './pages/UserPages/EnrolCourse';
 import Material from './pages/UserPages/Material';
 import Grade from './pages/UserPages/Grade';
+import LayoutProf from './pages/ProfessorPages/LayoutProf';
 function App() {
   const router = createBrowserRouter([
     {
@@ -40,7 +41,7 @@ function App() {
     },
     {
       path: '/professor',
-      element: <Layout />,
+      element: <LayoutProf />,
       children: [
         { path: '/professor/gradesstudent', element: <GradesStudent /> },
         { path: '/professor/uploadmaterial', element: <UploadMaterial /> },
