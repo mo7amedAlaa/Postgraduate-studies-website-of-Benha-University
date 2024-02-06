@@ -13,7 +13,12 @@ import Login from './pages/usr-adminPages/Login';
 import Petition from './pages/AdminPages/Petition';
 import Payment from './pages/UserPages/Payment';
 import RegistrationToApply from './pages/UserPages/RegistrationToApply';
-import UploadData from './pages/UserPages/UploadData';
+
+import GradesStudent from './pages/ProfessorPages/GradesStudent';
+import UploadMaterial from './pages/ProfessorPages/UploadMaterial';
+import EnrolCourse from './pages/UserPages/EnrolCourse';
+import Material from './pages/UserPages/Material';
+import Grade from './pages/UserPages/Grade';
 function App() {
   const router = createBrowserRouter([
     {
@@ -43,9 +48,10 @@ function App() {
     },
     { path: '/login', element: <Login /> },
     { path: '/payment', element: <Payment /> },
-    { path: '/Registration', element: <RegistrationToApply /> },
+    { path: '/registration', element: <RegistrationToApply /> },
     { path: '/course', element: <EnrolCourse /> },
     { path: '/material', element: <Material /> },
+    { path: '/showgrade', element: <Grade /> },
   ]);
   return (
     <div className="font-bodyFont min-h-screen  ">
