@@ -1,24 +1,24 @@
-import React from "react";
-import { cx, graduatedMenIcon, ifoPdf, uniLogo } from "../../assets";
-import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from "react-icons/lu";
-import Swal from "sweetalert2";
+import React from 'react';
+import { cx, graduatedMenIcon, ifoPdf, uniLogo } from '../../assets';
+import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
+import Swal from 'sweetalert2';
 
 const handleUpload = async () => {
   const { value: file } = await Swal.fire({
-    title: "Select image",
-    input: "file",
+    title: 'Select image',
+    input: 'file',
     inputAttributes: {
-      accept: "image/*",
-      "aria-label": "Upload your profile picture",
+      accept: 'image/*',
+      'aria-label': 'Upload your profile picture',
     },
   });
   if (file) {
     const reader = new FileReader();
     reader.onload = (e) => {
       Swal.fire({
-        title: "Your uploaded picture",
+        title: 'Your uploaded picture',
         imageUrl: e.target.result,
-        imageAlt: "The uploaded picture",
+        imageAlt: 'The uploaded picture',
       });
     };
     reader.readAsDataURL(file);
@@ -46,7 +46,7 @@ function UploadMaterial() {
             <fieldset className="border my-2 border-gray-600 p-3 ">
               <legend> كل مايتعلق بالمقرر</legend>
               <div className="grid grid-cols-4">
-              <div className=" flex items-center my-2">
+                <div className=" flex items-center my-2">
                   <label htmlFor="" className="lableStyle   mx-5 ">
                     محاضرات المقرر
                   </label>
@@ -69,7 +69,7 @@ function UploadMaterial() {
                       className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
                       onClick={handleUpload}
                     >
-                        رفع
+                      رفع
                       <LuUploadCloud />
                     </button>
                   </div>
@@ -108,8 +108,8 @@ function UploadMaterial() {
         </form>
       </div>
       <div className="programs flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
-      <div className="w-[80%] grid grid-cols-3  gap-3 ">
-      <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all border-main ">
+        <div className="w-[80%] grid grid-cols-3  gap-3 ">
+          <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all border-main ">
             <img
               src="https://png.pngtree.com/element_origin_min_pic/17/03/29/e90c1dab2691c73f7a37bdf3da6e3b52.jpg"
               className="w-[100%] h-[13rem]"
@@ -117,7 +117,7 @@ function UploadMaterial() {
             />
 
             <p className="text-center font-sans text-2xl p-4">
-                المحاضرة الاولى
+              المحاضرة الاولى
             </p>
           </div>
           <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all border-main ">
@@ -127,9 +127,7 @@ function UploadMaterial() {
               alt="program"
             />
 
-            <p className="text-center font-sans text-2xl p-4">
-                التمرين الاول
-            </p>
+            <p className="text-center font-sans text-2xl p-4">التمرين الاول</p>
           </div>
           <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all border-main ">
             <img
@@ -139,10 +137,10 @@ function UploadMaterial() {
             />
 
             <p className="text-center font-sans text-2xl p-4">
-                المشروع النهائى
+              المشروع النهائى
             </p>
           </div>
-        </div>        
+        </div>
       </div>
     </div>
   );
