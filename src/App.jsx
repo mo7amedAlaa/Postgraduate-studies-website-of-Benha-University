@@ -13,9 +13,7 @@ import Login from './pages/usr-adminPages/Login';
 import Petition from './pages/AdminPages/Petition';
 import Payment from './pages/UserPages/Payment';
 import RegistrationToApply from './pages/UserPages/RegistrationToApply';
-import EnrolCourse from './pages/UserPages/EnrolCourse';
-import Material from './pages/UserPages/Material';
-
+import UploadData from './pages/UserPages/UploadData';
 function App() {
   const router = createBrowserRouter([
     {
@@ -33,6 +31,14 @@ function App() {
         { path: '/admin/page5', element: <Page5 /> },
         { path: '/admin/studentinformation', element: <Studentinformation /> },
         { path: '/admin/petition', element: <Petition /> },
+      ],
+    },
+    {
+      path: '/professor',
+      element: <Layout />,
+      children: [
+        { path: '/professor/gradesstudent', element: <GradesStudent /> },
+        { path: '/professor/uploadmaterial', element: <UploadMaterial /> },
       ],
     },
     { path: '/login', element: <Login /> },

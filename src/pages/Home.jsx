@@ -117,7 +117,7 @@ function Home() {
         </h1>
       </div>
       <div className="services flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
-        <div className="w-[80%] grid grid-cols-4  gap-3 ">
+        <div className="w-[80%] grid grid-cols-4  gap-5 ">
           <div className="shadow-lg text-center mb-10 rounded-lg w-70 p-5 hover:scale-110 transition-all">
             <div className="flex items-center justify-center">
               <img
