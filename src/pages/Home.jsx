@@ -350,12 +350,12 @@ function Home() {
       </div>
       <div className="descri flex justify-center mb-10 mt-20 b">
         <div className="grid grid-cols-2  w-[80%] gap-10 text-center">
-          <div className="overlay_content">
-            <h1 className="text-start font-sans text-5xl font-semibold">
+          <div className="overlay_content w-full text-wrap">
+            <h1 className=" font-sans text-5xl font-semibold">
               البحث العلمى
             </h1>
-            <p className="text-start font-sans text-2xl mt-5">
-              يعد الباحثين من بين الفئات المهمة في جامعة عين شمس.. لذا يحرص قطاع
+            <p className="  font-sans text-2xl mt-5 text-wrap">
+              يعد الباحثين من بين الفئات المهمة في جامعة بنها .. لذا يحرص قطاع
               الدراسات العليا والبحوث على توفير كافة السبل وأفضلها لتقديم
               الخدمات العلمية والبحثية والتعليمة التي تساهم في مساعدتهم على
               الرقي بالبحث العلمي وتكون في الوقت نفسه عاملا محفزا لهم على

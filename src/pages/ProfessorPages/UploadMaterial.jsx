@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import { cx, graduatedMenIcon, ifoPdf, uniLogo } from '../../assets';
 import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
+import MainLayout from '../../component/Main/MainLayout';
 // import LayoutProf from './LayoutProf';
 // import LayoutProf from './LayoutProf';
 const handleUpload = async () => {
@@ -28,14 +29,9 @@ const handleUpload = async () => {
 function UploadMaterial() {
   return (
     <>
+    <MainLayout>
     <div>
-      <div className="main container mx-auto">
-        <p className="font-bold text-sm mt-3 flex items-center  ">
-          <LuAlertOctagon className="mx-2" />
-          برجاء استكمال البيانات التالية والتحقق من وضوحها وسلامتها لضمان وصولها
-          بشكل صحيح .
-        </p>
-      </div>
+      
       <div className="container mx-auto border rounded-md my-5  ">
         <form
           action=""
@@ -146,6 +142,8 @@ function UploadMaterial() {
         </div>
       </div>
     </div>
+    </MainLayout>
+    
     </>
     
   );

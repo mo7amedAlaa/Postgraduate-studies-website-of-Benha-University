@@ -4,78 +4,150 @@ import { personaLogo } from '../../assets';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import { IoCaretBack } from 'react-icons/io5';
 import { DataGrid } from '@mui/x-data-grid';
-import { graduatedMenIcon, ifoPdf, uniLogo } from '../../assets';
-import { LuDownloadCloud } from 'react-icons/lu';
-import Copyrights from '../../component/Footer/copyrights';
-import { IoOpenOutline } from 'react-icons/io5';
+import { CiSearch } from "react-icons/ci";
+
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'code', headerName: 'كود المادة', width: 200 },
-  { field: 'subName', headerName: ' اسم المادة', width: 200 },
+  { field: 'code', headerName: '  كود الطالب', width: 200 },
+  { field: 'subName', headerName: ' اسم الطالب', width: 200 },
   { field: 'deg', headerName: 'الدرجة', width: 200 },
   { field: 'qpa', headerName: 'التقدير', width: 200 },
+  { field: 'underrated', headerName: 'الرأفة', width: 200 },
+
 ];
 const courses = [
   {
     id: 1,
-    subName: 'اسم المادة',
+    subName: 'اسم الطالب',
     code: 'SC2X',
     deg: 79,
     qpa: 3.6,
+    underrated:10
   },
   {
     id: 2,
-    subName: 'اسم المادة',
+    subName: 'اسم الطالب',
     code: 'SC2X',
     deg: 96,
     qpa: 4.6,
+    underrated:8
   },
   {
     id: 3,
-    subName: 'اسم المادة',
+    subName: 'اسم الطالب',
     code: 'SC2X',
     deg: 55,
     qpa: 3.1,
+    underrated:15
+
   },
   {
     id: 4,
-    subName: 'اسم المادة',
-    code: 'SC2X',
-    deg: 72,
-    qpa: 3.2,
-  },
-  {
-    id: 5,
-    subName: 'اسم المادة',
-    code: 'SC2X',
-    deg: 45,
-    qpa: 2.5,
-  },
-  {
-    id: 6,
-    subName: 'اسم المادة',
+    subName: 'اسم الطالب',
     code: 'SC2X',
     deg: 79,
     qpa: 3.6,
+    underrated:10
+  },
+  {
+    id: 5,
+    subName: 'اسم الطالب',
+    code: 'SC2X',
+    deg: 96,
+    qpa: 4.6,
+    underrated:8
+  },
+  {
+    id: 6,
+    subName: 'اسم الطالب',
+    code: 'SC2X',
+    deg: 55,
+    qpa: 3.1,
+    underrated:15
+
+  },
+  {
+    id: 7,
+    subName: 'اسم الطالب',
+    code: 'SC2X',
+    deg: 79,
+    qpa: 3.6,
+    underrated:10
+  },
+  {
+    id: 8,
+    subName: 'اسم الطالب',
+    code: 'SC2X',
+    deg: 96,
+    qpa: 4.6,
+    underrated:8
+  },
+  {
+    id: 9,
+    subName: 'اسم الطالب',
+    code: 'SC2X',
+    deg: 55,
+    qpa: 3.1,
+    underrated:15
+
+  },
+  {
+    id: 10,
+    subName: 'اسم الطالب',
+    code: 'SC2X',
+    deg: 79,
+    qpa: 3.6,
+    underrated:10
+  },
+  {
+    id:11,
+    subName: 'اسم الطالب',
+    code: 'SC2X',
+    deg: 96,
+    qpa: 4.6,
+    underrated:8
+  },
+  {
+    id: 12,
+    subName: 'اسم الطالب',
+    code: 'SC2X',
+    deg: 55,
+    qpa: 3.1,
+    underrated:15
+
+  },
+  {
+    id: 13,
+    subName: 'اسم الطالب',
+    code: 'SC2X',
+    deg: 72,
+    qpa: 3.2,
+    underrated:15
+
+  },
+  {
+    id: 14,
+    subName: 'اسم الطالب',
+    code: 'SC2X',
+    deg: 45,
+    qpa: 2.5,
+    underrated:12
+  },
+  {
+    id: 15,
+    subName: 'اسم الطالب',
+    code: 'SC2X',
+    deg: 79,
+    qpa: 3.6,
+    underrated:3
   },
 ];
 function GradesStudent() {
   return (
-    <div className="border rounded">
-      <div className="flex  bg-main   items-center justify-around ">
-        <div>
-          <img src={uniLogo} alt="" width={'100px'} height={'100px'} />
-        </div>
-        <div className="flex-1 text-center">
-          <p className=" text-lg md:text-3xl   font-bold ">
-            جامعة بنهــــــــــــــا <br />
-            اضافة الدرجات المستحقة للطالب
-          </p>
-        </div>
-        <div>
-          <img src={graduatedMenIcon} alt="" width={'100px'} height={'100px'} />
-        </div>
-      </div>
+
+    <MainLayout>
+      
+     
       <div>
         <form action="">
           <div>
@@ -115,9 +187,10 @@ function GradesStudent() {
             </div>
             <div className="relative">
               <button type="button" className="main-btn ">
-                الرجوع
+                بحث
               </button>
-              <IoCaretBack className=" absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2  right-4" />
+              <CiSearch 
+               className=" absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2  right-4" />
             </div>
           </div>
         </form>
@@ -127,6 +200,7 @@ function GradesStudent() {
       <div className="p-10 container mx-auto">
         <div style={{ height: 400, width: '100%', direction: 'ltr' }}>
           <DataGrid
+              checkboxSelection
             rows={courses}
             columns={columns}
             initialState={{
@@ -139,69 +213,11 @@ function GradesStudent() {
           />
         </div>
       </div>
-      <div className="bg-main  px-2  ">
-        <Copyrights />
-      </div>
+      
     </div>
-      {/* <div class="relative overflow-x-auto mt-10">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-main dark:bg-gray-700 dark:text-gray-400">
-            <tr className="bg-main text-white font-sans text-xl text-center">
-              <th scope="col" class="px-6 py-3">
-                كود الطالب
-              </th>
-              <th scope="col" class="px-6 py-3">
-                اسم الطالب
-              </th>
-              <th scope="col" class="px-6 py-3">
-                حالة الطالب
-              </th>
-              <th scope="col" class="px-6 py-3">
-                نوع الامتحان
-              </th>
-              <th scope="col" class="px-6 py-3">
-                المجموع
-              </th>
-              <th scope="col" class="px-6 py-3">
-                الاحداث
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                302125756182
-              </th>
-              <td class="px-6 py-4 font-medium whitespace-nowrap dark:text-white text-xl">
-                محمد السيد
-              </td>
-              <td class="px-6 py-4 font-medium whitespace-nowrap dark:text-white text-xl">
-                ناجح
-              </td>
-              <td class="px-6 py-4 font-medium whitespace-nowrap dark:text-white text-xl">
-                ميدترم
-              </td>
-              <td class="px-6 py-4 font-medium whitespace-nowrap dark:text-white text-xl">
-                13
-              </td>
-              <td className="px-6 py-4">
-                <div className="flex gap-5">
-                  <button className="font-sans bg-main shadow-md text-white p-2 rounded">
-                    Edit
-                  </button>
-                  <button className="font-sans bg-red-500 shadow-md text-white p-2 rounded">
-                    Delete
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div> */}
-    </div>
+
+    </MainLayout>
+   
   );
 }
 
