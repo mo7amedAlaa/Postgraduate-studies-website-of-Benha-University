@@ -85,7 +85,7 @@ function Home() {
         </h1>
       </div>
       <div className="services flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
-        <div className="w-[80%] grid md:grid-cols-3 lg:grid-cols-4  gap-5 ">
+        <div className="w-[80%] grid md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4  gap-5 ">
           <Link to={'/registration'}>
             <div className="shadow-lg text-center mb-10 rounded-lg w-70 p-5 hover:scale-110 transition-all">
               <div className="flex items-center justify-center">
@@ -231,9 +231,9 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="graduates mt-5 mb-5 flex justify-center flex-col">
+      <div className="graduates mt-5 mb-5 flex lg:justify-center flex-col">
         <div className="ms-10  w-[80%] gap-10 text-center">
-          <h2 className="bg-main text-white text-4xl p-2 font-sans w-[80%] text-center rounded-md">
+          <h2 className="bg-main text-white text-4xl p-2 font-sans lg:w-[80%] text-center rounded-md">
             الدراسات العليا
           </h2>
         </div>
