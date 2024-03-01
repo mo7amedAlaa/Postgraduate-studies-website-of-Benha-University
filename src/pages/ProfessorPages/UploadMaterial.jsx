@@ -44,7 +44,7 @@ function UploadMaterial() {
             <h2 className=' font-sans text-3xl font-semibold  text-center mb-5'>  مقرر العام الدراسي</h2>
             <fieldset className="border my-2 border-gray-600 p-3 ">
               <legend> كل مايتعلق بالمقرر</legend>
-              <div className="grid grid-cols-4 ">
+              <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 ">
                 <div className=" flex items-center my-2">
                   <label htmlFor="" className="   mx-5 ">
                     محاضرات المقرر
@@ -107,7 +107,7 @@ function UploadMaterial() {
         </form>
       </div>
       <div className="programs flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  ">
-        <div className="w-[80%] grid grid-cols-3  gap-[2rem] ">
+        <div className="w-[80%] grid lg:grid-cols-3 md:grid-cols-2  gap-[2rem] ">
           <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all border-main ">
             <img
               src="https://png.pngtree.com/element_origin_min_pic/17/03/29/e90c1dab2691c73f7a37bdf3da6e3b52.jpg"

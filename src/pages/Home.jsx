@@ -10,7 +10,7 @@ function Home() {
   return (
     <>
       <Main />
-      <div className="flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans shadow-2xl">
+      {/* <div className="flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans shadow-2xl">
         <div className="w-[90%] grid grid-cols-9  gap-3 mt-20 p-5">
           <div className="flex items-center justify-center gap-10 nav hover:bg-main h-10 transition-all hover:rounded-md">
             <img
@@ -57,7 +57,7 @@ function Home() {
             عن الدراسات العليا{' '}
           </button>
         </div>
-      </div>
+      </div> */}
       <div className="image bg-red-500 h-[550px]">
         <div className="overlay">
           <h1 className="font-sans text-6xl font-semibold text-white text-start">
@@ -85,7 +85,7 @@ function Home() {
         </h1>
       </div>
       <div className="services flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
-        <div className="w-[80%] grid grid-cols-4  gap-5 ">
+        <div className="w-[80%] grid md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4  gap-5 ">
           <Link to={'/registration'}>
             <div className="shadow-lg text-center mb-10 rounded-lg w-70 p-5 hover:scale-110 transition-all">
               <div className="flex items-center justify-center">
@@ -231,9 +231,9 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="graduates mt-5 mb-5 flex justify-center flex-col">
+      <div className="graduates mt-5 mb-5 flex lg:justify-center flex-col">
         <div className="ms-10  w-[80%] gap-10 text-center">
-          <h2 className="bg-main text-white text-4xl p-2 font-sans w-[80%] text-center rounded-md">
+          <h2 className="bg-main text-white text-4xl p-2 font-sans lg:w-[80%] text-center rounded-md">
             الدراسات العليا
           </h2>
         </div>
@@ -277,7 +277,7 @@ function Home() {
         </h1>
       </div>
       <div className="programs flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
-        <div className="w-[80%] grid grid-cols-3  gap-3 ">
+        <div className="w-[80%] grid  md:grid-cols-2 lg:grid-cols-3  gap-3 ">
           <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all ">
             <img
               src="https://www.asu.edu.eg/images/3faf5cd9-e1a6-443a-ab3f-9be87e867a28.jpg"
@@ -306,7 +306,7 @@ function Home() {
         </div>
       </div>
       <div className="  flex justify-center mb-10 mt-20">
-        <div className="grid grid-cols-2  w-[80%] gap-5 text-center">
+        <div className="grid md:grid-cols-1 lg:grid-cols-2  w-[80%] gap-5 text-center">
           <div className="overlay_content">
             <h1 className="text-start font-sans text-5xl font-semibold">
               دليل الدراسات العليا
@@ -335,8 +335,8 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="tot_num bg-black mt-15 h-96 flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans mb-20 mt-20  ">
-        <div className="w-[80%] grid grid-cols-4 gap-4 text-center">
+      <div className="tot_num bg-black mt-15 lg:h-96 flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans mb-20 mt-20  ">
+        <div className="w-[80%] grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
           <div className="border rounded-sm text-white h-[180px] hh text-center hover:border-main transition-all p-2">
             <div className="">
               <p className="font-sans text-5xl font-medium text-white text-center mt-5">
@@ -383,8 +383,8 @@ function Home() {
         </div>
       </div>
       <div className="descri flex justify-center mb-10 mt-20 b">
-        <div className="grid grid-cols-2  w-[80%] gap-10 text-center">
-          <div className="overlay_content w-full text-wrap">
+        <div className="grid md:grid-cols-1 lg:grid-cols-2  w-[80%] gap-10 text-center">
+          <div className="overlay_content w-full text-start">
             <h1 className=" font-sans text-5xl font-semibold">البحث العلمى</h1>
             <p className="  font-sans text-2xl mt-5 text-wrap">
               يعد الباحثين من بين الفئات المهمة في جامعة بنها .. لذا يحرص قطاع
@@ -411,7 +411,7 @@ function Home() {
         </div>
       </div>
       <div className="address_details flex justify-center mt-20 shadow-2xl">
-        <div className="content grid grid-cols-3  w-[80%] gap-10 text-center bg-black  rounded-3xl p-5 ">
+        <div className="content grid lg:grid-cols-3  w-[80%] gap-10 text-center bg-black  rounded-3xl p-5 ">
           <div className="flex flex-col items-center">
             <CiLocationOn
               className="color-white flex justify-center items-center  "

@@ -22,7 +22,7 @@ function Main() {
               size={30}
               color="white"
             />{' '}
-            <p className="text-white">+20 106 528 467</p>
+            <p className="text-white ">+20 106 528 467</p>
           </div>
           <div className="flex items-center  gap-2">
             <HiOutlineMail
@@ -30,10 +30,10 @@ function Main() {
               size={30}
               color="white"
             />
-            <p className="text-white">Exaple@gmail.com</p>
+            <p className="text-white ">Exaple@gmail.com</p>
           </div>
         </a>
-        <div className="flex gap-5 me-[15rem]">
+        <div className="flex gap-5 me-[15rem] ">
           <button>
             {' '}
             <FaFacebookF color="white" size={20} />
