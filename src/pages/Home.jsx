@@ -24,7 +24,7 @@ function Home() {
               الدراسات{' '}
             </button>
           </div>
-          <button className="nav hover:bg-main h-10 transition-all hover:rounded-md">
+          <button className="nav hover:bg-second h-10 transition-all hover:rounded-md">
             عن القطاع{' '}
           </button>
           <button className="nav hover:bg-main h-10 transition-all hover:rounded-md">
@@ -72,7 +72,7 @@ function Home() {
           <div className="flex items-end">
             <Link
               to={'/login'}
-              className=" bg-gradient-to-t w-[13rem] from-[#51ACD0] to-[#5dc6f0] p-2 rounded-md  text-2xl mt-9 text-white font-serif font-semibold cursor-pointer hover:bg-teal-400  "
+              className=" bg-gradient-to-t w-[13rem] to-main from-second p-2 rounded-md  text-2xl mt-9 text-whiteText font-serif font-semibold cursor-pointer hover:bg-teal-400  "
             >
               تسجيل الدخول
             </Link>

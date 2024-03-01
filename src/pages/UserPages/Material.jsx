@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { graduatedMenIcon, ifoPdf, uniLogo } from '../../assets';
-import { LuAlertOctagon, LuDownloadCloud } from 'react-icons/lu';
+import { LuDownloadCloud } from 'react-icons/lu';
 import Copyrights from '../../component/Footer/copyrights';
 import { IoOpenOutline } from 'react-icons/io5';
 
