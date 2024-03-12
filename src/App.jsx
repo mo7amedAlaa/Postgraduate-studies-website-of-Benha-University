@@ -20,6 +20,8 @@ import EnrolCourse from './pages/UserPages/EnrolCourse';
 import Material from './pages/UserPages/Material';
 import Grade from './pages/UserPages/Grade';
 import LayoutProf from './pages/ProfessorPages/LayoutProf';
+import GenerateAccounts from './pages/AdminPages/GenerateAccounts';
+import LoyoutAdmin from './pages/AdminPages/LayoutAdmin'
 function App() {
   const router = createBrowserRouter([
     {
@@ -37,6 +39,7 @@ function App() {
         { path: '/admin/page5', element: <Page5 /> },
         { path: '/admin/studentinformation', element: <Studentinformation /> },
         { path: '/admin/petition', element: <Petition /> },
+
       ],
     },
     {
@@ -45,6 +48,13 @@ function App() {
       children: [
         { path: '/professor/gradesstudent', element: <GradesStudent /> },
         { path: '/professor/uploadmaterial', element: <UploadMaterial /> },
+      ],
+    },
+    {
+      path: '/adminUniversity',
+      element: <LoyoutAdmin/>,
+      children: [
+        { path: '/adminUniversity/GenerateAccount', element: <GenerateAccounts /> },
       ],
     },
     { path: '/login', element: <Login /> },

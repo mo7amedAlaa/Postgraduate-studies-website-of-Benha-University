@@ -80,12 +80,12 @@ function Home() {
         </div>
       </div>
       <div className='services-name ms-10 mt-10 before:content-[""] before:block'>
-        <h1 className="font-sans text-5xl font-semibold  text-start">
+        <h1 className="font-sans lg:text-5xl md:text-4xl sm:text-3xl font-semibold  text-start">
           الخدمات الذكية
         </h1>
       </div>
       <div className="services flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
-        <div className="w-[80%] grid md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4  gap-5 ">
+        <div className="w-[80%] grid md:grid-cols-3  lg:grid-cols-4  gap-5 ">
           <Link to={'/registration'}>
             <div className="shadow-lg text-center mb-10 rounded-lg w-70 p-5 hover:scale-110 transition-all">
               <div className="flex items-center justify-center">
@@ -272,7 +272,7 @@ function Home() {
         </div>
       </div>
       <div className='program-name ms-10 mt-20 mb-20 before:content-[""] before:block'>
-        <h1 className="font-sans text-5xl font-semibold  text-start">
+        <h1 className="font-sans lg:text-5xl md:text-4xl sm:text-3xl font-semibold  text-start">
           البرامج الأكاديمية
         </h1>
       </div>
