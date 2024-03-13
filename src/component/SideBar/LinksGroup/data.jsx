@@ -30,24 +30,12 @@ export const linksGroupInfo = [
     title: 'بيانات الطالب',
     links: [
       {
-        Ltitle: 'بيانات الطالب',
+        Ltitle: 'تسجيل الطالب للدرسات العليا',
         href: '/admin/studentinformation',
       },
       {
-        Ltitle: ' تقرير بطلاب الدراسات العليا الغير مسجل لهم ارقام قومية',
-        href: '/#',
-      },
-      {
-        Ltitle: ' رفع البيانات الاساسية للطالب',
-        href: '/#',
-      },
-      {
-        Ltitle: '    رفع صور الطلاب',
-        href: '/#',
-      },
-      {
-        Ltitle: ' قبول الطلاب الجدد   ',
-        href: '/#',
+        Ltitle: 'كشف باسماء الطلاب المسجلين بالدرسات العليا',
+        href: '/admin/studentinformationReport',
       },
     ],
   },

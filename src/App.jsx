@@ -20,6 +20,7 @@ import EnrolCourse from './pages/UserPages/EnrolCourse';
 import Material from './pages/UserPages/Material';
 import Grade from './pages/UserPages/Grade';
 import LayoutProf from './pages/ProfessorPages/LayoutProf';
+import StudentinformationReport from './pages/AdminPages/studentinformationReport';
 function App() {
   const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ function App() {
         { path: '/admin/page4', element: <Page4 /> },
         { path: '/admin/page5', element: <Page5 /> },
         { path: '/admin/studentinformation', element: <Studentinformation /> },
+        {
+          path: '/admin/studentinformationreport',
+          element: <StudentinformationReport />,
+        },
         { path: '/admin/petition', element: <Petition /> },
       ],
     },

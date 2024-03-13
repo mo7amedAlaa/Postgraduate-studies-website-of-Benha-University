@@ -1,299 +1,443 @@
-import React from 'react';
+import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
+import { cx, ifoPdf } from '../../assets';
+import { useState } from 'react';
+import { LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
+import Swal from 'sweetalert2';
+
 import MainLayout from '../../component/Main/MainLayout';
-import { personaLogo } from '../../assets';
-import { IoMdAddCircleOutline } from 'react-icons/io';
-import { IoCaretBack } from 'react-icons/io5';
+const Step1 = () => (
+  <div>
+    <div className=" flex items-center mb-5 justify-center">
+      <label htmlFor="" className="lableStyle w-1/4  mx-5  ">
+        الكلية المراد التسجيل بها(*)
+      </label>
+      <select name="fact" className="inputStyle w-2/4  text-center" id="fact">
+        <option value="الحاسبات والذكاء الاصطناعي ">
+          {' '}
+          الحاسبات والذكاء الاصطناعي{' '}
+        </option>
+        <option value="الهندسة"> الهندسة</option>
+        <option value=" التربية الرياضية"> التربية الرياضية</option>
+        <option value="التربية"> التربية</option>
+        <option value="التمريض"> التمريض</option>
+        <option value="تجارة"> تجارة</option>
+        <option value="اداب"> اداب</option>
+      </select>
+    </div>
+    <div>
+      <fieldset className="border my-2 border-gray-600 p-3 ">
+        <legend>اسم الطالب بالغة العربية</legend>
+
+        <div className="inline-block  my-2">
+          <label htmlFor="" className="lableStyle   mx-5 ">
+            اسم الطالب
+          </label>
+          <input type="text" className="inputStyle " />
+        </div>
+        <div className="inline-block my-2">
+          <label htmlFor="" className="lableStyle mx-5  ">
+            اسم الاب
+          </label>
+          <input type="text" className="inputStyle " />
+        </div>
+        <div className="inline-block my-2">
+          <label htmlFor="" className="lableStyle mx-5  ">
+            اسم الجد
+          </label>
+          <input type="text" className="inputStyle " />
+        </div>
+        <div className="inline-block my-2">
+          <label htmlFor="" className="lableStyle mx-5  ">
+            اللقب
+          </label>
+          <input type="text" className="inputStyle" />
+        </div>
+        <div className="flex items-center  my-2">
+          <label htmlFor="" className="lableStyle  mx-5">
+            الاسم بالكامل(*)
+          </label>
+          <input type="text" className="inputStyle flex-grow  " />
+        </div>
+      </fieldset>
+    </div>
+    <div>
+      <fieldset className="border my-2 border-gray-600 p-3 ">
+        <legend>اسم الطالب بالغة الإنجليزية</legend>
+
+        <div className="inline-block my-2">
+          <label htmlFor="" className="lableStyle mx-5 ">
+            اسم الطالب
+          </label>
+          <input type="text" className="inputStyle " />
+        </div>
+        <div className="inline-block my-2">
+          <label htmlFor="" className="lableStyle mx-5  ">
+            اسم الاب
+          </label>
+          <input type="text" className="inputStyle " />
+        </div>
+        <div className="inline-block my-2">
+          <label htmlFor="" className="lableStyle mx-5  ">
+            اسم الجد
+          </label>
+          <input type="text" className="inputStyle " />
+        </div>
+        <div className="inline-block my-2">
+          <label htmlFor="" className="lableStyle mx-5  ">
+            اللقب
+          </label>
+          <input type="text" className="inputStyle" />
+        </div>
+        <div className="flex items-center  my-2">
+          <label htmlFor="" className="lableStyle  mx-5">
+            الاسم بالكامل(*)
+          </label>
+          <input type="text" className="inputStyle flex-grow  " />
+        </div>
+      </fieldset>
+    </div>
+    <div>
+      <div className="inline-block my-2">
+        <label htmlFor="" className="lableStyle mx-5  ">
+          البريد الالكتروني (*){' '}
+        </label>
+        <input
+          type="email  "
+          placeholder="example@gmail.com"
+          className="inputStyle text-sm"
+        />
+      </div>
+      <div className="inline-block my-2">
+        <label htmlFor="" className="lableStyle mx-5  ">
+          الجنسية
+        </label>
+        <select
+          name="Nationality"
+          className="inputStyle  text-center"
+          id="Nationality"
+        >
+          <option value="مصري"> مصري </option>
+          <option value="سعودي"> سعودي</option>
+          <option value="اخري"> اخري</option>
+        </select>
+      </div>
+      <div className="inline-block">
+        <label htmlFor="IDNUM" className="lableStyle mx-5">
+          الرقم القومي:
+        </label>
+        <input type="text" id="IDNUM" className="inputStyle" />
+      </div>
+      <div className=" inline-block pb-2">
+        <label htmlFor="IDNUM" className="lableStyle mx-5">
+          الديانة:
+        </label>
+        <select
+          name="Religion"
+          className="inputStyle  text-center"
+          id="Religion"
+        >
+          <option value="مسلم"> مسلم </option>
+          <option value="مسيحي"> مسيحي</option>
+          <option value="اخري"> اخري</option>
+        </select>
+      </div>
+      <div className="inline-block my-2">
+        <label htmlFor="GuardiaName" className="lableStyle mx-5  ">
+          كلمة المرور (*){' '}
+        </label>
+        <input type="text" className="inputStyle" id="GuardiaName" />
+      </div>
+      <div className="inline-block my-2">
+        <label htmlFor="GuardiaName" className="lableStyle mx-5  ">
+          تأكيد كلمة المرور (*){' '}
+        </label>
+        <input type="text" className="inputStyle" id="GuardiaName" />
+      </div>
+      <div className="inline-block my-2">
+        <label htmlFor="maritalStatus" className="lableStyle mx-5  ">
+          الحالة الاجتماعية
+        </label>
+        <select
+          name="maritalStatus"
+          className="inputStyle  text-center"
+          id="maritalStatus"
+        >
+          <option value="اعزب"> اعزب </option>
+          <option value="متزوج"> متزوج</option>
+          <option value="مطلق"> مطلق</option>
+          <option value="اخري"> اخري</option>
+        </select>
+      </div>
+      <div className="inline-block my-2">
+        <label htmlFor="maritalStatus" className="lableStyle mx-5  ">
+          النوع{' '}
+        </label>
+        <select
+          name="maritalStatus"
+          className="inputStyle  text-center"
+          id="maritalStatus"
+        >
+          <option value="ذكر"> ذكر </option>
+          <option value="انثي"> انثي</option>
+        </select>
+      </div>
+      <div className="inline-block my-2">
+        <label htmlFor="" className="lableStyle mx-5  ">
+          وظيفة الطالب
+        </label>
+        <input type="text" className="inputStyle" id="GuardiaName" />
+      </div>
+      <div className="inline-block my-2">
+        <label htmlFor="maritalStatus" className="lableStyle mx-5  ">
+          المحمول (*){' '}
+        </label>
+        <input type="text" className="inputStyle" id="GuardiaName" />
+      </div>
+    </div>
+  </div>
+);
+
+const Step2 = () => {
+  const handleUpload = async () => {
+    const { value: file } = await Swal.fire({
+      title: 'Select image',
+      input: 'file',
+      inputAttributes: {
+        accept: 'image/*',
+        'aria-label': 'Upload your profile picture',
+      },
+    });
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        Swal.fire({
+          title: 'Your uploaded picture',
+          imageUrl: e.target.result,
+          imageAlt: 'The uploaded picture',
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  return (
+    <div>
+      <div>
+        <div className="flex gap-5  justify-between my-5">
+          <h1 className="text-2xl ">1- الاوراق والملفات المطلوبة </h1>
+          <div className="flex w-1/6 items-center  gap-10">
+            <a
+              href={ifoPdf}
+              download="reqFile"
+              className="main-btn flex-1 flex items-center justify-center"
+            >
+              تنزيل
+              <LuDownloadCloud />
+            </a>
+          </div>
+        </div>
+        <div className="flex gap-5 my-5  justify-between ">
+          <h1 className="text-2xl">
+            {' '}
+            2- شهادة البكالوريوس(مؤقتة)العدد 1 اصل + صورة
+          </h1>
+          <div className="flex w-1/6 gap-10">
+            <button
+              className="main-btn flex-1 flex items-center justify-center gap-3"
+              onClick={handleUpload}
+            >
+              رفع
+              <LuUploadCloud />
+            </button>
+          </div>
+        </div>
+        <div className="flex gap-5 my-5  justify-between ">
+          <h1 className="text-2xl">
+            {' '}
+            3- شهادة تقديرات اربع سنوات دراسية العدد 1 اصل + صورة{' '}
+          </h1>
+          <div className="flex w-1/6 gap-10">
+            <button
+              className="main-btn flex flex-1 items-center justify-center gap-3"
+              onClick={handleUpload}
+            >
+              رفع
+              <LuUploadCloud />
+            </button>
+          </div>
+        </div>
+        <div className="flex gap-5 my-5  justify-between ">
+          <h1 className="text-2xl">
+            {' '}
+            4. شهادة الماجستير(بالنسبة للقيد لدرجة الدكتوراة) العدد 1 اصل + صورة{' '}
+          </h1>
+          <div className="flex w-1/6 gap-10">
+            <button
+              className="main-btn flex flex-1 items-center justify-center gap-3"
+              onClick={handleUpload}
+            >
+              رفع
+              <LuUploadCloud />
+            </button>
+          </div>
+        </div>
+        <div className="flex gap-5 my-5  justify-between ">
+          <h1 className="text-2xl"> 5- شهادة الميلاد + صورة منها</h1>
+          <div className="flex w-1/6 gap-10">
+            <button
+              className="main-btn flex flex-1 items-center justify-center gap-3"
+              onClick={handleUpload}
+            >
+              رفع
+              <LuUploadCloud />
+            </button>
+          </div>
+        </div>
+        <div className="flex gap-5 my-5  justify-between ">
+          <h1 className="text-2xl">6- صورة البطاقة الشخصية </h1>
+          <div className="flex w-1/6 gap-10">
+            <button
+              className="main-btn flex flex-1 items-center justify-center gap-3"
+              onClick={handleUpload}
+            >
+              رفع
+              <LuUploadCloud />
+            </button>
+          </div>
+        </div>
+        <div className="flex gap-5 my-5  justify-between ">
+          <h1 className="text-2xl">7- الموقف التجنيدي للذكور + صورة منه </h1>
+          <div className="flex w-1/6 gap-10">
+            <button
+              className="main-btn flex flex-1 items-center justify-center gap-3"
+              onClick={handleUpload}
+            >
+              رفع
+              <LuUploadCloud />
+            </button>
+          </div>
+        </div>
+        <div className="flex gap-5 my-5  justify-between ">
+          <h1 className="text-2xl ">8- موافقة جهة العمل + صورة منها </h1>
+          <div className="flex w-1/6 gap-10">
+            <button
+              className="main-btn flex flex-1  items-center justify-center gap-3"
+              onClick={handleUpload}
+            >
+              رفع
+              <LuUploadCloud />
+            </button>
+          </div>
+        </div>
+        <div className="flex gap-5 my-5  justify-between ">
+          <h1 className="text-2xl">9- عدد 4 صورة شخصية 4*6</h1>
+          <div className="flex w-1/6 gap-10">
+            <button
+              className="main-btn flex flex-1 items-center justify-center gap-3"
+              onClick={handleUpload}
+            >
+              رفع
+              <LuUploadCloud />
+            </button>
+          </div>
+        </div>
+        <div className="flex gap-5 my-5  justify-between ">
+          <h1 className="text-2xl">
+            {' '}
+            10- طلب قيد باسم الاستاذ الدكتور\وكيل الكلية للدراسات العليا والبحوث
+          </h1>
+          <div className="flex w-1/6 gap-1">
+            <a
+              href={cx}
+              download="طلب قيد"
+              className="main-btn flex-1 flex items-center justify-center gap-3"
+            >
+              تنزيل
+              <LuDownloadCloud />
+            </a>
+            <button
+              className="main-btn flex flex-1 items-center justify-center gap-3"
+              onClick={handleUpload}
+            >
+              رفع
+              <LuUploadCloud />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function Studentinformation() {
+  const [step, setStep] = useState(1);
+  const handleNext = () => {
+    setStep(step + 1);
+  };
+  const handleBack = () => {
+    setStep(step - 1);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefult();
+  };
+
   return (
-    <MainLayout title={'بيانات الطالب'}>
-      <div>
-        <form action="">
-          <div className="flex">
-            <div className="flex-1">
-              <div className=" pb-2">
-                <label htmlFor="IDNUM" className="lableStyle">
-                  الرقم القومي:
-                </label>
-                <input type="text" id="IDNUM" className="inputStyle" />
-              </div>
-              <div className=" pb-2">
-                <label htmlFor="IDNUM" className="lableStyle">
-                  الديانة:
-                </label>
-                <select
-                  name="Religion"
-                  className="inputStyle  text-center"
-                  id="Religion"
-                >
-                  <option value="مسلم"> مسلم </option>
-                  <option value="مسيحي"> مسيحي</option>
-                  <option value="اخري"> اخري</option>
-                </select>
-              </div>
-              <div className="pb-2">
-                <label htmlFor="gender" className="  lableStyle">
-                  النوع:
-                </label>
-                <div className="inline-block  ">
-                  <div className="inline  m-3  ">
-                    <input type="radio" name="gender" id="male" />
-                    <label htmlFor="male">ذكر</label>
-                  </div>
-                  <div className="inline m-3 ">
-                    <input type="radio" name="gender" id="female" />
-                    <label htmlFor="female">انثي</label>
-                  </div>
-                </div>
-              </div>
+    <MainLayout title={'التقديم للدرسات العليا'}>
+      <div className="flex items-center  container    py-5 justify-center   ">
+        <div className="bg-white p-0 md:p-6  rounded-lg shadow-md   ">
+          <h2 className="font-medium mb-4">خطوة {step} من 2</h2>
+          <div className="flex mb-4">
+            <div
+              className={`w-1/2 border-r border-gray-400 ${
+                step === 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              } p-2 text-center cursor-pointer`}
+              onClick={() => setStep(1)}
+            >
+              الخطوة 1
             </div>
-            <div className=" flex w-[200px] h-[100px]  justify-end">
-              <img
-                src={personaLogo}
-                alt=""
-                width={'100px'}
-                className="rounded-sm"
-                height={'100px'}
-              />
+            <div
+              className={`w-1/2 ${
+                step === 2 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              } p-2 text-center cursor-pointer`}
+              onClick={() => setStep(2)}
+            >
+              الخطوة 2
             </div>
           </div>
-          <div>
-            <fieldset className="border my-2 border-gray-600 p-3 ">
-              <legend>اسم الطالب بالغة العربية</legend>
+          <form action="">
+            <div className=" border rounded-md p-5  ">
+              {step === 1 ? <Step1 /> : <Step2 />}
+            </div>
 
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5 ">
-                  اسم الطالب
-                </label>
-                <input type="text" className="inputStyle " />
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  اسم الاب
-                </label>
-                <input type="text" className="inputStyle " />
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  اسم الجد
-                </label>
-                <input type="text" className="inputStyle " />
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  اللقب
-                </label>
-                <input type="text" className="inputStyle" />
-              </div>
-              <div className="flex items-center  my-2">
-                <label htmlFor="" className="lableStyle  mx-5">
-                  الاسم بالكامل
-                </label>
-                <input type="text" className="inputStyle flex-grow  " />
-              </div>
-            </fieldset>
-          </div>
-          <div>
-            <fieldset className="border my-2 border-gray-600 p-3 ">
-              <legend>اسم الطالب بالغة الإنجليزية</legend>
-
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5 ">
-                  اسم الطالب
-                </label>
-                <input type="text" className="inputStyle " />
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  اسم الاب
-                </label>
-                <input type="text" className="inputStyle " />
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  اسم الجد
-                </label>
-                <input type="text" className="inputStyle " />
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  اللقب
-                </label>
-                <input type="text" className="inputStyle" />
-              </div>
-              <div className="flex items-center  my-2">
-                <label htmlFor="" className="lableStyle  mx-5">
-                  الاسم بالكامل
-                </label>
-                <input type="text" className="inputStyle flex-grow  " />
-              </div>
-            </fieldset>
-          </div>
-          <div>
-            <div className="inline-block my-2">
-              <label htmlFor="" className="lableStyle mx-5  ">
-                الجنسية الاولي
-              </label>
-              <select
-                name="Nationality"
-                className="inputStyle  text-center"
-                id="Nationality"
-              >
-                <option value="مصري"> مصري </option>
-                <option value="سعودي"> سعودي</option>
-                <option value="اخري"> اخري</option>
-              </select>
-            </div>
-            <div className="inline-block my-2">
-              <label htmlFor="" className="lableStyle mx-5  ">
-                الجنسية الثانية
-              </label>
-              <select
-                name="Nationality"
-                className="inputStyle  text-center"
-                id="Nationality"
-              >
-                <option value="مصري"> مصري </option>
-                <option value="سعودي"> سعودي</option>
-                <option value="اخري"> اخري</option>
-              </select>
-            </div>
-            <div className="inline-block my-2">
-              <label htmlFor="GuardiaName" className="lableStyle mx-5  ">
-                اسم ولي الامر
-              </label>
-              <input type="text" className="inputStyle" id="GuardiaName" />
-            </div>
-            <div className="inline-block my-2">
-              <label htmlFor="maritalStatus" className="lableStyle mx-5  ">
-                الحالة الاجتماعية
-              </label>
-              <select
-                name="maritalStatus"
-                className="inputStyle  text-center"
-                id="maritalStatus"
-              >
-                <option value="اعزب"> اعزب </option>
-                <option value="متزوج"> متزوج</option>
-                <option value="مطلق"> مطلق</option>
-                <option value="اخري"> اخري</option>
-              </select>
-            </div>
-            <div className="inline-block my-2">
-              <label htmlFor="" className="lableStyle mx-5  ">
-                وظيفة الطالب
-              </label>
-              <input type="text" className="inputStyle" id="GuardiaName" />
-            </div>
-            <div className="inline-block my-2">
-              <label htmlFor="maritalStatus" className="lableStyle mx-5  ">
-                درجة القرابة
-              </label>
-              <select
-                name="maritalStatus"
-                className="inputStyle  text-center"
-                id="maritalStatus"
-              >
-                <option value="درجة اولي"> درجة اولي </option>
-                <option value="درجة ثانية"> درجة ثانية</option>
-                <option value="اخري"> اخري</option>
-              </select>
-            </div>
-          </div>
-          <div>
-            <fieldset className="border my-2 border-gray-600 p-3 ">
-              <legend>الطالب الوافد</legend>
-
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  جنسية الاب
-                </label>
-                <select
-                  name="Nationality"
-                  className="inputStyle  text-center"
-                  id="Nationality"
+            <div className="flex justify-between mt-6">
+              {step == 2 && (
+                <input
+                  type="submit"
+                  value={'حفظ'}
+                  className="main-btn"
+                  onClick={handleSubmit}
+                />
+              )}
+              {step > 1 && (
+                <button
+                  className="bg-gray-300 flex items-center justify-center px-6 py-1.5 rounded-lg text-gray-700 hover:bg-gray-400"
+                  onClick={handleBack}
                 >
-                  <option value="مصري"> مصري </option>
-                  <option value="سعودي"> سعودي</option>
-                  <option value="اخري"> اخري</option>
-                </select>
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  جنسية الام
-                </label>
-                <select
-                  name="Nationality"
-                  className="inputStyle  text-center"
-                  id="Nationality"
+                  السابق
+                  <IoArrowBack />
+                </button>
+              )}
+              {step < 2 && (
+                <button
+                  className="main-btn flex gap-1 items-center justify-center"
+                  onClick={handleNext}
                 >
-                  <option value="مصري"> مصرية </option>
-                  <option value="سعودي"> سعودية</option>
-                  <option value="اخري"> اخري</option>
-                </select>
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  المورد المالي
-                </label>
-                <select
-                  name="Nationality"
-                  className="inputStyle  text-center"
-                  id="Nationality"
-                >
-                  <option value="حيازات السندات المتداولة">
-                    {' '}
-                    حيازات السندات المتداولة
-                  </option>
-                  <option value="الشيكات"> الشيكات</option>
-                  <option value="اخري"> اخري</option>
-                </select>
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  جهة التموبل
-                </label>
-                <input type="text" className="inputStyle " />
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  تاريخ موافقة الامن
-                </label>
-                <input type="date" className="inputStyle " />
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  جهة الرجوع
-                </label>
-                <input type="text" className="inputStyle" />
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  تاريخ بداية الاقامة
-                </label>
-                <input type="date" className="inputStyle " />
-              </div>
-              <div className="inline-block my-2">
-                <label htmlFor="" className="lableStyle mx-5  ">
-                  تاريخ نهاية الاقامة
-                </label>
-                <input type="date" className="inputStyle " />
-              </div>
-            </fieldset>
-          </div>
-          <div className="flex justify-center gap-5">
-            <div className="relative ">
-              <input type="submit" value={'اضافة'} className="main-btn" />
-              <IoMdAddCircleOutline className=" absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2  right-4" />
+                  <IoArrowForward />
+                  التالي
+                </button>
+              )}
             </div>
-            <div className="relative">
-              <button type="button" className="main-btn ">
-                الرجوع
-              </button>
-              <IoCaretBack className=" absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2  right-4" />
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </MainLayout>
   );
