@@ -20,6 +20,12 @@ import EnrolCourse from './pages/UserPages/EnrolCourse';
 import Material from './pages/UserPages/Material';
 import Grade from './pages/UserPages/Grade';
 import LayoutProf from './pages/ProfessorPages/LayoutProf';
+<<<<<<< HEAD
+import StudentinformationReport from './pages/AdminPages/studentinformationReport';
+=======
+import GenerateAccounts from './pages/AdminPages/GenerateAccounts';
+import LoyoutAdmin from './pages/AdminPages/LayoutAdmin'
+>>>>>>> f94cd68639a23785de833031a3edd101bb0ad175
 function App() {
   const router = createBrowserRouter([
     {
@@ -41,6 +47,7 @@ function App() {
           element: <StudentinformationReport />,
         },
         { path: '/admin/petition', element: <Petition /> },
+
       ],
     },
     {
@@ -53,12 +60,9 @@ function App() {
     },
     {
       path: '/adminUniversity',
-      element: <LoyoutAdmin />,
+      element: <LoyoutAdmin/>,
       children: [
-        {
-          path: '/adminUniversity/GenerateAccount',
-          element: <GenerateAccounts />,
-        },
+        { path: '/adminUniversity/GenerateAccount', element: <GenerateAccounts /> },
       ],
     },
     { path: '/login', element: <Login /> },
