@@ -6,6 +6,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 import Footer from '../../component/Footer/Footer';
 import Main from '../../component/NavbarHomePage/MainNavbar';
 import Graduate from '../../assets/images/post.png';
+import Material from '../User/Material';
 
 function Home() {
   return (
@@ -143,6 +144,22 @@ function Home() {
               تسجيل نقطة بحث(رفع الفكرة)
             </h3>
           </div>
+          <Link to={'/Material'}>
+            <div className="ser-card">
+              <div className="flex items-center justify-center">
+                <img
+                  src="https://www.asu.edu.eg/141090/_mediacenter/2022/png/a5e0e61d23d7bb612f9861b2fa43bc18.png"
+                  style={{ width: '150px' }}
+                  alt=""
+                />
+              </div>
+
+              <h3 className="mt-5 mb-5 font-Poppins text-xl">
+                {' '}
+                الكتب و مصارد المواد{' '}
+              </h3>
+            </div>
+          </Link>
 
           <div className="ser-card">
             <div className="flex items-center justify-center">
@@ -168,20 +185,23 @@ function Home() {
 
             <h3 className="mt-5 mb-5 font-Poppins text-xl">جداول الدراسة </h3>
           </div>
-          <div className="ser-card">
-            <div className="flex items-center justify-center">
-              <img
-                src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/8f8b9a7cc9c5d1c4df4e229124bfe7e0.png"
-                style={{ width: '150px' }}
-                alt=""
-              />
-            </div>
+          <Link to={'showgrade'}>
+            <div className="ser-card">
+              <div className="flex items-center justify-center">
+                <img
+                  src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/8f8b9a7cc9c5d1c4df4e229124bfe7e0.png"
+                  style={{ width: '150px' }}
+                  alt=""
+                />
+              </div>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">
-              {' '}
-              نتائج الدراسات العليا{' '}
-            </h3>
-          </div>
+              <h3 className="mt-5 mb-5 font-Poppins text-xl">
+                {' '}
+                نتائج الدراسات العليا{' '}
+              </h3>
+            </div>
+          </Link>
+
           <div className="ser-card">
             <div className="flex items-center justify-center">
               <img

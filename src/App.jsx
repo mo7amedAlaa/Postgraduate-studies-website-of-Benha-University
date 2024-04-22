@@ -69,7 +69,7 @@ function App() {
       ],
     },
     {
-      path: '/CollegeVice ',
+      path: '/CollegeVice',
       element: <Layout Actions={AdminActions} />,
     },
     { path: '/login', element: <Login /> },
