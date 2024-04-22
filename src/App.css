@@ -25,12 +25,16 @@
   position: relative;
 }
 .image2 {
-  background-image: url('./assets/images/last.webp');
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.81),
+      rgba(2, 2, 2, 0.57)
+    ),
+    url('./assets/images/last.webp');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   position: relative;
-  filter: brightness(0.4);
 }
 .overlay2 {
   position: absolute;
@@ -39,12 +43,7 @@
   transform: translate(-50%, -50%);
   z-index: 2;
 }
-.image .overlay {
-  /* display: flex;
- justify-content: end;
- flex-direction: column;
- align-items: center; */
-}
+
 .overlay {
   position: absolute;
   top: 50%;
@@ -56,6 +55,7 @@
 }
 .services-name {
   position: relative;
+  width: fit-content;
 }
 .services-name h1::before,
 .program-name h1::before {
@@ -63,7 +63,7 @@
   position: absolute;
   top: 75px;
   background-color: #5dc6f0;
-  width: 18rem;
+  width: 90%;
   height: 10px;
   border-radius: 10px;
   background-color: linear-gradient(#51acd0, #5dc6f0);

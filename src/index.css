@@ -12,6 +12,25 @@
   .main-btn {
     @apply p-1 w-32  text-black font-semibold shadow   bg-main hover:shadow-main transition-shadow duration-200 shadow-slate-600  rounded-md;
   }
+  .home-btn {
+    @apply bg-main w-[13rem] p-2 rounded-md  text-2xl mt-9 text-whiteText font-serif font-semibold cursor-pointer hover:bg-emerald-400 hover:text-main transition-all  hover:scale-110;
+  }
+
+  .nav-link {
+    @apply p-3  inline-block text-[14px] font-semibold tracking-wide hover:bg-main rounded-md;
+  }
+  .ser-card {
+    @apply flex flex-col justify-between items-center shadow-lg text-center mb-10 min-h-72   rounded-lg w-60 p-5 hover:scale-110  hover:border-main border transition-all duration-300;
+  }
+  .stats-card {
+    @apply border rounded-sm text-white  text-center hover:border-main transition-all p-2;
+  }
+  .stats-num {
+    @apply font-sans text-5xl font-medium text-second text-center mt-5;
+  }
+  .stats-name {
+    @apply font-sans text-3xl font-semibold  text-main mt-9;
+  }
 }
 .active {
   color: rgb(0, 248, 29);

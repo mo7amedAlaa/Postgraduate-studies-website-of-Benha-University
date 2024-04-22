@@ -84,35 +84,44 @@ export default function EnrolCourse() {
           <LuAlertOctagon className="mx-2" />
           برجاء استكمال البيانات التالية والتحقق من وضوحها وسلامتها لضمان وصولها
         </p>
-        <div style={{ height: 400, width: '100%', direction: 'ltr' }}>
-          <DataGrid
-            rows={courses}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: { page: 0, pageSize: 5 },
-              },
-            }}
-            pageSizeOptions={[5, 10]}
-            checkboxSelection
-          />
+        <div>
+          <div style={{ height: 400, width: '100%', direction: 'ltr' }}>
+            <DataGrid
+              rows={courses}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: { page: 0, pageSize: 5 },
+                },
+              }}
+              pageSizeOptions={[5, 10]}
+              checkboxSelection
+            />
+          </div>
+          <div className="my-5  text-center ">
+            <button className=" px-12 py-3 mx-auto  text-xl font-bold tracking-wider text-white       bg-main  rounded-md   ">
+              تسجيل المقرر
+            </button>
+          </div>
         </div>
-        <p className=" font-bold text-3xl italic m-10  ">المواد المسجلة</p>
-        <div
-          className="my-3"
-          style={{ height: 400, width: '100%', direction: 'ltr' }}
-        >
-          <DataGrid
-            rows={courses}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: { page: 0, pageSize: 5 },
-              },
-            }}
-            pageSizeOptions={[5, 10]}
-            checkboxSelection
-          />
+        <div>
+          <p className=" font-bold text-3xl italic m-10  ">المواد المسجلة</p>
+          <div
+            className="my-3"
+            style={{ height: 400, width: '100%', direction: 'ltr' }}
+          >
+            <DataGrid
+              rows={courses}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: { page: 0, pageSize: 5 },
+                },
+              }}
+              pageSizeOptions={[5, 10]}
+              checkboxSelection
+            />
+          </div>
         </div>
       </div>
       <div className="bg-main  px-2  ">

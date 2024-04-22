@@ -1,31 +1,29 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
-import Layout from './pages/Layout';
-import Page1 from './pages/usr-adminPages/page1';
-import Page2 from './pages/usr-adminPages/page2';
-import Page3 from './pages/usr-adminPages/page3';
-import Page4 from './pages/usr-adminPages/page4';
-import Page5 from './pages/usr-adminPages/page5';
-import Home from './pages/Home';
+import Home from './pages/MainPages/Home';
+import Login from './pages/MainPages/Login';
+import Layout from './pages/MainPages/Layout';
+import Page1 from './pages/Employee/Page1';
+import Page2 from './pages/Employee/Page1';
+import Page3 from './pages/Employee/Page1';
+import Page4 from './pages/Employee/Page1';
+import Page5 from './pages/Employee/Page1';
+import Studentinformation from './pages/Employee/Studentinformation';
+import StudentinformationReport from './pages/Employee/StudentinformationReport';
+import Petition from './pages/Employee/Petition';
+import LayoutProf from './pages/Professor/LayoutProf';
+import GradesStudent from './pages/Professor/GradesStudent';
+import UploadMaterial from './pages/Professor/UploadMaterial';
 
-import Studentinformation from './pages/AdminPages/Studentinformation';
-import Login from './pages/usr-adminPages/Login';
-import Petition from './pages/AdminPages/Petition';
-import Payment from './pages/UserPages/Payment';
-import RegistrationToApply from './pages/UserPages/RegistrationToApply';
-
-import GradesStudent from './pages/ProfessorPages/GradesStudent';
-import UploadMaterial from './pages/ProfessorPages/UploadMaterial';
-import EnrolCourse from './pages/UserPages/EnrolCourse';
-import Material from './pages/UserPages/Material';
-import Grade from './pages/UserPages/Grade';
-import LayoutProf from './pages/ProfessorPages/LayoutProf';
-<<<<<<< HEAD
-import StudentinformationReport from './pages/AdminPages/studentinformationReport';
-=======
-import GenerateAccounts from './pages/AdminPages/GenerateAccounts';
-import LoyoutAdmin from './pages/AdminPages/LayoutAdmin'
->>>>>>> f94cd68639a23785de833031a3edd101bb0ad175
+import GenerateAccounts from './pages/Admin/GenerateAccounts';
+import RegistrationToApply from './pages/User/RegistrationToApply';
+import Payment from './pages/User/Payment';
+import EnrolCourse from './pages/User/EnrolCourse';
+import Material from './pages/User/Material';
+import Grade from './pages/User/Grade';
+import employeeActions from './component/SideBar/LinksGroup/dataemp';
+import AdminActions from './component/SideBar/LinksGroup/dataAdmin';
+import profActions from './component/SideBar/LinksGroup/dataProf';
 function App() {
   const router = createBrowserRouter([
     {
@@ -33,37 +31,46 @@ function App() {
       element: <Home />,
     },
     {
-      path: '/admin',
-      element: <Layout />,
+      path: '/employee',
+      element: <Layout Actions={employeeActions} />,
       children: [
-        { path: '/admin/page1', element: <Page1 /> },
-        { path: '/admin/page2', element: <Page2 /> },
-        { path: '/admin/page3', element: <Page3 /> },
-        { path: '/admin/page4', element: <Page4 /> },
-        { path: '/admin/page5', element: <Page5 /> },
-        { path: '/admin/studentinformation', element: <Studentinformation /> },
+        { path: '/employee/page1', element: <Page1 /> },
+        { path: '/employee/page2', element: <Page2 /> },
+        { path: '/employee/page3', element: <Page3 /> },
+        { path: '/employee/page4', element: <Page4 /> },
+        { path: '/employee/page5', element: <Page5 /> },
         {
-          path: '/admin/studentinformationreport',
+          path: '/employee/studentinformation',
+          element: <Studentinformation />,
+        },
+        {
+          path: '/employee/studentinformationreport',
           element: <StudentinformationReport />,
         },
-        { path: '/admin/petition', element: <Petition /> },
-
+        { path: '/employee/petition', element: <Petition /> },
       ],
     },
     {
       path: '/professor',
-      element: <LayoutProf />,
+      element: <Layout Actions={profActions} />,
       children: [
         { path: '/professor/gradesstudent', element: <GradesStudent /> },
         { path: '/professor/uploadmaterial', element: <UploadMaterial /> },
       ],
     },
     {
-      path: '/adminUniversity',
-      element: <LoyoutAdmin/>,
+      path: '/admin',
+      element: <Layout Actions={AdminActions} />,
       children: [
-        { path: '/adminUniversity/GenerateAccount', element: <GenerateAccounts /> },
+        {
+          path: '/admin/GenerateAccount',
+          element: <GenerateAccounts />,
+        },
       ],
+    },
+    {
+      path: '/CollegeVice ',
+      element: <Layout Actions={AdminActions} />,
     },
     { path: '/login', element: <Login /> },
     { path: '/payment', element: <Payment /> },

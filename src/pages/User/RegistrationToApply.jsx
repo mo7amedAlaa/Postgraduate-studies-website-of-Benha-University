@@ -141,7 +141,7 @@ const Step1 = () => (
           <option value="اخري"> اخري</option>
         </select>
       </div>
-      <div className="inline-block my-2">
+      {/* <div className="inline-block my-2">
         <label htmlFor="GuardiaName" className="lableStyle mx-5  ">
           كلمة المرور (*){' '}
         </label>
@@ -152,7 +152,7 @@ const Step1 = () => (
           تأكيد كلمة المرور (*){' '}
         </label>
         <input type="text" className="inputStyle" id="GuardiaName" />
-      </div>
+      </div> */}
       <div className="inline-block my-2">
         <label htmlFor="maritalStatus" className="lableStyle mx-5  ">
           الحالة الاجتماعية

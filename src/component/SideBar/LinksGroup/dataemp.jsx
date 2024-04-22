@@ -1,27 +1,27 @@
-export const linksGroupInfo = [
+const employeeActions = [
   {
     id: 1,
     title: 'اللوائح',
     links: [
       {
         Ltitle: 'الائحة الداخلية للدرسات العليا',
-        href: '/admin/page1',
+        href: '/employee/page1',
       },
       {
         Ltitle: 'شروط القيد بالكليات المؤهل ',
-        href: '/admin/page2',
+        href: '/employee/page2',
       },
       {
         Ltitle: ' تقديرات عامة على مستوى الكلية     ',
-        href: '/admin/page3',
+        href: '/employee/page3',
       },
       {
         Ltitle: '  تعريف العام الاكاديمى        ',
-        href: '/admin/page4',
+        href: '/employee/page4',
       },
       {
         Ltitle: 'متغيرات الدرجات الممنوحة من اقسام وشعب',
-        href: '/admin/page5',
+        href: '/employee/page5',
       },
     ],
   },
@@ -31,11 +31,11 @@ export const linksGroupInfo = [
     links: [
       {
         Ltitle: 'تسجيل الطالب للدرسات العليا',
-        href: '/admin/studentinformation',
+        href: '/employee/studentinformation',
       },
       {
         Ltitle: 'كشف باسماء الطلاب المسجلين بالدرسات العليا',
-        href: '/admin/studentinformationReport',
+        href: '/employee/studentinformationReport',
       },
     ],
   },
@@ -77,7 +77,7 @@ export const linksGroupInfo = [
     links: [
       { Ltitle: ' نظام السنوات الدراسية', href: '/#' },
       { Ltitle: '   نظام الساعات المعتمدة', href: '/#' },
-      { Ltitle: '     الالتماس', href: '/admin/petition' },
+      { Ltitle: '     الالتماس', href: '/employee/petition' },
       { Ltitle: '   الرفع  ', href: '/#' },
       { Ltitle: '   تسجيل نتائج مقرر  ', href: '/#' },
       {
@@ -107,30 +107,4 @@ export const linksGroupInfo = [
     ],
   },
 ];
-export const DataAdmin = [
-  {
-    id: 1,
-    title: 'النظام',
-    links: [
-      {
-        Ltitle: 'التحكم فى فتح وغلق النظام',
-        href: '/',
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: '  الايميل الجامعى',
-    links: [
-      {
-        Ltitle: ' انشاء الايميل الجامعى ',
-        href: '/adminUniversity/GenerateAccount',
-      },
-      {
-        Ltitle: 'حذف الايميل الجامعى ',
-        href: '/adminUniversity/GenerateAccount',
-      },
-     
-    ],
-  },
-]
+export default employeeActions;

@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom';
-import Navbar from '../component/NavBar/Navbar';
-import Sidebar from '../component/SideBar/Sidebar';
-import { linksGroupInfo } from '../component/SideBar/LinksGroup/data';
-import LinksGroup from '../component/SideBar/LinksGroup/LinksGroup';
-import { personaLogo } from '../assets';
+import Navbar from '../../component/NavBar/Navbar';
+import Sidebar from '../../component/SideBar/Sidebar';
+import  linksGroupInfo  from '../../component/SideBar/LinksGroup/dataProf';
+import LinksGroup from '../../component/SideBar/LinksGroup/LinksGroup';
+import  LogProf  from '../../assets/images/logProf.png';
 import { useState } from 'react';
-function Layout() {
+function LayoutProf() {
   const [sideOpen, setSideOpen] = useState(false);
   const handleSidebarOpen = () => {
     setSideOpen(!sideOpen);
@@ -21,9 +21,10 @@ function Layout() {
         <div className="grid grid-cols-12 gap-2">
           <div className="grid col-span-3">
             <Sidebar
-              userName={' انس محمد'}
+              userName={'  د . منى عرفة'}
               side={sideOpen}
-              userImg={personaLogo}
+              userImg={LogProf}
+              
             >
               {linksGroupInfo.map((info) => (
                 <LinksGroup
@@ -43,4 +44,4 @@ function Layout() {
   );
 }
 
-export default Layout;
+export default LayoutProf;
