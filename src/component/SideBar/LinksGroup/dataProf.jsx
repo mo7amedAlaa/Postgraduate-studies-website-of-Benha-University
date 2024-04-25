@@ -23,11 +23,11 @@ const profActions = [
     links: [
       {
         Ltitle: '   تقرير لمتابعة الطالب  ',
-        href: '/',
+        href: '/professor/studentfollowup',
       },
       {
         Ltitle: ' التقرير   لمد المدة  ',
-        href: '/',
+        href: '/professor/extensionreport',
       },
     ],
   },

@@ -41,13 +41,11 @@ const employeeActions = [
   },
   {
     id: 3,
-    title: 'ادارة التسجيل الاكتروني',
+    title: '  الجداول',
     links: [
-      { Ltitle: 'صلاحيات التسجيل الالكتروني', href: '/#' },
-      { Ltitle: 'اعدادات التسجيل الالكتروني', href: '/#' },
-      { Ltitle: 'الطلاب الممنوعين من التسجيل ', href: '/#' },
-      { Ltitle: 'مقترح التسجيل الالكترونى ', href: '/#' },
-      { Ltitle: 'ادارة كلمات المرور ', href: '/#' },
+      { Ltitle: '  رفع الجدول ', href: '/employee/uploadschedule', },
+      { Ltitle: '  رفع الدرجات ', href: '/employee/uploadallgrades', },
+
     ],
   },
   {

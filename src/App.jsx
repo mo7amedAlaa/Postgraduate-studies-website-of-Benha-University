@@ -11,7 +11,6 @@ import Page5 from './pages/Employee/Page1';
 import Studentinformation from './pages/Employee/Studentinformation';
 import StudentinformationReport from './pages/Employee/StudentinformationReport';
 import Petition from './pages/Employee/Petition';
-import LayoutProf from './pages/Professor/LayoutProf';
 import GradesStudent from './pages/Professor/GradesStudent';
 import UploadMaterial from './pages/Professor/UploadMaterial';
 
@@ -24,7 +23,12 @@ import Grade from './pages/User/Grade';
 import employeeActions from './component/SideBar/LinksGroup/dataemp';
 import AdminActions from './component/SideBar/LinksGroup/dataAdmin';
 import profActions from './component/SideBar/LinksGroup/dataProf';
+import UploadSchedule from './pages/Employee/UploadSchedule';
+import UploadAllGrades from './pages/Employee/UploadAllGrades';
+import ExtensionReport from './pages/Professor/ExtensionReport';
+import StudentFollowUp from './pages/Professor/StudentFollowUp';
 function App() {
+  ///schedule
   const router = createBrowserRouter([
     {
       path: '/',
@@ -48,6 +52,11 @@ function App() {
           element: <StudentinformationReport />,
         },
         { path: '/employee/petition', element: <Petition /> },
+        { path: '/employee/uploadschedule', element: <UploadSchedule /> },
+        { path: '/employee/uploadallgrades', element: <UploadAllGrades /> },
+///ExtensionReport
+///uploadallgrades
+///src/pages/Professor/StudentFollowUp.jsx
       ],
     },
     {
@@ -56,6 +65,10 @@ function App() {
       children: [
         { path: '/professor/gradesstudent', element: <GradesStudent /> },
         { path: '/professor/uploadmaterial', element: <UploadMaterial /> },
+        { path: '/professor/extensionreport', element: <ExtensionReport /> },
+        { path: '/professor/studentfollowup', element: <StudentFollowUp /> },
+
+
       ],
     },
     {
