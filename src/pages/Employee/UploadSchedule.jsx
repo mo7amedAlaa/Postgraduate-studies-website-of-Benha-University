@@ -46,17 +46,15 @@ function UploadSchedule() {
                 </h2>
                 <fieldset className="border my-2 border-gray-600 p-3 ">
                   <legend> الجدول الدراسي   </legend>
-                  <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 ">
-                    <div className=" flex items-center my-2">
+                    <div className=" flex items-center justify-center my-2">
                       <div className="flex  gap-10">
                         <button
-                          className="main-btn flex-1 flex items-center justify-center gap-3  p-3"
+                          className="main-btn flex-1 flex items-center justify-center text-center gap-3  p-3"
                           onClick={handleUpload}
                         >
                           رفع
                           <LuUploadCloud />
                         </button>
-                      </div>
                     </div>
 
                     

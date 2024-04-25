@@ -46,9 +46,9 @@ function UploadMaterial() {
                 </h2>
                 <fieldset className="border my-2 border-gray-600 p-3 ">
                   <legend> كل مايتعلق بالمقرر</legend>
-                  <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 ">
-                    <div className=" flex items-center my-2">
-                      <label htmlFor="" className="   mx-5 ">
+                  <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 ">
+                    <div className=" flex items-center justify-between my-2">
+                      <label htmlFor="" className=" text-2xl font-bold  mx-5 ">
                         محاضرات المقرر
                       </label>
                       <div className="flex  gap-10">
@@ -62,20 +62,7 @@ function UploadMaterial() {
                       </div>
                     </div>
 
-                    <div className=" flex items-center my-2">
-                      <label htmlFor="" className="   mx-5 ">
-                        مصادر اخرى
-                      </label>
-                      <div className="flex  gap-10">
-                        <button
-                          className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
-                          onClick={handleUpload}
-                        >
-                          رفع
-                          <LuUploadCloud />
-                        </button>
-                      </div>
-                    </div>
+                  
                   </div>
                 </fieldset>
               </div>
