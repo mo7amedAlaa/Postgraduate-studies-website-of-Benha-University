@@ -27,6 +27,10 @@ import UploadSchedule from './pages/Employee/UploadSchedule';
 import UploadAllGrades from './pages/Employee/UploadAllGrades';
 import ExtensionReport from './pages/Professor/ExtensionReport';
 import StudentFollowUp from './pages/Professor/StudentFollowUp';
+import ShowAllReports from './pages/Head of Department/ShowAllReports';
+import headActions from './component/SideBar/LinksGroup/dataheaddepartment';
+import agentActions from './component/SideBar/LinksGroup/dataAgent';
+import ApplyPlanResearch from './pages/Head of Department/ApplyPlanResearch';
 function App() {
   ///schedule
   const router = createBrowserRouter([
@@ -70,10 +74,10 @@ function App() {
     },
     {
       path: '/headofdepartment',
-      element: <Layout Actions={profActions} />,
+      element: <Layout Actions={headActions} />,
       children: [
-        { path: '/headofdepartment/applyplanresearch', element: <GradesStudent /> },
-        { path: '/headofdepartment/showralleports', element: <UploadMaterial /> },
+        { path: '/headofdepartment/applyplanresearch', element: <ApplyPlanResearch /> },
+        { path: '/headofdepartment/showralleports', element: <ShowAllReports /> },
        
 
 
@@ -81,7 +85,7 @@ function App() {
     },
     {
       path: '/collegeagent',
-      element: <Layout Actions={profActions} />,
+      element: <Layout Actions={agentActions} />,
       children: [
         { path: '/collegeagent/uploadreport', element: <GradesStudent /> },
        

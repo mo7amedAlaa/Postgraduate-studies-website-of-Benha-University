@@ -1,34 +1,23 @@
 const headActions = [
     {
       id: 1,
-      title: 'رفع البيانات',
+      title: 'الخطة البحثية ',
       links: [
         {
-          Ltitle: '   رفع محاضرات المقرر',
-          href: '/professor/uploadmaterial',
-        },
-        {
-          Ltitle: 'رفع درجات الطلاب ب المقرر ',
-          href: '/professor/gradesstudent',
-        },
-        {
-          Ltitle: '  رفع المشاريع والاختبارات        ',
-          href: '/professor/gradesstudent',
+          Ltitle: '     تقديم الخطة البحثية',
+          href: '/headofdepartment/applyplanresearch',
         },
       ],
     },
     {
       id: 2,
-      title: ' التقارير',
+      title: 'التقارير ',
       links: [
         {
-          Ltitle: '   تقرير لمتابعة الطالب  ',
-          href: '/professor/studentfollowup',
+          Ltitle: '   تقديم كل التقارير    ',
+          href: '/headofdepartment/showralleports',
         },
-        {
-          Ltitle: ' التقرير   لمد المدة  ',
-          href: '/professor/extensionreport',
-        },
+     
       ],
     },
   ];
