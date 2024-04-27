@@ -54,9 +54,6 @@ function App() {
         { path: '/employee/petition', element: <Petition /> },
         { path: '/employee/uploadschedule', element: <UploadSchedule /> },
         { path: '/employee/uploadallgrades', element: <UploadAllGrades /> },
-///ExtensionReport
-///uploadallgrades
-///src/pages/Professor/StudentFollowUp.jsx
       ],
     },
     {
@@ -67,6 +64,27 @@ function App() {
         { path: '/professor/uploadmaterial', element: <UploadMaterial /> },
         { path: '/professor/extensionreport', element: <ExtensionReport /> },
         { path: '/professor/studentfollowup', element: <StudentFollowUp /> },
+
+
+      ],
+    },
+    {
+      path: '/headofdepartment',
+      element: <Layout Actions={profActions} />,
+      children: [
+        { path: '/headofdepartment/applyplanresearch', element: <GradesStudent /> },
+        { path: '/headofdepartment/showralleports', element: <UploadMaterial /> },
+       
+
+
+      ],
+    },
+    {
+      path: '/collegeagent',
+      element: <Layout Actions={profActions} />,
+      children: [
+        { path: '/collegeagent/uploadreport', element: <GradesStudent /> },
+       
 
 
       ],
