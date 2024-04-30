@@ -7,73 +7,7 @@ import Copyrights from '../../component/Footer/copyrights';
 import { url } from '../../API/constant';
 
 export default function RegistrationToApply() {
-  //State val start
-  const [step, setStep] = useState(1);
-  const [firstName, setfirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [age, setAge] = useState(0);
-  const [SSN, setSSN] = useState(0);
-  const [address, setAddress] = useState('');
-  const [idea, setIdea] = useState('');
-  const [type, setType] = useState('');
-  const [password, setPassword] = useState('');
-  const [phone, setPhone] = useState('');
-  const [department_id, setDepartmentId] = useState(0);
-  //method handle start
-  const handleNext = () => {
-    setStep(step + 1);
-  };
-  const handleBack = () => {
-    setStep(step - 1);
-  };
-
-  const handleUpload = async () => {
-    const { value: file } = await Swal.fire({
-      title: 'Select image',
-      input: 'file',
-      inputAttributes: {
-        accept: 'image/*',
-        'aria-label': 'Upload your profile picture',
-      },
-    });
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        Swal.fire({
-          title: 'Your uploaded picture',
-          imageUrl: e.target.result,
-          imageAlt: 'The uploaded picture',
-        });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    fetch(`${url}/auth/admin/register`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        first_name: firstName,
-        last_name: 'aaaaa',
-        age: '12',
-        SSN: '514',
-        address: 'aaaaa',
-        idea: 'aaaaa',
-        type: 'external',
-        email: 'ahmed100c00cx000811@gmail.com',
-        // "account":"ahmed@gmail.com" ,
-        password: '123456789',
-        password_confirmation: '123456789',
-        department_id: 2,
-        phone: '12345678',
-      }),
-    })
-      .then((res) => res.json())
-      .then(console.log);
-  };
-  const Step1 = (
+  const Step1 = () => (
     <div>
       <div className=" flex items-center mb-5 justify-center">
         <label htmlFor="" className="lableStyle w-1/4  mx-5  ">
@@ -97,27 +31,21 @@ export default function RegistrationToApply() {
           <legend>اسم الطالب بالغة العربية</legend>
 
           <div className="inline-block  my-2">
-            <label htmlFor="firstName" className="lableStyle   mx-5 ">
+            <label htmlFor="" className="lableStyle   mx-5 ">
               اسم الطالب
             </label>
             <input
               type="text"
-              className="inputStyle"
+              className="inputStyle "
+              value={first_name}
               onChange={(e) => setfirstName(e.target.value)}
-              value={firstName}
-              id="firstName"
             />
           </div>
           <div className="inline-block my-2">
             <label htmlFor="" className="lableStyle mx-5  ">
               اسم الاب
             </label>
-            <input
-              type="text"
-              className="inputStyle "
-              onChange={(e) => setLastName(e.target.value)}
-              value={lastName}
-            />
+            <input type="text" className="inputStyle " />
           </div>
           <div className="inline-block my-2">
             <label htmlFor="" className="lableStyle mx-5  ">
@@ -147,7 +75,11 @@ export default function RegistrationToApply() {
             <label htmlFor="" className="lableStyle mx-5 ">
               اسم الطالب
             </label>
-            <input type="text" className="inputStyle" />
+            <input
+              type="text"
+              className="inputStyle"
+              onChange={(e) => setfirstName(e.target.value)}
+            />
           </div>
           <div className="inline-block my-2">
             <label htmlFor="" className="lableStyle mx-5  ">
@@ -265,160 +197,217 @@ export default function RegistrationToApply() {
     </div>
   );
 
-  const Step2 = (
-    <div>
+  const Step2 = () => {
+    const handleUpload = async () => {
+      const { value: file } = await Swal.fire({
+        title: 'Select image',
+        input: 'file',
+        inputAttributes: {
+          accept: 'image/*',
+          'aria-label': 'Upload your profile picture',
+        },
+      });
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          Swal.fire({
+            title: 'Your uploaded picture',
+            imageUrl: e.target.result,
+            imageAlt: 'The uploaded picture',
+          });
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+    return (
       <div>
-        <p className="font-bold text-sm mt-3 flex items-center  ">
-          <LuAlertOctagon className="mx-2" />
-          برجاء استكمال البيانات التالية والتحقق من وضوحها وسلامتها لضمان وصولها
-          بشكل صحيح .
-        </p>
+        <div>
+          <p className="font-bold text-sm mt-3 flex items-center  ">
+            <LuAlertOctagon className="mx-2" />
+            برجاء استكمال البيانات التالية والتحقق من وضوحها وسلامتها لضمان
+            وصولها بشكل صحيح .
+          </p>
+        </div>
+        <div>
+          <div className="flex gap-5  justify-between my-5">
+            <h1 className="text-2xl ">1- الاوراق والملفات المطلوبة </h1>
+            <div className="flex w-1/6 items-center  gap-10">
+              <a
+                href={ifoPdf}
+                download="reqFile"
+                className="main-btn flex-1 flex items-center justify-center"
+              >
+                تنزيل
+                <LuDownloadCloud />
+              </a>
+            </div>
+          </div>
+          <div className="flex gap-5 my-5  justify-between ">
+            <h1 className="text-2xl">
+              {' '}
+              2- شهادة البكالوريوس(مؤقتة)العدد 1 اصل + صورة
+            </h1>
+            <div className="flex w-1/6 gap-10">
+              <button
+                className="main-btn flex-1 flex items-center justify-center gap-3"
+                onClick={handleUpload}
+              >
+                رفع
+                <LuUploadCloud />
+              </button>
+            </div>
+          </div>
+          <div className="flex gap-5 my-5  justify-between ">
+            <h1 className="text-2xl">
+              {' '}
+              3- شهادة تقديرات اربع سنوات دراسية العدد 1 اصل + صورة{' '}
+            </h1>
+            <div className="flex w-1/6 gap-10">
+              <button
+                className="main-btn flex flex-1 items-center justify-center gap-3"
+                onClick={handleUpload}
+              >
+                رفع
+                <LuUploadCloud />
+              </button>
+            </div>
+          </div>
+          <div className="flex gap-5 my-5  justify-between ">
+            <h1 className="text-2xl">
+              {' '}
+              4. شهادة الماجستير(بالنسبة للقيد لدرجة الدكتوراة) العدد 1 اصل +
+              صورة{' '}
+            </h1>
+            <div className="flex w-1/6 gap-10">
+              <button
+                className="main-btn flex flex-1 items-center justify-center gap-3"
+                onClick={handleUpload}
+              >
+                رفع
+                <LuUploadCloud />
+              </button>
+            </div>
+          </div>
+          <div className="flex gap-5 my-5  justify-between ">
+            <h1 className="text-2xl"> 5- شهادة الميلاد + صورة منها</h1>
+            <div className="flex w-1/6 gap-10">
+              <button
+                className="main-btn flex flex-1 items-center justify-center gap-3"
+                onClick={handleUpload}
+              >
+                رفع
+                <LuUploadCloud />
+              </button>
+            </div>
+          </div>
+          <div className="flex gap-5 my-5  justify-between ">
+            <h1 className="text-2xl">6- صورة البطاقة الشخصية </h1>
+            <div className="flex w-1/6 gap-10">
+              <button
+                className="main-btn flex flex-1 items-center justify-center gap-3"
+                onClick={handleUpload}
+              >
+                رفع
+                <LuUploadCloud />
+              </button>
+            </div>
+          </div>
+          <div className="flex gap-5 my-5  justify-between ">
+            <h1 className="text-2xl">7- الموقف التجنيدي للذكور + صورة منه </h1>
+            <div className="flex w-1/6 gap-10">
+              <button
+                className="main-btn flex flex-1 items-center justify-center gap-3"
+                onClick={handleUpload}
+              >
+                رفع
+                <LuUploadCloud />
+              </button>
+            </div>
+          </div>
+          <div className="flex gap-5 my-5  justify-between ">
+            <h1 className="text-2xl ">8- موافقة جهة العمل + صورة منها </h1>
+            <div className="flex w-1/6 gap-10">
+              <button
+                className="main-btn flex flex-1  items-center justify-center gap-3"
+                onClick={handleUpload}
+              >
+                رفع
+                <LuUploadCloud />
+              </button>
+            </div>
+          </div>
+          <div className="flex gap-5 my-5  justify-between ">
+            <h1 className="text-2xl">9- عدد 4 صورة شخصية 4*6</h1>
+            <div className="flex w-1/6 gap-10">
+              <button
+                className="main-btn flex flex-1 items-center justify-center gap-3"
+                onClick={handleUpload}
+              >
+                رفع
+                <LuUploadCloud />
+              </button>
+            </div>
+          </div>
+          <div className="flex gap-5 my-5  justify-between ">
+            <h1 className="text-2xl">
+              {' '}
+              10- طلب قيد باسم الاستاذ الدكتور\وكيل الكلية للدراسات العليا
+              والبحوث
+            </h1>
+            <div className="flex w-1/6 gap-1">
+              <a
+                href={cx}
+                download="طلب قيد"
+                className="main-btn flex-1 flex items-center justify-center gap-3"
+              >
+                تنزيل
+                <LuDownloadCloud />
+              </a>
+              <button
+                className="main-btn flex flex-1 items-center justify-center gap-3"
+                onClick={handleUpload}
+              >
+                رفع
+                <LuUploadCloud />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <div className="flex gap-5  justify-between my-5">
-          <h1 className="text-2xl ">1- الاوراق والملفات المطلوبة </h1>
-          <div className="flex w-1/6 items-center  gap-10">
-            <a
-              href={ifoPdf}
-              download="reqFile"
-              className="main-btn flex-1 flex items-center justify-center"
-            >
-              تنزيل
-              <LuDownloadCloud />
-            </a>
-          </div>
-        </div>
-        <div className="flex gap-5 my-5  justify-between ">
-          <h1 className="text-2xl">
-            {' '}
-            2- شهادة البكالوريوس(مؤقتة)العدد 1 اصل + صورة
-          </h1>
-          <div className="flex w-1/6 gap-10">
-            <button
-              className="main-btn flex-1 flex items-center justify-center gap-3"
-              onClick={handleUpload}
-            >
-              رفع
-              <LuUploadCloud />
-            </button>
-          </div>
-        </div>
-        <div className="flex gap-5 my-5  justify-between ">
-          <h1 className="text-2xl">
-            {' '}
-            3- شهادة تقديرات اربع سنوات دراسية العدد 1 اصل + صورة{' '}
-          </h1>
-          <div className="flex w-1/6 gap-10">
-            <button
-              className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
-            >
-              رفع
-              <LuUploadCloud />
-            </button>
-          </div>
-        </div>
-        <div className="flex gap-5 my-5  justify-between ">
-          <h1 className="text-2xl">
-            {' '}
-            4. شهادة الماجستير(بالنسبة للقيد لدرجة الدكتوراة) العدد 1 اصل + صورة{' '}
-          </h1>
-          <div className="flex w-1/6 gap-10">
-            <button
-              className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
-            >
-              رفع
-              <LuUploadCloud />
-            </button>
-          </div>
-        </div>
-        <div className="flex gap-5 my-5  justify-between ">
-          <h1 className="text-2xl"> 5- شهادة الميلاد + صورة منها</h1>
-          <div className="flex w-1/6 gap-10">
-            <button
-              className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
-            >
-              رفع
-              <LuUploadCloud />
-            </button>
-          </div>
-        </div>
-        <div className="flex gap-5 my-5  justify-between ">
-          <h1 className="text-2xl">6- صورة البطاقة الشخصية </h1>
-          <div className="flex w-1/6 gap-10">
-            <button
-              className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
-            >
-              رفع
-              <LuUploadCloud />
-            </button>
-          </div>
-        </div>
-        <div className="flex gap-5 my-5  justify-between ">
-          <h1 className="text-2xl">7- الموقف التجنيدي للذكور + صورة منه </h1>
-          <div className="flex w-1/6 gap-10">
-            <button
-              className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
-            >
-              رفع
-              <LuUploadCloud />
-            </button>
-          </div>
-        </div>
-        <div className="flex gap-5 my-5  justify-between ">
-          <h1 className="text-2xl ">8- موافقة جهة العمل + صورة منها </h1>
-          <div className="flex w-1/6 gap-10">
-            <button
-              className="main-btn flex flex-1  items-center justify-center gap-3"
-              onClick={handleUpload}
-            >
-              رفع
-              <LuUploadCloud />
-            </button>
-          </div>
-        </div>
-        <div className="flex gap-5 my-5  justify-between ">
-          <h1 className="text-2xl">9- عدد 4 صورة شخصية 4*6</h1>
-          <div className="flex w-1/6 gap-10">
-            <button
-              className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
-            >
-              رفع
-              <LuUploadCloud />
-            </button>
-          </div>
-        </div>
-        <div className="flex gap-5 my-5  justify-between ">
-          <h1 className="text-2xl">
-            {' '}
-            10- طلب قيد باسم الاستاذ الدكتور\وكيل الكلية للدراسات العليا والبحوث
-          </h1>
-          <div className="flex w-1/6 gap-1">
-            <a
-              href={cx}
-              download="طلب قيد"
-              className="main-btn flex-1 flex items-center justify-center gap-3"
-            >
-              تنزيل
-              <LuDownloadCloud />
-            </a>
-            <button
-              className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
-            >
-              رفع
-              <LuUploadCloud />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  };
+  const [step, setStep] = useState(1);
+  const [first_name, setfirstName] = useState(' ');
+  const handleNext = () => {
+    setStep(step + 1);
+  };
+  const handleBack = () => {
+    setStep(step - 1);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    fetch(`${url}/auth/admin/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: 'ahmed',
+        last_name: 'aaaaa',
+        age: '12',
+        SSN: '514',
+        address: 'aaaaa',
+        idea: 'aaaaa',
+        type: 'external',
+        email: 'ahmed100c00cx000811@gmail.com',
+        // "account":"ahmed@gmail.com" ,
+        password: '123456789',
+        password_confirmation: '123456789',
+        department_id: 2,
+        phone: '12345678',
+      }),
+    })
+      .then((res) => res.json())
+      .then(console.log);
+  };
   return (
     <div className=" bg-slate-100     min-h-screen">
       <div className="flex   bg-main mx-auto items-center justify-around">
@@ -458,7 +447,7 @@ export default function RegistrationToApply() {
           </div>
           <form action="">
             <div className=" border rounded-md p-5  ">
-              {step === 1 ? Step1 : Step2}
+              {step === 1 ? <Step1 /> : <Step2 />}
             </div>
 
             <div className="flex justify-between mt-6">

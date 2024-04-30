@@ -98,7 +98,7 @@ export default function Material() {
           <img src={graduatedMenIcon} alt="" width={'100px'} height={'100px'} />
         </div>
       </div>
-      <div className="p-10 container mx-auto">
+      <div className="p-10 container mx-auto ">
         <div style={{ height: 400, width: '100%', direction: 'ltr' }}>
           <DataGrid
             rows={courses}

@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
-// import { cx, graduatedMenIcon, ifoPdf, uniLogo } from '../../assets';
-import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
+import { LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 import MainLayout from '../../component/Main/MainLayout';
-// import LayoutProf from './LayoutProf';
-// import LayoutProf from './LayoutProf';
 const handleUpload = async () => {
   const { value: file } = await Swal.fire({
     title: 'Select image',
@@ -42,22 +38,20 @@ function UploadAllGrades() {
               <div>
                 <h2 className=" font-sans text-3xl font-semibold  text-center mb-5">
                   {' '}
-              رفع درجات المقرر لعام الدراسى 2024 / 2025
+                  رفع درجات المقرر لعام الدراسى 2024 / 2025
                 </h2>
                 <fieldset className="border my-2 border-gray-600 p-3 ">
-                  <legend>  رفع درجات المقرر   </legend>
-                    <div className=" flex items-center justify-center my-2">
-                      <div className="flex  gap-10">
-                        <button
-                          className="main-btn flex-1 flex items-center justify-center gap-3  p-3"
-                          onClick={handleUpload}
-                        >
-                          رفع
-                          <LuUploadCloud />
-                        </button>
-                      </div>
-
-                    
+                  <legend> رفع درجات المقرر </legend>
+                  <div className=" flex items-center justify-center my-2">
+                    <div className="flex  gap-10">
+                      <button
+                        className="main-btn flex-1 flex items-center justify-center gap-3  p-3"
+                        onClick={handleUpload}
+                      >
+                        رفع
+                        <LuUploadCloud />
+                      </button>
+                    </div>
                   </div>
                 </fieldset>
               </div>

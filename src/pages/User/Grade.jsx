@@ -1,8 +1,7 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { graduatedMenIcon, ifoPdf, uniLogo } from '../../assets';
-import { LuDownloadCloud } from 'react-icons/lu';
+
 import Copyrights from '../../component/Footer/copyrights';
-import { IoOpenOutline } from 'react-icons/io5';
 
 export default function Grade() {
   const columns = [

@@ -11,10 +11,6 @@ const profActions = [
         Ltitle: 'رفع درجات الطلاب ب المقرر ',
         href: '/professor/gradesstudent',
       },
-      {
-        Ltitle: '  رفع المشاريع والاختبارات        ',
-        href: '/professor/gradesstudent',
-      },
     ],
   },
   {
@@ -23,11 +19,12 @@ const profActions = [
     links: [
       {
         Ltitle: '   تقرير لمتابعة الطالب  ',
-        href: '/professor/studentfollowup',
+
+        href: '/professor/studentstuts',
       },
       {
         Ltitle: ' التقرير   لمد المدة  ',
-        href: '/professor/extensionreport',
+        href: '/professor/extendRestriction',
       },
     ],
   },

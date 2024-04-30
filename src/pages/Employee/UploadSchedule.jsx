@@ -42,22 +42,20 @@ function UploadSchedule() {
               <div>
                 <h2 className=" font-sans text-3xl font-semibold  text-center mb-5">
                   {' '}
-                    رفع الجدول الدراسي عام 2024 / 2025
+                  رفع الجدول الدراسي عام 2024 / 2025
                 </h2>
                 <fieldset className="border my-2 border-gray-600 p-3 ">
-                  <legend> الجدول الدراسي   </legend>
-                    <div className=" flex items-center justify-center my-2">
-                      <div className="flex  gap-10">
-                        <button
-                          className="main-btn flex-1 flex items-center justify-center text-center gap-3  p-3"
-                          onClick={handleUpload}
-                        >
-                          رفع
-                          <LuUploadCloud />
-                        </button>
+                  <legend> الجدول الدراسي </legend>
+                  <div className=" flex items-center justify-center my-2">
+                    <div className="flex  gap-10">
+                      <button
+                        className="main-btn flex-1 flex items-center justify-center text-center gap-3  p-3"
+                        onClick={handleUpload}
+                      >
+                        رفع
+                        <LuUploadCloud />
+                      </button>
                     </div>
-
-                    
                   </div>
                 </fieldset>
               </div>

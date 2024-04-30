@@ -40,31 +40,80 @@ function UploadMaterial() {
               }}
             >
               <div>
-                <h2 className=" font-sans text-3xl font-semibold  text-center mb-5">
-                  {' '}
-                  مقرر العام الدراسي
-                </h2>
-                <fieldset className="border my-2 border-gray-600 p-3 ">
-                  <legend> كل مايتعلق بالمقرر</legend>
-                  <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 ">
-                    <div className=" flex items-center justify-between my-2">
-                      <label htmlFor="" className=" text-2xl font-bold  mx-5 ">
-                        محاضرات المقرر
-                      </label>
-                      <div className="flex  gap-10">
-                        <button
-                          className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
-                          onClick={handleUpload}
-                        >
-                          رفع
-                          <LuUploadCloud />
-                        </button>
+                <div>
+                  <h2 className=" font-sans text-3xl font-semibold  text-center mb-5">
+                    {' '}
+                    المادة المراد رفع المقرارت لها
+                  </h2>
+                  <fieldset className="border my-2 border-gray-600 p-3 ">
+                    <legend>اسم المقرر والقسم التبع لها</legend>
+                    <div className=" flex justify-around items-center  ">
+                      <div className=" flex items-center justify-between  my-2">
+                        <label htmlFor="" className="   mx-5 ">
+                          المادة
+                        </label>
+                        <select name="sub" id="sub">
+                          <option value="1">sub1</option>
+                          <option value="1">sub1</option>
+                          <option value="1">sub1</option>
+                          <option value="1">sub1</option>
+                          <option value="2">CS</option>
+                        </select>
+                      </div>
+                      <div className=" flex items-center justify-between  my-2">
+                        <label htmlFor="" className="   mx-5 ">
+                          القسم
+                        </label>
+                        <select name="sub" id="sub">
+                          <option value="1">IS</option>
+                          <option value="2">CS</option>
+                          <option value="3">AI</option>
+                          <option value="4">SC</option>
+                        </select>
                       </div>
                     </div>
+                  </fieldset>
+                </div>
 
-                  
-                  </div>
-                </fieldset>
+                <div>
+                  <h2 className=" font-sans text-3xl font-semibold  text-center mb-5">
+                    {' '}
+                    مقررات العام الدراسي
+                  </h2>
+                  <fieldset className="border my-2 border-gray-600 p-3 ">
+                    <legend> كل مايتعلق بالمقرر</legend>
+                    <div className=" flex justify-around items-center  ">
+                      <div className=" flex items-center justify-between  my-2">
+                        <label htmlFor="" className="   mx-5 ">
+                          محاضرات المقرر
+                        </label>
+                        <div className="flex  gap-10">
+                          <button
+                            className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
+                            onClick={handleUpload}
+                          >
+                            رفع
+                            <LuUploadCloud />
+                          </button>
+                        </div>
+                      </div>
+                      <div className=" flex items-center my-2">
+                        <label htmlFor="" className="   mx-5 ">
+                          مصادر اخرى
+                        </label>
+                        <div className="flex  gap-10">
+                          <button
+                            className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
+                            onClick={handleUpload}
+                          >
+                            رفع
+                            <LuUploadCloud />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
               </div>
             </form>
           </div>

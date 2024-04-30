@@ -13,7 +13,6 @@ import StudentinformationReport from './pages/Employee/StudentinformationReport'
 import Petition from './pages/Employee/Petition';
 import GradesStudent from './pages/Professor/GradesStudent';
 import UploadMaterial from './pages/Professor/UploadMaterial';
-
 import GenerateAccounts from './pages/Admin/GenerateAccounts';
 import RegistrationToApply from './pages/User/RegistrationToApply';
 import Payment from './pages/User/Payment';
@@ -25,14 +24,15 @@ import AdminActions from './component/SideBar/LinksGroup/dataAdmin';
 import profActions from './component/SideBar/LinksGroup/dataProf';
 import UploadSchedule from './pages/Employee/UploadSchedule';
 import UploadAllGrades from './pages/Employee/UploadAllGrades';
-import ExtensionReport from './pages/Professor/ExtensionReport';
-import StudentFollowUp from './pages/Professor/StudentFollowUp';
 import ShowAllReports from './pages/Head of Department/ShowAllReports';
 import headActions from './component/SideBar/LinksGroup/dataheaddepartment';
 import agentActions from './component/SideBar/LinksGroup/dataAgent';
 import ApplyPlanResearch from './pages/Head of Department/ApplyPlanResearch';
+import RecordPoint from './pages/User/RecordPoint';
+import ExtendRestriction from './pages/Professor/ExtendRestriction';
+import StudentStuts from './pages/Professor/StudentStuts';
+
 function App() {
-  ///schedule
   const router = createBrowserRouter([
     {
       path: '/',
@@ -58,6 +58,8 @@ function App() {
         { path: '/employee/petition', element: <Petition /> },
         { path: '/employee/uploadschedule', element: <UploadSchedule /> },
         { path: '/employee/uploadallgrades', element: <UploadAllGrades /> },
+        { path: '/employee/uploadschedule', element: <UploadSchedule /> },
+        { path: '/employee/uploadallgrades', element: <UploadAllGrades /> },
       ],
     },
     {
@@ -66,21 +68,28 @@ function App() {
       children: [
         { path: '/professor/gradesstudent', element: <GradesStudent /> },
         { path: '/professor/uploadmaterial', element: <UploadMaterial /> },
-        { path: '/professor/extensionreport', element: <ExtensionReport /> },
-        { path: '/professor/studentfollowup', element: <StudentFollowUp /> },
-
-
+        {
+          path: '/professor/extendRestriction',
+          element: <ExtendRestriction />,
+        },
+        {
+          path: '/professor/studentstuts',
+          element: <StudentStuts />,
+        },
       ],
     },
     {
       path: '/headofdepartment',
       element: <Layout Actions={headActions} />,
       children: [
-        { path: '/headofdepartment/applyplanresearch', element: <ApplyPlanResearch /> },
-        { path: '/headofdepartment/showralleports', element: <ShowAllReports /> },
-       
-
-
+        {
+          path: '/headofdepartment/applyplanresearch',
+          element: <ApplyPlanResearch />,
+        },
+        {
+          path: '/headofdepartment/showralleports',
+          element: <ShowAllReports />,
+        },
       ],
     },
     {
@@ -88,9 +97,6 @@ function App() {
       element: <Layout Actions={agentActions} />,
       children: [
         { path: '/collegeagent/uploadreport', element: <GradesStudent /> },
-       
-
-
       ],
     },
     {
@@ -113,6 +119,7 @@ function App() {
     { path: '/course', element: <EnrolCourse /> },
     { path: '/material', element: <Material /> },
     { path: '/showgrade', element: <Grade /> },
+    { path: '/Recordpoint', element: <RecordPoint /> },
   ]);
   return (
     <div className="font-bodyFont min-h-screen  ">
