@@ -3,11 +3,7 @@ import './App.css';
 import Home from './pages/MainPages/Home';
 import Login from './pages/MainPages/Login';
 import Layout from './pages/MainPages/Layout';
-import Page1 from './pages/Employee/Page1';
-import Page2 from './pages/Employee/Page1';
-import Page3 from './pages/Employee/Page1';
-import Page4 from './pages/Employee/Page1';
-import Page5 from './pages/Employee/Page1';
+
 import Studentinformation from './pages/Employee/Studentinformation';
 import StudentinformationReport from './pages/Employee/StudentinformationReport';
 import Petition from './pages/Employee/Petition';
@@ -26,11 +22,13 @@ import UploadSchedule from './pages/Employee/UploadSchedule';
 import UploadAllGrades from './pages/Employee/UploadAllGrades';
 import ShowAllReports from './pages/Head of Department/ShowAllReports';
 import headActions from './component/SideBar/LinksGroup/dataheaddepartment';
-import agentActions from './component/SideBar/LinksGroup/dataAgent';
 import ApplyPlanResearch from './pages/Head of Department/ApplyPlanResearch';
 import RecordPoint from './pages/User/RecordPoint';
 import ExtendRestriction from './pages/Professor/ExtendRestriction';
 import StudentStuts from './pages/Professor/StudentStuts';
+import Regulations from './pages/Employee/Regulations';
+import ExamTable from './pages/User/ExamTable';
+import StudyTable from './pages/User/StudyTable';
 
 function App() {
   const router = createBrowserRouter([
@@ -42,11 +40,8 @@ function App() {
       path: '/employee',
       element: <Layout Actions={employeeActions} />,
       children: [
-        { path: '/employee/page1', element: <Page1 /> },
-        { path: '/employee/page2', element: <Page2 /> },
-        { path: '/employee/page3', element: <Page3 /> },
-        { path: '/employee/page4', element: <Page4 /> },
-        { path: '/employee/page5', element: <Page5 /> },
+        { path: '/employee/Regulations', element: <Regulations /> },
+
         {
           path: '/employee/studentinformation',
           element: <Studentinformation />,
@@ -56,8 +51,6 @@ function App() {
           element: <StudentinformationReport />,
         },
         { path: '/employee/petition', element: <Petition /> },
-        { path: '/employee/uploadschedule', element: <UploadSchedule /> },
-        { path: '/employee/uploadallgrades', element: <UploadAllGrades /> },
         { path: '/employee/uploadschedule', element: <UploadSchedule /> },
         { path: '/employee/uploadallgrades', element: <UploadAllGrades /> },
       ],
@@ -93,13 +86,6 @@ function App() {
       ],
     },
     {
-      path: '/collegeagent',
-      element: <Layout Actions={agentActions} />,
-      children: [
-        { path: '/collegeagent/uploadreport', element: <GradesStudent /> },
-      ],
-    },
-    {
       path: '/admin',
       element: <Layout Actions={AdminActions} />,
       children: [
@@ -119,7 +105,9 @@ function App() {
     { path: '/course', element: <EnrolCourse /> },
     { path: '/material', element: <Material /> },
     { path: '/showgrade', element: <Grade /> },
-    { path: '/Recordpoint', element: <RecordPoint /> },
+    { path: '/recordpoint', element: <RecordPoint /> },
+    { path: '/examtable', element: <ExamTable /> },
+    { path: '/studytable', element: <StudyTable /> },
   ]);
   return (
     <div className="font-bodyFont min-h-screen  ">

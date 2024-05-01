@@ -1,7 +1,7 @@
 import { Laypdf } from '../../assets';
 import MainLayout from '../../component/Main/MainLayout';
 
-export default function Page1() {
+export default function Regulations() {
   return (
     <MainLayout>
       <embed

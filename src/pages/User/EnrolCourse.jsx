@@ -1,7 +1,8 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { graduatedMenIcon, uniLogo } from '../../assets';
 import { LuAlertOctagon } from 'react-icons/lu';
-import Copyrights from '../../component/Footer/copyrights';
+import Copyrights from '../../component/Footer/Copyrights';
+
 export default function EnrolCourse() {
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },

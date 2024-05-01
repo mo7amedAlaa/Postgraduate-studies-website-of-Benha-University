@@ -83,7 +83,7 @@ export default function Material() {
   ];
 
   return (
-    <div className=" bg-slate-100     min-h-screen">
+    <div className=" bg-slate-100   flex flex-col  min-h-screen">
       <div className="flex  bg-main   items-center justify-around">
         <div>
           <img src={uniLogo} alt="" width={'100px'} height={'100px'} />
@@ -98,8 +98,11 @@ export default function Material() {
           <img src={graduatedMenIcon} alt="" width={'100px'} height={'100px'} />
         </div>
       </div>
-      <div className="p-10 container mx-auto ">
+      <div className="p-10 container flex-1 mx-auto ">
         <div style={{ height: 400, width: '100%', direction: 'ltr' }}>
+          <h2 className="text-2xl text-center tracking-wider my-3  ">
+            مصادر المواد المسجلة{' '}
+          </h2>
           <DataGrid
             rows={courses}
             columns={columns}

@@ -11,10 +11,10 @@ function ExtendRestriction() {
             السيد الأستاذ الدكتور/ رئيس قسم
           </label>
           <select id="welcome" className="px-2 text-center  bg-withe  ">
-            <option value="is">IS</option>
-            <option value="ai">AI</option>
-            <option value="cs">CS</option>
-            <option value="sc">SC</option>
+            <option value="1">IS</option>
+            <option value="2">AI</option>
+            <option value="3">CS</option>
+            <option value="4">SC</option>
           </select>
           <p> تحية طيبة وبعد،، </p>
         </div>

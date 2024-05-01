@@ -4,7 +4,7 @@
 @tailwind utilities;
 @layer components {
   .lableStyle {
-    @apply w-32  inline-block;
+    @apply w-36  inline-block;
   }
   .inputStyle {
     @apply w-[170px] outline-none  border border-neutral-950 rounded-sm  px-1 focus:scale-105 h-5 border-solid;

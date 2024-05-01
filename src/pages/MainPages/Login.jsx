@@ -1,6 +1,24 @@
+import { useState } from 'react';
 import { facLogo, uniLogo } from '../../assets';
+import { url } from '../../API/constant';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
+  const [formData, setFormData] = useState({});
+  const [loginDone, setloginDone] = useState(true);
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    fetch(`${url}/auth/admin/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then(console.log);
+  };
   return (
     <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
       <div className="md:w-1/3 max-w-sm">
@@ -42,11 +60,15 @@ const Login = () => {
           className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
           type="text"
           placeholder="عنوان البريد الإلكتروني"
+          name="email"
+          onChange={handleChange}
         />
         <input
           className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4"
           type="password"
           placeholder="كلمة المرور"
+          name="password"
+          onChange={handleChange}
         />
         <div className="mt-4 flex justify-between font-semibold text-sm">
           <label className="flex text-slate-500 hover:text-slate-600 cursor-pointer">
@@ -64,6 +86,7 @@ const Login = () => {
           <button
             className="mt-4  bg-main hover:bg-cyan-400 px-4 py-2 text-white uppercase rounded text-xs tracking-wider"
             type="submit"
+            onClick={handleSubmit}
           >
             {' '}
             تسجيل الدخول
@@ -71,12 +94,12 @@ const Login = () => {
         </div>
         <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">
           ليس لديك حساب؟
-          <a
+          <Link
             className="text-red-600 hover:underline hover:underline-offset-4"
-            href="#"
+            to="/registration"
           >
             تسجيل
-          </a>
+          </Link>
         </div>
       </div>
     </section>

@@ -119,14 +119,30 @@ export default function Payment() {
               </select>
             </div>
           </div>
-          <div className="mb-10">
-            <label className="font-bold text-sm mb-2 ml-1">رمز الحماية</label>
+          <div className="mb-10 flex gap-9 ">
             <div>
-              <input
-                className="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                placeholder="000"
-                type="text"
-              />
+              <label className="font-bold text-sm mb-2 ml-1">رمز الحماية</label>
+              <div>
+                <input
+                  className="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                  placeholder="000"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="font-bold text-sm mb-2 ml-1">
+                المبلغ المطلوب بالجنية المصري
+              </label>
+              <div>
+                <input
+                  className="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+                  placeholder="300"
+                  type="text"
+                  readOnly
+                />{' '}
+                هذا المبلغ يحدد تلقي بناءا علي تعليمات الجامعة ولا يمكن تغيره
+              </div>
             </div>
           </div>
           <div>

@@ -1,3 +1,3 @@
-const url = `https://8433-197-162-24-162.ngrok-free.app/api`;
+const url = `https://c552-197-165-172-248.ngrok-free.app/api`;
 
 export { url };

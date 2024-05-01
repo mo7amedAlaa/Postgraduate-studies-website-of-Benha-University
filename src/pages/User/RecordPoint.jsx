@@ -1,8 +1,53 @@
+import { DataGrid } from '@mui/x-data-grid';
 import { graduatedMenIcon, uniLogo } from '../../assets';
 import Copyrights from '../../component/Footer/Copyrights';
 import { Checkbox } from '@mui/material';
 
 function RecordPoint() {
+  const columns = [
+    { field: 'ID', headerName: 'م', width: 130 },
+    { field: 'name', headerName: 'الاسم', width: 250 },
+    { field: 'degree', headerName: ' الدرجةالعلمية', width: 130 },
+    { field: 'jobdirc', headerName: ' جهة العمل', width: 250 },
+    { field: 'signature', headerName: ' التوقيع', width: 130 },
+  ];
+  const prof = [
+    {
+      ID: 1,
+      name: '   ',
+      degree: '  ',
+      jobdirc: '  ',
+      signature: '  ',
+    },
+    {
+      ID: 2,
+      name: '   ',
+      degree: '  ',
+      jobdirc: '  ',
+      signature: '  ',
+    },
+    {
+      ID: 3,
+      name: '   ',
+      degree: '  ',
+      jobdirc: '  ',
+      signature: '  ',
+    },
+    {
+      ID: 4,
+      name: '   ',
+      degree: '  ',
+      jobdirc: '  ',
+      signature: '  ',
+    },
+    {
+      ID: 5,
+      name: '   ',
+      degree: '  ',
+      jobdirc: '  ',
+      signature: '  ',
+    },
+  ];
   return (
     <>
       <div className="flex flex-col  h-screen font-bold">
@@ -50,38 +95,83 @@ function RecordPoint() {
               <Checkbox value={' الدكتوراة '} id="studytype" name="doctor" />
               <label htmlFor="Studytype">الدكتوراة </label>
             </div>
-            <div className="my-3">
-              <label htmlFor="name" className="me-2 ">
-                للطالب
-              </label>
-              <input type="text" id="name" className="px-2" />
+            <div className="flex justify-around items-center gap-5">
+              <div className="my-3 flex-1 flex">
+                <label htmlFor="name" className="me-2 ">
+                  للطالب
+                </label>
+                <input type="text" id="name" className="px-2 flex-1" />
+              </div>
+              <div className="my-3 flex-1 ">
+                <label htmlFor="dep" className="me-2 ">
+                  المقيد بالقسم التخصصي
+                </label>
+                <select id="dep" className="px-2 text-center  bg-withe  ">
+                  <option value="is">IS</option>
+                  <option value="ai">AI</option>
+                  <option value="cs">CS</option>
+                  <option value="sc">SC</option>
+                </select>
+              </div>
             </div>
-            <div className="flex gap-5   ">
-              <span>وذلك لمدة/</span>
-              <input type="text" />
-              <span> اعتبارامن/</span>
-              <input type="date" />
-              <span>حتي/</span>
-              <input type="date" />
+            <div className=" flex flex-col gap-3 my-4">
+              <label htmlFor="titleAr">عنوان الرسالة باللغة العربية :</label>
+              <textarea
+                name=""
+                id="titleAr"
+                className="w-full h-28 rounded-md   border  resize-none   "
+              ></textarea>
             </div>
-            <p className="my-5">
-              .وذلك بناء على التقرير السنوي المرفق والموقع من جميع
-              السادةالمشرفين
-            </p>
+            <div className=" flex flex-col gap-3 my-4">
+              <label htmlFor="titlEn">عنوان الرسالة باللغة الانجليزية : </label>
+              <textarea
+                name=""
+                id="titleEn"
+                className="w-full h-28 rounded-md   border  resize-none   "
+              ></textarea>
+            </div>
+            <div>
+              <p>علي أن تتكون لجنةالإشراف من السادةالاتي أسمائهم:</p>
+              <DataGrid
+                rows={prof}
+                getRowId={(row) => row.ID}
+                columns={columns}
+                initialState={{
+                  pagination: {
+                    paginationModel: { page: 0, pageSize: 5 },
+                  },
+                }}
+              />
+            </div>
+
             <p className="text-center">وتفضلوا بقبول وافر الشكر والتقدير،،،</p>
-            <div className="flex mt-10 flex-col gap-3 justify-center text-center items-end     ">
-              <p> المشرف الرئيسى /المرشد الأكاديمى :</p>
-              <div>
-                <label htmlFor="namej">الاسم :</label>
-                <input type="text" id="namej" />
+            <div className="flex  flex-row-reverse items-center justify-between ">
+              <div className="flex mt-10 flex-col gap-3 justify-center text-center items-end   flex-1  ">
+                <p> المشرف الرئيسى /المرشد الأكاديمى :</p>
+                <div>
+                  <label htmlFor="namej">الاسم :</label>
+                  <input type="text" id="namej" />
+                </div>
+                <div>
+                  <label htmlFor="ku"> التوقيع:</label>
+                  <input type="text" id="ku" />
+                </div>
+                <div>
+                  <label htmlFor="datej">التاريخ :</label>
+                  <input type="date" id="datej" />
+                </div>
               </div>
-              <div>
-                <label htmlFor="ku"> التوقيع:</label>
-                <input type="text" id="ku" />
-              </div>
-              <div>
-                <label htmlFor="datej">التاريخ :</label>
-                <input type="date" id="datej" />
+              <div className="flex gap-6 flex-1 flex-col justify-start  items-start ">
+                <input
+                  type="submit"
+                  value={'ارسال الطلب'}
+                  className=" main-btn  w-full  "
+                />
+                <input
+                  type="submit"
+                  value={'اعادة ملئ بيانات الطلب'}
+                  className="main-btn  w-full "
+                />
               </div>
             </div>
           </form>

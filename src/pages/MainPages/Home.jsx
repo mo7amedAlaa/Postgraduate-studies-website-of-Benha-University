@@ -129,21 +129,23 @@ function Home() {
               </h3>
             </div>
           </Link>
+          <Link to={'/recordpoint'}>
+            <div className="ser-card">
+              <div className="flex items-center justify-center">
+                <img
+                  src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/ec5aecb3aadf2077d1f2756ede50ee97.png"
+                  style={{ width: '150px' }}
+                  alt=""
+                />
+              </div>
 
-          <div className="ser-card">
-            <div className="flex items-center justify-center">
-              <img
-                src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/ec5aecb3aadf2077d1f2756ede50ee97.png"
-                style={{ width: '150px' }}
-                alt=""
-              />
+              <h3 className="mt-5 mb-5 font-Poppins text-xl">
+                {' '}
+                تسجيل نقطة بحث(رفع الفكرة)
+              </h3>
             </div>
+          </Link>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">
-              {' '}
-              تسجيل نقطة بحث(رفع الفكرة)
-            </h3>
-          </div>
           <Link to={'/Material'}>
             <div className="ser-card">
               <div className="flex items-center justify-center">
@@ -160,31 +162,35 @@ function Home() {
               </h3>
             </div>
           </Link>
+          <Link to={'/examtable'}>
+            <div className="ser-card">
+              <div className="flex items-center justify-center">
+                <img
+                  src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/fa7959f679b4fd03ef5cafc2fb7c13e1.png"
+                  style={{ width: '150px' }}
+                  alt=""
+                />
+              </div>
 
-          <div className="ser-card">
-            <div className="flex items-center justify-center">
-              <img
-                src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/fa7959f679b4fd03ef5cafc2fb7c13e1.png"
-                style={{ width: '150px' }}
-                alt=""
-              />
+              <h3 className="mt-5 mb-5 font-Poppins text-xl">
+                جداول الامتحانات{' '}
+              </h3>
             </div>
+          </Link>
+          <Link to={'/studytable'}>
+            <div className="ser-card">
+              <div className="flex items-center justify-center">
+                <img
+                  src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/cface9a1707183e146e79af56a096971.png"
+                  style={{ width: '150px' }}
+                  alt=""
+                />
+              </div>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">
-              جداول الامتحانات{' '}
-            </h3>
-          </div>
-          <div className="ser-card">
-            <div className="flex items-center justify-center">
-              <img
-                src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/cface9a1707183e146e79af56a096971.png"
-                style={{ width: '150px' }}
-                alt=""
-              />
+              <h3 className="mt-5 mb-5 font-Poppins text-xl">جداول الدراسة </h3>
             </div>
+          </Link>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">جداول الدراسة </h3>
-          </div>
           <Link to={'showgrade'}>
             <div className="ser-card">
               <div className="flex items-center justify-center">

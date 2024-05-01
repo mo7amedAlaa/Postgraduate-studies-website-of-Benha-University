@@ -58,7 +58,7 @@ export default function Grade() {
   ];
 
   return (
-    <div className=" bg-slate-100     min-h-screen">
+    <div className=" bg-slate-100  flex flex-col     min-h-screen">
       <div className="flex  bg-main   items-center justify-around">
         <div>
           <img src={uniLogo} alt="" width={'100px'} height={'100px'} />
@@ -73,7 +73,11 @@ export default function Grade() {
           <img src={graduatedMenIcon} alt="" width={'100px'} height={'100px'} />
         </div>
       </div>
-      <div className="p-10 container mx-auto">
+      <div className="p-10 container flex-1 mx-auto">
+        <h2 className="text-2xl text-center tracking-wider my-3  ">
+          {' '}
+          نتائج المواد المسجلة{' '}
+        </h2>
         <div style={{ height: 400, width: '100%', direction: 'ltr' }}>
           <DataGrid
             rows={courses}
