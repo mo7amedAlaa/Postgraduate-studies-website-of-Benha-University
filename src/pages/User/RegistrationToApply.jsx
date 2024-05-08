@@ -67,6 +67,7 @@ export default function RegistrationToApply() {
     })
       .then((res) => res.json())
       .then(console.log);
+    console.log(JSON.stringify(formData));
   };
   const Step1 = (
     <div className="min-h-full w-full ">
@@ -265,6 +266,20 @@ export default function RegistrationToApply() {
           >
             <option value="ذكر"> ذكر </option>
             <option value="انثي"> انثي</option>
+          </select>
+        </div>
+        <div className="inline-block my-2">
+          <label htmlFor="gender" className="lableStyle mx-5  ">
+            معيد/غير ذلك
+          </label>
+          <select
+            name="type"
+            className="inputStyle  text-center"
+            id="type"
+            onChange={handleChange}
+          >
+            <option value="moed"> معيد </option>
+            <option value="external"> خارجي</option>
           </select>
         </div>
         <div className="inline-block my-2">

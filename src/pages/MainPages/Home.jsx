@@ -7,6 +7,9 @@ import Footer from '../../component/Footer/Footer';
 import Main from '../../component/NavbarHomePage/MainNavbar';
 import Graduate from '../../assets/images/post.png';
 import Material from '../User/Material';
+import { BsChatRightText } from 'react-icons/bs';
+
+import { uniLogo } from '../../assets';
 
 function Home() {
   return (
@@ -208,6 +211,20 @@ function Home() {
             </div>
           </Link>
 
+          <div className="ser-card">
+            <div className="flex items-center justify-center">
+              <img
+                src="https://www.asu.edu.eg/141090/_mediacenter/2021/png/b4e51525efc6b9eda281948e2087b986.png"
+                style={{ width: '150px' }}
+                alt=""
+              />
+            </div>
+
+            <h3 className="mt-5 mb-5 font-Poppins text-xl">
+              {' '}
+              الطلابات والاقرارات{' '}
+            </h3>
+          </div>
           <div className="ser-card">
             <div className="flex items-center justify-center">
               <img
@@ -448,7 +465,18 @@ function Home() {
           </div>
         </div>
       </div>
-
+      <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+        <div>
+          <Link
+            to="/chats"
+            className="block w-14  h-14 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12"
+          >
+            <div className="object-cover object-center w-full h-full rounded-full p-5 bg-main ">
+              <BsChatRightText className="w-full h-full object-cover object-center  " />
+            </div>
+          </Link>
+        </div>
+      </div>
       <Footer />
     </>
   );

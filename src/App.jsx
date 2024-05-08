@@ -3,7 +3,6 @@ import './App.css';
 import Home from './pages/MainPages/Home';
 import Login from './pages/MainPages/Login';
 import Layout from './pages/MainPages/Layout';
-
 import Studentinformation from './pages/Employee/Studentinformation';
 import StudentinformationReport from './pages/Employee/StudentinformationReport';
 import Petition from './pages/Employee/Petition';
@@ -29,6 +28,7 @@ import StudentStuts from './pages/Professor/StudentStuts';
 import Regulations from './pages/Employee/Regulations';
 import ExamTable from './pages/User/ExamTable';
 import StudyTable from './pages/User/StudyTable';
+import HomeChat from './pages/chat/HomeChat';
 
 function App() {
   const router = createBrowserRouter([
@@ -108,6 +108,10 @@ function App() {
     { path: '/recordpoint', element: <RecordPoint /> },
     { path: '/examtable', element: <ExamTable /> },
     { path: '/studytable', element: <StudyTable /> },
+    {
+      path: '/chats',
+      element: <HomeChat />,
+    },
   ]);
   return (
     <div className="font-bodyFont min-h-screen  ">

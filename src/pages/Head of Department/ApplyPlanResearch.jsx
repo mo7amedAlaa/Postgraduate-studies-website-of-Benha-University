@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-// import { cx, graduatedMenIcon, ifoPdf, uniLogo } from '../../assets';
-import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
+import { LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 import MainLayout from '../../component/Main/MainLayout';
 // import LayoutProf from './LayoutProf';
