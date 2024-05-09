@@ -1,4 +1,4 @@
-import baseURL from "../Api/constant";
+import baseURL from "../Api/constant.js";
 
 // بتجيب الداتا بتاعتك بس
 const useGetData = async(url , params )=>{
