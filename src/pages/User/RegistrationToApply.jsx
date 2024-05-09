@@ -5,12 +5,15 @@ import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 import Copyrights from '../../component/Footer/copyrights';
 import { url } from '../../API/constant';
+import axios from 'axios';
+import { Slide, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function RegistrationToApply() {
   //State val start
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
-  const [registerDone, setRegisterDone] = useState(true);
+  const [registerDone, setRegisterDone] = useState(false);
 
   //method handle start
   const handleNext = () => {
@@ -60,14 +63,29 @@ export default function RegistrationToApply() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch(`${url}/auth/admin/register`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
+    axios({
+      method: 'post',
+      url: `${url}/auth/admin/register`,
+      data: formData,
     })
-      .then((res) => res.json())
-      .then(console.log);
-    console.log(JSON.stringify(formData));
+      .then(function (response) {
+        console.log(response.status);
+        toast.success('تم التقديم بنجاح وسيتم مراجعة البينات', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+          transition: Slide,
+        });
+        setRegisterDone(true);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   const Step1 = (
     <div className="min-h-full w-full ">
@@ -532,6 +550,7 @@ export default function RegistrationToApply() {
           className="main-btn"
           onClick={handleSubmit}
         />
+
         <button
           className="bg-gray-300 flex items-center justify-center px-6 py-1.5 rounded-lg text-gray-700 hover:bg-gray-400"
           onClick={handleBack}
@@ -543,58 +562,74 @@ export default function RegistrationToApply() {
     </div>
   );
   return (
-    <div className=" flex  flex-col bg-slate-100   min-h-screen">
-      <div className="flex   bg-main   items-center justify-around">
-        <div>
-          <img src={uniLogo} alt="" width={'100px'} height={'100px'} />
+    <>
+      <div className=" flex  flex-col bg-slate-100   min-h-screen">
+        <ToastContainer />
+        <div className="flex   bg-main   items-center justify-around">
+          <div>
+            <img src={uniLogo} alt="" width={'100px'} height={'100px'} />
+          </div>
+          <div className="flex-1 text-center">
+            <p className=" text-lg md:text-3xl   font-bold ">
+              جامعة بنهــــــــــــــا <br />
+              التسجيل للتقدم للدراسات العليا
+            </p>
+          </div>
+          <div>
+            <img
+              src={graduatedMenIcon}
+              alt=""
+              width={'100px'}
+              height={'100px'}
+            />
+          </div>
         </div>
-        <div className="flex-1 text-center">
-          <p className=" text-lg md:text-3xl   font-bold ">
-            جامعة بنهــــــــــــــا <br />
-            التسجيل للتقدم للدراسات العليا
-          </p>
-        </div>
-        <div>
-          <img src={graduatedMenIcon} alt="" width={'100px'} height={'100px'} />
-        </div>
-      </div>
-      <div className="flex flex-1 items-center  container   min-w-3/4  py-5 justify-center   ">
-        <div className="bg-white p-0 md:p-6 w-full h-full rounded-lg shadow-md  m-12">
-          <h2 className="font-medium mb-4">خطوة {step} من 2</h2>
-          <div className="flex mb-4">
-            <div
-              className={`w-1/2 border-r border-gray-400 ${
-                step === 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-              } p-2 text-center cursor-pointer`}
-              onClick={() => setStep(1)}
-            >
-              الخطوة 1
-            </div>
-            <div
-              className={`w-1/2 ${
-                step === 2 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-              } p-2 text-center cursor-pointer`}
-              onClick={() => setStep(2)}
-            >
-              الخطوة 2
-            </div>
-            <div
-              className={`w-1/2 ${
-                step === 3 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-              } p-2 text-center cursor-pointer`}
-              onClick={() => setStep(3)}
-            >
-              الخطوة 3
+        {registerDone === true ? (
+          <div className="flex flex-1 items-center  container   min-w-3/4  py-5 justify-center  text-3xl  ">
+            تم التسجيل وفي انتظار القبول أو الرفض يرجي مراجعة البريد الالكتروني
+            .
+          </div>
+        ) : (
+          <div className="flex flex-1 items-center  container   min-w-3/4  py-5 justify-center   ">
+            <div className="bg-white p-0 md:p-6 w-full h-full rounded-lg shadow-md  m-12">
+              <h2 className="font-medium mb-4">خطوة {step} من 2</h2>
+              <div className="flex mb-4">
+                <div
+                  className={`w-1/2 border-r border-gray-400 ${
+                    step === 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                  } p-2 text-center cursor-pointer`}
+                  onClick={() => setStep(1)}
+                >
+                  الخطوة 1
+                </div>
+                <div
+                  className={`w-1/2 ${
+                    step === 2 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                  } p-2 text-center cursor-pointer`}
+                  onClick={() => setStep(2)}
+                >
+                  الخطوة 2
+                </div>
+                <div
+                  className={`w-1/2 ${
+                    step === 3 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                  } p-2 text-center cursor-pointer`}
+                  onClick={() => setStep(3)}
+                >
+                  الخطوة 3
+                </div>
+              </div>
+              <form action="">
+                <div className=" border rounded-md p-5  ">{stepChange()}</div>
+              </form>
             </div>
           </div>
-          <form action="">
-            <div className=" border rounded-md p-5  ">{stepChange()}</div>
-          </form>
+        )}
+
+        <div className="bg-main  px-2  ">
+          <Copyrights />
         </div>
       </div>
-      <div className="bg-main  px-2  ">
-        <Copyrights />
-      </div>
-    </div>
+    </>
   );
 }
