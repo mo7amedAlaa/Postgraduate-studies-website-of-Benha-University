@@ -1,8 +1,9 @@
-import baseURL from "../Api/constant.js";
+import {url} from "/src/API/constant.js";
 
 // بتجيب الداتا بتاعتك بس
-const useGetData = async(url , params )=>{
-   const res =await baseURL.get(url , params )
-   return res.data
-}
-export default useGetData
+const useGetData = async (Url, params) => {
+   const res = await url.get(Url, params);
+   return res.data;
+};
+
+export default useGetData;

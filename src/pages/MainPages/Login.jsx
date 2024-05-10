@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { facLogo, uniLogo } from '../../assets';
-import { url } from '../../API/constant';
+import  {url}  from '../../API/constant';
 import { Link } from 'react-router-dom';
 
 const Login = () => {

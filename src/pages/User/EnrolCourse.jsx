@@ -2,8 +2,28 @@ import { DataGrid } from '@mui/x-data-grid';
 import { graduatedMenIcon, uniLogo } from '../../assets';
 import { LuAlertOctagon } from 'react-icons/lu';
 import Copyrights from '../../component/Footer/Copyrights';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { getAllCourses } from '../../Redux/Actions/coursesAction';
 
 export default function EnrolCourse() {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getAllCourses())
+  },[])
+  const [courses, setCourses] = useState([]);
+const allcourses = useSelector((state) => state.allCourses.courses);
+
+useEffect(() => {
+  if (allcourses) {
+    setCourses(allcourses);
+    console.log("Done !");
+  } else {
+    setCourses([]);
+    console.log("Cancel !");
+  }
+}, [allcourses]);
+
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'code', headerName: 'كود المادة', width: 130 },
@@ -12,57 +32,14 @@ export default function EnrolCourse() {
     { field: 'maxGrade', headerName: 'الدرجة العظمي', width: 130 },
     { field: 'minGrade', headerName: 'الدرجة الصغري', width: 130 },
   ];
-
-  const courses = [
-    {
-      id: 1,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 2,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 3,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 4,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 5,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 6,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-  ];
+  //   {
+  //     id: 1,
+  //     subName: 'اسم المادة',
+  //     code: 'SC2X',
+  //     hourNum: 3,
+  //     maxGrade: 100,
+  //     minGrade: 50,
+  //   },
 
   return (
     <div className=" bg-slate-100     min-h-screen">
