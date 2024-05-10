@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 import Copyrights from '../../component/Footer/copyrights';
-import { url } from '../../API/constant';
+import { baseURL } from '../../API/constant';
 import axios from 'axios';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -65,7 +65,7 @@ export default function RegistrationToApply() {
     e.preventDefault();
     axios({
       method: 'post',
-      url: `${url}/auth/admin/register`,
+      url: `${baseURL}/auth/admin/register`,
       data: formData,
     })
       .then(function (response) {
