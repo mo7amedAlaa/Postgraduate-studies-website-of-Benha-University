@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { facLogo, uniLogo } from '../../assets';
-
+import { url } from '../../API/constant';
 import { Link } from 'react-router-dom';
+import baseUrl from '../../API/constant';
 
 const Login = () => {
   const [formData, setFormData] = useState({});
@@ -11,6 +12,13 @@ const Login = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    fetch(`${url}/auth/admin/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then(console.log);
   };
   return (
     <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">

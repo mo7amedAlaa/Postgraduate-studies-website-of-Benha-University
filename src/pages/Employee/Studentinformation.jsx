@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 
 import MainLayout from '../../component/Main/MainLayout';
 
+import baseUrl from '../../API/constant';
+
 const Step1 = () => (
   <div>
     <div className=" flex items-center mb-5 justify-center">
@@ -422,6 +424,13 @@ export default function Studentinformation() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    fetch(`${baseUrl}/auth/admin/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then(console.log);
   };
   const Step1 = (
     <div className="min-h-full w-full ">

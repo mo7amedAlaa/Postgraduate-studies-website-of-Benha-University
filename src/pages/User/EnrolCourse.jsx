@@ -2,68 +2,46 @@ import { DataGrid } from '@mui/x-data-grid';
 import { graduatedMenIcon, uniLogo } from '../../assets';
 import { LuAlertOctagon } from 'react-icons/lu';
 import Copyrights from '../../component/Footer/Copyrights';
+import EnrolCourseHook from '../../Hook/Courses/enrol-course-hook';
 
 export default function EnrolCourse() {
-  const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'code', headerName: 'كود المادة', width: 130 },
-    { field: 'subName', headerName: 'اسم المادة', width: 130 },
-    { field: 'hourNum', headerName: 'عدد الساعات', width: 130 },
-    { field: 'maxGrade', headerName: 'الدرجة العظمي', width: 130 },
-    { field: 'minGrade', headerName: 'الدرجة الصغري', width: 130 },
-  ];
-
-  const courses = [
-    {
-      id: 1,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 2,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 3,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 4,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 5,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 6,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-  ];
-
+    const [totalcourses ,columns ] = EnrolCourseHook()
+ 
+    // const courses = [
+    //       {
+    //   id: 1,
+    //   subName: 'اسم المادة',
+    //   code: 'SC2X',
+    //   hourNum: 3,
+    //   maxGrade: 100,
+    //   minGrade: 50,
+    // },
+    // {
+    //   id: 2,
+    //   subName: 'اسم المادة',
+    //   code: 'SC2X',
+    //   hourNum: 3,
+    //   maxGrade: 100,
+    //   minGrade: 50,
+    // },
+    // {
+    //   id: 3,
+    //   subName: 'اسم المادة',
+    //   code: 'SC2X',
+    //   hourNum: 3,
+    //   maxGrade: 100,
+    //   minGrade: 50,
+    // },
+    // {
+    //   id: 4,
+    //   subName: 'اسم المادة',
+    //   code: 'SC2X',
+    //   hourNum: 3,
+    //   maxGrade: 100,
+    //   minGrade: 50,
+    // },
+    // ]
+    
   return (
     <div className=" bg-slate-100     min-h-screen">
       <div className="flex  bg-main   items-center justify-around">
@@ -88,7 +66,7 @@ export default function EnrolCourse() {
         <div>
           <div style={{ height: 400, width: '100%', direction: 'ltr' }}>
             <DataGrid
-              rows={courses}
+              rows={totalcourses}
               columns={columns}
               initialState={{
                 pagination: {
@@ -112,8 +90,9 @@ export default function EnrolCourse() {
             style={{ height: 400, width: '100%', direction: 'ltr' }}
           >
             <DataGrid
-              rows={courses}
+              rows={totalcourses}
               columns={columns}
+            
               initialState={{
                 pagination: {
                   paginationModel: { page: 0, pageSize: 5 },
