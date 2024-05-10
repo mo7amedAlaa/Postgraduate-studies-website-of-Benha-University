@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 import Copyrights from '../../component/Footer/copyrights';
-import  {url } from '../../API/constant';
 import axios from 'axios';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import baseUrl from '../../API/constant';
 
 export default function RegistrationToApply() {
   //State val start
@@ -65,7 +65,7 @@ export default function RegistrationToApply() {
     e.preventDefault();
     axios({
       method: 'post',
-      url: `${url}/auth/admin/register`,
+      url: `${baseUrl}/auth/admin/register`,
       data: formData,
     })
       .then(function (response) {
