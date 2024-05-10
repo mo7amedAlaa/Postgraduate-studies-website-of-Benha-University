@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 import Copyrights from '../../component/Footer/copyrights';
-import { url } from '../../API/constant';
+import  {url } from '../../API/constant';
 import axios from 'axios';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

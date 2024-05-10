@@ -2,7 +2,7 @@ import useGetData from "../../Hooks/useGetData"
 import { GET_ALL_COURSES, GET_ERROR } from "../type"
 
 //Get All Courses 
-export const getAllProducts =()=> async(dispatch)=>{
+export const getAllCourses =()=> async(dispatch)=>{
   try{
     const response = await useGetData(`/courses`)
     console.log(response.data)

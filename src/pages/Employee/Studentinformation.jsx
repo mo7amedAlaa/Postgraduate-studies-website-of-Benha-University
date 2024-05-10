@@ -5,7 +5,7 @@ import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 
 import MainLayout from '../../component/Main/MainLayout';
-import { url } from '../../API/constant';
+import  {url}  from '../../API/constant';
 const Step1 = () => (
   <div>
     <div className=" flex items-center mb-5 justify-center">
