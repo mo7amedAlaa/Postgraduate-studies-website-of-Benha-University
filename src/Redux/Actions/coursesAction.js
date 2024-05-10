@@ -5,7 +5,7 @@ import { GET_ALL_COURSES, GET_ERROR } from "../type"
 export const getAllCourses =()=> async(dispatch)=>{
   try{
     const response = await useGetData(`/products`)
-    console.log(response.data)
+    console.log(response)
     dispatch( {
      type : GET_ALL_COURSES,
      payload : response ,
