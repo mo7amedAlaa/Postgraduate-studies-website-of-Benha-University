@@ -4,7 +4,7 @@ import { GET_ALL_COURSES, GET_ERROR } from "../type"
 //Get All Courses 
 export const getAllCourses =()=> async(dispatch)=>{
   try{
-    const response = await useGetData(`/courses`)
+    const response = await useGetData(`/products`)
     console.log(response.data)
     dispatch( {
      type : GET_ALL_COURSES,

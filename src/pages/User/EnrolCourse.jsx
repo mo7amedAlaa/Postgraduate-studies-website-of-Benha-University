@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { getAllCourses } from '../../Redux/Actions/coursesAction';
 
 export default function EnrolCourse() {
+    
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(getAllCourses())
@@ -17,7 +18,7 @@ const allcourses = useSelector((state) => state.allCourses.courses);
 useEffect(() => {
   if (allcourses) {
     setCourses(allcourses);
-    console.log("Done !");
+    console.log(allcourses);
   } else {
     setCourses([]);
     console.log("Cancel !");
@@ -32,15 +33,41 @@ useEffect(() => {
     { field: 'maxGrade', headerName: 'الدرجة العظمي', width: 130 },
     { field: 'minGrade', headerName: 'الدرجة الصغري', width: 130 },
   ];
-  //   {
-  //     id: 1,
-  //     subName: 'اسم المادة',
-  //     code: 'SC2X',
-  //     hourNum: 3,
-  //     maxGrade: 100,
-  //     minGrade: 50,
-  //   },
-
+    // const courses = [
+    //       {
+    //   id: 1,
+    //   subName: 'اسم المادة',
+    //   code: 'SC2X',
+    //   hourNum: 3,
+    //   maxGrade: 100,
+    //   minGrade: 50,
+    // },
+    // {
+    //   id: 2,
+    //   subName: 'اسم المادة',
+    //   code: 'SC2X',
+    //   hourNum: 3,
+    //   maxGrade: 100,
+    //   minGrade: 50,
+    // },
+    // {
+    //   id: 3,
+    //   subName: 'اسم المادة',
+    //   code: 'SC2X',
+    //   hourNum: 3,
+    //   maxGrade: 100,
+    //   minGrade: 50,
+    // },
+    // {
+    //   id: 4,
+    //   subName: 'اسم المادة',
+    //   code: 'SC2X',
+    //   hourNum: 3,
+    //   maxGrade: 100,
+    //   minGrade: 50,
+    // },
+    // ]
+    
   return (
     <div className=" bg-slate-100     min-h-screen">
       <div className="flex  bg-main   items-center justify-around">
