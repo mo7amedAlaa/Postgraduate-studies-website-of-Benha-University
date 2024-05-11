@@ -26,12 +26,22 @@ const EnrolCourseHook = () => {
   
     const columns = [
       { field: 'id', headerName: 'ID', width: 70 },
-      { field: 'code', headerName: 'كود المادة', width: 130 },
-      { field: 'subName', headerName: 'اسم المادة', width: 130 },
-      { field: 'hourNum', headerName: 'عدد الساعات', width: 130 },
-      { field: 'maxGrade', headerName: 'الدرجة العظمي', width: 130 },
-      { field: 'minGrade', headerName: 'الدرجة الصغري', width: 130 },
+      { field: 'title', headerName: 'كود المادة', width: 130 },
+      { field: 'description', headerName: 'اسم المادة', width: 130 },
+      { field: 'price', headerName: 'عدد الساعات', width: 130 },
+      { field: 'category', headerName: 'الدرجة العظمي', width: 130 },
+      { field: 'rating', headerName: 'الدرجة الصغري', width: 130 },
     ];
+
+    // const columns = [
+    //   { field: 'id', headerName: 'ID', width: 70 },
+    //   { field: 'code', headerName: 'كود المادة', width: 130 },
+    //   { field: 'subName', headerName: 'اسم المادة', width: 130 },
+    //   { field: 'hourNum', headerName: 'عدد الساعات', width: 130 },
+    //   { field: 'maxGrade', headerName: 'الدرجة العظمي', width: 130 },
+    //   { field: 'minGrade', headerName: 'الدرجة الصغري', width: 130 },
+    // ];
+
 
     return [totalcourses ,columns ]
  

@@ -1,8 +1,9 @@
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, daDK } from '@mui/x-data-grid';
 import { graduatedMenIcon, uniLogo } from '../../assets';
 import { LuAlertOctagon } from 'react-icons/lu';
 import Copyrights from '../../component/Footer/Copyrights';
 import EnrolCourseHook from '../../Hook/Courses/enrol-course-hook';
+import { useState } from 'react';
 
 export default function EnrolCourse() {
     const [totalcourses ,columns ] = EnrolCourseHook()
@@ -41,7 +42,20 @@ export default function EnrolCourse() {
     //   minGrade: 50,
     // },
     // ]
-    
+    const [data , setData] = useState([])
+    const handleChange = (e)=>{
+      setData(e.rowSelection)
+      console.log(data)
+    }
+    let courses = []
+    const handleRegisterCourse = (e)=>{
+        e.preventDefault()
+        if(data)
+          courses = data
+        else
+        courses = []
+
+    }
   return (
     <div className=" bg-slate-100     min-h-screen">
       <div className="flex  bg-main   items-center justify-around">
@@ -68,6 +82,7 @@ export default function EnrolCourse() {
             <DataGrid
               rows={totalcourses}
               columns={columns}
+              onStateChange={handleChange}
               initialState={{
                 pagination: {
                   paginationModel: { page: 0, pageSize: 5 },
@@ -78,7 +93,7 @@ export default function EnrolCourse() {
             />
           </div>
           <div className="my-5  text-center ">
-            <button className=" px-12 py-3 mx-auto  text-xl font-bold tracking-wider text-white       bg-main  rounded-md   ">
+            <button className=" px-12 py-3 mx-auto  text-xl font-bold tracking-wider text-white       bg-main  rounded-md   " onClick={handleRegisterCourse}>
               تسجيل المقرر
             </button>
           </div>
@@ -90,7 +105,7 @@ export default function EnrolCourse() {
             style={{ height: 400, width: '100%', direction: 'ltr' }}
           >
             <DataGrid
-              rows={totalcourses}
+              rows={courses}
               columns={columns}
             
               initialState={{
