@@ -4,9 +4,6 @@ import { useState } from 'react';
 import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 import Copyrights from '../../component/Footer/copyrights';
-
-import { baseURL } from '../../API/constant';
-
 import axios from 'axios';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -68,9 +65,7 @@ export default function RegistrationToApply() {
     e.preventDefault();
     axios({
       method: 'post',
-
       url: `${baseUrl}/auth/admin/register`,
-
       data: formData,
     })
       .then(function (response) {
@@ -170,6 +165,7 @@ export default function RegistrationToApply() {
               type="text"
               className="inputStyle flex-grow  "
               name="english_name"
+              value={formData.english_name}
               onChange={handleChange}
             />
           </div>
@@ -624,7 +620,7 @@ export default function RegistrationToApply() {
                   الخطوة 3
                 </div>
               </div>
-              <form action="">
+              <form action="" autoComplete="true">
                 <div className=" border rounded-md p-5  ">{stepChange()}</div>
               </form>
             </div>

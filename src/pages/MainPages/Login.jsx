@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { facLogo, uniLogo } from '../../assets';
-import { url } from '../../API/constant';
-import { Link } from 'react-router-dom';
 import baseUrl from '../../API/constant';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({});
@@ -12,7 +11,7 @@ const Login = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch(`${url}/auth/admin/login`, {
+    fetch(`${baseUrl}/auth/admin/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),

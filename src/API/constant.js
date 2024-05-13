@@ -7,6 +7,10 @@
 
 import axios from 'axios';
 
-const baseUrl = axios.create({ baseURL: 'https://fakestoreapi.com' });
+// const baseUrl = axios.create({ baseURL: 'https://fakestoreapi.com' });
+// const baseUrl = axios.create({
+//   baseURL: 'https://875f-197-160-25-95.ngrok-free.app/api',
+// });
+const baseUrl = 'https://875f-197-160-25-95.ngrok-free.app/api';
 
 export default baseUrl;
