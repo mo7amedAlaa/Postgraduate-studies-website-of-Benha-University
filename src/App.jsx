@@ -1,5 +1,10 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from 'react-router-dom';
 import './App.css';
+import './pages/chat/chatStyle.css';
 import Home from './pages/MainPages/Home';
 import Login from './pages/MainPages/Login';
 import Layout from './pages/MainPages/Layout';
@@ -29,8 +34,20 @@ import Regulations from './pages/Employee/Regulations';
 import ExamTable from './pages/User/ExamTable';
 import StudyTable from './pages/User/StudyTable';
 import HomeChat from './pages/chat/HomeChat';
+import LoginChat from './pages/chat/LoginChat';
+import RegisterChat from './pages/chat/RegisterChat';
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
 
 function App() {
+  const { currentUser } = useContext(AuthContext);
+  const ProtectedRoute = ({ children }) => {
+    if (!currentUser) {
+      return <Navigate to="/chatslogin" />;
+    }
+
+    return children;
+  };
   const router = createBrowserRouter([
     {
       path: '/',
@@ -110,7 +127,19 @@ function App() {
     { path: '/studytable', element: <StudyTable /> },
     {
       path: '/chats',
-      element: <HomeChat />,
+      element: (
+        <ProtectedRoute>
+          <HomeChat />,
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: '/chatslogin',
+      element: <LoginChat />,
+    },
+    {
+      path: '/chatsregister',
+      element: <RegisterChat />,
     },
   ]);
   return (

@@ -4,14 +4,15 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDyUKp5w_L_D0CwMzzKhbiTlnOgxjIjIFY',
-  authDomain: 'chat-aa376.firebaseapp.com',
-  projectId: 'chat-aa376',
-  storageBucket: 'chat-aa376.appspot.com',
-  messagingSenderId: '616387787529',
-  appId: '1:616387787529:web:7c6c0934d0ae0eaf6971d8',
+  apiKey: 'AIzaSyD8jPjrSeQY58SpDQ8KDXnGZbwYS2nfSlA',
+  authDomain: 'graduation-project-608ae.firebaseapp.com',
+  projectId: 'graduation-project-608ae',
+  storageBucket: 'graduation-project-608ae.appspot.com',
+  messagingSenderId: '822326349568',
+  appId: '1:822326349568:web:cc0c26e2d70cc7d1dcade5',
 };
 
+// Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const storage = getStorage();

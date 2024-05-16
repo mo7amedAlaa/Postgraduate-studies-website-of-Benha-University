@@ -1,12 +1,12 @@
-import Chate from '../../component/chat/Chat';
-import SidebarChat from '../../component/chat/SidebarChat';
+import Chat from '../../component/chat/Chat';
+import Sidebar from '../../component/chat/Sidebar';
 
 export default function HomeChat() {
   return (
     <div className="home">
       <div className="container">
-        <SidebarChat />
-        <Chate />
+        <Sidebar />
+        <Chat />
       </div>
     </div>
   );
