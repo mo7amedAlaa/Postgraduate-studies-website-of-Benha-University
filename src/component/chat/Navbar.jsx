@@ -8,8 +8,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <span className="logo">Lama Chat</span>
-      <div className="user">
+      <div className="user flex justify-between w-full ">
         <img src={currentUser.photoURL} alt="" />
         <span>{currentUser.displayName}</span>
         <button onClick={() => signOut(auth)}>logout</button>

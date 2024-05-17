@@ -48,6 +48,10 @@ const RegisterChat = () => {
             //create empty user chats on firestore
             await setDoc(doc(db, 'userChats', res.user.uid), {});
             navigate('/chats');
+            // Refresh the page after 5 seconds
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
           } catch (err) {
             console.log(err);
             setErr(true);
@@ -64,7 +68,7 @@ const RegisterChat = () => {
   return (
     <div className="formContainer">
       <div className="formWrapper">
-        <span className="logo">Lama Chat</span>
+        <span className="logo">postgrad Chat</span>
         <span className="title">Register</span>
         <form onSubmit={handleSubmit}>
           <input required type="text" placeholder="display name" />
@@ -77,7 +81,7 @@ const RegisterChat = () => {
           </label>
           <button disabled={loading}>Sign up</button>
           {loading && 'Uploading and compressing the image please wait...'}
-          {err && <span>Something went wrong</span>}
+          {err && <span>Something went wrong,All input must be requird</span>}
         </form>
         <p>
           You do have an account? <Link to="/chatsLogin">Login</Link>

@@ -11,6 +11,10 @@ const Message = ({ message }) => {
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   }, [message]);
+  const timestamp = message.date.seconds; // Replace with your timestamp
+  const date = new Date(timestamp * 1000); // Convert to milliseconds
+  const timeString = date.toLocaleTimeString(); // Format as a time string
+  console.log('Formatted time:', timeString);
 
   return (
     <div
@@ -26,7 +30,7 @@ const Message = ({ message }) => {
           }
           alt=""
         />
-        <span>just now</span>
+        <span>{timeString}</span>
       </div>
       <div className="messageContent">
         <p>{message.text}</p>
