@@ -1,142 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MainLayout from '../../component/Main/MainLayout';
 import { personaLogo } from '../../assets';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import { IoCaretBack } from 'react-icons/io5';
 import { DataGrid } from '@mui/x-data-grid';
 import { CiSearch } from 'react-icons/ci';
+import { useDispatch, useSelector } from 'react-redux';
+import { createGrade, fetchStudentGrades } from '../../Redux/Slices/professorSlice';
+import notify from '../../Hook/Toast';
 
 const columns = [
-  { field: 'id', headerName: 'ID' },
-  { field: 'code', headerName: '  كود الطالب' },
-  { field: 'subName', headerName: ' اسم الطالب' },
-  { field: 'deg', headerName: 'الدرجة' },
-  { field: 'qpa', headerName: 'التقدير' },
-  { field: 'underrated', headerName: 'الرأفة' },
+  { field: 'id', headerName: 'ID', width: 70 },
+  { field: 'title', headerName: 'كود المادة', width: 130 },
+  { field: 'description', headerName: 'اسم المادة', width: 130 },
+  { field: 'price', headerName: 'عدد الساعات', width: 130 },
+  { field: 'category', headerName: 'الدرجة العظمي', width: 130 },
+  { field: 'rating', headerName: 'الدرجة الصغري', width: 130 },
 ];
-const courses = [
-  {
-    id: 1,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 79,
-    qpa: 3.6,
-    underrated: 10,
-  },
-  {
-    id: 2,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 96,
-    qpa: 4.6,
-    underrated: 8,
-  },
-  {
-    id: 3,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 55,
-    qpa: 3.1,
-    underrated: 15,
-  },
-  {
-    id: 4,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 79,
-    qpa: 3.6,
-    underrated: 10,
-  },
-  {
-    id: 5,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 96,
-    qpa: 4.6,
-    underrated: 8,
-  },
-  {
-    id: 6,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 55,
-    qpa: 3.1,
-    underrated: 15,
-  },
-  {
-    id: 7,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 79,
-    qpa: 3.6,
-    underrated: 10,
-  },
-  {
-    id: 8,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 96,
-    qpa: 4.6,
-    underrated: 8,
-  },
-  {
-    id: 9,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 55,
-    qpa: 3.1,
-    underrated: 15,
-  },
-  {
-    id: 10,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 79,
-    qpa: 3.6,
-    underrated: 10,
-  },
-  {
-    id: 11,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 96,
-    qpa: 4.6,
-    underrated: 8,
-  },
-  {
-    id: 12,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 55,
-    qpa: 3.1,
-    underrated: 15,
-  },
-  {
-    id: 13,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 72,
-    qpa: 3.2,
-    underrated: 15,
-  },
-  {
-    id: 14,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 45,
-    qpa: 2.5,
-    underrated: 12,
-  },
-  {
-    id: 15,
-    subName: 'اسم الطالب',
-    code: 'SC2X',
-    deg: 79,
-    qpa: 3.6,
-    underrated: 3,
-  },
-];
+
 function GradesStudent() {
+  const dispatch = useDispatch();
+  const data = useSelector((state)=>state.professor.data)
+  useEffect(()=>{
+      dispatch(fetchStudentGrades())
+      console.log(data)
+  },[])
+  const [name , setName] = useState()
+  const [codest , setCodeSt] = useState()
+  const [codecour , setCodeCour] = useState()
+  const [grades , setGrades] = useState()
+  const handelSubmit = async (event) => {
+    event.preventDefault();
+    if (name === "" || codecour === "" || codest === "" || grades === "" ) {
+        console.log('من فضلك اكمل البيانات')
+        notify('من فضلك اكمل البيانات', "warn");
+        return;
+    }
+    const formData = new FormData()
+    formData.append('id', Date.now().toString()); // Ensure this ID is unique
+    formData.append("title" , name)
+    formData.append("description" , codest)
+    formData.append("price" , codecour)
+    formData.append("category" , grades)
+    await dispatch(createGrade(formData))
+        console.log(formData)
+        console.log(data)
+    }
   return (
     <div>
       <MainLayout>
@@ -153,6 +62,7 @@ function GradesStudent() {
                     type="text"
                     placeholder="ادخل اسمك الكامل"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
+                    onChange={(e)=>setName(e.target.value)}
                   />
                 </div>
                 <div className="inline-block my-2">
@@ -163,6 +73,7 @@ function GradesStudent() {
                     type="text"
                     placeholder="ادخل الكود الخاص بك"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
+                    onChange={(e)=>setCodeSt(e.target.value)}
                   />
                 </div>
 
@@ -174,6 +85,8 @@ function GradesStudent() {
                     type="text"
                     placeholder="ادخل كود المادة"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
+                    onChange={(e)=>setCodeCour(e.target.value)}
+
                   />
                 </div>
                 <div className="inline-block my-2">
@@ -184,13 +97,15 @@ function GradesStudent() {
                     type="text"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
                     placeholder="ادخل الدرجة"
+                    onChange={(e)=>setGrades(e.target.value)}
+
                   />
                 </div>
               </fieldset>
             </div>
             <div className="flex justify-center gap-5 mt-1 mb-3">
               <div className="relative ">
-                <input type="submit" value={'اضافة'} className="main-btn" />
+                <input type="submit" value={'اضافة'} className="main-btn" onClick={handelSubmit} />
                 <IoMdAddCircleOutline className=" absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2  right-4" />
               </div>
               <div className="relative">
@@ -206,7 +121,7 @@ function GradesStudent() {
           <div style={{ height: 400, width: '100%', direction: 'ltr' }}>
             <DataGrid
               checkboxSelection
-              rows={courses}
+              rows={data}
               columns={columns}
               initialState={{
                 pagination: {
