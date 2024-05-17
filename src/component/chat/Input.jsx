@@ -25,7 +25,6 @@ const Input = () => {
   const handleSend = async () => {
     if (img) {
       const storageRef = ref(storage, uuid());
-
       const uploadTask = uploadBytesResumable(storageRef, img);
 
       uploadTask.on(
@@ -83,16 +82,16 @@ const Input = () => {
         value={text}
       />
       <div className="send">
-        <img src={attach} alt="" />
+        <label htmlFor="file">
+          <img src={attach} alt="re" />
+        </label>
         <input
           type="file"
           style={{ display: 'none' }}
           id="file"
           onChange={(e) => setImg(e.target.files[0])}
         />
-        <label htmlFor="file">
-          <img src={img} alt="" />
-        </label>
+
         <button onClick={handleSend}>Send</button>
       </div>
     </div>
