@@ -278,7 +278,7 @@ function Home() {
               {t('AnnouncementsAndSeminarDates')}
             </h3>
           </div>
-          <div className="ser-card">
+          {/* <div className="ser-card">
             <div className="flex items-center justify-center">
               <img
                 src="https://www.asu.edu.eg/141090/_mediacenter/2021/png/b4e51525efc6b9eda281948e2087b986.png"
@@ -290,7 +290,7 @@ function Home() {
             <h3 className="mt-5 mb-5 font-Poppins text-xl">
               {t('NotificationsAndStudentFollowUp')}
             </h3>
-          </div>
+          </div> */}
           <div className="ser-card">
             <div className="flex items-center justify-center">
               <img
