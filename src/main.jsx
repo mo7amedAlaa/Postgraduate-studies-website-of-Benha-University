@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from './Redux/store';
 import { AuthContextProvider } from './context/AuthContext';
 import { ChatContextProvider } from './context/ChatContext';
+import './i18n';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -108,3 +108,14 @@
   border-radius: 10px;
   background-color: linear-gradient(#51acd0, #5dc6f0);
 }
+
+.notification-item.info {
+  background: #e6f7ff;
+}
+
+.notification-item.warning {
+  background: #fff7e6;
+}
+.notification-item.suc {
+  background: rgb(12, 120, 12);
+}

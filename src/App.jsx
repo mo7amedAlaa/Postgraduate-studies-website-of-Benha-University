@@ -3,6 +3,7 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from 'react-router-dom';
+
 import './App.css';
 import './pages/chat/chatStyle.css';
 import Home from './pages/MainPages/Home';
@@ -38,8 +39,14 @@ import LoginChat from './pages/chat/LoginChat';
 import RegisterChat from './pages/chat/RegisterChat';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
+import RestPassword from './pages/MainPages/restPassword';
+import { useTranslation } from 'react-i18next';
 
 function App() {
+  const { t, i18n } = useTranslation();
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   const { currentUser } = useContext(AuthContext);
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
@@ -51,7 +58,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Home />,
+      element: <Home changeLanguage={changeLanguage} />,
     },
     {
       path: '/employee',
@@ -117,6 +124,7 @@ function App() {
       element: <Layout Actions={AdminActions} />,
     },
     { path: '/login', element: <Login /> },
+    { path: '/restpassword', element: <RestPassword /> },
     { path: '/payment', element: <Payment /> },
     { path: '/registration', element: <RegistrationToApply /> },
     { path: '/course', element: <EnrolCourse /> },

@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { facLogo, uniLogo } from '../../assets';
 import baseUrl from '../../API/constant';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
+  const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState({});
   const [loginDone, setloginDone] = useState(true);
   const handleChange = (event) => {
@@ -20,8 +22,8 @@ const Login = () => {
       .then(console.log);
   };
   return (
-    <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
-      <div className="md:w-1/3 max-w-sm">
+    <section className="h-screen flex flex-col   md:flex-row md:justify-center  space-y-10  md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
+      <div className="md:w-1/3 max-w-  hidden        md:block">
         <img
           src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
           alt="Sample image"
@@ -29,7 +31,7 @@ const Login = () => {
       </div>
       <div className="md:w-1/3 max-w-sm">
         <div className="text-center flex items-center gap-1 justify-center ">
-          <label className="mr-1">جامعة بنها </label>
+          <label className="mr-1">{t('Banha university')}</label>
           <button
             type="button"
             className="mx-1 h-7 w-7 p-1  rounded-full bg-main hover:bg-cyan-400   text-white shadow-[0_4px_9px_-4px_#3b71ca]"
@@ -56,31 +58,49 @@ const Login = () => {
             تسجيل دخول الدراسات العليا
           </p>
         </div>
-        <input
-          className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
-          type="text"
-          placeholder="عنوان البريد الإلكتروني"
-          name="email"
-          onChange={handleChange}
-        />
-        <input
-          className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4"
-          type="password"
-          placeholder="كلمة المرور"
-          name="password"
-          onChange={handleChange}
-        />
+        <div className="flex flex-col items-center justify-center gap-3 ">
+          <select
+            name="type"
+            id="type"
+            className="bg-white border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+            <option value="" selected disabled hidden>
+              اختر نوع
+            </option>
+            <option value="Student">طالب</option>
+            <option value="Employee">موظف</option>
+            <option value="Doctor">دكتور</option>
+            <option value="DepartmentHead">رئيس قسم</option>
+            <option value="CollegeViceDean">وكيل الكلية</option>
+            <option value="Admin">ادمن</option>
+          </select>
+
+          <input
+            className="bg-white border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+            type="text"
+            placeholder="عنوان البريد الإلكتروني"
+            name="email"
+            onChange={handleChange}
+          />
+          <input
+            className="bg-white border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            type="password"
+            placeholder="كلمة المرور"
+            name="password"
+            onChange={handleChange}
+          />
+        </div>
         <div className="mt-4 flex justify-between font-semibold text-sm">
           <label className="flex text-slate-500 hover:text-slate-600 cursor-pointer">
             <input className="m-1" type="checkbox" />
             <span>تذكرنى</span>
           </label>
-          <a
+          <Link
             className=" text-main hover:text-cyan-400 hover:underline hover:underline-offset-4"
-            href="#"
+            to="/restpassword"
           >
             هل نسيت كلمة السر؟
-          </a>
+          </Link>
         </div>
         <div className="text-center md:text-left">
           <button
@@ -88,14 +108,13 @@ const Login = () => {
             type="submit"
             onClick={handleSubmit}
           >
-            {' '}
             تسجيل الدخول
           </button>
         </div>
         <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">
-          ليس لديك حساب؟
+          ليس لديك حساب كطالب ؟
           <Link
-            className="text-red-600 hover:underline hover:underline-offset-4"
+            className="text-red-600 hover:underline hover:underline-offset-4 m-2"
             to="/registration"
           >
             تسجيل
