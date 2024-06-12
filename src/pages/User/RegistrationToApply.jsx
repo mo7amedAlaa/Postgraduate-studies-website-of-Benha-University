@@ -1,20 +1,27 @@
-import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
 import { graduatedMenIcon, uniLogo, cx, ifoPdf } from '../../assets';
-import { useState } from 'react';
+import Copyrights from '../../component/Footer/copyrights';
+import { useEffect, useState } from 'react';
+import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
 import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
-import Copyrights from '../../component/Footer/copyrights';
-import axios from 'axios';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import baseUrl from '../../API/constant';
+import { UseApiRequest } from '../../Hooks/RestApi';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { registering } from '../../Redux/Slices/userSlice';
 
 export default function RegistrationToApply() {
+  const dispatch = useDispatch();
+  const registered = useSelector((state) => state.user.reged);
+  const accpeted = useSelector((state) => state.user.accpeted);
+  const loged = useSelector((state) => state.user.loged);
+
+  const [t] = useTranslation();
   //State val start
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
   const [registerDone, setRegisterDone] = useState(false);
-
   //method handle start
   const handleNext = () => {
     setStep(step + 1);
@@ -37,7 +44,6 @@ export default function RegistrationToApply() {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-
   const handleUpload = async (e) => {
     e.preventDefault();
     const { value: file } = await Swal.fire({
@@ -60,32 +66,54 @@ export default function RegistrationToApply() {
       reader.readAsDataURL(file);
     }
   };
-
-  const handleSubmit = async (e) => {
+  const {
+    data: regdata,
+    loading: regLoading,
+    error: regError,
+    callApi,
+  } = UseApiRequest(
+    '/products',
+    'POST',
+    {
+      title: 'test product',
+      price: 13.5,
+      description: 'lorem ipsum set',
+      image: 'https://i.pravatar.cc',
+      category: 'electronic',
+    },
+    null
+  );
+  const handleSubmit = (e) => {
     e.preventDefault();
-    axios({
-      method: 'post',
-      url: `${baseUrl}/auth/admin/register`,
-      data: formData,
-    })
-      .then(function (response) {
-        console.log(response.status);
-        toast.success('تم التقديم بنجاح وسيتم مراجعة البينات', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-          transition: Slide,
-        });
-        setRegisterDone(true);
-      })
-      .catch(function (error) {
-        console.log(error);
+    callApi();
+    if (regdata && !regError) {
+      setRegisterDone(true);
+      dispatch(registering(true));
+      toast.success(t('Successful'), {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Slide,
       });
+    } else {
+      setRegisterDone(false);
+      toast.error(t('Error'), {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Slide,
+      });
+    }
   };
   const Step1 = (
     <div className="min-h-full w-full ">
@@ -364,37 +392,6 @@ export default function RegistrationToApply() {
   const Step2 = (
     <div className="min-h-full w-full ">
       <div>
-        <p className="text-xl tracking-wider my-5 ">الاقرارات المطلوبة</p>
-        <div className=" p-5 my-3">
-          <input type="checkbox" className="mx-5  " id="e1" />
-          <label htmlFor="e1" className="font-semibold  ">
-            اقر انا الطالب المتقدم للدرسة بالدرسات العليا بكلية الحاسبات والذكاء
-            الاصطناعي جامعة بنها(ماجيستير/ دكتوراه) بانني لا اعمل بالقطاع
-            الحكومي ولا قطاع الاعمال وهذا اقرار مني بذلك.
-          </label>
-        </div>
-      </div>
-      <div className="flex justify-between mt-6">
-        <button
-          className="main-btn flex gap-1 items-center justify-center"
-          onClick={handleNext}
-        >
-          <IoArrowForward />
-          التالي
-        </button>
-        <button
-          className="bg-gray-300 flex items-center justify-center px-6 py-1.5 rounded-lg text-gray-700 hover:bg-gray-400"
-          onClick={handleBack}
-        >
-          السابق
-          <IoArrowBack />
-        </button>
-      </div>
-    </div>
-  );
-  const Step3 = (
-    <div className="min-h-full w-full ">
-      <div>
         <p className="font-bold text-sm mt-3 flex items-center  ">
           <LuAlertOctagon className="mx-2" />
           برجاء استكمال البيانات التالية والتحقق من وضوحها وسلامتها لضمان وصولها
@@ -545,6 +542,38 @@ export default function RegistrationToApply() {
         </div>
       </div>
       <div className="flex justify-between mt-6">
+        <button
+          className="main-btn flex gap-1 items-center justify-center"
+          onClick={handleNext}
+        >
+          <IoArrowForward />
+          التالي
+        </button>
+        <button
+          className="bg-gray-300 flex items-center justify-center px-6 py-1.5 rounded-lg text-gray-700 hover:bg-gray-400"
+          onClick={handleBack}
+        >
+          السابق
+          <IoArrowBack />
+        </button>
+      </div>
+    </div>
+  );
+  const Step3 = (
+    <div className="min-h-full w-full ">
+      <div>
+        <p className="text-xl tracking-wider my-5 ">الاقرارات المطلوبة</p>
+        <div className=" p-5 my-3">
+          <input type="checkbox" className="mx-5  " id="e1" />
+          <label htmlFor="e1" className="font-semibold  ">
+            اقر انا الطالب المتقدم للدرسة بالدرسات العليا بكلية الحاسبات والذكاء
+            الاصطناعي جامعة بنها(ماجيستير/ دكتوراه) بانني لا اعمل بالقطاع
+            الحكومي ولا قطاع الاعمال وهذا اقرار مني بذلك.
+          </label>
+        </div>
+      </div>
+
+      <div className="flex justify-between mt-6">
         <input
           type="submit"
           value={'حفظ'}
@@ -562,6 +591,7 @@ export default function RegistrationToApply() {
       </div>
     </div>
   );
+
   return (
     <>
       <div className=" flex  flex-col bg-slate-100   min-h-screen">
@@ -585,7 +615,7 @@ export default function RegistrationToApply() {
             />
           </div>
         </div>
-        {registerDone === true ? (
+        {registerDone && registered ? (
           <div className="flex flex-1 items-center  container   min-w-3/4  py-5 justify-center  text-3xl  ">
             تم التسجيل وفي انتظار القبول أو الرفض يرجي مراجعة البريد الالكتروني
             .
@@ -626,7 +656,6 @@ export default function RegistrationToApply() {
             </div>
           </div>
         )}
-
         <div className="bg-main  px-2  ">
           <Copyrights />
         </div>

@@ -1,5 +1,6 @@
 {
   "GraduateStudies": "الدراسات العليا",
+
   "Graduate": "الدراسات ",
   "Studies": " العليا",
   "AboutTheSector": "عن القطاع",
@@ -42,6 +43,7 @@
   "ResearchProject": "مشروع البحث",
   "JointInternationalProgram": "البرنامج الدولي المشترك",
   "BanhaUniversity": "جامعة بنها",
+  "DISTANCEEDUCATIONPLATFORM": "منصة التعليم عن بعد",
   "PhoneNumber": "+20 106 528 467",
   "EmailAddress": "Example@gmail.com",
   "Account": "الحساب",
@@ -63,5 +65,8 @@
   "Visitors": "الزائرون",
   "learning": " منصة التعليم الالكتروني , جداول الدراسة , جداول الامتحانات نتائج.",
   "Copy": " جميع الحقوق محفوظة 2024 ",
-  "Copy2": "مشروع تطوير نظم التكنولجيا في التعليم العالي التنفيذ والتصميم من خلال شركةالدرسات العليا."
+  "Copy2": "مشروع تطوير نظم التكنولجيا في التعليم العالي التنفيذ والتصميم من خلال شركةالدرسات العليا.",
+  "Loading": "يتم التحميل",
+  "Successful": "عملية ناجحة",
+  "ُError": "an error occurred"
 }

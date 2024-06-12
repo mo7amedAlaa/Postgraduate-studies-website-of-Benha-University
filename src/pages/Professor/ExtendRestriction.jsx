@@ -1,4 +1,3 @@
-import React from 'react';
 import MainLayout from '../../component/Main/MainLayout';
 import { Checkbox } from '@mui/material';
 

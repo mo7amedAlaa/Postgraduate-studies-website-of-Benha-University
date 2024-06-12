@@ -2,57 +2,42 @@ import { DataGrid } from '@mui/x-data-grid';
 import { graduatedMenIcon, uniLogo } from '../../assets';
 import { LuAlertOctagon } from 'react-icons/lu';
 import Copyrights from '../../component/Footer/Copyrights';
-import EnrolCourseHook from '../../Hook/Courses/enrol-course-hook';
-import { useState } from 'react';
 
 export default function EnrolCourse() {
-  const [totalcourses, columns] = EnrolCourseHook();
-
-  // const courses = [
-  //       {
-  //   id: 1,
-  //   subName: 'اسم المادة',
-  //   code: 'SC2X',
-  //   hourNum: 3,
-  //   maxGrade: 100,
-  //   minGrade: 50,
-  // },
-  // {
-  //   id: 2,
-  //   subName: 'اسم المادة',
-  //   code: 'SC2X',
-  //   hourNum: 3,
-  //   maxGrade: 100,
-  //   minGrade: 50,
-  // },
-  // {
-  //   id: 3,
-  //   subName: 'اسم المادة',
-  //   code: 'SC2X',
-  //   hourNum: 3,
-  //   maxGrade: 100,
-  //   minGrade: 50,
-  // },
-  // {
-  //   id: 4,
-  //   subName: 'اسم المادة',
-  //   code: 'SC2X',
-  //   hourNum: 3,
-  //   maxGrade: 100,
-  //   minGrade: 50,
-  // },
-  // ]
-  const [data, setData] = useState([]);
-  const handleChange = (e) => {
-    setData(e.rowSelection);
-    console.log(data);
-  };
-  let courses = [];
-  const handleRegisterCourse = (e) => {
-    e.preventDefault();
-    if (data) courses = data;
-    else courses = [];
-  };
+  const courses = [
+    {
+      id: 1,
+      subName: 'اسم المادة',
+      code: 'SC2X',
+      hourNum: 3,
+      maxGrade: 100,
+      minGrade: 50,
+    },
+    {
+      id: 2,
+      subName: 'اسم المادة',
+      code: 'SC2X',
+      hourNum: 3,
+      maxGrade: 100,
+      minGrade: 50,
+    },
+    {
+      id: 3,
+      subName: 'اسم المادة',
+      code: 'SC2X',
+      hourNum: 3,
+      maxGrade: 100,
+      minGrade: 50,
+    },
+    {
+      id: 4,
+      subName: 'اسم المادة',
+      code: 'SC2X',
+      hourNum: 3,
+      maxGrade: 100,
+      minGrade: 50,
+    },
+  ];
   return (
     <div className=" bg-slate-100     min-h-screen">
       <div className="flex  bg-main   items-center justify-around">
@@ -77,9 +62,7 @@ export default function EnrolCourse() {
         <div>
           <div style={{ height: 400, width: '100%', direction: 'ltr' }}>
             <DataGrid
-              rows={totalcourses}
-              columns={columns}
-              onStateChange={handleChange}
+              columns={courses}
               initialState={{
                 pagination: {
                   paginationModel: { page: 0, pageSize: 5 },
@@ -90,10 +73,7 @@ export default function EnrolCourse() {
             />
           </div>
           <div className="my-5  text-center ">
-            <button
-              className=" px-12 py-3 mx-auto  text-xl font-bold tracking-wider text-white       bg-main  rounded-md   "
-              onClick={handleRegisterCourse}
-            >
+            <button className=" px-12 py-3 mx-auto  text-xl font-bold tracking-wider text-white       bg-main  rounded-md   ">
               تسجيل المقرر
             </button>
           </div>
@@ -106,7 +86,7 @@ export default function EnrolCourse() {
           >
             <DataGrid
               rows={courses}
-              columns={columns}
+              columns={courses}
               initialState={{
                 pagination: {
                   paginationModel: { page: 0, pageSize: 5 },

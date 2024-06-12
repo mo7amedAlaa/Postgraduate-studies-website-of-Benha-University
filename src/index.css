@@ -2,6 +2,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes spin-border {
+  0% {
+    border-color: theme('colors.red.500');
+  }
+  25% {
+    border-color: theme('colors.green.500');
+  }
+  50% {
+    border-color: theme('colors.blue.500');
+  }
+  75% {
+    border-color: theme('colors.purple.500');
+  }
+  100% {
+    border-color: theme('colors.red.500');
+  }
+}
 @layer components {
   .lableStyle {
     @apply w-36  inline-block;
@@ -20,7 +37,12 @@
     @apply p-3  inline-block text-[14px] font-semibold tracking-wide hover:bg-main rounded-md;
   }
   .ser-card {
-    @apply flex flex-col justify-between items-center shadow-lg text-center mb-10 min-h-72  rounded-lg w-60 p-5 hover:scale-110  hover:border-main border transition-all duration-300;
+    @apply flex flex-col justify-between items-center shadow-lg text-center mb-10 min-h-72  rounded-lg w-60 p-5    border-2;
+  }
+  .ser-card:hover {
+    transform: scale(110%);
+    animation: spin-border linear infinite 1.5s;
+    animation-name: spin-border;
   }
   .stats-card {
     @apply border rounded-sm text-white  text-center hover:border-main transition-all p-2;

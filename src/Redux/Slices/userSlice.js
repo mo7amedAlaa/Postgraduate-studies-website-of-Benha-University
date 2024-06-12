@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
-const userSlice = createSlice({
-  initialState: { reged: false, loged: false, accpet: false },
-  name: 'userSlice',
+const userStutusSlice = createSlice({
+  name: 'user',
+  initialState: { reged: false, loged: false, accpeted: false },
   reducers: {
-    reged: (state, action) => {
-      return (state.reged = action.payload.reged);
+    registering: (state, action) => {
+      state.reged = action.payload;
     },
     loged: (state, action) => {
-      return (state.loged = action.payload.loged);
+      state.loging = action.payload;
     },
-    accpet: (state, action) => {
-      return (state.accpet = action.payload.accpet);
+    accpeting: (state, action) => {
+      state.accpet = action.payload;
     },
   },
 });
 // Action creators are generated for each case reducer function
-export const { loged, reged, accpet } = userSlice.actions;
+export const { loging, registering, accpeting } = userStutusSlice.actions;
 
-export default userSlice.reducer;
+export default userStutusSlice.reducer;

@@ -1,11 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './Slices/userSlice';
 import professorReducer from './Slices/professorSlice';
 import darkModeReducer from './Slices/darkModeSlice';
-
+import userStutusReducer from './Slices/userSlice';
 export const store = configureStore({
   reducer: {
-    user: userReducer,
+    user: userStutusReducer,
     theme: darkModeReducer,
     professor: professorReducer,
   },

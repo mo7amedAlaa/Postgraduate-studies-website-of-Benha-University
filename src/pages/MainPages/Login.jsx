@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { facLogo, uniLogo } from '../../assets';
-import baseUrl from '../../API/constant';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const Login = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({});
   const [loginDone, setloginDone] = useState(true);
   const handleChange = (event) => {
@@ -13,13 +12,6 @@ const Login = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch(`${baseUrl}/auth/admin/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then(console.log);
   };
   return (
     <section className="h-screen flex flex-col   md:flex-row md:justify-center  space-y-10  md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">

@@ -44,7 +44,8 @@
   "AlexandriaAgriculturalRoad": "Alexandria Agricultural Road",
   "PhoneNumbers": "Phone Number",
   "EmailAddresss": "Email Address",
-
+  "BanhaUniversity": "Banha University",
+  "DISTANCEEDUCATIONPLATFORM": "DISTANCE EDUCATION PLATFORM",
   "Account": "Account",
   "Arabic": "Arabic",
   "English": "English",
@@ -63,5 +64,8 @@
   "Million": "Million",
   "Visitors": "Visitors",
   "Copy": "All rights reserved 2024",
-  "Copy2": "A project to develop technology systems in higher education, implementation and design through the Higher Studies Company."
+  "Copy2": "A project to develop technology systems in higher education, implementation and design through the Higher Studies Company.",
+  "Loading": "Loading",
+  "Successful": "Done successfully",
+  "Error": ""
 }

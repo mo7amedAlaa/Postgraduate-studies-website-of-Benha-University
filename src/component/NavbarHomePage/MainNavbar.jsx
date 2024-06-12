@@ -42,7 +42,7 @@ function MainNavbar({ notS, count }) {
             size={30}
             color="white"
           />{' '}
-          <p className="text-white ">{t('+20 106 528 467')}</p>
+          <p className="text-white ">+20 106 528 467</p>
         </div>
         <div className="flex items-center  gap-2">
           <HiOutlineMail
@@ -50,7 +50,7 @@ function MainNavbar({ notS, count }) {
             size={30}
             color="white"
           />
-          <p className="text-white ">{t('Exaple@gmail.com')}</p>
+          <p className="text-white ">Exaple@gmail.com</p>
         </div>
 
         <div className="flex gap-5 me-[15rem] ">
@@ -119,12 +119,8 @@ function MainNavbar({ notS, count }) {
                       className="w-full hover:cursor-pointer"
                       onChange={(e) => changeLanguage(e.target.value)}
                     >
-                      <option value="ar" onClick={() => changeLanguage('ar')}>
-                        {t('Arabic')}{' '}
-                      </option>
-                      <option value="en" onClick={() => changeLanguage('en')}>
-                        {t('English')}
-                      </option>
+                      <option value="ar">{t('Arabic')} </option>
+                      <option value="en">{t('English')}</option>
                     </select>
                   </li>
                 </ul>

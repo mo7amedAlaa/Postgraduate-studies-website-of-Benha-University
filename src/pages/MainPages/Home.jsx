@@ -8,14 +8,41 @@ import Footer from '../../component/Footer/Footer';
 import Graduate from '../../assets/images/post.png';
 import { BsChatRightText } from 'react-icons/bs';
 import MainNavbar from '../../component/NavbarHomePage/MainNavbar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Notifications from '../User/Notification';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { UseApiRequest } from '../../Hooks/RestApi';
 
 function Home() {
   const darkMode = useSelector((state) => state.theme.darkMode);
   const [t, i18n] = useTranslation();
+  const {
+    data: getData,
+    loading: getLoading,
+    error: getError,
+  } = UseApiRequest('/products', 'GET', null, null);
+  const {
+    data: addNewProduct,
+    loading: addNewProductLoading,
+    error: addNewProductError,
+  } = UseApiRequest(
+    '/products',
+    'POST',
+    {
+      title: 'test product',
+      price: 13.5,
+      description: 'lorem ipsum set',
+      image: 'https://i.pravatar.cc',
+      category: 'electronic',
+    },
+    null
+  );
+  useEffect(() => {
+    console.log(addNewProductLoading);
+    console.log(addNewProductError);
+    console.log(addNewProduct);
+  }, []);
   const [notifications, setNotifications] = useState([
     { id: 1, message: 'New user registered', type: 'info' },
     { id: 2, message: 'Server downtime alert', type: 'warning' },
@@ -313,14 +340,9 @@ function Home() {
           </h2>
         </div>
         <div className="ms-10">
-          <div className="text-2xl p-2 font-semibold font-sans w-[80%] text-start mt-3 flex flex-col">
-            <Link to="/upload-data">
-              {} 1. {t('GraduateStudentsAreRequired')}
-            </Link>
-
-            <Link to="" className="mt-5">
-              2. {t('GraduateStudiesGuide')}
-            </Link>
+          <div className="text-2xl p-2 font-semibold font-sans w-[80%]  mt-3 flex flex-col text-justify">
+            {} <p> 1. {t('GraduateStudentsAreRequired')} </p>
+            <p>2. {t('GraduateStudiesGuide')}</p>
           </div>
         </div>
       </div>
