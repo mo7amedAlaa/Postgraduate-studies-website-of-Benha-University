@@ -10,6 +10,7 @@ import { UseApiRequest } from '../../Hooks/RestApi';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { registering } from '../../Redux/Slices/userSlice';
+import { data } from 'autoprefixer';
 
 export default function RegistrationToApply() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export default function RegistrationToApply() {
   const [t] = useTranslation();
   //State val start
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ images: [] });
   const [registerDone, setRegisterDone] = useState(false);
   //method handle start
   const handleNext = () => {
@@ -41,8 +42,12 @@ export default function RegistrationToApply() {
         return Step1;
     }
   };
+
   const handleChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
   };
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -56,11 +61,10 @@ export default function RegistrationToApply() {
     });
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e) => {
-        Swal.fire({
-          title: 'Your uploaded file',
-          imageUrl: e.target.result,
-          imageAlt: 'The uploaded file',
+      reader.onloadend = () => {
+        setFormData({
+          ...formData,
+          images: [...formData.images, reader.result],
         });
       };
       reader.readAsDataURL(file);
@@ -71,22 +75,12 @@ export default function RegistrationToApply() {
     loading: regLoading,
     error: regError,
     callApi,
-  } = UseApiRequest(
-    '/products',
-    'POST',
-    {
-      title: 'test product',
-      price: 13.5,
-      description: 'lorem ipsum set',
-      image: 'https://i.pravatar.cc',
-      category: 'electronic',
-    },
-    null
-  );
+  } = UseApiRequest('/auth/register', 'POST', JSON.stringify(formData), null);
   const handleSubmit = (e) => {
     e.preventDefault();
     callApi();
     if (regdata && !regError) {
+      console.log(JSON.stringify(formData));
       setRegisterDone(true);
       dispatch(registering(true));
       toast.success(t('Successful'), {
@@ -102,6 +96,7 @@ export default function RegistrationToApply() {
       });
     } else {
       setRegisterDone(false);
+      console.log(JSON.stringify(formData));
       toast.error(t('Error'), {
         position: 'top-right',
         autoClose: 3000,
@@ -658,7 +653,7 @@ export default function RegistrationToApply() {
             </div>
           </div>
         )}
-        <div className="bg-main  px-2  ">
+        <div className="bg-main  w-full px-2  ">
           <Copyrights />
         </div>
       </div>
