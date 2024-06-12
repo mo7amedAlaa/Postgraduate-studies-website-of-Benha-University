@@ -594,9 +594,9 @@ export default function RegistrationToApply() {
 
   return (
     <>
-      <div className=" flex  flex-col bg-slate-100   min-h-screen">
+      <div className=" flex   flex-col bg-slate-100 items-center   min-h-screen">
         <ToastContainer />
-        <div className="flex   bg-main   items-center justify-around">
+        <div className="flex    w-full bg-main   items-center justify-around">
           <div>
             <img src={uniLogo} alt="" width={'100px'} height={'100px'} />
           </div>
@@ -616,13 +616,13 @@ export default function RegistrationToApply() {
           </div>
         </div>
         {registerDone && registered ? (
-          <div className="flex flex-1 items-center  container   min-w-3/4  py-5 justify-center  text-3xl  ">
+          <div className="flex flex-1 items-center  container    min-w-3/4  py-5 justify-center  text-3xl  ">
             تم التسجيل وفي انتظار القبول أو الرفض يرجي مراجعة البريد الالكتروني
             .
           </div>
         ) : (
-          <div className="flex flex-1 items-center  container   min-w-3/4  py-5 justify-center   ">
-            <div className="bg-white p-0 md:p-6 w-full h-full rounded-lg shadow-md  m-12">
+          <div className="flex flex-1 items-center   container   min-w-3/4  py-5 justify-center   ">
+            <div className="bg-white p-0 md:p-6   w-[90%]  rounded-lg shadow-md  ">
               <h2 className="font-medium mb-4">خطوة {step} من 2</h2>
               <div className="flex mb-4">
                 <div
@@ -651,7 +651,9 @@ export default function RegistrationToApply() {
                 </div>
               </div>
               <form action="" autoComplete="true">
-                <div className=" border rounded-md p-5  ">{stepChange()}</div>
+                <div className=" border  h-full      rounded-md p-5  ">
+                  {stepChange()}
+                </div>
               </form>
             </div>
           </div>

@@ -50,8 +50,8 @@ function RecordPoint() {
   ];
   return (
     <>
-      <div className="flex flex-col  h-screen font-bold">
-        <div className="flex  bg-main   items-center justify-around">
+      <div className="flex flex-col  items-center h-screen font-bold">
+        <div className="flex  bg-main  w-full  items-center justify-around">
           <div>
             <img src={uniLogo} alt="" width={'100px'} height={'100px'} />
           </div>
@@ -176,7 +176,7 @@ function RecordPoint() {
             </div>
           </form>
         </div>
-        <div className="bg-main  px-2  ">
+        <div className="bg-main  w-full  px-2  ">
           <Copyrights />
         </div>
       </div>

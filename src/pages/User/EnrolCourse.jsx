@@ -4,6 +4,14 @@ import { LuAlertOctagon } from 'react-icons/lu';
 import Copyrights from '../../component/Footer/Copyrights';
 
 export default function EnrolCourse() {
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'title', headerName: 'كود المادة', width: 130 },
+    { field: 'description', headerName: 'اسم المادة', width: 130 },
+    { field: 'price', headerName: 'عدد الساعات', width: 130 },
+    { field: 'category', headerName: 'الدرجة العظمي', width: 130 },
+    { field: 'rating', headerName: 'الدرجة الصغري', width: 130 },
+  ];
   const courses = [
     {
       id: 1,
@@ -62,7 +70,8 @@ export default function EnrolCourse() {
         <div>
           <div style={{ height: 400, width: '100%', direction: 'ltr' }}>
             <DataGrid
-              columns={courses}
+              rows={courses}
+              columns={columns}
               initialState={{
                 pagination: {
                   paginationModel: { page: 0, pageSize: 5 },
