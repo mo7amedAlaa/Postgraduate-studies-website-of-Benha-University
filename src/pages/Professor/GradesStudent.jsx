@@ -1,29 +1,49 @@
-import MainLayout from '../../component/Main/MainLayout';
-import { IoMdAddCircleOutline } from 'react-icons/io';
-import { DataGrid } from '@mui/x-data-grid';
-import { CiSearch } from 'react-icons/ci';
+import MainLayout from "../../component/Main/MainLayout";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { DataGrid } from "@mui/x-data-grid";
+import { CiSearch } from "react-icons/ci";
+import axios from "axios";
+import { useEffect } from "react";
+import { UseApiRequest } from "../../Hooks/RestApi";
 const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'title', headerName: 'كود المادة', width: 130 },
-  { field: 'description', headerName: 'اسم المادة', width: 130 },
-  { field: 'price', headerName: 'عدد الساعات', width: 130 },
-  { field: 'category', headerName: 'الدرجة العظمي', width: 130 },
-  { field: 'rating', headerName: 'الدرجة الصغري', width: 130 },
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "title", headerName: "كود المادة", width: 130 },
+  { field: "description", headerName: "اسم المادة", width: 130 },
+  { field: "price", headerName: "عدد الساعات", width: 130 },
+  { field: "category", headerName: "الدرجة العظمي", width: 130 },
+  { field: "rating", headerName: "الدرجة الصغري", width: 130 },
 ];
 const rows = [
   {
     id: 1,
-    title: 'ggffg',
-    description: 'fggfgffg',
+    title: "ggffg",
+    description: "fggfgffg",
     price: 5,
     category: 100,
     rating: 45,
   },
 ];
+// const {
+//   data: courses,
+//   loading: GetLoad,
+//   error: GetError,
+//   callApi,
+// } = UseApiRequest(
+//   "/courses",
+//   "GET",
+//   null,
+//   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vNTE3ZC0xOTctMzMtMTE4LTExOC5uZ3Jvay1mcmVlLmFwcC9hcGkvYXV0aC9sb2dpbnN0dWRlbnQiLCJpYXQiOjE3MTgyMTYxNTIsImV4cCI6MTcxODU3NjE1MiwibmJmIjoxNzE4MjE2MTUyLCJqdGkiOiJUUlpBdjVabnkyVGZBWEtXIiwic3ViIjoiMzUiLCJwcnYiOiI5YzQyOWU2YTYwY2Q1Mjg1NDczZjJjOGJjNzAxZWMwOTQ4ZGY0ZDhjIn0.68p9K_BWaA30wRVLCMRhKdrloXazPBEyaOZwgebC91U"
+// );
+
+
 function GradesStudent() {
   const handelSubmit = async (event) => {
     event.preventDefault();
+    
+    // callApi();
   };
+
+
   return (
     <div>
       <MainLayout>
@@ -79,7 +99,7 @@ function GradesStudent() {
               <div className="relative ">
                 <input
                   type="submit"
-                  value={'اضافة'}
+                  value={"اضافة"}
                   className="main-btn"
                   onClick={handelSubmit}
                 />
@@ -95,7 +115,7 @@ function GradesStudent() {
           </form>
         </div>
         <div className="p-10 container mx-auto">
-          <div style={{ height: 400, width: '100%', direction: 'ltr' }}>
+          <div style={{ height: 400, width: "100%", direction: "ltr" }}>
             <DataGrid
               checkboxSelection
               rows={rows}
