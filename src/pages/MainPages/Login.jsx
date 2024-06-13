@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { facLogo, uniLogo } from '../../assets';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { UseApiRequest } from '../../Hooks/RestApi';
 
 const Login = () => {
   const { t } = useTranslation();
@@ -10,8 +11,21 @@ const Login = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+  const { data, loading, error, callApi } = UseApiRequest(
+    '/auth/loginstudent',
+    'POST',
+    JSON.stringify(formData),
+    null
+  );
   const handleSubmit = async (e) => {
     e.preventDefault();
+    callApi();
+    if (data && !error) {
+      setloginDone(true);
+      Navigate('/home');
+    } else {
+      setloginDone(false);
+    }
   };
   return (
     <section className="h-screen flex flex-col   md:flex-row md:justify-center  space-y-10  md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
@@ -55,8 +69,9 @@ const Login = () => {
             name="type"
             id="type"
             className="bg-white border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            onChange={handleChange}
           >
-            <option value="" selected disabled hidden>
+            <option selected disabled hidden>
               اختر نوع
             </option>
             <option value="Student">طالب</option>

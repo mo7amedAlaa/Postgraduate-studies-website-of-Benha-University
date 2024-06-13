@@ -119,3 +119,12 @@
 .notification-item.suc {
   background: rgb(12, 120, 12);
 }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+*::selection {
+  background-color: cadetblue;
+}

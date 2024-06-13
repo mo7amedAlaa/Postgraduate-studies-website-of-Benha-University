@@ -10,20 +10,35 @@ import { UseApiRequest } from '../../Hooks/RestApi';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { registering } from '../../Redux/Slices/userSlice';
-import { data } from 'autoprefixer';
+import axios from 'axios';
 
 export default function RegistrationToApply() {
   const dispatch = useDispatch();
   const registered = useSelector((state) => state.user.reged);
   const accpeted = useSelector((state) => state.user.accpeted);
   const loged = useSelector((state) => state.user.loged);
-
   const [t] = useTranslation();
-  //State val start
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({ images: [] });
+
   const [registerDone, setRegisterDone] = useState(false);
-  //method handle start
+  const [formData, setFormData] = useState({
+    name: '',
+    english_name: '',
+    nationality: '',
+    region: '',
+    job: '',
+    age: '',
+    SSN: '',
+    phone: '',
+    address: '',
+    department_id: '',
+    gender: '',
+    marital_status: '',
+    email: '',
+    type: '',
+    enrollment_papers: [],
+    original_bachelors_degree: [],
+  });
   const handleNext = () => {
     setStep(step + 1);
   };
@@ -42,74 +57,81 @@ export default function RegistrationToApply() {
         return Step1;
     }
   };
-
-  const handleChange = (event) => {
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
   };
-  const handleUpload = async (e) => {
-    e.preventDefault();
-    const { value: file } = await Swal.fire({
-      title: 'Select image',
-      input: 'file',
-      inputAttributes: {
-        accept: 'image/*/pdf',
-        'aria-label': 'Upload your profile picture',
-      },
+  const handleFileChange = (event) => {
+    const { name, files } = event.target;
+    console.log(files);
+    setFormData({
+      ...formData,
+      enrollment_papers: [...formData.enrollment_papers, files[0]],
     });
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({
-          ...formData,
-          images: [...formData.images, reader.result],
-        });
-      };
-      reader.readAsDataURL(file);
+  };
+  const handleCustomFileChange = (event) => {
+    const { name, files } = event.target;
+    console.log(files);
+    setFormData({
+      ...formData,
+      [name]: files[0],
+    });
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // Check if all required fields are filled
+    // if (
+    //   Object.values(formData).some(
+    //     (value) => value === '' || (Array.isArray(value) && value.length === 0)
+    //   )
+    // ) {
+    //   Swal.fire('Error', 'All fields are required', 'error');
+    //   return;
+    // }
+
+    // Convert files to base64 to include them in JSON payload
+    const convertFilesToBase64 = async (files) => {
+      return Promise.all(
+        files.map((file) => {
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+          });
+        })
+      );
+    };
+
+    try {
+      // const enrollmentPapersBase64 = await convertFilesToBase64(
+      //   formData.enrollment_papers
+      // );
+      // const bachelorsDegreeBase64 = await convertFilesToBase64(
+      //   formData.original_bachelors_degree
+      // );
+
+      // const jsonPayload = {
+      //   ...formData,
+      //   enrollment_papers: enrollmentPapersBase64,
+      //   original_bachelors_degree: bachelorsDegreeBase64,
+      // };
+
+      console.log(formData);
+      await axios.post('/auth/register', formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      Swal.fire('Success', 'Data uploaded successfully!', 'success');
+    } catch (error) {
+      Swal.fire('Error', 'Failed to upload data', 'error');
     }
   };
-  const {
-    data: regdata,
-    loading: regLoading,
-    error: regError,
-    callApi,
-  } = UseApiRequest('/auth/register', 'POST', JSON.stringify(formData), null);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    callApi();
-    if (regdata && !regError) {
-      console.log(JSON.stringify(formData));
-      setRegisterDone(true);
-      dispatch(registering(true));
-      toast.success(t('Successful'), {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-        transition: Slide,
-      });
-    } else {
-      setRegisterDone(false);
-      console.log(JSON.stringify(formData));
-      toast.error(t('Error'), {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-        transition: Slide,
-      });
-    }
-  };
+
   const Step1 = (
     <div className="min-h-full w-full ">
       <div>
@@ -147,7 +169,8 @@ export default function RegistrationToApply() {
               type="text"
               className="inputStyle flex-grow  "
               name="name"
-              onChange={handleChange}
+              value={formData.name}
+              onChange={handleInputChange}
             />
           </div>
         </fieldset>
@@ -189,7 +212,7 @@ export default function RegistrationToApply() {
               className="inputStyle flex-grow  "
               name="english_name"
               value={formData.english_name}
-              onChange={handleChange}
+              onChange={handleInputChange}
             />
           </div>
         </fieldset>
@@ -204,7 +227,7 @@ export default function RegistrationToApply() {
             placeholder="example@gmail.com"
             className="inputStyle text-sm"
             name="email"
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </div>
         <div className="inline-block my-2">
@@ -215,7 +238,7 @@ export default function RegistrationToApply() {
             name="department_id"
             className="inputStyle  text-center"
             id="department_id"
-            onChange={handleChange}
+            onChange={handleInputChange}
           >
             <option value="1">IS</option>
             <option value="2">AI</option>
@@ -231,27 +254,14 @@ export default function RegistrationToApply() {
             name="nationality"
             className="inputStyle  text-center"
             id="Nationality"
-            onChange={handleChange}
+            onChange={handleInputChange}
           >
             <option value="مصري"> مصري </option>
             <option value="سعودي"> سعودي</option>
             <option value="اخري"> اخري</option>
           </select>
         </div>
-        {/* <div className="inline-block my-2">
-          <label htmlFor="" className="lableStyle mx-5  ">
-            معيد /غير ذلك:(*)
-          </label>
-          <select
-            name="type"
-            className="inputStyle  text-center"
-            id="type"
-            onChange={handleChange}
-          >
-            <option value="internal" > معيد </option>
-            <option value="external"> اخري</option>
-          </select>
-        </div> */}
+
         <div className="inline-block">
           <label htmlFor="IDNUM" className="lableStyle mx-5">
             الرقم القومي:(*)
@@ -261,7 +271,7 @@ export default function RegistrationToApply() {
             id="IDNUM"
             className="inputStyle"
             name="SSN"
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </div>
         <div className=" inline-block pb-2">
@@ -272,7 +282,7 @@ export default function RegistrationToApply() {
             name="religion"
             className="inputStyle  text-center"
             id="Religion"
-            onChange={handleChange}
+            onChange={handleInputChange}
           >
             <option value="مسلم"> مسلم </option>
             <option value="مسيحي"> مسيحي</option>
@@ -288,7 +298,7 @@ export default function RegistrationToApply() {
             name="marital_status"
             className="inputStyle  text-center"
             id="maritalStatus"
-            onChange={handleChange}
+            onChange={handleInputChange}
           >
             <option value="اعزب"> اعزب </option>
             <option value="متزوج"> متزوج</option>
@@ -304,7 +314,7 @@ export default function RegistrationToApply() {
             name="gender"
             className="inputStyle  text-center"
             id="gender"
-            onChange={handleChange}
+            onChange={handleInputChange}
           >
             <option value="ذكر"> ذكر </option>
             <option value="انثي"> انثي</option>
@@ -318,7 +328,7 @@ export default function RegistrationToApply() {
             name="type"
             className="inputStyle  text-center"
             id="type"
-            onChange={handleChange}
+            onChange={handleInputChange}
           >
             <option value="moed"> معيد </option>
             <option value="external"> خارجي</option>
@@ -333,7 +343,7 @@ export default function RegistrationToApply() {
             className="inputStyle"
             id="job"
             name="job"
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </div>
         <div className="inline-block my-2">
@@ -345,7 +355,7 @@ export default function RegistrationToApply() {
             className="inputStyle"
             id="address"
             name="address"
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </div>
         <div className="inline-block my-2">
@@ -357,7 +367,7 @@ export default function RegistrationToApply() {
             className="inputStyle"
             id="age"
             name="age"
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </div>
         <div className="inline-block my-2">
@@ -369,7 +379,7 @@ export default function RegistrationToApply() {
             className="inputStyle"
             id="GuardiaName"
             name="phone"
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </div>
       </div>
@@ -412,14 +422,22 @@ export default function RegistrationToApply() {
             {' '}
             2- شهادة البكالوريوس(مؤقتة)العدد 1 اصل + صورة
           </h1>
+
           <div className="flex w-1/6 gap-10">
-            <button
-              className="main-btn flex-1 flex items-center justify-center gap-3"
-              onClick={handleUpload}
+            <label
+              className="main-btn flex flex-1 items-center justify-center gap-3"
+              htmlFor="bachelors_degree"
             >
               رفع
               <LuUploadCloud />
-            </button>
+            </label>
+            <input
+              type="file"
+              id="bachelors_degree"
+              className="hidden"
+              name="bachelors_degree"
+              onChange={handleFileChange}
+            />
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
@@ -428,13 +446,20 @@ export default function RegistrationToApply() {
             3- شهادة تقديرات اربع سنوات دراسية العدد 1 اصل + صورة{' '}
           </h1>
           <div className="flex w-1/6 gap-10">
-            <button
+            <label
               className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
+              htmlFor="four_years_grades"
             >
               رفع
               <LuUploadCloud />
-            </button>
+            </label>
+            <input
+              type="file"
+              id="four_years_grades"
+              className="hidden"
+              name="four_years_grades"
+              onChange={handleFileChange}
+            />
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
@@ -443,73 +468,115 @@ export default function RegistrationToApply() {
             4. شهادة الماجستير(بالنسبة للقيد لدرجة الدكتوراة) العدد 1 اصل + صورة{' '}
           </h1>
           <div className="flex w-1/6 gap-10">
-            <button
+            <label
               className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
+              htmlFor="original_bachelors_degree"
             >
               رفع
               <LuUploadCloud />
-            </button>
+            </label>
+            <input
+              type="file"
+              id="original_bachelors_degree"
+              className="hidden"
+              name="original_bachelors_degree"
+              onChange={handleCustomFileChange}
+            />
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
           <h1 className="text-2xl"> 5- شهادة الميلاد + صورة منها</h1>
           <div className="flex w-1/6 gap-10">
-            <button
+            <label
               className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
+              htmlFor="BirthCertificate"
             >
               رفع
               <LuUploadCloud />
-            </button>
+            </label>
+            <input
+              type="file"
+              id="BirthCertificate"
+              className="hidden"
+              name="BirthCertificate"
+              onChange={handleFileChange}
+            />
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
           <h1 className="text-2xl">6- صورة البطاقة الشخصية </h1>
           <div className="flex w-1/6 gap-10">
-            <button
+            <label
               className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
+              htmlFor="IDCardCopy"
             >
               رفع
               <LuUploadCloud />
-            </button>
+            </label>
+            <input
+              type="file"
+              id="IDCardCopy"
+              className="hidden"
+              name="IDCardCopy"
+              onChange={handleFileChange}
+            />
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
           <h1 className="text-2xl">7- الموقف التجنيدي للذكور + صورة منه </h1>
           <div className="flex w-1/6 gap-10">
-            <button
+            <label
               className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
+              htmlFor="RecruitmentPosition"
             >
               رفع
               <LuUploadCloud />
-            </button>
+            </label>
+            <input
+              type="file"
+              id="RecruitmentPosition"
+              className="hidden"
+              name="RecruitmentPosition"
+              onChange={handleFileChange}
+            />
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
           <h1 className="text-2xl ">8- موافقة جهة العمل + صورة منها </h1>
           <div className="flex w-1/6 gap-10">
-            <button
-              className="main-btn flex flex-1  items-center justify-center gap-3"
-              onClick={handleUpload}
+            <label
+              className="main-btn flex flex-1 items-center justify-center gap-3"
+              htmlFor="EmployerApproval"
             >
               رفع
               <LuUploadCloud />
-            </button>
+            </label>
+            <input
+              type="file"
+              id="EmployerApproval"
+              className="hidden"
+              name="EmployerApproval"
+              onChange={handleFileChange}
+            />
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
           <h1 className="text-2xl">9- عدد 4 صورة شخصية 4*6</h1>
           <div className="flex w-1/6 gap-10">
-            <button
+            <label
               className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
+              htmlFor="Photograph"
             >
               رفع
               <LuUploadCloud />
-            </button>
+            </label>
+            <input
+              type="file"
+              id="Photograph"
+              className="hidden "
+              name="Photograph"
+              onChange={handleFileChange}
+            />
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
@@ -526,13 +593,20 @@ export default function RegistrationToApply() {
               تنزيل
               <LuDownloadCloud />
             </a>
-            <button
+            <label
               className="main-btn flex flex-1 items-center justify-center gap-3"
-              onClick={handleUpload}
+              htmlFor="superAccpet"
             >
               رفع
               <LuUploadCloud />
-            </button>
+            </label>
+            <input
+              type="file"
+              id="superAccpet"
+              className="hidden "
+              name="superAccpet"
+              onChange={handleFileChange}
+            />
           </div>
         </div>
       </div>
@@ -610,49 +684,42 @@ export default function RegistrationToApply() {
             />
           </div>
         </div>
-        {registerDone && registered ? (
-          <div className="flex flex-1 items-center  container    min-w-3/4  py-5 justify-center  text-3xl  ">
-            تم التسجيل وفي انتظار القبول أو الرفض يرجي مراجعة البريد الالكتروني
-            .
-          </div>
-        ) : (
-          <div className="flex flex-1 items-center   container   min-w-3/4  py-5 justify-center   ">
-            <div className="bg-white p-0 md:p-6   w-[90%]  rounded-lg shadow-md  ">
-              <h2 className="font-medium mb-4">خطوة {step} من 2</h2>
-              <div className="flex mb-4">
-                <div
-                  className={`w-1/2 border-r border-gray-400 ${
-                    step === 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-                  } p-2 text-center cursor-pointer`}
-                  onClick={() => setStep(1)}
-                >
-                  الخطوة 1
-                </div>
-                <div
-                  className={`w-1/2 ${
-                    step === 2 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-                  } p-2 text-center cursor-pointer`}
-                  onClick={() => setStep(2)}
-                >
-                  الخطوة 2
-                </div>
-                <div
-                  className={`w-1/2 ${
-                    step === 3 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-                  } p-2 text-center cursor-pointer`}
-                  onClick={() => setStep(3)}
-                >
-                  الخطوة 3
-                </div>
+        <div className="flex flex-1 items-center   container   min-w-3/4  py-5 justify-center   ">
+          <div className="bg-white p-0 md:p-6   w-[90%]  rounded-lg shadow-md  ">
+            <h2 className="font-medium mb-4">خطوة {step} من 2</h2>
+            <div className="flex mb-4">
+              <div
+                className={`w-1/2 border-r border-gray-400 ${
+                  step === 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                } p-2 text-center cursor-pointer`}
+                onClick={() => setStep(1)}
+              >
+                الخطوة 1
               </div>
-              <form action="" autoComplete="true">
-                <div className=" border  h-full      rounded-md p-5  ">
-                  {stepChange()}
-                </div>
-              </form>
+              <div
+                className={`w-1/2 ${
+                  step === 2 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                } p-2 text-center cursor-pointer`}
+                onClick={() => setStep(2)}
+              >
+                الخطوة 2
+              </div>
+              <div
+                className={`w-1/2 ${
+                  step === 3 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                } p-2 text-center cursor-pointer`}
+                onClick={() => setStep(3)}
+              >
+                الخطوة 3
+              </div>
             </div>
+            <form action="" autoComplete="true">
+              <div className=" border  h-full      rounded-md p-5  ">
+                {stepChange()}
+              </div>
+            </form>
           </div>
-        )}
+        </div>
         <div className="bg-main  w-full px-2  ">
           <Copyrights />
         </div>

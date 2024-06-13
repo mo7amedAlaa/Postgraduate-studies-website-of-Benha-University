@@ -16,7 +16,7 @@ import { UseApiRequest } from '../../Hooks/RestApi';
 
 function Home() {
   const darkMode = useSelector((state) => state.theme.darkMode);
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
   const {
     data: getData,
     loading: getLoading,
@@ -82,12 +82,16 @@ function Home() {
               <span className=" ">{t('GraduateStudies')}</span>
             </li>
           </Link>
-          <Link>
+          <Link
+            to={
+              'https://ar.wikipedia.org/wiki/%D8%AF%D8%B1%D8%A7%D8%B3%D8%A7%D8%AA_%D8%B9%D9%84%D9%8A%D8%A7#%D8%A7%D9%86%D8%B8%D8%B1_%D8%A3%D9%8A%D8%B6%D9%8B%D8%A7'
+            }
+          >
             <li className="nav-link">{t('AboutTheSector')}</li>
           </Link>
-          <Link>
+          <a href="#servicesID">
             <li className="nav-link">{t('GraduateServices')}</li>
-          </Link>
+          </a>
           <li className="nav-link">
             <select className="bg-inherit ">
               <option value=" 1">{t('CulturalRelations')}</option>
@@ -146,13 +150,13 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="services-name ms-10 mt-10  ">
+      <div id="servicesID" className="services-name ms-10 mt-10  ">
         <h1 className="font-sans lg:text-5xl md:text-4xl sm:text-3xl font-semibold  text-start">
           {t('ElectronicServices')}
         </h1>
       </div>
       <div className="services flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
-        <div className="w-[80%] grid md:grid-cols-3  lg:grid-cols-4  gap-5 ">
+        <div className="w-[80%]  flex flex-wrap gap-6 ">
           <Link to={'/registration'}>
             <div className="ser-card">
               <div className="flex items-center justify-center">
