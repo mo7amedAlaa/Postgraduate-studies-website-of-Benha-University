@@ -17,32 +17,7 @@ import { UseApiRequest } from '../../Hooks/RestApi';
 function Home() {
   const darkMode = useSelector((state) => state.theme.darkMode);
   const [t] = useTranslation();
-  const {
-    data: getData,
-    loading: getLoading,
-    error: getError,
-  } = UseApiRequest('/products', 'GET', null, null);
-  const {
-    data: addNewProduct,
-    loading: addNewProductLoading,
-    error: addNewProductError,
-  } = UseApiRequest(
-    '/products',
-    'POST',
-    {
-      title: 'test product',
-      price: 13.5,
-      description: 'lorem ipsum set',
-      image: 'https://i.pravatar.cc',
-      category: 'electronic',
-    },
-    null
-  );
-  useEffect(() => {
-    console.log(addNewProductLoading);
-    console.log(addNewProductError);
-    console.log(addNewProduct);
-  }, []);
+
   const [notifications, setNotifications] = useState([
     { id: 1, message: 'New user registered', type: 'info' },
     { id: 2, message: 'Server downtime alert', type: 'warning' },

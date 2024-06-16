@@ -4,28 +4,27 @@ import { useEffect, useState } from 'react';
 import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
 import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
-import { Slide, ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UseApiRequest } from '../../Hooks/RestApi';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { registering } from '../../Redux/Slices/userSlice';
+import { registering } from '../../Redux/Slices/userStatusSlice';
 import axios from 'axios';
-
+import { ClipLoader } from 'react-spinners';
 export default function RegistrationToApply() {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const registered = useSelector((state) => state.user.reged);
-  const accpeted = useSelector((state) => state.user.accpeted);
-  const loged = useSelector((state) => state.user.loged);
   const [t] = useTranslation();
   const [step, setStep] = useState(1);
 
-  const [registerDone, setRegisterDone] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     english_name: '',
     nationality: '',
-    region: '',
+    religion: '',
     job: '',
     age: '',
     SSN: '',
@@ -37,8 +36,9 @@ export default function RegistrationToApply() {
     email: '',
     type: '',
     enrollment_papers: [],
-    original_bachelors_degree: [],
+    original_bachelors_degree: null,
   });
+  useEffect(() => {}, []);
   const handleNext = () => {
     setStep(step + 1);
   };
@@ -66,20 +66,19 @@ export default function RegistrationToApply() {
   };
   const handleFileChange = (event) => {
     const { name, files } = event.target;
-    console.log(files);
-    setFormData({
-      ...formData,
-      enrollment_papers: [...formData.enrollment_papers, files[0]],
-    });
+    if (name == 'original_bachelors_degree') {
+      setFormData({
+        ...formData,
+        [name]: files[0],
+      });
+    } else {
+      setFormData({
+        ...formData,
+        enrollment_papers: [...formData.enrollment_papers, files[0]],
+      });
+    }
   };
-  const handleCustomFileChange = (event) => {
-    const { name, files } = event.target;
-    console.log(files);
-    setFormData({
-      ...formData,
-      [name]: files[0],
-    });
-  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Check if all required fields are filled
@@ -105,30 +104,50 @@ export default function RegistrationToApply() {
         })
       );
     };
-
-    try {
-      // const enrollmentPapersBase64 = await convertFilesToBase64(
-      //   formData.enrollment_papers
-      // );
-      // const bachelorsDegreeBase64 = await convertFilesToBase64(
-      //   formData.original_bachelors_degree
-      // );
-
-      // const jsonPayload = {
-      //   ...formData,
-      //   enrollment_papers: enrollmentPapersBase64,
-      //   original_bachelors_degree: bachelorsDegreeBase64,
-      // };
-
-      console.log(formData);
-      await axios.post('/auth/register', formData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+    const fileToBase64Single = (file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
       });
+    };
+    setLoading(true);
+    setError(null);
+    try {
+      const enrollmentPapersBase64 = await convertFilesToBase64(
+        formData.enrollment_papers
+      );
+      const bachelorsDegreeBase64 = await fileToBase64Single(
+        formData.original_bachelors_degree
+      );
+
+      const jsonPayload = {
+        ...formData,
+        enrollment_papers: enrollmentPapersBase64,
+        original_bachelors_degree: bachelorsDegreeBase64,
+      };
+      console.log(jsonPayload);
+
+      const response = await axios.post(
+        'https://9f58-197-165-244-176.ngrok-free.app/api/auth/register',
+        jsonPayload,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      setLoading(false);
       Swal.fire('Success', 'Data uploaded successfully!', 'success');
-    } catch (error) {
+      console.log('ResponseData:', response.data);
+      dispatch(registering(true));
+    } catch (err) {
+      setLoading(false);
+      setError(err.message);
+      console.error('Error:', err);
       Swal.fire('Error', 'Failed to upload data', 'error');
+      dispatch(registering(false));
     }
   };
 
@@ -227,6 +246,7 @@ export default function RegistrationToApply() {
             placeholder="example@gmail.com"
             className="inputStyle text-sm"
             name="email"
+            value={FormData.email}
             onChange={handleInputChange}
           />
         </div>
@@ -239,6 +259,7 @@ export default function RegistrationToApply() {
             className="inputStyle  text-center"
             id="department_id"
             onChange={handleInputChange}
+            value={FormData.department_id}
           >
             <option value="1">IS</option>
             <option value="2">AI</option>
@@ -255,6 +276,7 @@ export default function RegistrationToApply() {
             className="inputStyle  text-center"
             id="Nationality"
             onChange={handleInputChange}
+            value={formData.nationality}
           >
             <option value="مصري"> مصري </option>
             <option value="سعودي"> سعودي</option>
@@ -271,6 +293,7 @@ export default function RegistrationToApply() {
             id="IDNUM"
             className="inputStyle"
             name="SSN"
+            value={FormData.SSN}
             onChange={handleInputChange}
           />
         </div>
@@ -282,6 +305,7 @@ export default function RegistrationToApply() {
             name="religion"
             className="inputStyle  text-center"
             id="Religion"
+            value={FormData.religion}
             onChange={handleInputChange}
           >
             <option value="مسلم"> مسلم </option>
@@ -298,6 +322,7 @@ export default function RegistrationToApply() {
             name="marital_status"
             className="inputStyle  text-center"
             id="maritalStatus"
+            value={FormData.marital_status}
             onChange={handleInputChange}
           >
             <option value="اعزب"> اعزب </option>
@@ -315,6 +340,7 @@ export default function RegistrationToApply() {
             className="inputStyle  text-center"
             id="gender"
             onChange={handleInputChange}
+            value={FormData.gender}
           >
             <option value="ذكر"> ذكر </option>
             <option value="انثي"> انثي</option>
@@ -328,6 +354,7 @@ export default function RegistrationToApply() {
             name="type"
             className="inputStyle  text-center"
             id="type"
+            value={FormData.type}
             onChange={handleInputChange}
           >
             <option value="moed"> معيد </option>
@@ -344,6 +371,7 @@ export default function RegistrationToApply() {
             id="job"
             name="job"
             onChange={handleInputChange}
+            value={FormData.job}
           />
         </div>
         <div className="inline-block my-2">
@@ -356,6 +384,7 @@ export default function RegistrationToApply() {
             id="address"
             name="address"
             onChange={handleInputChange}
+            value={FormData.address}
           />
         </div>
         <div className="inline-block my-2">
@@ -368,6 +397,7 @@ export default function RegistrationToApply() {
             id="age"
             name="age"
             onChange={handleInputChange}
+            value={formData.age}
           />
         </div>
         <div className="inline-block my-2">
@@ -379,6 +409,7 @@ export default function RegistrationToApply() {
             className="inputStyle"
             id="GuardiaName"
             name="phone"
+            value={FormData.phone}
             onChange={handleInputChange}
           />
         </div>
@@ -480,7 +511,7 @@ export default function RegistrationToApply() {
               id="original_bachelors_degree"
               className="hidden"
               name="original_bachelors_degree"
-              onChange={handleCustomFileChange}
+              onChange={handleFileChange}
             />
           </div>
         </div>
@@ -643,12 +674,13 @@ export default function RegistrationToApply() {
       </div>
 
       <div className="flex justify-between mt-6">
-        <input
-          type="submit"
-          value={'حفظ'}
-          className="main-btn"
-          onClick={handleSubmit}
-        />
+        <button className="main-btn" onClick={handleSubmit} disabled={loading}>
+          {loading ? (
+            <ClipLoader size={20} color={'#123abc'} loading={loading} />
+          ) : (
+            'تسجيل '
+          )}
+        </button>
 
         <button
           className="bg-gray-300 flex items-center justify-center px-6 py-1.5 rounded-lg text-gray-700 hover:bg-gray-400"
@@ -685,40 +717,54 @@ export default function RegistrationToApply() {
           </div>
         </div>
         <div className="flex flex-1 items-center   container   min-w-3/4  py-5 justify-center   ">
-          <div className="bg-white p-0 md:p-6   w-[90%]  rounded-lg shadow-md  ">
-            <h2 className="font-medium mb-4">خطوة {step} من 2</h2>
-            <div className="flex mb-4">
-              <div
-                className={`w-1/2 border-r border-gray-400 ${
-                  step === 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-                } p-2 text-center cursor-pointer`}
-                onClick={() => setStep(1)}
-              >
-                الخطوة 1
-              </div>
-              <div
-                className={`w-1/2 ${
-                  step === 2 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-                } p-2 text-center cursor-pointer`}
-                onClick={() => setStep(2)}
-              >
-                الخطوة 2
-              </div>
-              <div
-                className={`w-1/2 ${
-                  step === 3 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-                } p-2 text-center cursor-pointer`}
-                onClick={() => setStep(3)}
-              >
-                الخطوة 3
-              </div>
+          {registered ? (
+            <div className="bg-white p-8 rounded shadow-md w-[50%]  text-center   ">
+              {' '}
+              <h2 className=" text-2xl text-green-600  font-bold mb-4      ">
+                !Thank you for your registration
+              </h2>{' '}
+              <p className="text-gray-700">
+                {' '}
+                Registration has been completed successfully the data will be
+                reviewed and approved or not
+              </p>
             </div>
-            <form action="" autoComplete="true">
-              <div className=" border  h-full      rounded-md p-5  ">
-                {stepChange()}
+          ) : (
+            <div className="bg-white p-0 md:p-6   w-[90%]  rounded-lg shadow-md  ">
+              <h2 className="font-medium mb-4">خطوة {step} من 2</h2>
+              <div className="flex mb-4">
+                <div
+                  className={`w-1/2 border-r border-gray-400 ${
+                    step === 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                  } p-2 text-center cursor-pointer`}
+                  onClick={() => setStep(1)}
+                >
+                  الخطوة 1
+                </div>
+                <div
+                  className={`w-1/2 ${
+                    step === 2 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                  } p-2 text-center cursor-pointer`}
+                  onClick={() => setStep(2)}
+                >
+                  الخطوة 2
+                </div>
+                <div
+                  className={`w-1/2 ${
+                    step === 3 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                  } p-2 text-center cursor-pointer`}
+                  onClick={() => setStep(3)}
+                >
+                  الخطوة 3
+                </div>
               </div>
-            </form>
-          </div>
+              <form action="" autoComplete="true">
+                <div className=" border  h-full      rounded-md p-5  ">
+                  {stepChange()}
+                </div>
+              </form>
+            </div>
+          )}
         </div>
         <div className="bg-main  w-full px-2  ">
           <Copyrights />
