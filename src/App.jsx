@@ -41,9 +41,10 @@ import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 import RestPassword from './pages/MainPages/restPassword';
 import { useTranslation } from 'react-i18next';
+import AcceptStudent from './pages/Head of Department/AcceptStudent';
 
 function App() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
@@ -99,6 +100,10 @@ function App() {
       path: '/headofdepartment',
       element: <Layout Actions={headActions} />,
       children: [
+        {
+          path: '/headofdepartment/acceptstudent',
+          element: <AcceptStudent />,
+        },
         {
           path: '/headofdepartment/applyplanresearch',
           element: <ApplyPlanResearch />,

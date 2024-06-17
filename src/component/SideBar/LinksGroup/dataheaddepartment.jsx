@@ -19,5 +19,15 @@ const headActions = [
       },
     ],
   },
+  {
+    id: 3,
+    title: 'قبول الطلاب المتقدمين ',
+    links: [
+      {
+        Ltitle: 'قبول الطلاب المتقدمين ',
+        href: '/headofdepartment/acceptstudent',
+      },
+    ],
+  },
 ];
 export default headActions;

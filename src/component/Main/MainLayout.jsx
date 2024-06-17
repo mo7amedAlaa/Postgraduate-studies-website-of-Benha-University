@@ -1,10 +1,13 @@
 import Copyrights from '../Footer/copyrights';
 import { Link } from 'react-router-dom';
 import { FaAddressCard } from 'react-icons/fa';
+import { ToastContainer } from 'react-toastify';
 
 export default function MainLayout({ title, children }) {
   return (
     <div className=" h-[calc(100vh-(5.3rem))] mt-3  ">
+      <ToastContainer />
+
       <div className=" h-[90%]  shadow-slate-400  shadow-inner       rounded-2xl   ">
         <div className="flex justify-start gap-2 h-[5%] rounded-t-2xl px-5 py-1 items-center w-full  bg-main ">
           <div className="">

@@ -8,16 +8,15 @@ import Footer from '../../component/Footer/Footer';
 import Graduate from '../../assets/images/post.png';
 import { BsChatRightText } from 'react-icons/bs';
 import MainNavbar from '../../component/NavbarHomePage/MainNavbar';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Notifications from '../User/Notification';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { UseApiRequest } from '../../Hooks/RestApi';
 
 function Home() {
   const darkMode = useSelector((state) => state.theme.darkMode);
+  const isLoged = useSelector((state) => state.user.loged);
   const [t] = useTranslation();
-
   const [notifications, setNotifications] = useState([
     { id: 1, message: 'New user registered', type: 'info' },
     { id: 2, message: 'Server downtime alert', type: 'warning' },
@@ -118,7 +117,7 @@ function Home() {
             <br />
             {t('learning')}
           </p>
-          <div className="flex items-end">
+          <div className={isLoged ? '  items-end hidden' : 'flex items-end'}>
             <Link to={'/login'} className="home-btn  ">
               {t('Login')}
             </Link>

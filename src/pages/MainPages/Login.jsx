@@ -1,32 +1,64 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { facLogo, uniLogo } from '../../assets';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { UseApiRequest } from '../../Hooks/RestApi';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { SetUserToken, loging } from '../../Redux/Slices/userStatusSlice';
+import { toast } from 'react-toastify';
+import { ClipLoader } from 'react-spinners';
 
 const Login = () => {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({});
-  const [loginDone, setloginDone] = useState(true);
-  const handleChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
-  const { data, loading, error, callApi } = UseApiRequest(
-    '/auth/loginstudent',
-    'POST',
-    JSON.stringify(formData),
-    null
-  );
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    callApi();
-    if (data && !error) {
-      setloginDone(true);
-      Navigate('/home');
-    } else {
-      setloginDone(false);
+  const [userType, setUserType] = useState('student');
+  const [account, setAccount] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState('');
+  const navigate = useNavigate();
+  const dispatach = useDispatch();
+  const handleLogin = async () => {
+    const loginData =
+      userType === 'student' ? { account, password } : { email, password };
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        `https://4e3c-197-162-15-45.ngrok-free.app/api/auth/loginall/${userType}`,
+        loginData
+      );
+      setLoading(false);
+      console.log(response.data);
+      dispatach(loging(true));
+      dispatach(SetUserToken(response.data.access_token));
+      switch (response.data.login_type) {
+        case 'student':
+          navigate('/');
+          break;
+        case 'admin':
+          navigate('/admin');
+          break;
+        case 'collegeDean':
+          navigate('/CollegeVice');
+          break;
+        case 'prof':
+          navigate('/professor');
+          break;
+        case 'employee':
+          navigate('/employee');
+          break;
+        case 'heads':
+          navigate('/headofdepartment');
+          break;
+        default:
+          navigate('/');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      dispatach(SetUserToken(''));
+      setLoading(false);
     }
   };
+
   return (
     <section className="h-screen flex flex-col   md:flex-row md:justify-center  space-y-10  md:space-y-0 md:space-x-16 items-center my-2 mx-5 md:mx-0 md:my-0">
       <div className="md:w-1/3 max-w-  hidden        md:block">
@@ -69,32 +101,44 @@ const Login = () => {
             name="type"
             id="type"
             className="bg-white border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            onChange={handleChange}
+            onChange={(e) => setUserType(e.target.value)}
           >
             <option selected disabled hidden>
               اختر نوع
             </option>
-            <option value="Student">طالب</option>
-            <option value="Employee">موظف</option>
-            <option value="Doctor">دكتور</option>
-            <option value="DepartmentHead">رئيس قسم</option>
-            <option value="CollegeViceDean">وكيل الكلية</option>
-            <option value="Admin">ادمن</option>
+            <option value="student">طالب</option>
+            <option value="employee">موظف</option>
+            <option value="prof">دكتور</option>
+            <option value="head">رئيس قسم</option>
+            <option value="vice_dean">وكيل الكلية</option>
+            <option value="admin">ادمن</option>
           </select>
-
-          <input
-            className="bg-white border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            type="text"
-            placeholder="عنوان البريد الإلكتروني"
-            name="email"
-            onChange={handleChange}
-          />
+          {userType === 'student' ? (
+            <input
+              className="bg-white border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+              type="email"
+              placeholder="عنوان البريد الإلكتروني"
+              value={account}
+              onChange={(e) => setAccount(e.target.value)}
+            />
+          ) : (
+            <input
+              className="bg-white border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+              type="text"
+              placeholder="عنوان البريد الإلكتروني"
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          )}
           <input
             className="bg-white border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             type="password"
+            required
             placeholder="كلمة المرور"
             name="password"
-            onChange={handleChange}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
         </div>
         <div className="mt-4 flex justify-between font-semibold text-sm">
@@ -112,10 +156,14 @@ const Login = () => {
         <div className="text-center md:text-left">
           <button
             className="mt-4  bg-main hover:bg-cyan-400 px-4 py-2 text-white uppercase rounded text-xs tracking-wider"
-            type="submit"
-            onClick={handleSubmit}
+            onClick={handleLogin}
+            disabled={loading}
           >
-            تسجيل الدخول
+            {loading ? (
+              <ClipLoader size={20} color={'#123abc'} loading={loading} />
+            ) : (
+              '"تسجيل الدخول'
+            )}
           </button>
         </div>
         <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">

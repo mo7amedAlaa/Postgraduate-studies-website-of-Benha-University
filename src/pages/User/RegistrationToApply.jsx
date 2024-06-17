@@ -130,7 +130,7 @@ export default function RegistrationToApply() {
       console.log(jsonPayload);
 
       const response = await axios.post(
-        'https://9f58-197-165-244-176.ngrok-free.app/api/auth/register',
+        'https://18de-197-162-15-45.ngrok-free.app/api/auth/register',
         jsonPayload,
         {
           headers: {
