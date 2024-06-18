@@ -6,20 +6,20 @@ import { LuAlertOctagon, LuDownloadCloud, LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { UseApiRequest } from '../../Hooks/RestApi';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { registering } from '../../Redux/Slices/userStatusSlice';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
+import { URLng } from '../../API/constant';
 export default function RegistrationToApply() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [formErrors, setFormErrors] = useState({});
   const registered = useSelector((state) => state.user.reged);
   const [t] = useTranslation();
   const [step, setStep] = useState(1);
-
   const [formData, setFormData] = useState({
     name: '',
     english_name: '',
@@ -38,24 +38,58 @@ export default function RegistrationToApply() {
     enrollment_papers: [],
     original_bachelors_degree: null,
   });
-  useEffect(() => {}, []);
+
+  const validateForm = () => {
+    let errors = {};
+
+    // Check required fields for current step
+    const requiredFields = {
+      1: [
+        'name',
+        'english_name',
+        'age',
+        'SSN',
+        'job',
+        'religion',
+        'phone',
+        'gender',
+        'marital_status',
+        'email',
+        'address',
+        'department_id',
+        'type',
+      ],
+      2: ['original_bachelors_degree', 'enrollment_papers'],
+    };
+
+    requiredFields[step].forEach((field) => {
+      if (!formData[field]) {
+        errors[field] = `${field} is required`;
+      }
+    });
+
+    // Additional validations
+    if (
+      formData.email &&
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)
+    ) {
+      errors.email = 'Invalid email address';
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleNext = () => {
-    setStep(step + 1);
+    console.log('Validating form for step', step);
+    if (validateForm()) {
+      setStep(step + 1);
+    } else {
+      console.log('Validation failed for step', step);
+    }
   };
   const handleBack = () => {
     setStep(step - 1);
-  };
-  const stepChange = () => {
-    switch (step) {
-      case 1:
-        return Step1;
-      case 2:
-        return Step2;
-      case 3:
-        return Step3;
-      default:
-        return Step1;
-    }
   };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -81,17 +115,7 @@ export default function RegistrationToApply() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Check if all required fields are filled
-    // if (
-    //   Object.values(formData).some(
-    //     (value) => value === '' || (Array.isArray(value) && value.length === 0)
-    //   )
-    // ) {
-    //   Swal.fire('Error', 'All fields are required', 'error');
-    //   return;
-    // }
 
-    // Convert files to base64 to include them in JSON payload
     const convertFilesToBase64 = async (files) => {
       return Promise.all(
         files.map((file) => {
@@ -129,28 +153,22 @@ export default function RegistrationToApply() {
       };
       console.log(jsonPayload);
 
-      const response = await axios.post(
-        'https://18de-197-162-15-45.ngrok-free.app/api/auth/register',
-        jsonPayload,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      const response = await axios.post(`${URLng}/auth/register`, jsonPayload, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       setLoading(false);
       Swal.fire('Success', 'Data uploaded successfully!', 'success');
       console.log('ResponseData:', response.data);
       dispatch(registering(true));
     } catch (err) {
       setLoading(false);
-      setError(err.message);
-      console.error('Error:', err);
+      console.error('Error:', err.message);
       Swal.fire('Error', 'Failed to upload data', 'error');
       dispatch(registering(false));
     }
   };
-
   const Step1 = (
     <div className="min-h-full w-full ">
       <div>
@@ -191,6 +209,9 @@ export default function RegistrationToApply() {
               value={formData.name}
               onChange={handleInputChange}
             />
+            {formErrors.name && (
+              <div className="text-red-500  text-center">{formErrors.name}</div>
+            )}
           </div>
         </fieldset>
       </div>
@@ -233,6 +254,11 @@ export default function RegistrationToApply() {
               value={formData.english_name}
               onChange={handleInputChange}
             />
+            {formErrors.english_name && (
+              <div className="text-red-500  text-center">
+                {formErrors.english_name}
+              </div>
+            )}
           </div>
         </fieldset>
       </div>
@@ -249,6 +275,11 @@ export default function RegistrationToApply() {
             value={FormData.email}
             onChange={handleInputChange}
           />
+          {formErrors.email && (
+            <div className="text-red-500  text-center   ">
+              {formErrors.email}
+            </div>
+          )}
         </div>
         <div className="inline-block my-2">
           <label htmlFor="department_id" className="lableStyle mx-5 w-fit ">
@@ -266,6 +297,11 @@ export default function RegistrationToApply() {
             <option value="3">CS</option>
             <option value="4">SC</option>
           </select>
+          {formErrors.department_id && (
+            <div className="text-red-500  text-center   ">
+              {formErrors.department_id}
+            </div>
+          )}
         </div>
         <div className="inline-block my-2">
           <label htmlFor="" className="lableStyle mx-5  ">
@@ -282,6 +318,11 @@ export default function RegistrationToApply() {
             <option value="سعودي"> سعودي</option>
             <option value="اخري"> اخري</option>
           </select>
+          {formErrors.nationality && (
+            <div className="text-red-500  text-center   ">
+              {formErrors.nationality}
+            </div>
+          )}
         </div>
 
         <div className="inline-block">
@@ -296,6 +337,9 @@ export default function RegistrationToApply() {
             value={FormData.SSN}
             onChange={handleInputChange}
           />
+          {formErrors.SSN && (
+            <div className="text-red-500  text-center   ">{formErrors.SSN}</div>
+          )}
         </div>
         <div className=" inline-block pb-2">
           <label htmlFor="IDNUM" className="lableStyle mx-5">
@@ -312,6 +356,11 @@ export default function RegistrationToApply() {
             <option value="مسيحي"> مسيحي</option>
             <option value="اخري"> اخري</option>
           </select>
+          {formErrors.religion && (
+            <div className="text-red-500  text-center   ">
+              {formErrors.religion}
+            </div>
+          )}
         </div>
 
         <div className="inline-block my-2">
@@ -330,6 +379,11 @@ export default function RegistrationToApply() {
             <option value="مطلق"> مطلق</option>
             <option value="اخري"> اخري</option>
           </select>
+          {formErrors.marital_status && (
+            <div className="text-red-500  text-center   ">
+              {formErrors.marital_status}
+            </div>
+          )}
         </div>
         <div className="inline-block my-2">
           <label htmlFor="gender" className="lableStyle mx-5  ">
@@ -345,6 +399,11 @@ export default function RegistrationToApply() {
             <option value="ذكر"> ذكر </option>
             <option value="انثي"> انثي</option>
           </select>
+          {formErrors.gender && (
+            <div className="text-red-500  text-center   ">
+              {formErrors.gender}
+            </div>
+          )}
         </div>
         <div className="inline-block my-2">
           <label htmlFor="gender" className="lableStyle mx-5  ">
@@ -360,6 +419,11 @@ export default function RegistrationToApply() {
             <option value="moed"> معيد </option>
             <option value="external"> خارجي</option>
           </select>
+          {formErrors.type && (
+            <div className="text-red-500  text-center   ">
+              {formErrors.type}
+            </div>
+          )}
         </div>
         <div className="inline-block my-2">
           <label htmlFor="job" className="lableStyle mx-5  ">
@@ -373,6 +437,9 @@ export default function RegistrationToApply() {
             onChange={handleInputChange}
             value={FormData.job}
           />
+          {formErrors.job && (
+            <div className="text-red-500  text-center   ">{formErrors.job}</div>
+          )}
         </div>
         <div className="inline-block my-2">
           <label htmlFor="address" className="lableStyle mx-5  ">
@@ -386,6 +453,11 @@ export default function RegistrationToApply() {
             onChange={handleInputChange}
             value={FormData.address}
           />
+          {formErrors.address && (
+            <div className="text-red-500  text-center   ">
+              {formErrors.address}
+            </div>
+          )}
         </div>
         <div className="inline-block my-2">
           <label htmlFor="age" className="lableStyle mx-5  ">
@@ -399,6 +471,9 @@ export default function RegistrationToApply() {
             onChange={handleInputChange}
             value={formData.age}
           />
+          {formErrors.age && (
+            <div className="text-red-500  text-center   ">{formErrors.age}</div>
+          )}
         </div>
         <div className="inline-block my-2">
           <label htmlFor="maritalStatus" className="lableStyle mx-5  ">
@@ -412,16 +487,12 @@ export default function RegistrationToApply() {
             value={FormData.phone}
             onChange={handleInputChange}
           />
+          {formErrors.phone && (
+            <div className="text-red-500  text-center   ">
+              {formErrors.phone}
+            </div>
+          )}
         </div>
-      </div>
-      <div className="flex justify-between mt-6">
-        <button
-          className="main-btn flex gap-1 items-center justify-center"
-          onClick={handleNext}
-        >
-          <IoArrowForward />
-          التالي
-        </button>
       </div>
     </div>
   );
@@ -641,21 +712,17 @@ export default function RegistrationToApply() {
           </div>
         </div>
       </div>
-      <div className="flex justify-between mt-6">
-        <button
-          className="main-btn flex gap-1 items-center justify-center"
-          onClick={handleNext}
-        >
-          <IoArrowForward />
-          التالي
-        </button>
-        <button
-          className="bg-gray-300 flex items-center justify-center px-6 py-1.5 rounded-lg text-gray-700 hover:bg-gray-400"
-          onClick={handleBack}
-        >
-          السابق
-          <IoArrowBack />
-        </button>
+      <div className="flex justify-around  mt-6">
+        {formErrors.enrollment_papers && (
+          <div className="text-red-500 text-center ">
+            {formErrors.enrollment_papers}
+          </div>
+        )}
+        {formErrors.original_bachelors_degree && (
+          <div className="text-red-500 text-center ">
+            {formErrors.original_bachelors_degree}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -664,7 +731,7 @@ export default function RegistrationToApply() {
       <div>
         <p className="text-xl tracking-wider my-5 ">الاقرارات المطلوبة</p>
         <div className=" p-5 my-3">
-          <input type="checkbox" className="mx-5  " id="e1" />
+          <input type="checkbox" className="mx-5  " id="e1" required />
           <label htmlFor="e1" className="font-semibold  ">
             اقر انا الطالب المتقدم للدرسة بالدرسات العليا بكلية الحاسبات والذكاء
             الاصطناعي جامعة بنها(ماجيستير/ دكتوراه) بانني لا اعمل بالقطاع
@@ -692,7 +759,6 @@ export default function RegistrationToApply() {
       </div>
     </div>
   );
-
   return (
     <>
       <div className=" flex   flex-col bg-slate-100 items-center   min-h-screen">
@@ -758,11 +824,50 @@ export default function RegistrationToApply() {
                   الخطوة 3
                 </div>
               </div>
-              <form action="" autoComplete="true">
-                <div className=" border  h-full      rounded-md p-5  ">
-                  {stepChange()}
-                </div>
-              </form>
+              <div className=" border  h-full      rounded-md p-5  ">
+                {step === 1 && Step1}
+                {step === 2 && Step2}
+                {step === 3 && Step3}
+              </div>
+              <div className="flex justify-between items-center mt-5">
+                {step < 3 && (
+                  <button
+                    onClick={handleNext}
+                    className={
+                      step == 3
+                        ? 'main-btn bg-gray-400 flex  justify-around items-center '
+                        : 'main-btn flex  justify-around items-center'
+                    }
+                  >
+                    Next
+                    <IoArrowForward />
+                  </button>
+                )}
+
+                {step === 3 && (
+                  <button
+                    onClick={handleSubmit}
+                    className="main-btn flex  justify-around items-center"
+                  >
+                    Submit
+                    <LuUploadCloud />
+                  </button>
+                )}
+                <button
+                  onClick={handleBack}
+                  disabled={step === 1}
+                  className={
+                    step === 1
+                      ? 'main-btn bg-gray-400 flex  justify-around items-center '
+                      : 'main-btn flex  justify-around items-center'
+                  }
+                >
+                  Back
+                  <IoArrowBack />
+                </button>
+              </div>
+              {loading && <ClipLoader />}
+              {error && <div className="error-message">{error}</div>}
             </div>
           )}
         </div>

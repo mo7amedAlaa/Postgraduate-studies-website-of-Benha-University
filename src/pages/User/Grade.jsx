@@ -1,5 +1,5 @@
 import { DataGrid } from '@mui/x-data-grid';
-import { graduatedMenIcon, ifoPdf, uniLogo } from '../../assets';
+import { graduatedMenIcon, uniLogo } from '../../assets';
 
 import Copyrights from '../../component/Footer/copyrights';
 
