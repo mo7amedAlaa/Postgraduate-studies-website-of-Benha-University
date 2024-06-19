@@ -42,6 +42,8 @@ import { AuthContext } from './context/AuthContext';
 import RestPassword from './pages/MainPages/restPassword';
 import { useTranslation } from 'react-i18next';
 import AcceptStudent from './pages/Head of Department/AcceptStudent';
+import UserProfile from './component/AccountSetting/UserProfile';
+import { useSelector } from 'react-redux';
 
 function App() {
   const { i18n } = useTranslation();
@@ -49,13 +51,14 @@ function App() {
     i18n.changeLanguage(lng);
   };
   const { currentUser } = useContext(AuthContext);
+  const userInfo = useSelector((state) => state.user.UserInfo);
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
       return <Navigate to="/chatslogin" />;
     }
-
     return children;
   };
+
   const router = createBrowserRouter([
     {
       path: '/',
@@ -129,6 +132,7 @@ function App() {
       element: <Layout Actions={AdminActions} />,
     },
     { path: '/login', element: <Login /> },
+    { path: '/accountsetting', element: <UserProfile /> },
     { path: '/restpassword', element: <RestPassword /> },
     { path: '/payment', element: <Payment /> },
     { path: '/registration', element: <RegistrationToApply /> },

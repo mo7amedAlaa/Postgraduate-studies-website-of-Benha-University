@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 const userStatusSlice = createSlice({
   name: 'user',
-  initialState: { reged: false, loged: false, accpeted: false, token: '' },
+  initialState: { reged: false, loged: false, accpeted: false, UserInfo: {} },
   reducers: {
     registering: (state, action) => {
       state.reged = action.payload;
@@ -12,13 +12,13 @@ const userStatusSlice = createSlice({
     accpeting: (state, action) => {
       state.accpet = action.payload;
     },
-    SetUserToken: (state, action) => {
-      state.token = action.payload;
+    SetUserInfo: (state, action) => {
+      state.UserInfo = action.payload;
     },
   },
 });
 // Action creators are generated for each case reducer function
-export const { loging, registering, accpeting, SetUserToken } =
+export const { loging, registering, accpeting, SetUserInfo } =
   userStatusSlice.actions;
 
 export default userStatusSlice.reducer;

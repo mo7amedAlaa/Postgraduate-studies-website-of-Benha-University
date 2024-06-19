@@ -36,6 +36,7 @@ export default function RegistrationToApply() {
     email: '',
     type: '',
     enrollment_papers: [],
+    personalImage: null,
     original_bachelors_degree: null,
   });
 
@@ -59,7 +60,7 @@ export default function RegistrationToApply() {
         'department_id',
         'type',
       ],
-      2: ['original_bachelors_degree', 'enrollment_papers'],
+      2: ['original_bachelors_degree', 'enrollment_papers', 'personalImage'],
     };
 
     requiredFields[step].forEach((field) => {
@@ -69,12 +70,12 @@ export default function RegistrationToApply() {
     });
 
     // Additional validations
-    if (
-      formData.email &&
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)
-    ) {
-      errors.email = 'Invalid email address';
-    }
+    // if (
+    //   formData.email &&
+    //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)
+    // ) {
+    //   errors.email = 'Invalid email address';
+    // }
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -100,7 +101,7 @@ export default function RegistrationToApply() {
   };
   const handleFileChange = (event) => {
     const { name, files } = event.target;
-    if (name == 'original_bachelors_degree') {
+    if (name == 'original_bachelors_degree' || name == 'personalImage') {
       setFormData({
         ...formData,
         [name]: files[0],
@@ -145,11 +146,15 @@ export default function RegistrationToApply() {
       const bachelorsDegreeBase64 = await fileToBase64Single(
         formData.original_bachelors_degree
       );
+      const personalImageBase64 = await fileToBase64Single(
+        formData.personalImage
+      );
 
       const jsonPayload = {
         ...formData,
         enrollment_papers: enrollmentPapersBase64,
         original_bachelors_degree: bachelorsDegreeBase64,
+        personalImage: personalImageBase64,
       };
       console.log(jsonPayload);
 
@@ -584,6 +589,11 @@ export default function RegistrationToApply() {
               name="original_bachelors_degree"
               onChange={handleFileChange}
             />
+            {formErrors.original_bachelors_degree && (
+              <div className="text-red-500 text-center ">
+                {formErrors.original_bachelors_degree}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
@@ -676,9 +686,14 @@ export default function RegistrationToApply() {
               type="file"
               id="Photograph"
               className="hidden "
-              name="Photograph"
+              name="personalImage"
               onChange={handleFileChange}
             />
+            {formErrors.personalImage && (
+              <div className="text-red-500  text-center   ">
+                {formErrors.personalImage}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
@@ -718,11 +733,6 @@ export default function RegistrationToApply() {
             {formErrors.enrollment_papers}
           </div>
         )}
-        {formErrors.original_bachelors_degree && (
-          <div className="text-red-500 text-center ">
-            {formErrors.original_bachelors_degree}
-          </div>
-        )}
       </div>
     </div>
   );
@@ -738,24 +748,6 @@ export default function RegistrationToApply() {
             الحكومي ولا قطاع الاعمال وهذا اقرار مني بذلك.
           </label>
         </div>
-      </div>
-
-      <div className="flex justify-between mt-6">
-        <button className="main-btn" onClick={handleSubmit} disabled={loading}>
-          {loading ? (
-            <ClipLoader size={20} color={'#123abc'} loading={loading} />
-          ) : (
-            'تسجيل '
-          )}
-        </button>
-
-        <button
-          className="bg-gray-300 flex items-center justify-center px-6 py-1.5 rounded-lg text-gray-700 hover:bg-gray-400"
-          onClick={handleBack}
-        >
-          السابق
-          <IoArrowBack />
-        </button>
       </div>
     </div>
   );

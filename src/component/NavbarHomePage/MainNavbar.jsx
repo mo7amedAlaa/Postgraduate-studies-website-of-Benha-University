@@ -12,10 +12,12 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../../Redux/Slices/darkModeSlice';
+import { Link } from 'react-router-dom';
 
 function MainNavbar({ notS, count }) {
   const dispatch = useDispatch();
   const dark = useSelector((state) => state.theme.darkMode);
+  const userInfo = useSelector((state) => state.user.UserInfo);
   const [settOpen, setSettOpen] = useState(false);
   const { t, i18n } = useTranslation();
   const changeLanguage = (lng) => {
@@ -103,12 +105,14 @@ function MainNavbar({ notS, count }) {
                   id="settingMenu   "
                   className="  notification-dropdown absolute top-[70%]  z-50 left-8  w-28        bg-white border-2   shadow-2xl  border-main border-solid             rounded-md         "
                 >
-                  <li
-                    className="p-3 border-b
+                  <Link to={'./accountsetting'}>
+                    <li
+                      className="p-3 border-b
               border-[#eee] border-solid   last:border-none  hover:cursor-pointer "
-                  >
-                    {t('Account')}
-                  </li>
+                    >
+                      {t('Account')}
+                    </li>
+                  </Link>
                   <li
                     className="p-3 border-b
               border-[#eee] border-solid   last:border-none  hover:cursor-pointer"

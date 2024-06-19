@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { SetUserToken, loging } from '../../Redux/Slices/userStatusSlice';
+import { SetUserInfo, loging } from '../../Redux/Slices/userStatusSlice';
 import { ClipLoader } from 'react-spinners';
 import { URLng } from '../../API/constant';
 import Swal from 'sweetalert2';
@@ -44,25 +44,25 @@ const Login = () => {
       return;
     }
     // Email format validation (for  user types)
-    if (
-      (userType !== 'student' &&
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) ||
-      (userType === 'student' &&
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(account))
-    ) {
-      toast.error('Please enter a valid email/account address.', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-        transition: Bounce,
-      });
-      return;
-    }
+    // if (
+    //   (userType !== 'student' &&
+    //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) ||
+    //   (userType === 'student' &&
+    //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(account))
+    // ) {
+    //   toast.error('Please enter a valid email/account address.', {
+    //     position: 'top-right',
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: 'light',
+    //     transition: Bounce,
+    //   });
+    //   return;
+    // }
     try {
       setLoading(true);
       const response = await axios.post(
@@ -72,7 +72,7 @@ const Login = () => {
       console.log(response.data);
       setLoading(false);
       dispatch(loging(true));
-      dispatch(SetUserToken(response.data.access_token));
+      dispatch(SetUserInfo(response.data));
       // route after login
       switch (response.data.login_type) {
         case 'student':
@@ -104,7 +104,7 @@ const Login = () => {
         footer: 'Server not response',
       });
       console.error('Error during login:', error);
-      dispatch(SetUserToken(''));
+      dispatch(SetUserInfo(''));
       setLoading(false);
     }
   };

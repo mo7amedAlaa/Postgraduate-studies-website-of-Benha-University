@@ -1,5 +1,5 @@
 import Copyrights from '../../component/Footer/Copyrights';
-import { Laypdf, graduatedMenIcon, uniLogo } from '../../assets';
+import { Laypdf, StudyTables, graduatedMenIcon, uniLogo } from '../../assets';
 
 function StudyTable() {
   return (
@@ -26,7 +26,7 @@ function StudyTable() {
           <div className="my-5">
             <h2 className="my-5 ">جداول الدراسات العليا 2024-2023</h2>
             <embed
-              src={Laypdf}
+              src={StudyTables}
               type=" "
               className="w-[70%]  min-h-80 mx-auto  "
             />

@@ -6,6 +6,8 @@ import Laypdf from './pdf/new_lay_premaster_2021.pdf';
 import bg1 from './images/bg-gradute1.png';
 import ifoPdf from './images/info.png';
 import cx from './images/طلب القيد.png';
+import ExamTables from './images/image.png';
+import StudyTables from './pdf/study.pdf';
 export {
   personaLogo,
   graduatedMenIcon,
@@ -15,4 +17,6 @@ export {
   bg1,
   ifoPdf,
   cx,
+  ExamTables,
+  StudyTables,
 };

@@ -1,7 +1,17 @@
+import { useEffect } from 'react';
 import { Laypdf, graduatedMenIcon, uniLogo } from '../../assets';
 import Copyrights from '../../component/Footer/Copyrights';
-
+import axios from 'axios';
+import { URLng } from '../../API/constant';
+import { ExamTables } from '../../assets';
 function ExamTable() {
+  useEffect(() => {
+    async function fetchTable() {
+      const res = await axios.get(`${URLng}/schedules`);
+      console.log(res.data);
+    }
+    fetchTable();
+  });
   return (
     <div className="bg-slate-100  flex flex-col    min-h-screen">
       <div className="flex  bg-main   items-center justify-around">
@@ -27,7 +37,7 @@ function ExamTable() {
             <h2 className="my-5 ">جداول امتحانات الدراسات العليا 2024-2023</h2>
             <ul className="list-disc ms-10  ">
               <li>
-                <a href={Laypdf} target="_blank" rel="noopener noreferrer">
+                <a href={ExamTables} target="_blank" rel="noopener noreferrer">
                   الفصل الدراسى الأول
                 </a>
               </li>
@@ -40,10 +50,10 @@ function ExamTable() {
             <h2 className="my-5 ">جداول امتحانات الدراسات العليا 2023-2022</h2>
             <ul className="list-disc ms-10  ">
               <li>
-                <a href="">الفصل الدراسى الأول</a>
+                <a href={ExamTables}>الفصل الدراسى الأول</a>
               </li>
               <li>
-                <a href="">الفصل الدراسى الثاني</a>
+                <a href={ExamTables}>الفصل الدراسى الثاني</a>
               </li>
             </ul>
           </div>
@@ -51,10 +61,10 @@ function ExamTable() {
             <h2 className="my-5 ">جداول امتحانات الدراسات العليا 2022-2021</h2>
             <ul className="list-disc ms-10  ">
               <li>
-                <a href="">الفصل الدراسى الأول</a>
+                <a href={ExamTables}>الفصل الدراسى الأول</a>
               </li>
               <li>
-                <a href="">الفصل الدراسى الثاني</a>
+                <a href={ExamTables}>الفصل الدراسى الثاني</a>
               </li>
             </ul>
           </div>
@@ -62,10 +72,10 @@ function ExamTable() {
             <h2 className="my-5 ">جداول امتحانات الدراسات العليا 2021-2020</h2>
             <ul className="list-disc ms-10  ">
               <li>
-                <a href="">الفصل الدراسى الأول</a>
+                <a href={ExamTables}>الفصل الدراسى الأول</a>
               </li>
               <li>
-                <a href="">الفصل الدراسى الثاني</a>
+                <a href={ExamTables}>الفصل الدراسى الثاني</a>
               </li>
             </ul>
           </div>
