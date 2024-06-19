@@ -42,6 +42,14 @@ function GradesStudent() {
     
     // callApi();
   };
+  useEffect(()=>{
+    // const res = axios.get("https://28b9-197-162-23-38.ngrok-free.app/api/showcourses")
+
+    //  console.log(res.data)
+
+
+    
+  },[])
 
 
   return (
