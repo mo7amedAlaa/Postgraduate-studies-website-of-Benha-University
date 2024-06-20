@@ -3,8 +3,10 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { DataGrid } from "@mui/x-data-grid";
 import { CiSearch } from "react-icons/ci";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { UseApiRequest } from "../../Hooks/RestApi";
+import { URLng } from "../../API/constant";
+import { useSelector } from "react-redux";
 const columns = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "title", headerName: "كود المادة", width: 130 },
@@ -42,15 +44,70 @@ function GradesStudent() {
     
     // callApi();
   };
-  useEffect(()=>{
-    // const res = axios.get("https://28b9-197-162-23-38.ngrok-free.app/api/showcourses")
+  const [name , setName] = useState('')
+  const [codeSt , setCodeSt] = useState('')
+  const [codeSub , setCodeSub] = useState('')
+  const [degree , setDegree] = useState('')
 
-    //  console.log(res.data)
 
 
-    
-  },[])
+  // const token = useSelector((state) => state.user.UserInfo.token);
+  // console.log(token)
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await axios.post(
+  //         `${URLng}/showgrade`,
+  //         {},
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         }
+  //       );
+
+  //       console.log(res.data);
+  //       console.log("GradesStudent");
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+
+  //   if (token) {
+  //     fetchData();
+  //   }
+  // }, [token]);
+
+//  const handleChangeName = (e)=>{
+//   e.preventDefault()
+//   setName(e.target.value)
+//   console.log(name)
+//  }
+
+//  const handleChangeCodeSub = (e)=>{
+//   e.preventDefault()
+//   setCodeSub(e.target.value)
+
+//   console.log(codeSub)
+//  }
+//  const handleChangeCodeSt = (e)=>{
+//   e.preventDefault()
+//   setCodeSt(e.target.value)
+
+//   console.log(codeSt)
+//  }
+//  const handleChangeDegree = (e)=>{
+//   e.preventDefault()
+//   setDegree(e.target.value)
+
+//   console.log(degree)
+//  }
+//  const handleSubmit =(e)=>{
+//   e.preventDefault()
+//   const formData = new FormData()
+//   formData.append("", name)
+//  }
 
   return (
     <div>
@@ -65,6 +122,7 @@ function GradesStudent() {
                     اسم الطالب
                   </label>
                   <input
+                  onChange={handleChangeName}
                     type="text"
                     placeholder="ادخل اسمك الكامل"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
@@ -75,6 +133,7 @@ function GradesStudent() {
                     كود الطالب
                   </label>
                   <input
+                      onChange={handleChangeCodeSt}
                     type="text"
                     placeholder="ادخل الكود الخاص بك"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
@@ -86,6 +145,7 @@ function GradesStudent() {
                     كود المادة
                   </label>
                   <input
+                  onChange={handleChangeCodeSub}
                     type="text"
                     placeholder="ادخل كود المادة"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
@@ -96,6 +156,7 @@ function GradesStudent() {
                     الدرجة
                   </label>
                   <input
+                  onChange={handleChangeDegree}
                     type="text"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
                     placeholder="ادخل الدرجة"
