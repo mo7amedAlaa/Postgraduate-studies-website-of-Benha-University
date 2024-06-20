@@ -92,7 +92,7 @@ function RecordPoint() {
     <>
       <div className="flex flex-col items-center h-screen font-bold">
         <div>
-          <img src={`public/${resUrl}`} alt="fdfd" />
+          <img src={`https://2a1c-197-165-184-3.ngrok-free.app/research_plans/yVvPl5ugBESpo34WJUmMk8T3gkwfWVzouhnxZGiN.png`} alt="fdfd" />
         </div>
         <div className="flex bg-main w-full items-center justify-around py-4">
           <div>

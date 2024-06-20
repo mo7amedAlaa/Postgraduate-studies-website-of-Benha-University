@@ -1,164 +1,18 @@
-// import { LuUploadCloud } from 'react-icons/lu';
-// import Swal from 'sweetalert2';
-// import MainLayout from '../../component/Main/MainLayout';
-// import { useState } from 'react';
-// const handleUpload = async () => {
-//   console.log("Clicking upload")
-//   console.log(sub)
-//   const { value: file } = await Swal.fire({
-//     title: 'Select image',
-//     input: 'file',
-//     inputAttributes: {
-//       accept: 'image/*',
-//       'aria-label': 'Upload your profile picture',
-//     },
-//   });
-//   if (file) {
-//     const reader = new FileReader();
-//     reader.onload = (e) => {
-//       Swal.fire({
-//         title: 'Your uploaded picture',
-//         imageUrl: e.target.result,
-//         imageAlt: 'The uploaded picture',
-//       });
-//     };
-//     reader.readAsDataURL(file);
-//   }
-// };
-// function UploadMaterial() {
-//   const [sub , setSub] = useState('')
-//   const [dep , setDep] = useState('')
-
-//   const handleChageSub = (e)=>{
-//     setSub(e.target.value)
-
-//   }
-//   const handleChageDep = (e)=>{
-//     setDep(e.target.value)
-
-//   }
-
-//   // const handleSubmit = (e)=>{
-//   //   e.preventDefault()
-//   //   console.log("Clicked")
-//   // }
-
-
-//   return (
-//     <>
-//       <MainLayout>
-//         <div>
-//           <div className="container mx-auto border rounded-md my-5  ">
-//             <form
-//               action=""
-//               className="p-14"
-//               onSubmit={(e) => {
-//                 e.preventDefault();
-//               }}
-//             >
-//               <div>
-//                 <div>
-//                   <h2 className=" font-sans text-3xl font-semibold  text-center mb-5">
-//                     {' '}
-//                     المادة المراد رفع المقرارت لها
-//                   </h2>
-//                   <fieldset className="border my-2 border-gray-600 p-3 ">
-//                     <legend>اسم المقرر والقسم التبع لها</legend>
-//                     <div className=" flex justify-around items-center  ">
-//                       <div className=" flex items-center justify-between  my-2">
-//                         <label htmlFor="" className="   mx-5 ">
-//                           المادة
-//                         </label>
-//                         <select name="sub" id="sub" onChange={handleChageSub}>
-//                           <option value="1">sub1</option>
-//                           <option value="1">sub1</option>
-//                           <option value="1">sub1</option>
-//                           <option value="1">sub1</option>
-//                           <option value="2">CS</option>
-//                         </select>
-//                       </div>
-//                       <div className=" flex items-center justify-between  my-2">
-//                         <label htmlFor="" className="   mx-5 ">
-//                           القسم
-//                         </label>
-//                         <select name="sub" id="sub" onChange={handleChageDep}>
-//                           <option value="1">IS</option>
-//                           <option value="2">CS</option>
-//                           <option value="3">AI</option>
-//                           <option value="4">SC</option>
-//                         </select>
-//                       </div>
-//                     </div>
-//                   </fieldset>
-//                 </div>
-
-//                 <div>
-//                   <h2 className=" font-sans text-3xl font-semibold  text-center mb-5">
-//                     {' '}
-//                     مقررات العام الدراسي
-//                   </h2>
-//                   <fieldset className="border my-2 border-gray-600 p-3 ">
-//                     <legend> كل مايتعلق بالمقرر</legend>
-//                     <div className=" flex justify-around items-center  ">
-//                       <div className=" flex items-center justify-between  my-2">
-//                         <label htmlFor="" className="   mx-5 ">
-//                           محاضرات المقرر
-//                         </label>
-//                         <div className="flex  gap-10">
-//                           <button
-//                             className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
-//                             onClick={handleUpload}
-//                           >
-//                             رفع
-//                             <LuUploadCloud />
-//                           </button>
-//                         </div>
-//                       </div>
-//                       <div className=" flex items-center my-2">
-//                         <label htmlFor="" className="   mx-5 ">
-//                           مصادر اخرى
-//                         </label>
-//                         <div className="flex  gap-10">
-//                           <button
-//                             className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
-//                             onClick={handleUpload}
-//                           >
-//                             رفع
-//                             <LuUploadCloud />
-//                           </button>
-//                         </div>
-//                       </div>
-//                     </div>
-//                   </fieldset>
-//                 </div>
-//               </div>
-//             </form>
-//           </div>
-//           <div className="programs flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  "></div>
-//         </div>
-//       </MainLayout>
-//     </>
-//   );
-// }
-
-// export default UploadMaterial;
-
-
-
-
 import { LuUploadCloud } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 import MainLayout from '../../component/Main/MainLayout';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { URLng } from '../../API/constant';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { useSSR } from 'react-i18next';
 
 function UploadMaterial() {
   const [sub, setSub] = useState('');
-  const [dep, setDep] = useState('');
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [errors, setErrors] = useState({});
 
   const handleUpload = async () => {
-    console.log('Clicking upload');
-    console.log(sub);
     const { value: file } = await Swal.fire({
       title: 'Select image',
       input: 'file',
@@ -178,7 +32,6 @@ function UploadMaterial() {
       };
       reader.readAsDataURL(file);
 
-      // Set the uploaded file to state
       setUploadedFile(file);
     }
   };
@@ -187,112 +40,145 @@ function UploadMaterial() {
     setSub(e.target.value);
   };
 
-  const handleChangeDep = (e) => {
-    setDep(e.target.value);
+  // const handleChangeDep = (e) => {
+  //   setDep(e.target.value);
+  // };
+  const [dep, setDep] = useState([]);
+
+  const validateForm = () => {
+    let formErrors = {};
+    if (!sub) formErrors.sub = 'Subject is required';
+    if (!dep) formErrors.dep = 'Department ID is required';
+    if (!uploadedFile) formErrors.uploadedFile = 'Material file is required';
+    return formErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted');
-    console.log('Subject:', sub);
-    console.log('Department:', dep);
-    console.log('Uploaded File:', uploadedFile);
-    // You can now process the uploaded file as needed
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('sub', sub);
+    formData.append('department_id', dep);
+    formData.append('material', uploadedFile);
+
+    try {
+      const response = await fetch('YOUR_API_ENDPOINT', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        Swal.fire('Success', 'Material added successfully!', 'success');
+      } else {
+        Swal.fire('Error', 'Failed to add material', 'error');
+      }
+    } catch (error) {
+      Swal.fire('Error', 'Failed to add material', 'error');
+    }
   };
+
+  const courseData = {
+    message: "Material Added Successfully.",
+    course: {
+      id: 9,
+      code: "1238",
+      name: "MATH",
+      hours: "2",
+      material: "course/materials/6674b14deed57.png",
+      time: "last",
+      chose: "elective",
+      created_at: "2024-06-19T16:51:54.000000Z",
+      updated_at: "2024-06-20T22:46:38.000000Z",
+    }
+  };
+  const token = useSelector((state) => state.user.UserInfo?.token);
+  useEffect(() => {
+    async function fetchReports() {
+      const res = await axios.post(
+        `${URLng}/departmentss`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setDep(res.data);
+      console.log(res.data)
+    }
+    fetchReports();
+
+  }, []);
 
   return (
-    <>
-      <MainLayout>
-        <div>
-          <div className="container mx-auto border rounded-md my-5">
-            <form className="p-14" onSubmit={handleSubmit}>
+    <MainLayout>
+      <div className="container mx-auto p-8">
+        <div className="bg-white shadow-md rounded-lg p-6">
+          <h2 className="text-3xl font-semibold mb-6 text-center">Course Details</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <div>
-                  <h2 className="font-sans text-3xl font-semibold text-center mb-5">
-                    المادة المراد رفع المقرارت لها
-                  </h2>
-                  <fieldset className="border my-2 border-gray-600 p-3">
-                    <legend>اسم المقرر والقسم التبع لها</legend>
-                    <div className="flex justify-around items-center">
-                      <div className="flex items-center justify-between my-2">
-                        <label htmlFor="sub" className="mx-5">
-                          المادة
-                        </label>
-                        <select name="sub" id="sub" onChange={handleChangeSub}>
-                          <option value="1">sub1</option>
-                          <option value="2">sub2</option>
-                          <option value="3">sub3</option>
-                          <option value="4">sub4</option>
-                          <option value="5">CS</option>
-                        </select>
-                      </div>
-                      <div className="flex items-center justify-between my-2">
-                        <label htmlFor="dep" className="mx-5">
-                          القسم
-                        </label>
-                        <select name="dep" id="dep" onChange={handleChangeDep}>
-                          <option value="1">IS</option>
-                          <option value="2">CS</option>
-                          <option value="3">AI</option>
-                          <option value="4">SC</option>
-                        </select>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
-
-                <div>
-                  <h2 className="font-sans text-3xl font-semibold text-center mb-5">
-                    مقررات العام الدراسي
-                  </h2>
-                  <fieldset className="border my-2 border-gray-600 p-3">
-                    <legend>كل مايتعلق بالمقرر</legend>
-                    <div className="flex justify-around items-center">
-                      <div className="flex items-center justify-between my-2">
-                        <label htmlFor="lectures" className="mx-5">
-                          محاضرات المقرر
-                        </label>
-                        <div className="flex gap-10">
-                          <button
-                            className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
-                            onClick={handleUpload}
-                            type="button"
-                          >
-                            رفع
-                            <LuUploadCloud />
-                          </button>
-                        </div>
-                      </div>
-                      <div className="flex items-center my-2">
-                        <label htmlFor="otherSources" className="mx-5">
-                          مصادر اخرى
-                        </label>
-                        <div className="flex gap-10">
-                          <button
-                            className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
-                            onClick={handleUpload}
-                            type="button"
-                          >
-                            رفع
-                            <LuUploadCloud />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
+                <label className="block text-gray-700 font-medium mb-2">Course ID</label>
+                <input type="text" value={courseData.course.id} className="w-full p-3 border rounded bg-gray-100" readOnly />
               </div>
-              <button type="submit" className="main-btn mt-5">
-                Submit
-              </button>
-            </form>
-          </div>
-          <div className="programs flex justify-center items-center gap-[3rem] flex-wrap p-3 font-sans"></div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Course Code</label>
+                <input type="text" value={courseData.course.code} className="w-full p-3 border rounded bg-gray-100" readOnly />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Course Name</label>
+                <input type="text" value={courseData.course.name} className="w-full p-3 border rounded bg-gray-100" readOnly />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Course Hours</label>
+                <input type="text" value={courseData.course.hours} className="w-full p-3 border rounded bg-gray-100" readOnly />
+              </div>
+             
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Time</label>
+                <input type="text" value={courseData.course.time} className="w-full p-3 border rounded bg-gray-100" readOnly />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Chose</label>
+                <input type="text" value={courseData.course.chose} className="w-full p-3 border rounded bg-gray-100" readOnly />
+              </div>
+              
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Department ID</label>
+                <select   className="w-full p-3 border rounded bg-gray-100">
+                    {
+                     dep?.map((department)=>{<option value={department.type}>{department.type }</option>})
+                    }
+                </select>
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Subject</label>
+                <input type="text" value={sub} onChange={handleChangeSub} className="w-full p-3 border rounded" />
+                {errors.sub && <p className="text-red-500 text-sm mt-1">{errors.sub}</p>}
+              </div>
+              
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Material</label>
+                <button type="button" onClick={handleUpload} className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 flex items-center justify-center">
+                  <LuUploadCloud className="mr-2" />
+                  Upload Material
+                </button>
+                {errors.uploadedFile && <p className="text-red-500 text-sm mt-1">{errors.uploadedFile}</p>}
+              </div>
+            </div>
+            <button type="submit" className="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+              Submit
+            </button>
+          </form>
         </div>
-      </MainLayout>
-    </>
+      </div>
+    </MainLayout>
   );
 }
 
 export default UploadMaterial;
-
