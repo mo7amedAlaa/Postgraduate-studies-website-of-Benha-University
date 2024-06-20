@@ -4,7 +4,7 @@ import axios from 'axios';
 import { graduatedMenIcon, uniLogo } from '../../assets';
 import Copyrights from '../../component/Footer/Copyrights';
 import Swal from 'sweetalert2'; // Import SweetAlert
-import { URLng } from '../../API/constant';
+import { URLImage, URLng } from '../../API/constant';
 import { useSelector } from 'react-redux';
 
 function RecordPoint() {
@@ -92,7 +92,7 @@ function RecordPoint() {
     <>
       <div className="flex flex-col items-center h-screen font-bold">
         <div>
-          <img src={`public/${resUrl}`} alt="fdfd" />
+          <img src={`${URLImage}/${resUrl}`} alt="suc" />
         </div>
         <div className="flex bg-main w-full items-center justify-around py-4">
           <div>
