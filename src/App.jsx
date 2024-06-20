@@ -68,23 +68,23 @@ function App() {
   const ProtectedRoute = ({ children, roles }) => {
     const userInfo = useSelector((state) => state.user.UserInfo);
 
-    if (!userInfo) {
-      Swal.fire(
-        'Error',
-        'You must be logged in to access this page login required',
-        'error'
-      );
-      return <Navigate to="/login" />;
-    }
+    // if (!userInfo) {
+    //   Swal.fire(
+    //     'Error',
+    //     'You must be logged in to access this page login required',
+    //     'error'
+    //   );
+    //   return <Navigate to="/login" />;
+    // }
 
-    if (roles && !roles.includes(userInfo.user_data.login_type)) {
-      Swal.fire(
-        'Error',
-        'You do not have permission to access this page',
-        'error'
-      );
-      return <Navigate to="/" />;
-    }
+    // if (roles && !roles.includes(userInfo.user_data.login_type)) {
+    //   Swal.fire(
+    //     'Error',
+    //     'You do not have permission to access this page',
+    //     'error'
+    //   );
+    //   return <Navigate to="/" />;
+    // }
 
     return children;
   };
@@ -93,10 +93,10 @@ function App() {
     const userPaid = useSelector(
       (state) => state.user.UserInfo.user_data?.payment
     );
-    if (userPaid === 'pending') {
-      toast.error('You must complete the payment first');
-      return <Navigate to="/payment" />;
-    }
+    // if (userPaid === 'pending') {
+    //   toast.error('You must complete the payment first');
+    //   return <Navigate to="/payment" />;
+    // }
     return children;
   };
   const router = createBrowserRouter([
