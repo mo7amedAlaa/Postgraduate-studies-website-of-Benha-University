@@ -379,10 +379,10 @@ export default function RegistrationToApply() {
             value={FormData.marital_status}
             onChange={handleInputChange}
           >
-            <option value="اعزب"> اعزب </option>
-            <option value="متزوج"> متزوج</option>
-            <option value="مطلق"> مطلق</option>
-            <option value="اخري"> اخري</option>
+            <option value="single"> اعزب </option>
+            <option value="married"> متزوج</option>
+            <option value="divorce"> مطلق</option>
+            <option value="other"> اخري</option>
           </select>
           {formErrors.marital_status && (
             <div className="text-red-500  text-center   ">
@@ -401,8 +401,8 @@ export default function RegistrationToApply() {
             onChange={handleInputChange}
             value={FormData.gender}
           >
-            <option value="ذكر"> ذكر </option>
-            <option value="انثي"> انثي</option>
+            <option value="male"> ذكر </option>
+            <option value="female"> انثي</option>
           </select>
           {formErrors.gender && (
             <div className="text-red-500  text-center   ">

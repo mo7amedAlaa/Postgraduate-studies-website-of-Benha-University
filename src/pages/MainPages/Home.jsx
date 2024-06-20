@@ -175,7 +175,7 @@ function Home() {
               </h3>
             </div>
           </Link>
-          {userInfo.user_data?.degree != 'master' && (
+          {userInfo?.user_data?.degree != 'master' && (
             <Link to={'/recordpoint'}>
               <div className="ser-card">
                 <div className="flex items-center justify-center">
