@@ -49,7 +49,9 @@ function ApplyPlanResearch() {
                       <label
                         htmlFor=""
                         className=" text-2xl font-bold  mx-5 "
-                      ></label>
+                      >
+                        الخطط البحثية لعام 2024 / 2025
+                      </label>
                       <div className="flex  gap-10">
                         <button
                           className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
