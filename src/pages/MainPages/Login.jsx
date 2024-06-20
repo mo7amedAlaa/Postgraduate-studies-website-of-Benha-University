@@ -75,7 +75,7 @@ const Login = () => {
       dispatch(loging(true));
       dispatch(SetUserInfo(response.data));
       // route after login
-      switch (response.data.login_type) {
+      switch (response.data.user_data.login_type) {
         case 'student':
           navigate('/');
           break;
