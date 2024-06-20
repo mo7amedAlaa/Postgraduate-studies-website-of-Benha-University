@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { graduatedMenIcon, uniLogo } from '../../assets';
@@ -8,9 +8,11 @@ import { URLng } from '../../API/constant';
 import { useSelector } from 'react-redux';
 
 function RecordPoint() {
-  const userInfo = useSelector((state) => state.user.userInfo);
-  const token = useSelector((state) => state.user.userInfo?.token);
+  const userInfo = useSelector((state) => state.user.UserInfo);
+  const token = useSelector((state) => state.user.UserInfo?.token);
+  console.log(token);
   const [degree, setDegree] = useState('Masters');
+  const [resUrl, setResUrl] = useState('');
   const [topicArabic, setTopicArabic] = useState('');
   const [topicEnglish, setTopicEnglish] = useState('');
   const [supervisors, setSupervisors] = useState([
@@ -19,7 +21,22 @@ function RecordPoint() {
   const [supervisorName, setSupervisorName] = useState('');
   const [supervisorTitle, setSupervisorTitle] = useState('');
   const [supervisorDate, setSupervisorDate] = useState('');
-
+  useEffect(() => {
+    async function fetchReports() {
+      const res = await axios.post(
+        `${URLng}/researchplan`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setResUrl(res.data.research_plan);
+      console.log(res.data.research_plan);
+    }
+    fetchReports();
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -74,6 +91,9 @@ function RecordPoint() {
   return (
     <>
       <div className="flex flex-col items-center h-screen font-bold">
+        <div>
+          <img src={`public/${resUrl}`} alt="fdfd" />
+        </div>
         <div className="flex bg-main w-full items-center justify-around py-4">
           <div>
             <img src={uniLogo} alt="" className="w-24 h-24" />
@@ -88,6 +108,9 @@ function RecordPoint() {
           </div>
         </div>
         <div className="container p-10 flex-1">
+          <div>
+            <img src="" alt="" />
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block">
