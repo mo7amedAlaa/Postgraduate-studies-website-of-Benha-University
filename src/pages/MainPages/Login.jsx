@@ -85,8 +85,8 @@ const Login = () => {
         case 'collegeDean':
           navigate('/CollegeVice');
           break;
-        case 'prof':
-          navigate('/profs');
+        case 'profs':
+          navigate('/professor');
           break;
         case 'employee':
           navigate('/employee');
