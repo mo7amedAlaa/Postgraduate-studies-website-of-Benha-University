@@ -86,7 +86,7 @@ const Login = () => {
           navigate('/CollegeVice');
           break;
         case 'prof':
-          navigate('/professor');
+          navigate('/profs');
           break;
         case 'employee':
           navigate('/employee');
