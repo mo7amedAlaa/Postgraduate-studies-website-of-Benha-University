@@ -93,10 +93,10 @@ function App() {
     const userPaid = useSelector(
       (state) => state.user.UserInfo.user_data?.payment
     );
-    if (userPaid === 'pending') {
-      toast.error('You must complete the payment first');
-      return <Navigate to="/payment" />;
-    }
+    // if (userPaid === 'pending') {
+    //   toast.error('You must complete the payment first');
+    //   return <Navigate to="/payment" />;
+    // }
     return children;
   };
   const router = createBrowserRouter([
