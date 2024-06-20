@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SetUserInfo } from '../../Redux/Slices/userStatusSlice';
 import { useNavigate } from 'react-router-dom';
-
 const UserProfile = () => {
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
@@ -15,6 +14,7 @@ const UserProfile = () => {
   };
   useEffect(() => {
     console.log(userInfo);
+    console.log(userInfo.user_data.student_photos.original_bachelors_degree);
   }, []);
   return (
     <div className="h-screen w-screen flex items-center justify-center ">

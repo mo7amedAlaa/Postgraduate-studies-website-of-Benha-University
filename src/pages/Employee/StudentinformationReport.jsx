@@ -33,16 +33,6 @@ function StudentinformationReport() {
               }}
               pageSizeOptions={[5, 10]}
             />
-            <div className="flex gap-56   py-5 ">
-              <button className=" main-btn tracking-wider  w-full flex justify-center items-center gap-6  text-lg ">
-                <TbReportMedical className="text-3xl " />
-                ارسال التقرير لوكيل الكلية للدرسلت العليا
-              </button>
-              <button className=" main-btn tracking-wider  w-full flex justify-center items-center gap-6  text-lg ">
-                ارسال التقرير لرئيس القسم
-                <TbReportMedical className="text-3xl " />
-              </button>
-            </div>
           </div>
         </div>
       </MainLayout>

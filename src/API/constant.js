@@ -5,5 +5,5 @@ const api = axios.create({
   // baseURL: 'https://fakestoreapi.com', //for TEST uni
   // baseURL: 'https://4e3c-197-162-15-45.ngrok-free.app/api',
 });
-const URLng = 'https://28b9-197-162-23-38.ngrok-free.app/api';
+const URLng = 'https://1f35-197-165-184-3.ngrok-free.app/api';
 export { api, URLng };

@@ -17,23 +17,16 @@ import { ToastContainer } from 'react-toastify';
 function Home() {
   const darkMode = useSelector((state) => state.theme.darkMode);
   const isLoged = useSelector((state) => state.user.loged);
-  const userInfo = useSelector((state) => state.user.UserInfo);
+  const userInfo = useSelector((state) => state.user?.UserInfo);
+  console.log(userInfo);
+  const notifications = useSelector((state) => state.notifications.student);
   const [t] = useTranslation();
-  const [notifications, setNotifications] = useState([
-    { id: 1, message: 'New user registered', type: 'info' },
-    { id: 2, message: 'Server downtime alert', type: 'warning' },
-    { id: 3, message: 'New comment on your post', type: 'warning' },
-    { id: 4, message: 'New user registered', type: 'info' },
-    { id: 5, message: 'Server downtime alert', type: 'warning' },
-    { id: 6, message: 'New comment on your post', type: 'info' },
-  ]);
+
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
   };
-  useEffect(() => {
-    console.log(userInfo);
-  }, []);
+
   return (
     <div className={darkMode ? 'bg-black  text-main     ' : 'bg-white  '}>
       <ToastContainer />
@@ -182,23 +175,24 @@ function Home() {
               </h3>
             </div>
           </Link>
-          <Link to={'/recordpoint'}>
-            <div className="ser-card">
-              <div className="flex items-center justify-center">
-                <img
-                  src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/ec5aecb3aadf2077d1f2756ede50ee97.png"
-                  style={{ width: '150px' }}
-                  alt=""
-                />
+          {userInfo.user_data?.degree != 'master' && (
+            <Link to={'/recordpoint'}>
+              <div className="ser-card">
+                <div className="flex items-center justify-center">
+                  <img
+                    src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/ec5aecb3aadf2077d1f2756ede50ee97.png"
+                    style={{ width: '150px' }}
+                    alt=""
+                  />
+                </div>
+
+                <h3 className="mt-5 mb-5 font-Poppins text-xl">
+                  {' '}
+                  {t('RecordResearchPoint')}
+                </h3>
               </div>
-
-              <h3 className="mt-5 mb-5 font-Poppins text-xl">
-                {' '}
-                {t('RecordResearchPoint')}
-              </h3>
-            </div>
-          </Link>
-
+            </Link>
+          )}
           <Link to={'/Material'}>
             <div className="ser-card">
               <div className="flex items-center justify-center">
@@ -261,46 +255,37 @@ function Home() {
               </h3>
             </div>
           </Link>
+          <Link to={'/reports'}>
+            <div className="ser-card">
+              <div className="flex items-center justify-center">
+                <img
+                  src="https://www.asu.edu.eg/141090/_mediacenter/2021/png/b4e51525efc6b9eda281948e2087b986.png"
+                  style={{ width: '150px' }}
+                  alt=""
+                />
+              </div>
 
-          <div className="ser-card">
-            <div className="flex items-center justify-center">
-              <img
-                src="https://www.asu.edu.eg/141090/_mediacenter/2021/png/b4e51525efc6b9eda281948e2087b986.png"
-                style={{ width: '150px' }}
-                alt=""
-              />
+              <h3 className="mt-5 mb-5 font-Poppins text-xl">
+                {t('RequestsAndDeclarations')}
+              </h3>
             </div>
+          </Link>
+          <Link to={'/seminar-request'}>
+            <div className="ser-card">
+              <div className="flex items-center justify-center">
+                <img
+                  src="https://www.asu.edu.eg/141090/_mediacenter/2022/png/a5e0e61d23d7bb612f9861b2fa43bc18.png"
+                  style={{ width: '150px' }}
+                  alt=""
+                />
+              </div>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">
-              {t('RequestsAndDeclarations')}
-            </h3>
-          </div>
-          <div className="ser-card">
-            <div className="flex items-center justify-center">
-              <img
-                src="https://www.asu.edu.eg/141090/_mediacenter/2022/png/a5e0e61d23d7bb612f9861b2fa43bc18.png"
-                style={{ width: '150px' }}
-                alt=""
-              />
+              <h3 className="mt-5 mb-5 font-Poppins text-xl">
+                {t('AnnouncementsAndSeminarDates')}
+              </h3>
             </div>
+          </Link>
 
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">
-              {t('AnnouncementsAndSeminarDates')}
-            </h3>
-          </div>
-          {/* <div className="ser-card">
-            <div className="flex items-center justify-center">
-              <img
-                src="https://www.asu.edu.eg/141090/_mediacenter/2021/png/b4e51525efc6b9eda281948e2087b986.png"
-                style={{ width: '150px' }}
-                alt=""
-              />
-            </div>
-
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">
-              {t('NotificationsAndStudentFollowUp')}
-            </h3>
-          </div> */}
           <div className="ser-card">
             <div className="flex items-center justify-center">
               <img

@@ -31,28 +31,5 @@ const employeeActions = [
       { Ltitle: '  رفع الدرجات ', href: '/employee/uploadallgrades' },
     ],
   },
-  {
-    id: 4,
-    title: '   متابعة المصروفات للطاب',
-    links: [
-      { Ltitle: 'المصروفات', href: '/#' },
-      { Ltitle: '  تقارير المصروفات', href: '/#' },
-    ],
-  },
-
-  {
-    id: 6,
-    title: '  تسجيل نتائج الطلاب ',
-    links: [
-      { Ltitle: '   تسجيل نتائج مقرر  ', href: '/#' },
-      { Ltitle: '   الرفع  ', href: '/#' },
-    ],
-  },
-
-  {
-    id: 8,
-    title: '      طلابات و تقارير ',
-    links: [{ Ltitle: '   الالتماس', href: '/employee/petition' }],
-  },
 ];
 export default employeeActions;

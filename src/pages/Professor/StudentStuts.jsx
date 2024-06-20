@@ -40,7 +40,7 @@ function StudentStuts() {
           <span>حتي/</span>
           <input type="date" />
         </div>
-        <div className="flex items-center justify-start my-5 gap-5">
+        {/* <div className="flex items-center justify-start my-5 gap-5">
           <label htmlFor="degree">
             النسبة المئوية التي تعبر عن حالة الطالب
           </label>
@@ -52,6 +52,10 @@ function StudentStuts() {
             value={deg}
           />
           <span className="text-xl">{deg}%</span>
+        </div> */}
+        <div className="flex flex-col mt-5">
+          <label htmlFor="content">حالة الطالب </label>
+          <textarea name="content" id="content" className="h-32   "></textarea>
         </div>
         <p className="my-5">
           .وذلك بناء على التقرير المرفق والموقع من جميع السادةالمشرفين

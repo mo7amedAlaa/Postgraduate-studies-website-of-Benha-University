@@ -47,6 +47,8 @@ import { useTranslation } from 'react-i18next';
 import AcceptStudent from './pages/Head of Department/AcceptStudent';
 import UserProfile from './component/AccountSetting/UserProfile';
 import Swal from 'sweetalert2';
+import ReportList from './pages/User/Reports';
+import SeminarRequestForm from './pages/User/seminars';
 
 function App() {
   const { i18n } = useTranslation();
@@ -63,17 +65,34 @@ function App() {
     return children;
   };
 
-  const ProtectedRoute = ({ children }) => {
+  const ProtectedRoute = ({ children, roles }) => {
     const userInfo = useSelector((state) => state.user.UserInfo);
-    if (!userInfo) {
-      Swal.fire('Error', 'You must be logged in to access this page', 'error');
-      return <Navigate to="/login" />;
-    }
+
+    // if (!userInfo) {
+    //   Swal.fire(
+    //     'Error',
+    //     'You must be logged in to access this page login required',
+    //     'error'
+    //   );
+    //   return <Navigate to="/login" />;
+    // }
+
+    // if (roles && !roles.includes(userInfo.user_data.login_type)) {
+    //   Swal.fire(
+    //     'Error',
+    //     'You do not have permission to access this page',
+    //     'error'
+    //   );
+    //   return <Navigate to="/" />;
+    // }
+
     return children;
   };
 
   const PaidRoute = ({ children }) => {
-    const userPaid = useSelector((state) => state.user.UserInfo?.Payment);
+    const userPaid = useSelector(
+      (state) => state.user.UserInfo.user_data?.payment
+    );
     if (userPaid === 'pending') {
       toast.error('You must complete the payment first');
       return <Navigate to="/payment" />;
@@ -88,7 +107,7 @@ function App() {
     {
       path: '/employee',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['employee']}>
           <Layout Actions={employeeActions} />
         </ProtectedRoute>
       ),
@@ -110,7 +129,7 @@ function App() {
     {
       path: '/professor',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['professor']}>
           <Layout Actions={profActions} />
         </ProtectedRoute>
       ),
@@ -127,7 +146,7 @@ function App() {
     {
       path: '/headofdepartment',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['heads']}>
           <Layout Actions={headActions} />
         </ProtectedRoute>
       ),
@@ -146,7 +165,7 @@ function App() {
     {
       path: '/admin',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['admin']}>
           <Layout Actions={AdminActions} />
         </ProtectedRoute>
       ),
@@ -157,7 +176,7 @@ function App() {
     {
       path: '/CollegeVice',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['CollegeVice']}>
           <Layout Actions={AdminActions} />
         </ProtectedRoute>
       ),
@@ -166,7 +185,7 @@ function App() {
     {
       path: '/accountsetting',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['students']}>
           <UserProfile />
         </ProtectedRoute>
       ),
@@ -174,7 +193,9 @@ function App() {
     {
       path: '/restpassword',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute
+          roles={['admin', 'employee', 'professor', 'heads', 'students']}
+        >
           <RestPassword />
         </ProtectedRoute>
       ),
@@ -182,7 +203,7 @@ function App() {
     {
       path: '/payment',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['students']}>
           <Payment />
         </ProtectedRoute>
       ),
@@ -194,7 +215,7 @@ function App() {
     {
       path: '/course',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['students']}>
           <PaidRoute>
             <EnrolCourse />
           </PaidRoute>
@@ -204,7 +225,7 @@ function App() {
     {
       path: '/material',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['students']}>
           <PaidRoute>
             <Material />
           </PaidRoute>
@@ -214,7 +235,7 @@ function App() {
     {
       path: '/showgrade',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['students']}>
           <PaidRoute>
             <Grade />
           </PaidRoute>
@@ -224,7 +245,7 @@ function App() {
     {
       path: '/recordpoint',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['students']}>
           <PaidRoute>
             <RecordPoint />
           </PaidRoute>
@@ -234,7 +255,7 @@ function App() {
     {
       path: '/examtable',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['students']}>
           <PaidRoute>
             <ExamTable />
           </PaidRoute>
@@ -244,9 +265,29 @@ function App() {
     {
       path: '/studytable',
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute roles={['students']}>
           <PaidRoute>
             <StudyTable />
+          </PaidRoute>
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: '/reports',
+      element: (
+        <ProtectedRoute roles={['students']}>
+          <PaidRoute>
+            <ReportList />
+          </PaidRoute>
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: '/seminar-request',
+      element: (
+        <ProtectedRoute roles={['students']}>
+          <PaidRoute>
+            <SeminarRequestForm />
           </PaidRoute>
         </ProtectedRoute>
       ),

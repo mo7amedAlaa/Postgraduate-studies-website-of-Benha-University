@@ -4,32 +4,72 @@ import { LuAlertOctagon } from 'react-icons/lu';
 import Copyrights from '../../component/Footer/Copyrights';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { UseApiRequest } from '../../Hooks/RestApi';
 import { Button } from '@mui/material';
+import { URLng } from '../../API/constant';
+import { useSelector } from 'react-redux';
 
 export default function EnrolCourse() {
-  const [ids, Setids] = useState([]);
+  const [courses, setCourses] = useState([]);
   const [slectedCourses, SetSlectedCourses] = useState([]);
-  const enrrolCourse = (course) => {
-    Setids([...ids, course.id]);
-    setCourses(courses.filter((res) => res.id !== course.id));
-    SetSlectedCourses([...slectedCourses, course]);
-    console.log('course with id: ', course.id);
+  const userToken = useSelector((state) => state.user.UserInfo?.token);
+
+  useEffect(() => {
+    async function fetchCourses() {
+      try {
+        const response = await axios.post(
+          `${URLng}/showcoursesForDepartment`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${userToken}`,
+            },
+          }
+        );
+        setCourses(response.data);
+        console.log(response.data);
+        const res = await axios.post(
+          `${URLng}/showcourses`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${userToken}`,
+            },
+          }
+        );
+        SetSlectedCourses(res.data[0]);
+        console.log(res.data[0]);
+      } catch (error) {
+        console.error('Error fetching   courses:', error);
+      }
+    }
+
+    if (userToken) {
+      fetchCourses();
+    }
+  }, [userToken]);
+
+  const enrrolCourse = async (id) => {
+    const response = await axios.post(
+      `${URLng}/courses/enroll`,
+      { course_ids: [id] },
+      {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      }
+    );
+    console.log(response.data.message);
   };
-  const deleteCourse = (course) => {
-    Setids([...ids.filter((ider) => ider != course.id)]);
-    setCourses([...courses, course]);
-    SetSlectedCourses(slectedCourses.filter((res) => res.id !== course.id));
-    console.log('course with id: ', course.id);
-  };
+  const deleteCourse = (id) => {};
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'subName', headerName: 'كود المادة', width: 130 },
-    { field: 'code', headerName: 'اسم المادة', width: 130 },
-    { field: 'hourNum', headerName: 'عدد الساعات', width: 130 },
-    { field: 'maxGrade', headerName: 'الدرجة العظمي', width: 130 },
-    { field: 'minGrade', headerName: 'الدرجة الصغري', width: 130 },
+    { field: 'code', headerName: 'كود المادة', width: 130 },
+    { field: 'name', headerName: 'اسم المادة', width: 130 },
+    { field: 'hours', headerName: 'عدد الساعات', width: 130 },
+    { field: 'material', headerName: 'الدرجة العظمي', width: 130 },
+    { field: 'time', headerName: 'الدرجة الصغري', width: 130 },
+    { field: 'chose', headerName: 'الدرجة الصغري', width: 130 },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -40,7 +80,7 @@ export default function EnrolCourse() {
           color="primary"
           size="small"
           style={{ marginRight: 8 }}
-          onClick={() => enrrolCourse(params.row)}
+          onClick={() => enrrolCourse(params.row.id)}
         >
           تسجيل
         </Button>
@@ -49,11 +89,11 @@ export default function EnrolCourse() {
   ];
   const columns2 = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'subName', headerName: 'كود المادة', width: 130 },
-    { field: 'code', headerName: 'اسم المادة', width: 130 },
-    { field: 'hourNum', headerName: 'عدد الساعات', width: 130 },
-    { field: 'maxGrade', headerName: 'الدرجة العظمي', width: 130 },
-    { field: 'minGrade', headerName: 'الدرجة الصغري', width: 130 },
+    { field: 'student_id', headerName: 'student_id', width: 130 },
+    { field: 'course_id', headerName: 'course_id', width: 130 },
+
+    { field: 'grade', headerName: '  grade', width: 130 },
+    { field: 'firstOrSecond', headerName: 'firstOrSecond', width: 130 },
 
     {
       field: 'actions',
@@ -65,92 +105,79 @@ export default function EnrolCourse() {
           color="primary"
           size="small"
           style={{ marginRight: 8 }}
-          onClick={() => deleteCourse(params.row)}
+          onClick={() => deleteCourse(params.row.id)}
         >
           الغاء التسجيل{' '}
         </Button>
       ),
     },
   ];
-  const [courses, setCourses] = useState([
-    {
-      id: 1,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 2,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 3,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 6,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 9,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 10,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 12,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-    {
-      id: 13,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      hourNum: 3,
-      maxGrade: 100,
-      minGrade: 50,
-    },
-  ]);
-
-  const token =
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZWNlNC0xOTctNjItMTAyLTUxLm5ncm9rLWZyZWUuYXBwL2FwaS9hdXRoL2xvZ2luc3R1ZGVudCIsImlhdCI6MTcxODMxNzUzNSwiZXhwIjoxNzE4Njc3NTM1LCJuYmYiOjE3MTgzMTc1MzUsImp0aSI6ImZvMGM4ZDc4c3JmcmdURGsiLCJzdWIiOiIzNSIsInBydiI6IjljNDI5ZTZhNjBjZDUyODU0NzNmMmM4YmM3MDFlYzA5NDhkZjRkOGMifQ.X2VKJOBR3ahjbPgFev0A84Dh3UGoLg6M7X7e_JY8j9k';
-  // const {
-  //   data: GetCourses,
-  //   loading: GetLoad,
-  //   error: GetError,
-  //   callApi,
-  // } = UseApiRequest('/courses', 'GET', null, token);
-
-  // useEffect(() => {
-  //   callApi();
-  // }, []);
+  // const [courses, setCourses] = useState([
+  //   {
+  //     id: 1,
+  //     subName: 'اسم المادة',
+  //     code: 'SC2X',
+  //     hourNum: 3,
+  //     maxGrade: 100,
+  //     minGrade: 50,
+  //   },
+  //   {
+  //     id: 2,
+  //     subName: 'اسم المادة',
+  //     code: 'SC2X',
+  //     hourNum: 3,
+  //     maxGrade: 100,
+  //     minGrade: 50,
+  //   },
+  //   {
+  //     id: 3,
+  //     subName: 'اسم المادة',
+  //     code: 'SC2X',
+  //     hourNum: 3,
+  //     maxGrade: 100,
+  //     minGrade: 50,
+  //   },
+  //   {
+  //     id: 6,
+  //     subName: 'اسم المادة',
+  //     code: 'SC2X',
+  //     hourNum: 3,
+  //     maxGrade: 100,
+  //     minGrade: 50,
+  //   },
+  //   {
+  //     id: 9,
+  //     subName: 'اسم المادة',
+  //     code: 'SC2X',
+  //     hourNum: 3,
+  //     maxGrade: 100,
+  //     minGrade: 50,
+  //   },
+  //   {
+  //     id: 10,
+  //     subName: 'اسم المادة',
+  //     code: 'SC2X',
+  //     hourNum: 3,
+  //     maxGrade: 100,
+  //     minGrade: 50,
+  //   },
+  //   {
+  //     id: 12,
+  //     subName: 'اسم المادة',
+  //     code: 'SC2X',
+  //     hourNum: 3,
+  //     maxGrade: 100,
+  //     minGrade: 50,
+  //   },
+  //   {
+  //     id: 13,
+  //     subName: 'اسم المادة',
+  //     code: 'SC2X',
+  //     hourNum: 3,
+  //     maxGrade: 100,
+  //     minGrade: 50,
+  //   },
+  // ]);
 
   return (
     <div className=" bg-slate-100     min-h-screen">
@@ -186,11 +213,6 @@ export default function EnrolCourse() {
               pageSizeOptions={[5, 10]}
               checkboxSelection
             />
-          </div>
-          <div className="my-5  text-center ">
-            <button className=" px-12 py-3 mx-auto  text-xl font-bold tracking-wider text-white       bg-main  rounded-md   ">
-              تسجيل المقرر
-            </button>
           </div>
         </div>
         <div>

@@ -9,6 +9,7 @@ import { ClipLoader } from 'react-spinners';
 import { URLng } from '../../API/constant';
 import Swal from 'sweetalert2';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { setStudentNotifaction } from '../../Redux/Slices/notificationsSlice';
 
 const Login = () => {
   const { t } = useTranslation();
@@ -103,6 +104,8 @@ const Login = () => {
         text: 'Something went wrong!',
         footer: 'Server not response',
       });
+      dispatch(setStudentNotifaction({ message: 'fgghtty', type: 'error' }));
+
       console.error('Error during login:', error);
       dispatch(SetUserInfo(''));
       setLoading(false);

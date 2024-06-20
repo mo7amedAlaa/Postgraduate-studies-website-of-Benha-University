@@ -1,182 +1,235 @@
-import { DataGrid } from '@mui/x-data-grid';
+import { useState } from 'react';
+import axios from 'axios';
+
 import { graduatedMenIcon, uniLogo } from '../../assets';
 import Copyrights from '../../component/Footer/Copyrights';
-import { Checkbox } from '@mui/material';
+import Swal from 'sweetalert2'; // Import SweetAlert
+import { URLng } from '../../API/constant';
+import { useSelector } from 'react-redux';
 
 function RecordPoint() {
-  const columns = [
-    { field: 'ID', headerName: 'م', width: 130 },
-    { field: 'name', headerName: 'الاسم', width: 250 },
-    { field: 'degree', headerName: ' الدرجةالعلمية', width: 130 },
-    { field: 'jobdirc', headerName: ' جهة العمل', width: 250 },
-    { field: 'signature', headerName: ' التوقيع', width: 130 },
-  ];
-  const prof = [
-    {
-      ID: 1,
-      name: '   ',
-      degree: '  ',
-      jobdirc: '  ',
-      signature: '  ',
-    },
-    {
-      ID: 2,
-      name: '   ',
-      degree: '  ',
-      jobdirc: '  ',
-      signature: '  ',
-    },
-    {
-      ID: 3,
-      name: '   ',
-      degree: '  ',
-      jobdirc: '  ',
-      signature: '  ',
-    },
-    {
-      ID: 4,
-      name: '   ',
-      degree: '  ',
-      jobdirc: '  ',
-      signature: '  ',
-    },
-    {
-      ID: 5,
-      name: '   ',
-      degree: '  ',
-      jobdirc: '  ',
-      signature: '  ',
-    },
-  ];
+  const userInfo = useSelector((state) => state.user.userInfo);
+  const token = useSelector((state) => state.user.userInfo?.token);
+  const [degree, setDegree] = useState('Masters');
+  const [topicArabic, setTopicArabic] = useState('');
+  const [topicEnglish, setTopicEnglish] = useState('');
+  const [supervisors, setSupervisors] = useState([
+    { name: '', title: '', department: '' },
+  ]);
+  const [supervisorName, setSupervisorName] = useState('');
+  const [supervisorTitle, setSupervisorTitle] = useState('');
+  const [supervisorDate, setSupervisorDate] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const data = {
+      degree,
+      topicArabic,
+      topicEnglish,
+      supervisors,
+      supervisorName,
+      supervisorTitle,
+      supervisorDate,
+    };
+
+    axios
+      .post(`${URLng}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        console.log('Response from server:', response.data);
+        Swal.fire({
+          icon: 'success',
+          title: 'تم إرسال الطلب بنجاح!',
+          showConfirmButton: false,
+          timer: 300,
+        });
+      })
+      .catch((error) => {
+        console.error('Error sending data:', error);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'حدث خطأ أثناء إرسال البيانات',
+          text: 'يرجى المحاولة مرة أخرى',
+          confirmButtonText: 'حسناً',
+        });
+      });
+  };
+
+  const addSupervisor = () => {
+    setSupervisors([...supervisors, { name: '', title: '', department: '' }]);
+  };
+
+  const handleSupervisorChange = (index, field, value) => {
+    const newSupervisors = [...supervisors];
+    newSupervisors[index][field] = value;
+    setSupervisors(newSupervisors);
+  };
+
   return (
     <>
-      <div className="flex flex-col  items-center h-screen font-bold">
-        <div className="flex  bg-main  w-full  items-center justify-around">
+      <div className="flex flex-col items-center h-screen font-bold">
+        <div className="flex bg-main w-full items-center justify-around py-4">
           <div>
-            <img src={uniLogo} alt="" width={'100px'} height={'100px'} />
+            <img src={uniLogo} alt="" className="w-24 h-24" />
           </div>
           <div className="flex-1 text-center">
-            <p className=" text-lg md:text-3xl   font-bold ">
+            <p className="text-lg md:text-3xl font-bold">
               جامعة بنهــــــــــــــا تسجيل النقطة البحثية
             </p>
           </div>
           <div>
-            <img
-              src={graduatedMenIcon}
-              alt=""
-              width={'100px'}
-              height={'100px'}
-            />
+            <img src={graduatedMenIcon} alt="" className="w-24 h-24" />
           </div>
         </div>
-        <div className="container p-5  flex-1  ">
-          <form
-            action=""
-            className="border bg-gray-100 tracking-wider h-full  p-5 rounded-md"
-          >
-            <div className="my-3">
-              <label htmlFor="welcome" className="me-5">
-                السيد الأستاذ الدكتور/ رئيس قسم
+        <div className="container p-10 flex-1">
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label className="block">
+                اختر الدرجة العلمية المراد التسجيل بيها:
               </label>
-              <select id="welcome" className="px-2 text-center  bg-withe  ">
-                <option value="is">IS</option>
-                <option value="ai">AI</option>
-                <option value="cs">CS</option>
-                <option value="sc">SC</option>
+              <select
+                value={degree}
+                onChange={(e) => setDegree(e.target.value)}
+                className="block w-full p-2 border border-gray-300 rounded-md"
+              >
+                <option value="Masters">ماجستير</option>
+                <option value="PhD">دكتوراه</option>
               </select>
-              <p> تحية طيبة وبعد،، </p>
             </div>
-            <div className="my-3">
-              <span>
-                أرجو من سيادتكم التكرم بالموافقة علي مد التسجيل لرسالة
-              </span>
-              <Checkbox value={'  ماجستير '} id="studytype" name="master" />
-              <label htmlFor="Studytype">ماجستير </label>
-              <Checkbox value={' الدكتوراة '} id="studytype" name="doctor" />
-              <label htmlFor="Studytype">الدكتوراة </label>
-            </div>
-            <div className="flex justify-around items-center gap-5">
-              <div className="my-3 flex-1 flex">
-                <label htmlFor="name" className="me-2 ">
-                  للطالب
-                </label>
-                <input type="text" id="name" className="px-2 flex-1" />
-              </div>
-              <div className="my-3 flex-1 ">
-                <label htmlFor="dep" className="me-2 ">
-                  المقيد بالقسم التخصصي
-                </label>
-                <select id="dep" className="px-2 text-center  bg-withe  ">
-                  <option value="is">IS</option>
-                  <option value="ai">AI</option>
-                  <option value="cs">CS</option>
-                  <option value="sc">SC</option>
-                </select>
-              </div>
-            </div>
-            <div className=" flex flex-col gap-3 my-4">
-              <label htmlFor="titleAr">عنوان الرسالة باللغة العربية :</label>
+            <div className="mb-4">
+              <label className="block">عنوان الرسالة باللغة العربية:</label>
               <textarea
-                name=""
-                id="titleAr"
-                className="w-full h-28 rounded-md   border  resize-none   "
+                value={topicArabic}
+                onChange={(e) => setTopicArabic(e.target.value)}
+                className="block w-full p-2 border border-gray-300 rounded-md"
+                required
               ></textarea>
             </div>
-            <div className=" flex flex-col gap-3 my-4">
-              <label htmlFor="titlEn">عنوان الرسالة باللغة الانجليزية : </label>
+            <div className="mb-4">
+              <label className="block">عنوان الرسالة باللغة الإنجليزية:</label>
               <textarea
-                name=""
-                id="titleEn"
-                className="w-full h-28 rounded-md   border  resize-none   "
+                value={topicEnglish}
+                onChange={(e) => setTopicEnglish(e.target.value)}
+                className="block w-full p-2 border border-gray-300 rounded-md"
+                required
               ></textarea>
             </div>
-            <div>
-              <p>علي أن تتكون لجنةالإشراف من السادةالاتي أسمائهم:</p>
-              <DataGrid
-                rows={prof}
-                getRowId={(row) => row.ID}
-                columns={columns}
-                initialState={{
-                  pagination: {
-                    paginationModel: { page: 0, pageSize: 5 },
-                  },
-                }}
+            <div className="mb-4">
+              <label className="block">قائمة الأساتذة المشرفين:</label>
+              <table className="w-full mb-4">
+                <thead>
+                  <tr>
+                    <th className="border border-gray-300 p-2">الاسم</th>
+                    <th className="border border-gray-300 p-2">الرتبة</th>
+                    <th className="border border-gray-300 p-2">القسم</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {supervisors.map((supervisor, index) => (
+                    <tr key={index}>
+                      <td className="border border-gray-300 p-2">
+                        <input
+                          type="text"
+                          value={supervisor.name}
+                          onChange={(e) =>
+                            handleSupervisorChange(
+                              index,
+                              'name',
+                              e.target.value
+                            )
+                          }
+                          className="w-full p-1 border border-gray-300 rounded-md"
+                        />
+                      </td>
+                      <td className="border border-gray-300 p-2">
+                        <input
+                          type="text"
+                          value={supervisor.title}
+                          onChange={(e) =>
+                            handleSupervisorChange(
+                              index,
+                              'title',
+                              e.target.value
+                            )
+                          }
+                          className="w-full p-1 border border-gray-300 rounded-md"
+                        />
+                      </td>
+                      <td className="border border-gray-300 p-2">
+                        <input
+                          type="text"
+                          value={supervisor.department}
+                          onChange={(e) =>
+                            handleSupervisorChange(
+                              index,
+                              'department',
+                              e.target.value
+                            )
+                          }
+                          className="w-full p-1 border border-gray-300 rounded-md"
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <button
+                type="button"
+                onClick={addSupervisor}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+              >
+                إضافة مشرف جديد
+              </button>
+            </div>
+            <div className="mb-4">
+              <label className="block">
+                اسم المشرف الرئيسي/الشرط الأكاديمي:
+              </label>
+              <input
+                type="text"
+                value={supervisorName}
+                onChange={(e) => setSupervisorName(e.target.value)}
+                className="block w-full p-2 border border-gray-300 rounded-md"
+                required
               />
             </div>
-
-            <p className="text-center">وتفضلوا بقبول وافر الشكر والتقدير،،،</p>
-            <div className="flex  flex-row-reverse items-center justify-between ">
-              <div className="flex mt-10 flex-col gap-3 justify-center text-center items-end   flex-1  ">
-                <p> المشرف الرئيسى /المرشد الأكاديمى :</p>
-                <div>
-                  <label htmlFor="namej">الاسم :</label>
-                  <input type="text" id="namej" />
-                </div>
-                <div>
-                  <label htmlFor="ku"> التوقيع:</label>
-                  <input type="text" id="ku" />
-                </div>
-                <div>
-                  <label htmlFor="datej">التاريخ :</label>
-                  <input type="date" id="datej" />
-                </div>
-              </div>
-              <div className="flex gap-6 flex-1 flex-col justify-start  items-start ">
-                <input
-                  type="submit"
-                  value={'ارسال الطلب'}
-                  className=" main-btn  w-full  "
-                />
-                <input
-                  type="submit"
-                  value={'اعادة ملئ بيانات الطلب'}
-                  className="main-btn  w-full "
-                />
-              </div>
+            <div className="mb-4">
+              <label className="block">الرتبة:</label>
+              <input
+                type="text"
+                value={supervisorTitle}
+                onChange={(e) => setSupervisorTitle(e.target.value)}
+                className="block w-full p-2 border border-gray-300 rounded-md"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block">التاريخ:</label>
+              <input
+                type="date"
+                value={supervisorDate}
+                onChange={(e) => setSupervisorDate(e.target.value)}
+                className="block w-full p-2 border border-gray-300 rounded-md"
+                required
+              />
+            </div>
+            <div className="flex items-center justify-center">
+              <button
+                type="submit"
+                className="bg-green-500 text-white px-4 py-2 rounded-md mr-2"
+              >
+                إرسال الطلب
+              </button>
             </div>
           </form>
         </div>
-        <div className="bg-main  w-full  px-2  ">
+        <div className="bg-main w-full px-2">
           <Copyrights />
         </div>
       </div>

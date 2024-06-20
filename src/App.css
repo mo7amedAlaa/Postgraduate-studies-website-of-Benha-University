@@ -108,6 +108,11 @@
   border-radius: 10px;
   background-color: linear-gradient(#51acd0, #5dc6f0);
 }
+.notification-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .notification-item.info {
   background: #e6f7ff;
