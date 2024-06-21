@@ -6,4 +6,5 @@ const api = axios.create({
   // baseURL: 'https://4e3c-197-162-15-45.ngrok-free.app/api',
 });
 const URLng = 'https://670c-197-165-157-69.ngrok-free.app/api';
-export { api, URLng };
+const URLImage = 'https://670c-197-165-157-69.ngrok-free.app/api';
+export { api, URLng, URLImage };

@@ -1,4 +1,8 @@
+import { useSelector } from 'react-redux';
+
 export default function Sidebar({ side, userImg, userName, children }) {
+  const dark = useSelector((state) => state.theme.darkMode);
+
   return (
     <div
       className={
@@ -7,7 +11,13 @@ export default function Sidebar({ side, userImg, userName, children }) {
           : 'sidebar absolute z-30 bg-slate-200   md:relative  mt-3  md:flex flex-col  h-[calc(100vh-(5.3rem))] rounded-2xl hidden'
       }
     >
-      <div className="user-info flex justify-start gap-2 h-[5%] py-1  rounded-t-2xl  px-3 items-center w-full  bg-main ">
+      <div
+        className={
+          dark
+            ? 'user-info flex justify-start gap-2 h-[5%] py-1  rounded-t-2xl  px-3 items-center w-full  bg-main '
+            : 'user-info flex justify-start gap-2 h-[5%] py-1  rounded-t-2xl  px-3 items-center w-full  bg-white '
+        }
+      >
         <div className="w-6 h-6  rounded-full  ">
           <img
             src={userImg}

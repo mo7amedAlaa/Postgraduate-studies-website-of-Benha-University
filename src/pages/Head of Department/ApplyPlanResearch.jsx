@@ -1,91 +1,124 @@
-import { LuUploadCloud } from 'react-icons/lu';
+import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import MainLayout from '../../component/Main/MainLayout';
-// import LayoutProf from './LayoutProf';
-// import LayoutProf from './LayoutProf';
-const handleUpload = async () => {
-  const { value: file } = await Swal.fire({
-    title: 'Select image',
-    input: 'file',
-    inputAttributes: {
-      accept: 'image/*',
-      'aria-label': 'Upload your profile picture',
-    },
-  });
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      Swal.fire({
-        title: 'Your uploaded picture',
-        imageUrl: e.target.result,
-        imageAlt: 'The uploaded picture',
-      });
-    };
-    reader.readAsDataURL(file);
-  }
-};
-function ApplyPlanResearch() {
-  return (
-    <>
-      <MainLayout>
-        <div>
-          <div className="container mx-auto border rounded-md my-5  ">
-            <form
-              action=""
-              className="p-14"
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-            >
-              <div>
-                <h2 className=" font-sans text-3xl font-semibold  text-center mb-5">
-                  {' '}
-                  الخطط البحثية
-                </h2>
-                <fieldset className="border my-2 border-gray-600 p-3 ">
-                  <legend> رفع الخطة البحثية </legend>
-                  <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 ">
-                    <div className=" flex items-center justify-between my-2">
-                      <label
-                        htmlFor=""
-                        className=" text-2xl font-bold  mx-5 "
-                      >
-                        الخطط البحثية لعام 2024 / 2025
-                      </label>
-                      <div className="flex  gap-10">
-                        <button
-                          className="main-btn flex-1 flex items-center justify-center gap-3 p-3"
-                          onClick={handleUpload}
-                        >
-                          رفع
-                          <LuUploadCloud />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-            </form>
-          </div>
-          <div className="programs flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  ">
-            <div className="w-[80%] grid lg:grid-cols-3 md:grid-cols-2  gap-[2rem] ">
-              <div className="card-program  mb-10 border shadow-md rounded-md hover:scale-110 transition-all border-main ">
-                <img
-                  src="https://png.pngtree.com/element_origin_min_pic/17/03/29/e90c1dab2691c73f7a37bdf3da6e3b52.jpg"
-                  className="w-[100%] h-[13rem]"
-                  alt="program"
-                />
 
-                <p className="text-center font-sans text-2xl p-4">
-                  الخطة البحثية
-                </p>
-              </div>
-            </div>
-          </div>
+const ApplyPlanResearch = () => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
+
+    if (selectedFile) {
+      Swal.fire({
+        title: 'ملف تم اختياره',
+        text: `لقد اخترت الملف: ${selectedFile.name}`,
+        icon: 'success',
+        confirmButtonText: 'حسنًا',
+      });
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!title || !description || !file) {
+      Swal.fire({
+        title: 'خطأ',
+        text: 'يرجى ملء جميع الحقول واختيار ملف قبل الإرسال',
+        icon: 'error',
+        confirmButtonText: 'حسنًا',
+      });
+      return;
+    }
+
+    Swal.fire({
+      title: 'هل أنت متأكد؟',
+      text: 'هل تريد حقًا رفع هذه الخطة البحثية؟',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'نعم، ارفعها',
+      cancelButtonText: 'إلغاء',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('file', file);
+
+        fetch('/upload', {
+          method: 'POST',
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            Swal.fire({
+              title: 'نجاح',
+              text: 'تم رفع الخطة البحثية بنجاح',
+              icon: 'success',
+              confirmButtonText: 'حسنًا',
+            });
+          })
+          .catch((error) => {
+            Swal.fire({
+              title: 'خطأ',
+              text: 'حدث خطأ أثناء رفع الخطة البحثية',
+              icon: 'error',
+              confirmButtonText: 'حسنًا',
+            });
+          });
+      }
+    });
+  };
+
+  return (
+    <MainLayout>
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-md"
+      >
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            العنوان:
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="mt-1 p-2 w-full border rounded-md"
+            />
+          </label>
         </div>
-      </MainLayout>
-    </>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            الوصف:
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="mt-1 p-2 w-full border rounded-md"
+            />
+          </label>
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            الملف:
+            <input
+              type="file"
+              onChange={handleFileChange}
+              className="mt-1 p-2 w-full border rounded-md"
+            />
+          </label>
+        </div>
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          رفع الخطة البحثية
+        </button>
+      </form>
+    </MainLayout>
   );
-}
+};
 
 export default ApplyPlanResearch;
