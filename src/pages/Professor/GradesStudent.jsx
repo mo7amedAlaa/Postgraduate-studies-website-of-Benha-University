@@ -122,7 +122,7 @@ function GradesStudent() {
                     اسم الطالب
                   </label>
                   <input
-                  onChange={handleChangeName}
+                  // onChange={handleChangeName}
                     type="text"
                     placeholder="ادخل اسمك الكامل"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
@@ -133,7 +133,7 @@ function GradesStudent() {
                     كود الطالب
                   </label>
                   <input
-                      onChange={handleChangeCodeSt}
+                      // onChange={handleChangeCodeSt}
                     type="text"
                     placeholder="ادخل الكود الخاص بك"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
@@ -145,7 +145,7 @@ function GradesStudent() {
                     كود المادة
                   </label>
                   <input
-                  onChange={handleChangeCodeSub}
+                  // onChange={handleChangeCodeSub}
                     type="text"
                     placeholder="ادخل كود المادة"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
@@ -156,7 +156,7 @@ function GradesStudent() {
                     الدرجة
                   </label>
                   <input
-                  onChange={handleChangeDegree}
+                  // onChange={handleChangeDegree}
                     type="text"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
                     placeholder="ادخل الدرجة"
