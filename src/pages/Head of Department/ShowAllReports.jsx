@@ -1,6 +1,5 @@
 import MainLayout from '../../component/Main/MainLayout';
 import { useState, useEffect } from 'react';
-
 import RequestsList from '../../component/ٌReport/RequestsList';
 import { ClipLoader } from 'react-spinners';
 import axios from 'axios';
@@ -12,8 +11,8 @@ const ShowAllReports = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const token = useSelector((state) => state.user.UserInfo?.token);
-  console.log(token);
   const [error, setError] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,9 +26,7 @@ const ShowAllReports = () => {
             },
           }
         );
-        console.log(response);
         setRequests(response.data);
-        console.log(response.data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -37,13 +34,14 @@ const ShowAllReports = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [token]);
+
   const filteredRequests = requests.filter(
     (request) =>
-      // request.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      request.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      request.sender.toLowerCase().includes(searchQuery.toLowerCase())
+      request.type?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      request.sender?.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
   if (loading) {
     return (
       <div className="flex items-center justify-center">
@@ -51,13 +49,14 @@ const ShowAllReports = () => {
       </div>
     );
   }
+
   return (
     <MainLayout title={'التقارير '}>
       <div className="min-h-screen bg-gray-100 p-4">
         <h1 className="text-2xl font-bold mb-4">طلبات وتقارير</h1>
         <input
           type="text"
-          placeholder="ابحث..."
+          placeholder="ابحث."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded w-full"

@@ -25,7 +25,7 @@ const UserProfile = () => {
             <p className="text-gray-700">
               <strong>Photo:</strong>{' '}
               <img
-                src={`${userInfo.user_data?.student_photos.original_bachelors_degree}`}
+                src={`${userInfo.user_data?.student_photos.personal_photo}`}
                 alt="dffdf"
               />
             </p>

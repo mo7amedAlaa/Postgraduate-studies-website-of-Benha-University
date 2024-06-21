@@ -170,7 +170,8 @@ export default function RegistrationToApply() {
     } catch (err) {
       setLoading(false);
       console.error('Error:', err.message);
-      Swal.fire('Error', 'Failed to upload data', 'error');
+
+      Swal.fire('Error', `${err.message}`, 'error');
       dispatch(registering(false));
     }
   };

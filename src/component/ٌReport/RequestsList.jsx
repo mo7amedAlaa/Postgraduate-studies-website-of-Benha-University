@@ -4,8 +4,8 @@ import RequestItem from './RequestItem';
 const RequestsList = ({ requests }) => {
   return (
     <div className="space-y-4">
-      {requests.length > 0 ? (
-        requests.map((request) => (
+      {requests?.length > 0 ? (
+        requests?.map((request) => (
           <RequestItem key={request.id} request={request} />
         ))
       ) : (
@@ -16,4 +16,5 @@ const RequestsList = ({ requests }) => {
     </div>
   );
 };
+
 export default RequestsList;
