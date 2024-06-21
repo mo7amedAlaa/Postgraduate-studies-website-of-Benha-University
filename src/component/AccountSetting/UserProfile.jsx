@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SetUserInfo } from '../../Redux/Slices/userStatusSlice';
 import { useNavigate } from 'react-router-dom';
+import { URLImage } from '../../API/constant';
 const UserProfile = () => {
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
@@ -13,8 +14,10 @@ const UserProfile = () => {
     navigate('/');
   };
   useEffect(() => {
-    console.log(userInfo);
-    console.log(userInfo.user_data.student_photos.original_bachelors_degree);
+    console.log(
+      `${URLImage}/${userInfo.user_data.student_photos.personalImage}`
+    );
+    console.log(userInfo.user_data.student_photos.personalImage);
   }, []);
   return (
     <div className="h-screen w-screen flex items-center justify-center ">
@@ -24,10 +27,12 @@ const UserProfile = () => {
           <div className="mb-6">
             <p className="text-gray-700">
               <strong>Photo:</strong>{' '}
-              <img
-                src={`${userInfo.user_data?.student_photos.personal_photo}`}
-                alt="dffdf"
-              />
+              {userInfo.user_data.student_photos.personalImage && (
+                <img
+                  src={`${URLImage}/${userInfo.user_data.student_photos.personalImage}`}
+                  alt="dffdf"
+                />
+              )}
             </p>
             <p className="text-gray-700">
               <strong>Name:</strong> {userInfo.user_data?.english_name}
