@@ -124,6 +124,16 @@ function App() {
         { path: '/employee/petition', element: <Petition /> },
         { path: '/employee/uploadschedule', element: <UploadSchedule /> },
         { path: '/employee/uploadallgrades', element: <UploadAllGrades /> },
+        {
+          path: '/employee/accountsetting',
+          element: (
+            <ProtectedRoute
+              roles={['admin', 'employee', 'profs', 'heads', 'students']}
+            >
+              <UserProfile />
+            </ProtectedRoute>
+          ),
+        },
       ],
     },
     {
@@ -141,13 +151,23 @@ function App() {
           element: <ExtendRestriction />,
         },
         { path: '/professor/studentstuts', element: <StudentStuts /> },
+        {
+          path: '/professor/accountsetting',
+          element: (
+            <ProtectedRoute
+              roles={['admin', 'employee', 'profs', 'heads', 'students']}
+            >
+              <UserProfile />
+            </ProtectedRoute>
+          ),
+        },
       ],
     },
     {
       path: '/headofdepartment',
       element: (
         <ProtectedRoute roles={['heads']}>
-          <Layout Actions={headActions} />
+          <Layout Actions={headActions} changeLanguage={changeLanguage} />
         </ProtectedRoute>
       ),
       children: [
@@ -160,6 +180,16 @@ function App() {
           path: '/headofdepartment/showralleports',
           element: <ShowAllReports />,
         },
+        {
+          path: '/headofdepartment/accountsetting',
+          element: (
+            <ProtectedRoute
+              roles={['admin', 'employee', 'profs', 'heads', 'students']}
+            >
+              <UserProfile />
+            </ProtectedRoute>
+          ),
+        },
       ],
     },
     {
@@ -171,6 +201,16 @@ function App() {
       ),
       children: [
         { path: '/admin/GenerateAccount', element: <GenerateAccounts /> },
+        {
+          path: '/admin/accountsetting',
+          element: (
+            <ProtectedRoute
+              roles={['admin', 'employee', 'profs', 'heads', 'students']}
+            >
+              <UserProfile />
+            </ProtectedRoute>
+          ),
+        },
       ],
     },
     {
@@ -180,12 +220,33 @@ function App() {
           <Layout Actions={AdminActions} />
         </ProtectedRoute>
       ),
+      children: [
+        {
+          path: '/CollegeVice/accountsetting',
+          element: (
+            <ProtectedRoute
+              roles={[
+                'admin',
+                'employee',
+                'profs',
+                'heads',
+                'students',
+                'vice',
+              ]}
+            >
+              <UserProfile />
+            </ProtectedRoute>
+          ),
+        },
+      ],
     },
     { path: '/login', element: <Login /> },
     {
       path: '/accountsetting',
       element: (
-        <ProtectedRoute roles={['students']}>
+        <ProtectedRoute
+          roles={['admin', 'employee', 'profs', 'heads', 'students']}
+        >
           <UserProfile />
         </ProtectedRoute>
       ),
@@ -194,7 +255,7 @@ function App() {
       path: '/restpassword',
       element: (
         <ProtectedRoute
-          roles={['admin', 'employee', 'professor', 'heads', 'students']}
+          roles={['admin', 'employee', 'profs', 'heads', 'students']}
         >
           <RestPassword />
         </ProtectedRoute>

@@ -26,7 +26,81 @@ function Home() {
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
   };
+  const [searchQuery, setSearchQuery] = useState('');
 
+  const services = [
+    {
+      name: t('ApplyForGraduateStudies'),
+      link: '/registration',
+      imgSrc:
+        'https://www.asu.edu.eg/141090/_mediacenter/2020/png/372c6de72afbddfc800432ce0f8b178b.png',
+    },
+    {
+      name: t('ElectronicPayment'),
+      link: '/payment',
+      imgSrc:
+        'https://www.asu.edu.eg/141090/_mediacenter/2020/png/ec5aecb3aadf2077d1f2756ede50ee97.png',
+    },
+    {
+      name: t('RegisterAndChooseSubjects'),
+      link: '/course',
+      imgSrc:
+        'https://www.asu.edu.eg/141090/_mediacenter/2021/png/6cb561a4bbfa874570ca82c711886eeb.png',
+    },
+    {
+      name: t('RecordResearchPoint'),
+      link: '/recordpoint',
+      imgSrc:
+        'https://www.asu.edu.eg/141090/_mediacenter/2020/png/ec5aecb3aadf2077d1f2756ede50ee97.png',
+      show: userInfo?.user_data?.degree === 'master',
+    },
+    {
+      name: t('BooksAndSubjectResources'),
+      link: '/Material',
+      imgSrc:
+        'https://www.asu.edu.eg/141090/_mediacenter/2022/png/a5e0e61d23d7bb612f9861b2fa43bc18.png',
+    },
+    {
+      name: t('ExamSchedules'),
+      link: '/examtable',
+      imgSrc:
+        'https://www.asu.edu.eg/141090/_mediacenter/2020/png/fa7959f679b4fd03ef5cafc2fb7c13e1.png',
+    },
+    {
+      name: t('StudySchedules'),
+      link: '/studytable',
+      imgSrc:
+        'https://www.asu.edu.eg/141090/_mediacenter/2020/png/cface9a1707183e146e79af56a096971.png',
+    },
+    {
+      name: t('GraduateResults'),
+      link: '/showgrade',
+      imgSrc:
+        'https://www.asu.edu.eg/141090/_mediacenter/2020/png/8f8b9a7cc9c5d1c4df4e229124bfe7e0.png',
+    },
+    {
+      name: t('RequestsAndDeclarations'),
+      link: '/reports',
+      imgSrc:
+        'https://www.asu.edu.eg/141090/_mediacenter/2021/png/b4e51525efc6b9eda281948e2087b986.png',
+    },
+    {
+      name: t('AnnouncementsAndSeminarDates'),
+      link: '/seminar-request',
+      imgSrc:
+        'https://www.asu.edu.eg/141090/_mediacenter/2022/png/a5e0e61d23d7bb612f9861b2fa43bc18.png',
+    },
+    {
+      name: t('ChatbotToAssistTheStudent'),
+      link: '#',
+      imgSrc:
+        'https://www.asu.edu.eg/141090/_mediacenter/2021/png/4aa70b2c4a21785c4b872fe5e6be37d2.png',
+    },
+  ];
+
+  const filteredServices = services.filter((service) =>
+    service.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className={darkMode ? 'bg-black  text-main     ' : 'bg-white  '}>
       <ToastContainer />
@@ -122,183 +196,41 @@ function Home() {
           </div>
         </div>
       </div>
-      <div id="servicesID" className="services-name ms-10 mt-10  ">
-        <h1 className="font-sans lg:text-5xl md:text-4xl sm:text-3xl font-semibold  text-start">
+      <div className="services-name  flex  flex-col  gap-7 ms-10 mt-10">
+        <h1 className="font-sans lg:text-5xl md:text-4xl sm:text-3xl font-semibold text-start">
           {t('ElectronicServices')}
         </h1>
       </div>
-      <div className="services flex justify-center items-center gap-[3rem] flex-wrap  p-3 font-sans  mt-20">
-        <div className="w-[80%]  flex flex-wrap gap-6 ">
-          <Link to={'/registration'}>
-            <div className="ser-card">
-              <div className="flex items-center justify-center">
-                <img
-                  src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/372c6de72afbddfc800432ce0f8b178b.png"
-                  style={{ width: '150px' }}
-                  alt=""
-                />
-              </div>
-
-              <h3 className="mt-5 mb-5 font-Poppins text-xl">
-                {t('ApplyForGraduateStudies')}
-              </h3>
-            </div>
-          </Link>
-          <Link to={'/payment'}>
-            <div className="ser-card">
-              <div className="flex items-center justify-center">
-                <img
-                  src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/ec5aecb3aadf2077d1f2756ede50ee97.png"
-                  style={{ width: '150px' }}
-                  alt=""
-                />
-              </div>
-
-              <h3 className="mt-5 mb-5 font-Poppins text-xl">
-                {t('ElectronicPayment')}{' '}
-              </h3>
-            </div>
-          </Link>
-          <Link to={'/course'}>
-            <div className="ser-card ">
-              <div className="flex items-center justify-center">
-                <img
-                  src="https://www.asu.edu.eg/141090/_mediacenter/2021/png/6cb561a4bbfa874570ca82c711886eeb.png"
-                  style={{ width: '150px' }}
-                  alt=""
-                />
-              </div>
-
-              <h3 className="mt-5 mb-5 font-Poppins text-xl">
-                {' '}
-                {t('RegisterAndChooseSubjects')}
-              </h3>
-            </div>
-          </Link>
-          {userInfo?.user_data?.degree == 'master' && (
-            <Link to={'/recordpoint'}>
-              <div className="ser-card">
-                <div className="flex items-center justify-center">
-                  <img
-                    src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/ec5aecb3aadf2077d1f2756ede50ee97.png"
-                    style={{ width: '150px' }}
-                    alt=""
-                  />
-                </div>
-
-                <h3 className="mt-5 mb-5 font-Poppins text-xl">
-                  {' '}
-                  {t('RecordResearchPoint')}
-                </h3>
-              </div>
-            </Link>
+      <div className="flex items-center justify-center  mt-12 -mb-10 ">
+        <input
+          type="text"
+          placeholder={t('Search For Service')}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="mt-5 p-2 border border-gray-400 rounded-lg focus-visible:rounded md:w-2/3  "
+        />
+      </div>
+      <div className="services flex justify-center items-center gap-[3rem] flex-wrap p-3 font-sans mt-20 ">
+        <div className="w-[80%] flex flex-wrap gap-6">
+          {filteredServices.map(
+            (service, index) =>
+              service.show !== false && (
+                <Link key={index} to={service.link}>
+                  <div className="ser-card">
+                    <div className="flex items-center justify-center">
+                      <img
+                        src={service.imgSrc}
+                        style={{ width: '150px' }}
+                        alt=""
+                      />
+                    </div>
+                    <h3 className="mt-5 mb-5 font-Poppins text-xl">
+                      {service.name}
+                    </h3>
+                  </div>
+                </Link>
+              )
           )}
-          <Link to={'/Material'}>
-            <div className="ser-card">
-              <div className="flex items-center justify-center">
-                <img
-                  src="https://www.asu.edu.eg/141090/_mediacenter/2022/png/a5e0e61d23d7bb612f9861b2fa43bc18.png"
-                  style={{ width: '150px' }}
-                  alt=""
-                />
-              </div>
-
-              <h3 className="mt-5 mb-5 font-Poppins text-xl">
-                {' '}
-                {t('BooksAndSubjectResources')}
-              </h3>
-            </div>
-          </Link>
-          <Link to={'/examtable'}>
-            <div className="ser-card">
-              <div className="flex items-center justify-center">
-                <img
-                  src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/fa7959f679b4fd03ef5cafc2fb7c13e1.png"
-                  style={{ width: '150px' }}
-                  alt=""
-                />
-              </div>
-
-              <h3 className="mt-5 mb-5 font-Poppins text-xl">
-                {t('ExamSchedules')}
-              </h3>
-            </div>
-          </Link>
-          <Link to={'/studytable'}>
-            <div className="ser-card">
-              <div className="flex items-center justify-center">
-                <img
-                  src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/cface9a1707183e146e79af56a096971.png"
-                  style={{ width: '150px' }}
-                  alt=""
-                />
-              </div>
-
-              <h3 className="mt-5 mb-5 font-Poppins text-xl">
-                {t('StudySchedules')}
-              </h3>
-            </div>
-          </Link>
-
-          <Link to={'showgrade'}>
-            <div className="ser-card">
-              <div className="flex items-center justify-center">
-                <img
-                  src="https://www.asu.edu.eg/141090/_mediacenter/2020/png/8f8b9a7cc9c5d1c4df4e229124bfe7e0.png"
-                  style={{ width: '150px' }}
-                  alt=""
-                />
-              </div>
-
-              <h3 className="mt-5 mb-5 font-Poppins text-xl">
-                {t('GraduateResults')}
-              </h3>
-            </div>
-          </Link>
-          <Link to={'/reports'}>
-            <div className="ser-card">
-              <div className="flex items-center justify-center">
-                <img
-                  src="https://www.asu.edu.eg/141090/_mediacenter/2021/png/b4e51525efc6b9eda281948e2087b986.png"
-                  style={{ width: '150px' }}
-                  alt=""
-                />
-              </div>
-
-              <h3 className="mt-5 mb-5 font-Poppins text-xl">
-                {t('RequestsAndDeclarations')}
-              </h3>
-            </div>
-          </Link>
-          <Link to={'/seminar-request'}>
-            <div className="ser-card">
-              <div className="flex items-center justify-center">
-                <img
-                  src="https://www.asu.edu.eg/141090/_mediacenter/2022/png/a5e0e61d23d7bb612f9861b2fa43bc18.png"
-                  style={{ width: '150px' }}
-                  alt=""
-                />
-              </div>
-
-              <h3 className="mt-5 mb-5 font-Poppins text-xl">
-                {t('AnnouncementsAndSeminarDates')}
-              </h3>
-            </div>
-          </Link>
-
-          <div className="ser-card">
-            <div className="flex items-center justify-center">
-              <img
-                src="https://www.asu.edu.eg/141090/_mediacenter/2021/png/4aa70b2c4a21785c4b872fe5e6be37d2.png"
-                style={{ width: '150px' }}
-                alt=""
-              />
-            </div>
-
-            <h3 className="mt-5 mb-5 font-Poppins text-xl">
-              {t('ChatbotToAssistTheStudent')}
-            </h3>
-          </div>
         </div>
       </div>
       <div className="graduates mt-5 mb-5 flex lg:justify-center flex-col">

@@ -12,7 +12,7 @@ function RecordPoint() {
   const token = useSelector((state) => state.user.UserInfo?.token);
   console.log(token);
   const [degree, setDegree] = useState('Masters');
-  const [resUrl, setResUrl] = useState('');
+
   const [topicArabic, setTopicArabic] = useState('');
   const [topicEnglish, setTopicEnglish] = useState('');
   const [supervisors, setSupervisors] = useState([
@@ -21,6 +21,7 @@ function RecordPoint() {
   const [supervisorName, setSupervisorName] = useState('');
   const [supervisorTitle, setSupervisorTitle] = useState('');
   const [supervisorDate, setSupervisorDate] = useState('');
+  const [resUrl, setResUrl] = useState(null);
   useEffect(() => {
     async function fetchReports() {
       const res = await axios.post(
@@ -39,19 +40,20 @@ function RecordPoint() {
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const data = {
-      degree,
-      topicArabic,
-      topicEnglish,
-      supervisors,
-      supervisorName,
-      supervisorTitle,
-      supervisorDate,
+      type: degree,
+      content: JSON.stringify({
+        topicArabic,
+        topicEnglish,
+        supervisors,
+        supervisorName,
+        supervisorTitle,
+      }),
+      date: supervisorDate,
     };
-
+    console.log(data);
     axios
-      .post(`${URLng}`, data, {
+      .post(`${URLng}/makereportstudent`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -91,9 +93,6 @@ function RecordPoint() {
   return (
     <>
       <div className="flex flex-col items-center h-screen font-bold">
-        <div>
-          <img src={`${URLImage}/${resUrl}`} alt="suc" />
-        </div>
         <div className="flex bg-main w-full items-center justify-around py-4">
           <div>
             <img src={uniLogo} alt="" className="w-24 h-24" />
@@ -108,8 +107,15 @@ function RecordPoint() {
           </div>
         </div>
         <div className="container p-10 flex-1">
-          <div>
-            <img src="" alt="" />
+          <p>الخطة البحثة الخاصة بالقسم</p>
+          <div className="  flex items-center justify-center  ">
+            {resUrl && (
+              <embed
+                src={`${URLImage}/${resUrl}`}
+                alt="suc"
+                className="w-full h-full   "
+              />
+            )}
           </div>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
