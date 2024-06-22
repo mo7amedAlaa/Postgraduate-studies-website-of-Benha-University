@@ -60,7 +60,7 @@ export default function RegistrationToApply() {
         'department_id',
         'type',
       ],
-      2: ['original_bachelors_degree', 'enrollment_papers', 'personalImage'],
+      2: ['enrollment_papers', 'personalImage'],
     };
 
     requiredFields[step].forEach((field) => {
@@ -130,12 +130,16 @@ export default function RegistrationToApply() {
       );
     };
     const fileToBase64Single = (file) => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
+      if (file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      } else {
+        return null;
+      }
     };
     setLoading(true);
     setError(null);

@@ -29,7 +29,7 @@ const RequestItem = ({ request }) => {
           {status}
         </span>
       </p>
-      {type === 'Masters' ? (
+      {type === 'Masters' || type === 'PhD' ? (
         <>
           <p className="text-gray-600 mb-2">
             الموضوع بالعربية: {contentData.topicArabic}
