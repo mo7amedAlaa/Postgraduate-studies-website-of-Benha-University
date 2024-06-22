@@ -2,7 +2,7 @@ import React from 'react';
 
 const RequestItem = ({ request }) => {
   const { id, content, date, type, status, student } = request;
-  const contentData = type === 'researchPlan' ? content : JSON.parse(content);
+  const contentData = type === 'recordPoint' ? content : JSON.parse(content);
   const handleApprove = () => {
     console.log(`تم الموافقة على الطلب: ${id}`);
   };

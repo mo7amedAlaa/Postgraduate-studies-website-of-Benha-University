@@ -107,16 +107,6 @@ function RecordPoint() {
           </div>
         </div>
         <div className="container p-10 flex-1">
-          <p>الخطة البحثة الخاصة بالقسم</p>
-          <div className="  flex items-center justify-center  ">
-            {resUrl && (
-              <embed
-                src={`${URLImage}/${resUrl}`}
-                alt="suc"
-                className="w-full h-full   "
-              />
-            )}
-          </div>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block">
@@ -257,6 +247,16 @@ function RecordPoint() {
               </button>
             </div>
           </form>
+          <p>الخطة البحثة الخاصة بالقسم</p>
+          <div className="  flex items-center justify-center  ">
+            {resUrl && (
+              <embed
+                src={`${URLImage}/${resUrl}`}
+                alt="suc"
+                className="w-full h-96     "
+              />
+            )}
+          </div>
         </div>
         <div className="bg-main w-full px-2">
           <Copyrights />

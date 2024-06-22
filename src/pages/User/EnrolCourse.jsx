@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Button } from '@mui/material';
 import { URLng } from '../../API/constant';
 import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 export default function EnrolCourse() {
   const [courses, setCourses] = useState([]);
@@ -58,7 +59,7 @@ export default function EnrolCourse() {
         },
       }
     );
-    console.log(response.data.message);
+    Swal.fire('successful', `${response.data.message}`, 'successfull');
   };
 
   const columns = [
@@ -90,7 +91,6 @@ export default function EnrolCourse() {
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'student_id', headerName: 'student_id', width: 130 },
     { field: 'course_id', headerName: 'course_id', width: 130 },
-
     { field: 'grade', headerName: '  grade', width: 130 },
     { field: 'firstOrSecond', headerName: 'firstOrSecond', width: 130 },
 
@@ -104,7 +104,6 @@ export default function EnrolCourse() {
           color="primary"
           size="small"
           style={{ marginRight: 8 }}
-          onClick={() => deleteCourse(params.row.id)}
         >
           الغاء التسجيل{' '}
         </Button>

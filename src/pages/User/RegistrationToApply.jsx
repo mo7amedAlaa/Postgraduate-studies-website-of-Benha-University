@@ -68,38 +68,38 @@ export default function RegistrationToApply() {
     ) {
       errors.email = 'Invalid email address';
     }
-    // if (formData.SSN.length !== 14) {
-    //   errors.SSN = 'length must be 14 number';
-    // }
+    if (formData.SSN.length !== 14) {
+      errors.SSN = 'length must be 14 number';
+    }
 
-    // if (!/^\d+$/.test(formData.SSN)) {
-    //   errors.SSN = 'length must be number';
-    // }
+    if (!/^\d+$/.test(formData.SSN)) {
+      errors.SSN = 'length must be number';
+    }
 
-    // // استخراج تاريخ الميلاد
-    // let year = parseInt(formData.SSN.substring(1, 3), 10);
-    // let month = parseInt(formData.SSN.substring(3, 5), 10);
-    // let day = parseInt(formData.SSN.substring(5, 7), 10);
+    // استخراج تاريخ الميلاد
+    let year = parseInt(formData.SSN.substring(1, 3), 10);
+    let month = parseInt(formData.SSN.substring(3, 5), 10);
+    let day = parseInt(formData.SSN.substring(5, 7), 10);
 
-    // // تحديد القرن
-    // let century = formData.SSN.charAt(0);
-    // if (century === '2') {
-    //   year += 1900;
-    // } else if (century === '3') {
-    //   year += 2000;
-    // } else {
-    //   errors.SSN = 'length must be valid number';
-    // }
+    // تحديد القرن
+    let century = formData.SSN.charAt(0);
+    if (century === '2') {
+      year += 1900;
+    } else if (century === '3') {
+      year += 2000;
+    } else {
+      errors.SSN = 'length must be valid number';
+    }
 
-    // // التحقق من صحة التاريخ
-    // let date = new Date(year, month - 1, day);
-    // if (
-    //   date.getFullYear() !== year ||
-    //   date.getMonth() + 1 !== month ||
-    //   date.getDate() !== day
-    // ) {
-    //   errors.SSN = 'No SSN with this value';
-    // }
+    // التحقق من صحة التاريخ
+    let date = new Date(year, month - 1, day);
+    if (
+      date.getFullYear() !== year ||
+      date.getMonth() + 1 !== month ||
+      date.getDate() !== day
+    ) {
+      errors.SSN = 'No SSN with this value';
+    }
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
