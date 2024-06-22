@@ -9,18 +9,22 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../../Redux/Slices/darkModeSlice';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { IoIosLogOut } from 'react-icons/io';
+import { SetUserInfo } from '../../Redux/Slices/userStatusSlice';
 function Navbar({ notS, count, handleSidebarOpen }) {
   const dispatch = useDispatch();
   const dark = useSelector((state) => state.theme.darkMode);
   const [settOpen, setSettOpen] = useState(false);
   const { t, i18n } = useTranslation();
-
+  const navigate = useNavigate();
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
-
+  const handleLogout = () => {
+    dispatch(SetUserInfo(null));
+    navigate('/');
+  };
   return (
     <nav
       className={`w-full z-20 top-0 start-0 shadow-lg ${
@@ -92,12 +96,16 @@ function Navbar({ notS, count, handleSidebarOpen }) {
             onClick={() => setSettOpen(!settOpen)}
           />
           {settOpen && (
-            <ul className="absolute top-[70%] z-50 left-8 w-28 bg-white border-2 shadow-2xl border-main border-solid rounded-md">
-              <Link to={'./accountsetting'}>
-                <li className="p-3 border-b border-[#eee] cursor-pointer hover:bg-gray-200">
-                  {t('Account')}
-                </li>
-              </Link>
+            <ul className="absolute top-[70%] z-50 left-8 w-32 bg-white border-2 shadow-2xl border-main border-solid rounded-md">
+              <li className="p-3  flex  items-center text-sm  gap-3 border-b border-[#eee] cursor-pointer hover:bg-gray-200">
+                <button
+                  className="flex items-center justify-between gap-2 "
+                  onClick={handleLogout}
+                >
+                  <IoIosLogOut /> تسجيل الخروج
+                </button>
+              </li>
+
               <li className="p-3 border-b border-[#eee] cursor-pointer hover:bg-gray-200">
                 <select
                   name="lang"

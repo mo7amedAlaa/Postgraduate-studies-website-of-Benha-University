@@ -377,17 +377,12 @@ function AcceptStudent() {
       ),
     },
   ];
-
   if (loading) {
     return (
       <div className="flex items-center justify-center">
         <ClipLoader size={150} color="#123abc" loading={loading} />
       </div>
     );
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
   }
 
   return (

@@ -4,20 +4,14 @@ import { SetUserInfo } from '../../Redux/Slices/userStatusSlice';
 import { useNavigate } from 'react-router-dom';
 import { URLImage } from '../../API/constant';
 const UserProfile = () => {
-  const [user, setUser] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.user.UserInfo);
   const handleLogout = () => {
-    // Add your logout logic here
     dispatch(SetUserInfo(null));
     navigate('/');
   };
-  useEffect(() => {
-    console.log(
-      `${URLImage}/${userInfo.user_data.student_photos.personalImage}`
-    );
-  }, []);
+
   return (
     <div className="h-screen w-screen flex items-center justify-center ">
       <div className="w-2/3   h-2/3 flex items-center justify-center    mx-auto p-6 bg-white shadow-md rounded-lg">

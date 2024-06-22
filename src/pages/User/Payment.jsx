@@ -25,21 +25,21 @@ export default function Payment() {
   const cardInfo = {
     card1: {
       name: 'Mohamed Alaa',
-      cardNumber: '1287 5678 9012 3456',
-      expiryMonth: '01',
+      cardNumber: '1287567890123456',
+      expiryMonth: '09',
       expiryYear: '2024',
       securityCode: '745',
     },
     card2: {
       name: 'Ali Ahmed',
-      cardNumber: '9876 5432 1098 7654',
+      cardNumber: '9876543210987654',
       expiryMonth: '02',
       expiryYear: '2025',
       securityCode: '456',
     },
     card3: {
       name: 'Au Err',
-      cardNumber: '1234 5678 9012 3456',
+      cardNumber: '12345678 9012 3456',
       expiryMonth: '01',
       expiryYear: '2024',
       securityCode: '705',
