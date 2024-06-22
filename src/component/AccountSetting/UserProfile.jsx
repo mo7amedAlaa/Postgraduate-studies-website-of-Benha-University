@@ -17,31 +17,36 @@ const UserProfile = () => {
     console.log(
       `${URLImage}/${userInfo.user_data.student_photos.personalImage}`
     );
-    console.log(userInfo.user_data.student_photos.personalImage);
   }, []);
   return (
     <div className="h-screen w-screen flex items-center justify-center ">
       <div className="w-2/3   h-2/3 flex items-center justify-center    mx-auto p-6 bg-white shadow-md rounded-lg">
         <div className="">
-          <h1 className="text-2xl font-bold mb-4">User Profile</h1>
-          <div className="mb-6">
-            <p className="text-gray-700">
-              <strong>Photo:</strong>{' '}
-              {userInfo.user_data.student_photos.personalImage && (
-                <img
-                  src={`${URLImage}/${userInfo.user_data.student_photos.personalImage}`}
-                  alt="dffdf"
-                />
-              )}
+          <h1 className=" text-center  text-2xl font-bold mb-4">
+            {' '}
+            حساب المستخدم
+          </h1>
+          <div className="mb-6 flex flex-col gap-3">
+            <p className=" flex gap-5 items-center justify-between text-gray-700">
+              <strong>الصورة الشخصية:</strong>{' '}
+              <div className="w-24 h-24 rounded-full bg-slate-500   ">
+                {userInfo.user_data.student_photos.personalImage && (
+                  <img
+                    src={`${URLImage}/${userInfo.user_data.student_photos.personalImage}`}
+                    alt="userImage"
+                    className="w-full h-full rounded-full"
+                  />
+                )}
+              </div>
             </p>
-            <p className="text-gray-700">
-              <strong>Name:</strong> {userInfo.user_data?.english_name}
+            <p className="flex gap-5 items-center justify-between text-gray-700">
+              <strong>الاسم:</strong> {userInfo.user_data?.english_name}
             </p>
-            <p className="text-gray-700">
-              <strong>Email:</strong> {userInfo.user_data?.account}
+            <p className="flex gap-5 items-center justify-between text-gray-700">
+              <strong>الاكونت:</strong> {userInfo.user_data?.account}
             </p>
-            <p className="text-gray-700">
-              <strong>Joined:</strong> {userInfo.user_data?.created_at}
+            <p className="flex gap-5 items-center justify-between text-gray-700">
+              <strong>تاريخ التسجيل:</strong> {userInfo.user_data?.created_at}
             </p>
           </div>
           <button

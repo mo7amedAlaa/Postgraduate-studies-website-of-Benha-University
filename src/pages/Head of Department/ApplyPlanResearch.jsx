@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import MainLayout from '../../component/Main/MainLayout';
+import { URLng } from '../../API/constant';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 const ApplyPlanResearch = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [file, setFile] = useState(null);
-
+  const userInfo = useSelector((state) => state.user.UserInfo);
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     setFile(selectedFile);
@@ -23,6 +26,7 @@ const ApplyPlanResearch = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(userInfo);
 
     if (!title || !description || !file) {
       Swal.fire({
@@ -41,34 +45,28 @@ const ApplyPlanResearch = () => {
       showCancelButton: true,
       confirmButtonText: 'نعم، ارفعها',
       cancelButtonText: 'إلغاء',
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);
         formData.append('file', file);
-
-        fetch('/upload', {
-          method: 'POST',
-          body: formData,
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            Swal.fire({
-              title: 'نجاح',
-              text: 'تم رفع الخطة البحثية بنجاح',
-              icon: 'success',
-              confirmButtonText: 'حسنًا',
-            });
-          })
-          .catch((error) => {
-            Swal.fire({
-              title: 'خطأ',
-              text: 'حدث خطأ أثناء رفع الخطة البحثية',
-              icon: 'error',
-              confirmButtonText: 'حسنًا',
-            });
-          });
+        try {
+          console.log(formData);
+          const response = await axios.post(
+            `${URLng}/courses/addplan/9`,
+            formData,
+            {
+              headers: {
+                Accept: 'application/json',
+                Authorization: `Bearer ${userInfo?.token}`,
+              },
+            }
+          );
+          console.log(response.data);
+        } catch (error) {
+          console.log(error.message);
+        }
       }
     });
   };
@@ -113,6 +111,7 @@ const ApplyPlanResearch = () => {
         <button
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={handleSubmit}
         >
           رفع الخطة البحثية
         </button>

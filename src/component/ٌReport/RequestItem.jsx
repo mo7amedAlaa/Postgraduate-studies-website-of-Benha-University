@@ -57,16 +57,16 @@ const RequestItem = ({ request }) => {
       ) : (
         <p className="text-gray-600 mb-2">المحتوى: {content}</p>
       )}
-      <div className="mt-4">
+      <div className="mt-4 flex items-center justify-between">
         <button
           onClick={handleApprove}
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors duration-200 mr-2"
+          className="bg-green-500 text-white px-4 w-1/3 py-2 rounded hover:bg-green-700 transition-colors duration-200 mr-2"
         >
           موافقة
         </button>
         <button
           onClick={handleDelete}
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors duration-200"
+          className="bg-red-500 text-white  w-1/3 px-4 py-2 rounded hover:bg-red-700 transition-colors duration-200"
         >
           حذف
         </button>

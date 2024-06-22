@@ -36,8 +36,8 @@ export default function EnrolCourse() {
             },
           }
         );
-        SetSlectedCourses(res.data[0]);
-        console.log(res.data[0]);
+        SetSlectedCourses(res.data);
+        console.log(res.data);
       } catch (error) {
         console.error('Error fetching   courses:', error);
       }
@@ -60,7 +60,6 @@ export default function EnrolCourse() {
     );
     console.log(response.data.message);
   };
-  const deleteCourse = (id) => {};
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -112,72 +111,6 @@ export default function EnrolCourse() {
       ),
     },
   ];
-  // const [courses, setCourses] = useState([
-  //   {
-  //     id: 1,
-  //     subName: 'اسم المادة',
-  //     code: 'SC2X',
-  //     hourNum: 3,
-  //     maxGrade: 100,
-  //     minGrade: 50,
-  //   },
-  //   {
-  //     id: 2,
-  //     subName: 'اسم المادة',
-  //     code: 'SC2X',
-  //     hourNum: 3,
-  //     maxGrade: 100,
-  //     minGrade: 50,
-  //   },
-  //   {
-  //     id: 3,
-  //     subName: 'اسم المادة',
-  //     code: 'SC2X',
-  //     hourNum: 3,
-  //     maxGrade: 100,
-  //     minGrade: 50,
-  //   },
-  //   {
-  //     id: 6,
-  //     subName: 'اسم المادة',
-  //     code: 'SC2X',
-  //     hourNum: 3,
-  //     maxGrade: 100,
-  //     minGrade: 50,
-  //   },
-  //   {
-  //     id: 9,
-  //     subName: 'اسم المادة',
-  //     code: 'SC2X',
-  //     hourNum: 3,
-  //     maxGrade: 100,
-  //     minGrade: 50,
-  //   },
-  //   {
-  //     id: 10,
-  //     subName: 'اسم المادة',
-  //     code: 'SC2X',
-  //     hourNum: 3,
-  //     maxGrade: 100,
-  //     minGrade: 50,
-  //   },
-  //   {
-  //     id: 12,
-  //     subName: 'اسم المادة',
-  //     code: 'SC2X',
-  //     hourNum: 3,
-  //     maxGrade: 100,
-  //     minGrade: 50,
-  //   },
-  //   {
-  //     id: 13,
-  //     subName: 'اسم المادة',
-  //     code: 'SC2X',
-  //     hourNum: 3,
-  //     maxGrade: 100,
-  //     minGrade: 50,
-  //   },
-  // ]);
 
   return (
     <div className=" bg-slate-100     min-h-screen">

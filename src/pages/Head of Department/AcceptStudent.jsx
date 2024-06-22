@@ -5,7 +5,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import { ClipLoader } from 'react-spinners';
 import { Box } from '@mui/material';
-import { URLng } from '../../API/constant';
+import { URLImage, URLng } from '../../API/constant';
 import emailjs from 'emailjs-com';
 import { useDispatch } from 'react-redux';
 import {
@@ -16,10 +16,10 @@ import {
 
 function AcceptStudent() {
   const [rows, setRows] = useState([]);
-  // const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,6 +40,7 @@ function AcceptStudent() {
 
     fetchData();
   }, []);
+
   const sendRegEmail = (name, studentEmail) => {
     const templateParams = {
       to_name: name,
@@ -62,6 +63,7 @@ function AcceptStudent() {
         }
       );
   };
+
   const sendAcceptEmail = (
     name,
     studentEmail,
@@ -74,6 +76,7 @@ function AcceptStudent() {
       account: studentAccount,
       password: studentPassword,
     };
+
     emailjs
       .send(
         'service_uezy399',
@@ -133,40 +136,220 @@ function AcceptStudent() {
     {
       field: 'original_bachelors_degree',
       headerName: "Original Bachelor's Degree",
-      width: 300,
+      width: 200,
       renderCell: (params) => (
         <div className="flex items-center justify-center">
-          <a
-            href={params.value ? params.value : '#'}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {params.value ? 'file' : 'no file'}
-          </a>
+          {params && params.row.original_bachelors_degree ? (
+            <a
+              href={`${URLImage}/${params.row.original_bachelors_degree}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`${URLImage}/${params.row.original_bachelors_degree}`}
+                alt="Personal"
+                style={{ width: '50px', height: '50px' }}
+              />
+            </a>
+          ) : (
+            'no file'
+          )}
         </div>
       ),
     },
     {
-      field: 'enrollment_papers',
-      headerName: 'Enrollment Papers',
-      width: 300,
+      field: 'master_degree',
+      headerName: 'master_degree',
+      width: 200,
       renderCell: (params) => (
-        <div className="flex items-center justify-around gap-3">
-          {Array.isArray(params.value)
-            ? params.value.map((file, index) => (
-                <a
-                  key={index}
-                  href={file}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {`file${index + 1}`}
-                </a>
-              ))
-            : 'no file'}
+        <div className="flex items-center justify-center">
+          {params && params.row.master_degree ? (
+            <a
+              href={`${URLImage}/${params.row.master_degree}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`${URLImage}/${params.row.master_degree}`}
+                alt="Personal"
+                style={{ width: '50px', height: '50px' }}
+              />
+            </a>
+          ) : (
+            'no file'
+          )}
         </div>
       ),
     },
+    {
+      field: 'four_years_grades',
+      headerName: 'four_years_grades',
+      width: 200,
+      renderCell: (params) => (
+        <div className="flex items-center justify-center">
+          {params && params.row.four_years_grades ? (
+            <a
+              href={`${URLImage}/${params.row.four_years_grades}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`${URLImage}/${params.row.four_years_grades}`}
+                alt="Personal"
+                style={{ width: '50px', height: '50px' }}
+              />
+            </a>
+          ) : (
+            'no file'
+          )}
+        </div>
+      ),
+    },
+    {
+      field: 'BirthCertificate',
+      headerName: 'BirthCertificate',
+      width: 200,
+      renderCell: (params) => (
+        <div className="flex items-center justify-center">
+          {params && params.row.BirthCertificate ? (
+            <a
+              href={`${URLImage}/${params.row.BirthCertificate}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`${URLImage}/${params.row.BirthCertificate}`}
+                alt="Personal"
+                style={{ width: '50px', height: '50px' }}
+              />
+            </a>
+          ) : (
+            'no file'
+          )}
+        </div>
+      ),
+    },
+    {
+      field: 'IDCardCopy',
+      headerName: 'IDCardCopy',
+      width: 200,
+      renderCell: (params) => (
+        <div className="flex items-center justify-center">
+          {params && params.row.IDCardCopy ? (
+            <a
+              href={`${URLImage}/${params.row.IDCardCopy}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`${URLImage}/${params.row.IDCardCopy}`}
+                alt="Personal"
+                style={{ width: '50px', height: '50px' }}
+              />
+            </a>
+          ) : (
+            'no file'
+          )}
+        </div>
+      ),
+    },
+    {
+      field: 'RecruitmentPosition',
+      headerName: 'RecruitmentPosition',
+      width: 200,
+      renderCell: (params) => (
+        <div className="flex items-center justify-center">
+          {params && params.row.RecruitmentPosition ? (
+            <a
+              href={`${URLImage}/${params.row.RecruitmentPosition}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`${URLImage}/${params.row.RecruitmentPosition}`}
+                alt="Personal"
+                style={{ width: '50px', height: '50px' }}
+              />
+            </a>
+          ) : (
+            'no file'
+          )}
+        </div>
+      ),
+    },
+    {
+      field: 'EmployerApproval',
+      headerName: 'EmployerApproval',
+      width: 200,
+      renderCell: (params) => (
+        <div className="flex items-center justify-center">
+          {params && params.row.EmployerApproval ? (
+            <a
+              href={`${URLImage}/${params.row.EmployerApproval}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`${URLImage}/${params.row.EmployerApproval}`}
+                alt="Personal"
+                style={{ width: '50px', height: '50px' }}
+              />
+            </a>
+          ) : (
+            'no file'
+          )}
+        </div>
+      ),
+    },
+    {
+      field: 'personalImage',
+      headerName: 'personalImage',
+      width: 200,
+      renderCell: (params) => (
+        <div className="flex items-center justify-center">
+          {params && params.row.personalImage ? (
+            <a
+              href={`${URLImage}/${params.row.personalImage}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`${URLImage}/${params.row.personalImage}`}
+                alt="Personal"
+                style={{ width: '50px', height: '50px' }}
+              />
+            </a>
+          ) : (
+            'no file'
+          )}
+        </div>
+      ),
+    },
+    {
+      field: 'superAccpet',
+      headerName: 'superAccpet',
+      width: 200,
+      renderCell: (params) => (
+        <div className="flex items-center justify-center">
+          {params && params.row.superAccpet ? (
+            <a
+              href={`${URLImage}/${params.row.superAccpet}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`${URLImage}/${params.row.superAccpet}`}
+                alt="Personal"
+                style={{ width: '50px', height: '50px' }}
+              />
+            </a>
+          ) : (
+            'no file'
+          )}
+        </div>
+      ),
+    },
+
     {
       field: 'actions',
       headerName: 'Actions',
@@ -210,7 +393,7 @@ function AcceptStudent() {
   return (
     <div className="overflow-hidden">
       <MainLayout title={'Accept Student and Make ACC'}>
-        <Box sx={{ height: 400, width: '200%' }}>
+        <Box sx={{ height: 400, width: '500%' }}>
           <DataGrid
             rows={rows}
             columns={columns}

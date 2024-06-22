@@ -12,6 +12,7 @@ import { registering } from '../../Redux/Slices/userStatusSlice';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
 import { URLng } from '../../API/constant';
+
 export default function RegistrationToApply() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -20,29 +21,10 @@ export default function RegistrationToApply() {
   const registered = useSelector((state) => state.user.reged);
   const [t] = useTranslation();
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
-    name: '',
-    english_name: '',
-    nationality: '',
-    religion: '',
-    job: '',
-    age: '',
-    SSN: '',
-    phone: '',
-    address: '',
-    department_id: '',
-    gender: '',
-    marital_status: '',
-    email: '',
-    type: '',
-    enrollment_papers: [],
-    personalImage: null,
-    original_bachelors_degree: null,
-  });
+  const [formData, setFormData] = useState({});
 
   const validateForm = () => {
     let errors = {};
-
     // Check required fields for current step
     const requiredFields = {
       1: [
@@ -60,7 +42,17 @@ export default function RegistrationToApply() {
         'department_id',
         'type',
       ],
-      2: ['enrollment_papers', 'personalImage'],
+      2: [
+        'master_degree',
+        'four_years_grades',
+        // 'original_bachelors_degree',
+        'BirthCertificate',
+        'IDCardCopy',
+        'RecruitmentPosition',
+        'EmployerApproval',
+        'personalImage',
+        'superAccpet',
+      ],
     };
 
     requiredFields[step].forEach((field) => {
@@ -70,11 +62,43 @@ export default function RegistrationToApply() {
     });
 
     // Additional validations
+    if (
+      formData.email &&
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)
+    ) {
+      errors.email = 'Invalid email address';
+    }
+    // if (formData.SSN.length !== 14) {
+    //   errors.SSN = 'length must be 14 number';
+    // }
+
+    // if (!/^\d+$/.test(formData.SSN)) {
+    //   errors.SSN = 'length must be number';
+    // }
+
+    // // استخراج تاريخ الميلاد
+    // let year = parseInt(formData.SSN.substring(1, 3), 10);
+    // let month = parseInt(formData.SSN.substring(3, 5), 10);
+    // let day = parseInt(formData.SSN.substring(5, 7), 10);
+
+    // // تحديد القرن
+    // let century = formData.SSN.charAt(0);
+    // if (century === '2') {
+    //   year += 1900;
+    // } else if (century === '3') {
+    //   year += 2000;
+    // } else {
+    //   errors.SSN = 'length must be valid number';
+    // }
+
+    // // التحقق من صحة التاريخ
+    // let date = new Date(year, month - 1, day);
     // if (
-    //   formData.email &&
-    //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)
+    //   date.getFullYear() !== year ||
+    //   date.getMonth() + 1 !== month ||
+    //   date.getDate() !== day
     // ) {
-    //   errors.email = 'Invalid email address';
+    //   errors.SSN = 'No SSN with this value';
     // }
 
     setFormErrors(errors);
@@ -82,102 +106,64 @@ export default function RegistrationToApply() {
   };
 
   const handleNext = () => {
-    console.log('Validating form for step', step);
     if (validateForm()) {
       setStep(step + 1);
-    } else {
-      console.log('Validation failed for step', step);
     }
   };
+
   const handleBack = () => {
     setStep(step - 1);
-  };
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-  const handleFileChange = (event) => {
-    const { name, files } = event.target;
-    if (name == 'original_bachelors_degree' || name == 'personalImage') {
-      setFormData({
-        ...formData,
-        [name]: files[0],
-      });
-    } else {
-      setFormData({
-        ...formData,
-        enrollment_papers: [...formData.enrollment_papers, files[0]],
-      });
-    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const convertFilesToBase64 = async (files) => {
-      return Promise.all(
-        files.map((file) => {
-          return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-          });
-        })
-      );
-    };
-    const fileToBase64Single = (file) => {
-      if (file) {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result);
-          reader.onerror = reject;
-          reader.readAsDataURL(file);
-        });
-      } else {
-        return null;
-      }
-    };
     setLoading(true);
     setError(null);
     try {
-      const enrollmentPapersBase64 = await convertFilesToBase64(
-        formData.enrollment_papers
-      );
-      const bachelorsDegreeBase64 = await fileToBase64Single(
-        formData.original_bachelors_degree
-      );
-      const personalImageBase64 = await fileToBase64Single(
-        formData.personalImage
-      );
+      const formDataToSend = new FormData();
 
-      const jsonPayload = {
-        ...formData,
-        enrollment_papers: enrollmentPapersBase64,
-        original_bachelors_degree: bachelorsDegreeBase64,
-        personalImage: personalImageBase64,
-      };
-      console.log(jsonPayload);
-
-      const response = await axios.post(`${URLng}/auth/register`, jsonPayload, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      Object.keys(formData).forEach((key) => {
+        formDataToSend.append(key, formData[key]);
       });
+      console.log(formDataToSend.entries());
+      for (let pair of formDataToSend.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+      const response = await axios.post(
+        `${URLng}/auth/register`,
+        formDataToSend,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
       setLoading(false);
+      console.log(formDataToSend, response.data);
       Swal.fire('Success', 'Data uploaded successfully!', 'success');
-      console.log('ResponseData:', response.data);
       dispatch(registering(true));
     } catch (err) {
       setLoading(false);
-      console.error('Error:', err.message);
 
       Swal.fire('Error', `${err.message}`, 'error');
       dispatch(registering(false));
     }
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (event) => {
+    const { name, files } = event.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: files[0],
+    }));
   };
   const Step1 = (
     <div className="min-h-full w-full ">
@@ -428,6 +414,7 @@ export default function RegistrationToApply() {
           >
             <option value="moed"> معيد </option>
             <option value="external"> خارجي</option>
+            <option value="external"> غير ذلك</option>
           </select>
           {formErrors.type && (
             <div className="text-red-500  text-center   ">
@@ -538,18 +525,23 @@ export default function RegistrationToApply() {
           <div className="flex w-1/6 gap-10">
             <label
               className="main-btn flex flex-1 items-center justify-center gap-3"
-              htmlFor="bachelors_degree"
+              htmlFor="master_degree"
             >
               رفع
               <LuUploadCloud />
             </label>
             <input
               type="file"
-              id="bachelors_degree"
+              id="master_degree"
               className="hidden"
-              name="bachelors_degree"
+              name="master_degree"
               onChange={handleFileChange}
             />
+            {formErrors.master_degree && (
+              <div className="text-red-500  text-center   ">
+                {formErrors.master_degree}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
@@ -573,6 +565,11 @@ export default function RegistrationToApply() {
               onChange={handleFileChange}
             />
           </div>
+          {formErrors.four_years_grades && (
+            <div className="text-red-500 text-center ">
+              {formErrors.four_years_grades}
+            </div>
+          )}
         </div>
         <div className="flex gap-5 my-5  justify-between ">
           <h1 className="text-2xl">
@@ -618,6 +615,11 @@ export default function RegistrationToApply() {
               name="BirthCertificate"
               onChange={handleFileChange}
             />
+            {formErrors.BirthCertificate && (
+              <div className="text-red-500 text-center ">
+                {formErrors.BirthCertificate}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
@@ -637,6 +639,11 @@ export default function RegistrationToApply() {
               name="IDCardCopy"
               onChange={handleFileChange}
             />
+            {formErrors.IDCardCopy && (
+              <div className="text-red-500 text-center ">
+                {formErrors.IDCardCopy}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
@@ -656,6 +663,11 @@ export default function RegistrationToApply() {
               name="RecruitmentPosition"
               onChange={handleFileChange}
             />
+            {formErrors.RecruitmentPosition && (
+              <div className="text-red-500 text-center ">
+                {formErrors.RecruitmentPosition}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
@@ -675,6 +687,11 @@ export default function RegistrationToApply() {
               name="EmployerApproval"
               onChange={handleFileChange}
             />
+            {formErrors.EmployerApproval && (
+              <div className="text-red-500 text-center ">
+                {formErrors.EmployerApproval}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex gap-5 my-5  justify-between ">
@@ -729,15 +746,13 @@ export default function RegistrationToApply() {
               name="superAccpet"
               onChange={handleFileChange}
             />
+            {formErrors.superAccpet && (
+              <div className="text-red-500 text-center ">
+                {formErrors.superAccpet}
+              </div>
+            )}
           </div>
         </div>
-      </div>
-      <div className="flex justify-around  mt-6">
-        {formErrors.enrollment_papers && (
-          <div className="text-red-500 text-center ">
-            {formErrors.enrollment_papers}
-          </div>
-        )}
       </div>
     </div>
   );
