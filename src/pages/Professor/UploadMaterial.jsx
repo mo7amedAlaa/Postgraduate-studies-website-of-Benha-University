@@ -137,7 +137,7 @@ function UploadMaterial() {
 useEffect(() => {
   async function fetchReports() {
     const res = await axios.post(
-      `${URLng}/showcourses`,
+      `${URLng}/showallcourses`,
       {},
       {
         headers: {
