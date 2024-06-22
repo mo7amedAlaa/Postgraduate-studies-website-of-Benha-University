@@ -12,30 +12,6 @@ function UploadMaterial() {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [errors, setErrors] = useState({});
 
-  const handleUpload = async () => {
-    const { value: file } = await Swal.fire({
-      title: 'Select image',
-      input: 'file',
-      inputAttributes: {
-        accept: 'image/*',
-        'aria-label': 'Upload your profile picture',
-      },
-    });
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        Swal.fire({
-          title: 'Your uploaded picture',
-          imageUrl: e.target.result,
-          imageAlt: 'The uploaded picture',
-        });
-      };
-      reader.readAsDataURL(file);
-
-      setUploadedFile(file);
-    }
-  };
-
   const handleChangeSub = (e) => {
     setSub(e.target.value);
   };
@@ -43,7 +19,7 @@ function UploadMaterial() {
   // const handleChangeDep = (e) => {
   //   setDep(e.target.value);
   // };
-  const [dep, setDep] = useState([]);
+  const [dep, setDep] = useState(null);
 
   const validateForm = () => {
     let formErrors = {};
@@ -69,10 +45,12 @@ function UploadMaterial() {
         }
       );
       setDep(res.data);
+      console.log(dep)
       console.log(res.data)
+
     }
     fetchReports();
-    alert(uploadedFile.data)
+    console.log(uploadedFile)
 
   }, []);
  const [courCode , setCourCode] = useState('')
@@ -81,6 +59,7 @@ function UploadMaterial() {
  const [department , setDepartment] = useState('')
  const [courHours , setCourHours] = useState('')
  const [time , setTime] = useState('')
+ const [allcourses , setAllCourses] = useState([])
 
  const HandleCourCodeChange = (e)=>{
   e.preventDefault()
@@ -113,13 +92,14 @@ function UploadMaterial() {
   setCourHours(e.target.value)
   console.log(e.target.value)
  }
+ const handleChangeFile = (e) => {
+  setUploadedFile(e.target.files[0]);
+  console.log(e.target.files[0]);
+ }
  const handleSubmit = async (e) => {
+   
   e.preventDefault();
-  const formErrors = validateForm();
-  if (Object.keys(formErrors).length > 0) {
-    setErrors(formErrors);
-    return;
-  }
+   
   const formData = new FormData();
   formData.append('code', courCode);
   formData.append('name', courName);
@@ -128,23 +108,30 @@ function UploadMaterial() {
   formData.append('time', time);
   formData.append('chose',choice );
   formData.append('department_id',department);
-
   console.log(formData)
   try {
     const response = await axios.post(`${URLng}/courses/addmatrial/9`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+
+
       },
     });
 
-    if (response.ok) {
+     
       Swal.fire('Success', 'Material added successfully!', 'success');
-    } else {
-      Swal.fire('Error', 'Failed to add material', 'error');
-    }
-  } catch (error) {
+     }catch (error) {
     Swal.fire('Error', 'Failed to add material', 'error');
   }
+  console.log(formData)
+  setAllCourses([])
+  setChoice('')
+  setCourCode('')
+  setCourHours('')
+  setCourName('')
+  setDep('')
+  setDepartment('')
 };
 
 useEffect(() => {
@@ -158,7 +145,7 @@ useEffect(() => {
         },
       }
     );
-    // setDep(res.data);
+    setAllCourses(res.data);
     console.log(res.data)
   }
   fetchReports();
@@ -166,29 +153,33 @@ useEffect(() => {
 }, []);
 
 
+
   return (
     <MainLayout>
       <div className="container mx-auto p-8">
         <div className="bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-3xl font-semibold mb-6 text-center">Course Details</h2>
+          <h2 className="text-3xl font-semibold mb-6 text-center">تفاصيل الكورس</h2>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Course Code</label>
+                <label className="block text-gray-700 font-medium mb-2">كود الكورس</label>
                 <input type="text"  className="w-full p-3 border rounded bg-gray-100" onChange={HandleCourCodeChange}  />
               </div>
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Course Name</label>
-                <input type="text" className="w-full p-3 border rounded bg-gray-100" onChange={HandleCourNameChange}  />
-              </div>
+                <label className="block text-gray-700 font-medium mb-2">اسم الكورس</label>
+                <select name="" id="" className="w-full p-3 border rounded bg-gray-100" onChange={HandleChoiceChange} >
+                  <option value="Elective">Elective</option>
+                  <option value="Mandatory">Mandatory</option>
+
+                </select>               </div>
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Course Hours</label>
+                <label className="block text-gray-700 font-medium mb-2">ساعات المعتمدة للكورس</label>
                 <input type="text"  className="w-full p-3 border rounded bg-gray-100" onChange={HandleCourHoursChange}  />
               </div>
              
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Time</label>
+                <label className="block text-gray-700 font-medium mb-2">التوقيت</label>
                 <select name="" id="" className="w-full p-3 border rounded bg-gray-100" onChange={HandleTimeChange} >
                   <option value="First">First</option>
                   <option value="Last">Last</option>
@@ -196,7 +187,7 @@ useEffect(() => {
                 </select>
               </div>
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Chose</label>
+                <label className="block text-gray-700 font-medium mb-2">اختار</label>
                 <select name="" id="" className="w-full p-3 border rounded bg-gray-100" onChange={HandleChoiceChange} >
                   <option value="Elective">Elective</option>
                   <option value="Mandatory">Mandatory</option>
@@ -204,25 +195,30 @@ useEffect(() => {
                 </select>              </div>
               
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Department </label>
-                <select   className="w-full p-3 border rounded bg-gray-100" onChange={HandleDepChange}>
-                    {
-                     dep?.map((department)=>{<option value={department.type}>{department.type }</option>})
-                    }
-                </select>
+                <label className="block text-gray-700 font-medium mb-2">قسم </label>
+                <select className="w-full p-3 border rounded bg-gray-100" onChange={HandleDepChange}>
+  {
+    dep?.map((department) => (
+      <option key={department.id} value={department.id}>{department.type}</option>
+    ))
+  }
+</select>
+
               </div>
               
               
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">Material</label>
-                <button type="button" onClick={handleUpload} className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 flex items-center justify-center">
-                  <LuUploadCloud className="mr-2" />
-                  Upload Material
-                </button>
-                {errors.uploadedFile && <p className="text-red-500 text-sm mt-1">{errors.uploadedFile}</p>}
-              </div>
+              <div className="mb-4">
+          <label className="block text-gray-700 font-medium mb-2">
+            ملف
+            <input
+              type="file"
+              onChange={handleChangeFile}
+              className="mt-1 p-2 w-full border rounded-md"
+            />
+          </label>
+         </div>
             </div>
-            <button type="submit" className="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+            <button type="submit" className="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" onClick={handleSubmit}>
               Submit
             </button>
           </form>
