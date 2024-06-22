@@ -29,15 +29,17 @@ const UserProfile = () => {
           <div className="mb-6 flex flex-col gap-3">
             <p className=" flex gap-5 items-center justify-between text-gray-700">
               <strong>الصورة الشخصية:</strong>{' '}
-              <div className="w-24 h-24 rounded-full bg-slate-500   ">
-                {userInfo.user_data.student_photos.personalImage && (
-                  <img
-                    src={`${URLImage}/${userInfo.user_data.student_photos.personalImage}`}
-                    alt="userImage"
-                    className="w-full h-full rounded-full"
-                  />
-                )}
-              </div>
+              {userInfo.user_data.student_photos.personalImage && (
+                <div className="w-24 h-24 rounded-full bg-slate-500   ">
+                  {userInfo.user_data.student_photos.personalImage && (
+                    <img
+                      src={`${URLImage}/${userInfo.user_data.student_photos.personalImage}`}
+                      alt="userImage"
+                      className="w-full h-full rounded-full"
+                    />
+                  )}
+                </div>
+              )}
             </p>
             <p className="flex gap-5 items-center justify-between text-gray-700">
               <strong>الاسم:</strong> {userInfo.user_data?.english_name}
