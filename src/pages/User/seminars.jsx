@@ -4,19 +4,21 @@ import Copyrights from '../../component/Footer/Copyrights';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { URLng } from '../../API/constant';
 
 const SeminarRequestForm = () => {
-  const userInfo = useSelector((state) => state.user.userInfo);
-  const token = useSelector((state) => state.user.userInfo?.token);
+  const userInfo = useSelector((state) => state.user.UserInfo);
+  const token = useSelector((state) => state.user.UserInfo?.token);
   const [seminarType, setSeminarType] = useState('');
-  const [seminarDate, setSeminarDate] = useState('');
-  const [notes, setNotes] = useState('');
+  const [proposedSeminarDate, setProposedSeminarDate] = useState('');
+  const [additionalNotes, setAdditionalNotes] = useState('');
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
     const newErrors = {};
     if (!seminarType) newErrors.seminarType = 'نوع السيمنار مطلوب';
-    if (!seminarDate) newErrors.seminarDate = 'تاريخ السيمنار مطلوب';
+    if (!proposedSeminarDate)
+      newErrors.proposedSeminarDate = 'تاريخ السيمنار مطلوب';
     return newErrors;
   };
 
@@ -27,40 +29,28 @@ const SeminarRequestForm = () => {
       setErrors(newErrors);
     } else {
       setErrors({});
-      const formData = {
-        studentName: userInfo?.user_data.name,
-        studentId: userInfo?.user_data.phone,
-        seminarType,
-        seminarDate,
-        notes,
+      const data = {
+        type: `${seminarType}`,
+        content: JSON.stringify({
+          requesterName: userInfo?.user_data.name,
+          requesterNumber: userInfo?.user_data.phone,
+          seminarType,
+          proposedSeminarDate,
+          additionalNotes,
+        }),
+        date: proposedSeminarDate,
       };
-
+      console.log(data);
+      console.log(token);
       try {
-        const response = await axios.post('/api/seminar-request', formData, {
+        const response = await axios.post(`${URLng}/makereportstudent`, data, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
         });
 
-        if (response.status === 200) {
-          Swal.fire({
-            icon: 'success',
-            title: 'تم إرسال الطلب بنجاح',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          // Reset form if needed
-          setSeminarType('');
-          setSeminarDate('');
-          setNotes('');
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'فشل في إرسال الطلب',
-            text: response.data.message,
-          });
-        }
+        Swal.fire('تم بنجاح', 'تم إرسال الطلب بنجاح', 'success');
       } catch (error) {
         Swal.fire({
           icon: 'error',
@@ -107,7 +97,6 @@ const SeminarRequestForm = () => {
                 className="w-full px-3 py-2 border rounded-lg"
                 required
                 readOnly={true}
-                disabled
               />
             </div>
             <div className="mb-4">
@@ -165,13 +154,13 @@ const SeminarRequestForm = () => {
                 id="seminar-date"
                 name="seminar-date"
                 className="w-full px-3 py-2 border rounded-lg"
-                value={seminarDate}
-                onChange={(e) => setSeminarDate(e.target.value)}
+                value={proposedSeminarDate}
+                onChange={(e) => setProposedSeminarDate(e.target.value)}
                 required
               />
-              {errors.seminarDate && (
+              {errors.proposedSeminarDate && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.seminarDate}
+                  {errors.proposedSeminarDate}
                 </p>
               )}
             </div>
@@ -183,8 +172,8 @@ const SeminarRequestForm = () => {
                 id="notes"
                 name="notes"
                 className="w-full px-3 py-2 border rounded-lg"
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
+                value={additionalNotes}
+                onChange={(e) => setAdditionalNotes(e.target.value)}
               ></textarea>
             </div>
             <button

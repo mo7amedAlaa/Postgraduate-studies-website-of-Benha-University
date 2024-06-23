@@ -147,6 +147,42 @@ const RequestItem = ({ request }) => {
           </div>
         </>
       )}
+      {type === 'discussion-presentation' && (
+        <>
+          <p className="text-gray-600 mb-2">رقم الطلب: {id}</p>
+          <p className="text-gray-600 mb-2">
+            اسم المرسل : {contentData.requesterName}
+          </p>
+          <p className="text-gray-600 mb-2">
+            الموعد المقترح : {contentData.proposedSeminarDate}
+          </p>
+          <p className="text-gray-600 mb-2">
+            رقم الهاتف: {contentData.requesterNumber}
+          </p>
+          <p className="text-gray-600 mb-2">
+            تاريخ النهاية: {contentData.startDate}
+          </p>
+          <p className="text-gray-600 mb-2">
+            ملاحظات اضافية: {contentData.additionalNotes}
+          </p>
+
+          <p className="text-gray-600 mb-2">المرسل: {student?.name}</p>
+          <div className="mt-4 flex items-center justify-between">
+            <button
+              onClick={() => handleApprove(id)}
+              className="bg-green-500 text-white px-4 w-1/3 py-2 rounded hover:bg-green-700 transition-colors duration-200 mr-2"
+            >
+              موافقة
+            </button>
+            <button
+              onClick={handleDelete}
+              className="bg-red-500 text-white  w-1/3 px-4 py-2 rounded hover:bg-red-700 transition-colors duration-200"
+            >
+              حذف
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
