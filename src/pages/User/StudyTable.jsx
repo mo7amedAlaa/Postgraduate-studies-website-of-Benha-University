@@ -1,5 +1,11 @@
 import Copyrights from '../../component/Footer/Copyrights';
-import { ExamTables, Laypdf, StudyTables, graduatedMenIcon, uniLogo } from '../../assets';
+import {
+  ExamTables,
+  Laypdf,
+  StudyTables,
+  graduatedMenIcon,
+  uniLogo,
+} from '../../assets';
 import axios from 'axios';
 import { URLImage, URLng } from '../../API/constant';
 import { useEffect, useState } from 'react';
@@ -14,79 +20,67 @@ function StudyTable() {
       const res = await axios.post(`${URLng}/schedules`);
       console.log(res.data);
       setSchedules(res.data);
-      console.log(userToken)
+      console.log(userToken);
     }
     fetchTable();
-    console.log("Clicked");
-    
+    console.log('Clicked');
   }, []);
   return (
     <div className="bg-slate-100 flex flex-col min-h-screen">
-    <div className="flex bg-main items-center justify-around">
-      <div>
-        <img src={uniLogo} alt="" width={'100px'} height={'100px'} />
+      <div className="flex bg-main items-center justify-around">
+        <div>
+          <img src={uniLogo} alt="" width={'100px'} height={'100px'} />
+        </div>
+        <div className="flex-1 text-center">
+          <p className="text-lg md:text-3xl font-bold">
+            جامعة بنهــــــــــــــا <br />
+            رؤية جدول الدراسة
+          </p>
+        </div>
+        <div>
+          <img src={graduatedMenIcon} alt="" width={'100px'} height={'100px'} />
+        </div>
       </div>
-      <div className="flex-1 text-center">
-        <p className="text-lg md:text-3xl font-bold">
-          جامعة بنهــــــــــــــا <br />
-          رؤية جدول الامتحانات
-        </p>
-      </div>
-      <div>
-        <img src={graduatedMenIcon} alt="" width={'100px'} height={'100px'} />
-      </div>
-    </div>
-    <div className="p-10 container flex-1 mx-auto">
-      <h1 className="text-3xl tracking-wider font-bold">
-     
-        
-        جداول الدراسات العليا
-      </h1>
-      <div>
-        <div className="my-5">
-       
-          <h2 className="my-5 font-bold text-lg">جداول الدراسات العليا 2024-2023</h2>
-          <div className="my-5">
+      <div className="p-6 md:p-10 container flex-1 mx-auto">
+        <h1 className="text-2xl md:text-4xl tracking-wider font-bold mb-6 text-center text-gray-800">
+          جداول الدراسات العليا
+        </h1>
+        <div>
+          <h2 className="my-5 font-bold text-xl text-gray-700 border-b-2 border-blue-500 pb-2">
+            جداول الدراسات العليا 2024-2023
+          </h2>
+          <div className="my-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {schedules &&
               schedules
-                .filter((schedule) => schedule.type === "study")
+                .filter((schedule) => schedule.type === 'exam')
                 .map((schedule, index) => (
-                  <div key={index} className="my-4 bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
-                  <a
-                    href={`${URLImage}/${schedule.content}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block "
+                  <div
+                    key={index}
+                    className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center transition transform hover:-translate-y-1 hover:shadow-2xl border border-gray-200 hover:border-blue-500"
                   >
-                    
-                    <img
-                      className="w-4/6 mx-auto"
+                    <embed
                       src={`${URLImage}/${schedule.content}`}
-                      alt="Study Image"
+                      type="application/pdf"
+                      className="w-full h-48 md:h-64 lg:h-80 mb-4"
                     />
-                  </a>
-                
-                  <div className="text-center">
-                    <p className="text-gray-700 text-lg font-bold">
-                      نشرت يوم  : {schedule.created_at.slice(0, 10)}
-                    </p>
-                    <span className="inline-block bg-gray-200 rounded-md px-3 py-3 text-lg font-semibold text-gray-700 mt-2">
-                      الجدول المعتمد من ادارة كلية الحاسبات والذكاء الاصطناعى جامعة بنها
-                    </span>
+                    <div className="text-center">
+                      <p className="text-gray-700 text-md font-bold mb-2">
+                        نشرت يوم : {schedule.created_at.slice(0, 10)}
+                      </p>
+                      <span className="inline-block bg-gray-200 rounded-md px-4 py-2 text-md font-semibold text-gray-700">
+                        الجدول المعتمد من ادارة كلية الحاسبات والذكاء الاصطناعى
+                        جامعة بنها
+                      </span>
+                    </div>
                   </div>
-                </div>
-                
                 ))}
           </div>
         </div>
       </div>
+      <div className="bg-main px-2">
+        <Copyrights />
+      </div>
     </div>
-    <div className="bg-main px-2">
-      <Copyrights />
-    </div>
-  </div>
-  
-
   );
 }
 
