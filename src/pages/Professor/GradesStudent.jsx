@@ -47,6 +47,7 @@ function GradesStudent() {
   const [codeSt, setCodeSt] = useState("");
   const [codeSub, setCodeSub] = useState("");
   const [degree, setDegree] = useState("");
+  const [allcourses , setAllCourses] = useState(null)
 
   const token = useSelector((state) => state.user.UserInfo.token);
   console.log(token);
@@ -55,7 +56,7 @@ function GradesStudent() {
     const fetchData = async () => {
       try {
         const res = await axios.post(
-          `${URLng}/showgrade`,
+          `${URLng}/showallcourses`,
           {},
           {
             headers: {
@@ -63,9 +64,9 @@ function GradesStudent() {
             },
           }
         );
-
-        console.log(res.data);
-        console.log("GradesStudent");
+        setAllCourses(res.data)
+        console.log(allcourses);
+        console.log("Courses");
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -107,80 +108,27 @@ function GradesStudent() {
   //   const formData = new FormData()
   //   formData.append("", name)
   //  }
-
+  const handleCourChange = (e)=>{
+    e.preventDefault()
+    console.log(e.target.value)
+  }
+  const handleSemChange = (e)=>{
+    e.preventDefault()
+    console.log(e.target.value)
+  }
+  // const handleSemChange = (e)=>{
+  //   e.preventDefault()
+  //   console.log(e.target.value)
+  // }
+  const handleDegChange = (e)=>{
+    e.preventDefault()
+    console.log(e.target.value)
+  }
   return (
     <div>
       <MainLayout>
         <div className="mx-auto">
-          {/* <form action="">
-            <div>
-              <fieldset className="border my-2 border-gray-600 p-3 ">
-                <legend>درجات الطالب بالتفصيل </legend>
-                <div className="inline-block my-2">
-                  <label htmlFor="" className=" mx-5  ">
-                    اسم الطالب
-                  </label>
-                  <input
-                  // onChange={handleChangeName}
-                    type="text"
-                    placeholder="ادخل اسمك الكامل"
-                    className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
-                  />
-                </div>
-                <div className="inline-block my-2">
-                  <label htmlFor="" className=" mx-5 ">
-                    كود الطالب
-                  </label>
-                  <input
-                      // onChange={handleChangeCodeSt}
-                    type="text"
-                    placeholder="ادخل الكود الخاص بك"
-                    className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
-                  />
-                </div>
-
-                <div className="inline-block my-2">
-                  <label htmlFor="" className=" mx-5  ">
-                    كود المادة
-                  </label>
-                  <input
-                  // onChange={handleChangeCodeSub}
-                    type="text"
-                    placeholder="ادخل كود المادة"
-                    className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
-                  />
-                </div>
-                <div className="inline-block my-2">
-                  <label htmlFor="" className=" mx-5  ">
-                    الدرجة
-                  </label>
-                  <input
-                  // onChange={handleChangeDegree}
-                    type="text"
-                    className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
-                    placeholder="ادخل الدرجة"
-                  />
-                </div>
-              </fieldset>
-            </div>
-            <div className="flex justify-center gap-5 mt-1 mb-3">
-              <div className="relative ">
-                <input
-                  type="submit"
-                  value={"اضافة"}
-                  className="main-btn"
-                  onClick={handelSubmit}
-                />
-                <IoMdAddCircleOutline className=" absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2  right-4" />
-              </div>
-              <div className="relative">
-                <button type="button" className="main-btn ">
-                  بحث
-                </button>
-                <CiSearch className=" absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2  right-4" />
-              </div>
-            </div>
-          </form> */}
+       
           <form action="">
             <div>
               <fieldset className="border my-2 border-gray-600 p-3 ">
@@ -209,13 +157,19 @@ function GradesStudent() {
                   >
                     اسم الكورس
                   </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="id"
-                    type="text"
-                    placeholder="من فضلك ادخل اسم الكورس"
-                    
-                  />
+                  <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={handleCourChange} >
+                    {
+                      allcourses &&
+                        allcourses.map((course) => (
+                          <option key={course.id} value={course.id}>
+                            {course.name}
+                          </option>
+                        ))
+                    }
+                   
+                 
+
+                   </select>
                 </div>
                 <div className="w-4/5 mr-2 mt-2">
                   <label
@@ -224,10 +178,9 @@ function GradesStudent() {
                   >
                     الترم
                   </label>
-                   <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                   <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={handleSemChange} >
                     <option value="first">First</option>
                     <option value="Last">Last</option>
-
                    </select>
                 </div>
                 <div className="w-4/5 mr-2 mt-2">
@@ -238,7 +191,7 @@ function GradesStudent() {
                     الدرجة
                   </label>
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={handleDegChange}
                     id="id"
                     type="text"
                     placeholder="من فضلك ادخل درجة الطالب"
