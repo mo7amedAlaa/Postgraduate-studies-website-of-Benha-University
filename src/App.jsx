@@ -138,7 +138,7 @@ function App() {
     {
       path: '/professor',
       element: (
-        <ProtectedRoute roles={['professor']}>
+        <ProtectedRoute roles={['profs']}>
           <Layout Actions={profActions} />
         </ProtectedRoute>
       ),
@@ -150,16 +150,6 @@ function App() {
           element: <ExtendRestriction />,
         },
         { path: '/professor/studentstuts', element: <StudentStuts /> },
-        {
-          path: '/professor/accountsetting',
-          element: (
-            <ProtectedRoute
-              roles={['admin', 'employee', 'profs', 'heads', 'students']}
-            >
-              <UserProfile />
-            </ProtectedRoute>
-          ),
-        },
       ],
     },
     {
@@ -179,16 +169,6 @@ function App() {
           path: '/headofdepartment/showralleports',
           element: <ShowAllReports />,
         },
-        {
-          path: '/headofdepartment/accountsetting',
-          element: (
-            <ProtectedRoute
-              roles={['admin', 'employee', 'profs', 'heads', 'students']}
-            >
-              <UserProfile />
-            </ProtectedRoute>
-          ),
-        },
       ],
     },
     {
@@ -200,16 +180,6 @@ function App() {
       ),
       children: [
         { path: '/admin/GenerateAccount', element: <GenerateAccounts /> },
-        {
-          path: '/admin/accountsetting',
-          element: (
-            <ProtectedRoute
-              roles={['admin', 'employee', 'profs', 'heads', 'students']}
-            >
-              <UserProfile />
-            </ProtectedRoute>
-          ),
-        },
       ],
     },
     {
@@ -219,33 +189,13 @@ function App() {
           <Layout Actions={AdminActions} />
         </ProtectedRoute>
       ),
-      children: [
-        {
-          path: '/CollegeVice/accountsetting',
-          element: (
-            <ProtectedRoute
-              roles={[
-                'admin',
-                'employee',
-                'profs',
-                'heads',
-                'students',
-                'vice',
-              ]}
-            >
-              <UserProfile />
-            </ProtectedRoute>
-          ),
-        },
-      ],
+      children: [],
     },
     { path: '/login', element: <Login /> },
     {
       path: '/accountsetting',
       element: (
-        <ProtectedRoute
-          roles={['admin', 'employee', 'profs', 'heads', 'students']}
-        >
+        <ProtectedRoute roles={['students']}>
           <UserProfile />
         </ProtectedRoute>
       ),

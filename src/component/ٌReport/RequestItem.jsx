@@ -1,11 +1,51 @@
 import React from 'react';
+import Swal from 'sweetalert2';
+import { URLng } from '../../API/constant';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { Bounce, toast } from 'react-toastify';
 
 const RequestItem = ({ request }) => {
   const { id, content, date, type, status, student } = request;
-  const contentData = type === 'recordPoint' ? content : JSON.parse(content);
-  const handleApprove = () => {
+  const token = useSelector((state) => state.user.UserInfo?.token);
+  const contentData = JSON.parse(content);
+  function handleApprove(id) {
+    axios
+      .post(
+        `${URLng}/acceptReport/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .then((response) => {
+        console.log('Response from server:', response.data);
+        toast.success(' تم الموافقة علي الطلب بنجاح', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+          transition: Bounce,
+        });
+      })
+      .catch((error) => {
+        console.error('Error sending data:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'حدث خطأ أثناء إرسال البيانات',
+          text: 'يرجى المحاولة مرة أخرى',
+          confirmButtonText: 'حسناً',
+        });
+      });
     console.log(`تم الموافقة على الطلب: ${id}`);
-  };
+  }
 
   const handleDelete = () => {
     console.log(`تم حذف الطلب: ${id}`);
@@ -29,7 +69,7 @@ const RequestItem = ({ request }) => {
           {status}
         </span>
       </p>
-      {type === 'Masters' || type === 'PhD' ? (
+      {type === 'recordPoint' && (
         <>
           <p className="text-gray-600 mb-2">
             الموضوع بالعربية: {contentData.topicArabic}
@@ -52,25 +92,61 @@ const RequestItem = ({ request }) => {
               </li>
             ))}
           </ul>
-          <p className="text-gray-600 mb-2">المرسل: {student.name}</p>
+          <p className="text-gray-600 mb-2">المرسل: {student?.name}</p>
+          <div className="mt-4 flex items-center justify-between">
+            <button
+              onClick={() => handleApprove(id)}
+              className="bg-green-500 text-white px-4 w-1/3 py-2 rounded hover:bg-green-700 transition-colors duration-200 mr-2"
+            >
+              موافقة
+            </button>
+            <button
+              onClick={handleDelete}
+              className="bg-red-500 text-white  w-1/3 px-4 py-2 rounded hover:bg-red-700 transition-colors duration-200"
+            >
+              حذف
+            </button>
+          </div>
         </>
-      ) : (
-        <p className="text-gray-600 mb-2">المحتوى: {content}</p>
       )}
-      <div className="mt-4 flex items-center justify-between">
-        <button
-          onClick={handleApprove}
-          className="bg-green-500 text-white px-4 w-1/3 py-2 rounded hover:bg-green-700 transition-colors duration-200 mr-2"
-        >
-          موافقة
-        </button>
-        <button
-          onClick={handleDelete}
-          className="bg-red-500 text-white  w-1/3 px-4 py-2 rounded hover:bg-red-700 transition-colors duration-200"
-        >
-          حذف
-        </button>
-      </div>
+      {type === 'StudentStatusFollow-upReport' && (
+        <>
+          <p className="text-gray-600 mb-2">رقم الطلب: {id}</p>
+          <p className="text-gray-600 mb-2">
+            الدرجة العلمية للطالب: {contentData.degree}
+          </p>
+          <p className="text-gray-600 mb-2">
+            حالة للطالب: {contentData.studentStatus}
+          </p>
+          <p className="text-gray-600 mb-2">
+            تاريخ البداية: {contentData.startDate}
+          </p>
+          <p className="text-gray-600 mb-2">
+            تاريخ النهاية: {contentData.startDate}
+          </p>
+          <p className="text-gray-600 mb-2">
+            اسم المشرف: {contentData.supervisorName}
+          </p>
+          <p className="text-gray-600 mb-2">
+            لقب المشرف: {contentData.supervisorTitle}
+          </p>
+          <p className="text-gray-600 mb-2">المرسل: {student?.name}</p>
+          <div className="mt-4 flex items-center justify-between">
+            <button
+              onClick={() => handleApprove(id)}
+              className="bg-green-500 text-white px-4 w-1/3 py-2 rounded hover:bg-green-700 transition-colors duration-200 mr-2"
+            >
+              موافقة
+            </button>
+            <button
+              onClick={handleDelete}
+              className="bg-red-500 text-white  w-1/3 px-4 py-2 rounded hover:bg-red-700 transition-colors duration-200"
+            >
+              حذف
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

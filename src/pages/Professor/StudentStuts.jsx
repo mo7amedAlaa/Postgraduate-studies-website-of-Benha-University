@@ -1,82 +1,191 @@
 import { Checkbox } from '@mui/material';
 import MainLayout from '../../component/Main/MainLayout';
 import { useState } from 'react';
+import axios from 'axios';
+import { URLng } from '../../API/constant';
+import Swal from 'sweetalert2';
+import { useSelector } from 'react-redux';
 
 function StudentStuts() {
-  const [deg, setDeg] = useState();
+  const token = useSelector((state) => state.user.UserInfo?.token);
+  const [degree, setDegree] = useState('');
+  const [studentName, setStudentName] = useState('');
+  const [requestType, setRequestType] = useState(
+    'StudentStatusFollow-upReport'
+  );
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [studentStatus, setStudentStatus] = useState('');
+  const [supervisorName, setSupervisorName] = useState('');
+  const [supervisorTitle, setSupervisorTitle] = useState('');
+  const [supervisorDate, setSupervisorDate] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      type: 'StudentStatusFollow-upReport',
+      content: JSON.stringify({
+        degree,
+        studentName,
+        startDate,
+        endDate,
+        studentStatus,
+        supervisor: {
+          name: supervisorName,
+          title: supervisorTitle,
+        },
+      }),
+      date: supervisorDate,
+    };
+    console.log(data);
+    axios
+      .post(`${URLng}/makereportprof`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        console.log('Response from server:', response.data);
+        Swal.fire({
+          icon: 'success',
+          title: 'تم إرسال الطلب بنجاح!',
+          showConfirmButton: false,
+          timer: 300,
+        });
+      })
+      .catch((error) => {
+        console.error('Error sending data:', error);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'حدث خطأ أثناء إرسال البيانات',
+          text: 'يرجى المحاولة مرة أخرى',
+          confirmButtonText: 'حسناً',
+        });
+      });
+  };
   return (
     <MainLayout title={'تقرير بمتابعة الطالب كل ست شهور'}>
-      <form action="" className="  tracking-wider      p-5 rounded-md">
-        <div className="my-3">
-          <label htmlFor="welcome" className="me-5">
-            السيد الأستاذ الدكتور/ رئيس قسم
-          </label>
-          <select id="welcome" className="px-2 text-center  bg-withe  ">
-            <option value="is">IS</option>
-            <option value="ai">AI</option>
-            <option value="cs">CS</option>
-            <option value="sc">SC</option>
-          </select>
-          <p> تحية طيبة وبعد،، </p>
-        </div>
-        <div className="my-3">
-          <span>مرفق لسيادكم تقرير بمتابعة حالة الطالب المسجل لدرجة </span>
-          <Checkbox value={'  ماجستير '} id="studytype" name="master" />
-          <label htmlFor="Studytype">ماجستير </label>
-          <Checkbox value={' الدكتوراة '} id="studytype" name="doctor" />
-          <label htmlFor="Studytype">الدكتوراة </label>
-        </div>
-        <div className="my-3">
-          <label htmlFor="name" className="me-2 ">
-            للطالب
-          </label>
-          <input type="text" id="name" className="px-2 w-[80%] " />
-        </div>
-        <div className="flex gap-5   ">
-          <span>ذلك اثناء الفترة</span>
+      <div className="max-w-4xl mx-auto p-8 bg-white shadow-lg rounded-lg">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Department and Degree */}
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-gray-700">
+              السيد الأستاذ الدكتور / رئيس قسم
+            </label>
+            <select className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+              <option value="" disabled>
+                اختر القسم
+              </option>
+              <option value="IS">IS</option>
+              <option value="CS">CS</option>
+              <option value="AI">AI</option>
+              <option value="SC">SC</option>
+            </select>
+          </div>
+          <div className="space-y-2">
+            <p className="block text-sm font-medium text-gray-700">
+              مرسل لسيادتكم تقرير لمتابعة حالة الطال المسجل في درجة:
+            </p>
+          </div>
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-gray-700">
+              الدرجة
+            </label>
+            <select
+              value={degree}
+              onChange={(e) => setDegree(e.target.value)}
+              className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            >
+              <option value="" disabled>
+                اختر الدرجة
+              </option>
+              <option value="Master's">ماجستير</option>
+              <option value="PhD">الدكتوراة</option>
+            </select>
+          </div>
+          <div className="space-y-2">
+            <p className="block text-sm font-medium text-gray-700">
+              خلال المدة الزمنية{' '}
+            </p>
+          </div>
+          {/* Date Range */}
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-gray-700">
+              تاريخ البداية والنهاية
+            </label>
+            <div className="flex space-x-2">
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className="block w-1/2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              />
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className="block w-1/2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              />
+            </div>
+          </div>
 
-          <span> اعتبارامن/</span>
-          <input type="date" />
-          <span>حتي/</span>
-          <input type="date" />
-        </div>
-        {/* <div className="flex items-center justify-start my-5 gap-5">
-          <label htmlFor="degree">
-            النسبة المئوية التي تعبر عن حالة الطالب
-          </label>
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-gray-700">
+              حالة الطالب
+            </label>
+            <textarea
+              value={studentStatus}
+              onChange={(e) => setStudentStatus(e.target.value)}
+              className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              placeholder="حالة الطالب"
+            />
+          </div>
 
-          <input
-            type="range"
-            className="w-[50%]"
-            onChange={(e) => setDeg(e.target.value)}
-            value={deg}
-          />
-          <span className="text-xl">{deg}%</span>
-        </div> */}
-        <div className="flex flex-col mt-5">
-          <label htmlFor="content">حالة الطالب </label>
-          <textarea name="content" id="content" className="h-32   "></textarea>
-        </div>
-        <p className="my-5">
-          .وذلك بناء على التقرير المرفق والموقع من جميع السادةالمشرفين
-        </p>
-        <p className="text-center">وتفضلوا بقبول وافر الشكر والتقدير،،،</p>
-        <div className="flex mt-10 flex-col gap-3 justify-center text-center items-end     ">
-          <p> المشرف الرئيسى /المرشد الأكاديمى :</p>
-          <div>
-            <label htmlFor="namej">الاسم :</label>
-            <input type="text" id="namej" />
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-gray-700">
+              المشرف
+            </label>
+            <input
+              type="text"
+              value={supervisorName}
+              onChange={(e) => setSupervisorName(e.target.value)}
+              className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              placeholder="اسم المشرف"
+            />
           </div>
-          <div>
-            <label htmlFor="ku"> التوقيع:</label>
-            <input type="text" id="ku" />
+          <div className="space-y-2">
+            <input
+              type="text"
+              value={supervisorTitle}
+              onChange={(e) => setSupervisorTitle(e.target.value)}
+              className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              placeholder="اللقب الأكاديمي للمشرف"
+            />
           </div>
-          <div>
-            <label htmlFor="datej">التاريخ :</label>
-            <input type="date" id="datej" />
+
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-gray-700">
+              تاريخ ارسال المشرف
+            </label>
+            <input
+              type="date"
+              value={supervisorDate}
+              onChange={(e) => setSupervisorDate(e.target.value)}
+              className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            />
           </div>
-        </div>
-      </form>
+
+          <div>
+            <button
+              type="submit"
+              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              إرسال التقرير
+            </button>
+          </div>
+        </form>
+      </div>
     </MainLayout>
   );
 }

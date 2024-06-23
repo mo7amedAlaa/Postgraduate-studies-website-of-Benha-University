@@ -41,8 +41,9 @@ function RecordPoint() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      type: degree,
+      type: 'recordPoint',
       content: JSON.stringify({
+        degree,
         topicArabic,
         topicEnglish,
         supervisors,
