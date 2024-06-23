@@ -37,83 +37,82 @@ const rows = [
 //   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vNTE3ZC0xOTctMzMtMTE4LTExOC5uZ3Jvay1mcmVlLmFwcC9hcGkvYXV0aC9sb2dpbnN0dWRlbnQiLCJpYXQiOjE3MTgyMTYxNTIsImV4cCI6MTcxODU3NjE1MiwibmJmIjoxNzE4MjE2MTUyLCJqdGkiOiJUUlpBdjVabnkyVGZBWEtXIiwic3ViIjoiMzUiLCJwcnYiOiI5YzQyOWU2YTYwY2Q1Mjg1NDczZjJjOGJjNzAxZWMwOTQ4ZGY0ZDhjIn0.68p9K_BWaA30wRVLCMRhKdrloXazPBEyaOZwgebC91U"
 // );
 
-
 function GradesStudent() {
   const handelSubmit = async (event) => {
     event.preventDefault();
-    
+
     // callApi();
   };
-  const [name , setName] = useState('')
-  const [codeSt , setCodeSt] = useState('')
-  const [codeSub , setCodeSub] = useState('')
-  const [degree , setDegree] = useState('')
+  const [name, setName] = useState("");
+  const [codeSt, setCodeSt] = useState("");
+  const [codeSub, setCodeSub] = useState("");
+  const [degree, setDegree] = useState("");
 
+  const token = useSelector((state) => state.user.UserInfo.token);
+  console.log(token);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.post(
+          `${URLng}/showgrade`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-  // const token = useSelector((state) => state.user.UserInfo.token);
-  // console.log(token)
+        console.log(res.data);
+        console.log("GradesStudent");
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await axios.post(
-  //         `${URLng}/showgrade`,
-  //         {},
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         }
-  //       );
+    if (token) {
+      fetchData();
+    }
+    console.log(token);
+    console.log("load");
+  }, [token]);
 
-  //       console.log(res.data);
-  //       console.log("GradesStudent");
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
+  //  const handleChangeName = (e)=>{
+  //   e.preventDefault()
+  //   setName(e.target.value)
+  //   console.log(name)
+  //  }
 
-  //   if (token) {
-  //     fetchData();
-  //   }
-  // }, [token]);
+  //  const handleChangeCodeSub = (e)=>{
+  //   e.preventDefault()
+  //   setCodeSub(e.target.value)
 
-//  const handleChangeName = (e)=>{
-//   e.preventDefault()
-//   setName(e.target.value)
-//   console.log(name)
-//  }
+  //   console.log(codeSub)
+  //  }
+  //  const handleChangeCodeSt = (e)=>{
+  //   e.preventDefault()
+  //   setCodeSt(e.target.value)
 
-//  const handleChangeCodeSub = (e)=>{
-//   e.preventDefault()
-//   setCodeSub(e.target.value)
+  //   console.log(codeSt)
+  //  }
+  //  const handleChangeDegree = (e)=>{
+  //   e.preventDefault()
+  //   setDegree(e.target.value)
 
-//   console.log(codeSub)
-//  }
-//  const handleChangeCodeSt = (e)=>{
-//   e.preventDefault()
-//   setCodeSt(e.target.value)
-
-//   console.log(codeSt)
-//  }
-//  const handleChangeDegree = (e)=>{
-//   e.preventDefault()
-//   setDegree(e.target.value)
-
-//   console.log(degree)
-//  }
-//  const handleSubmit =(e)=>{
-//   e.preventDefault()
-//   const formData = new FormData()
-//   formData.append("", name)
-//  }
+  //   console.log(degree)
+  //  }
+  //  const handleSubmit =(e)=>{
+  //   e.preventDefault()
+  //   const formData = new FormData()
+  //   formData.append("", name)
+  //  }
 
   return (
     <div>
       <MainLayout>
-        <div>
-          <form action="">
+        <div className="mx-auto">
+          {/* <form action="">
             <div>
               <fieldset className="border my-2 border-gray-600 p-3 ">
                 <legend>درجات الطالب بالتفصيل </legend>
@@ -160,6 +159,90 @@ function GradesStudent() {
                     type="text"
                     className="inputStyle p-4 outline-none rounded-md hover:border-main transition-all cursor-pointer"
                     placeholder="ادخل الدرجة"
+                  />
+                </div>
+              </fieldset>
+            </div>
+            <div className="flex justify-center gap-5 mt-1 mb-3">
+              <div className="relative ">
+                <input
+                  type="submit"
+                  value={"اضافة"}
+                  className="main-btn"
+                  onClick={handelSubmit}
+                />
+                <IoMdAddCircleOutline className=" absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2  right-4" />
+              </div>
+              <div className="relative">
+                <button type="button" className="main-btn ">
+                  بحث
+                </button>
+                <CiSearch className=" absolute top-[50%] transform -translate-x-1/2 -translate-y-1/2  right-4" />
+              </div>
+            </div>
+          </form> */}
+          <form action="">
+            <div>
+              <fieldset className="border my-2 border-gray-600 p-3 ">
+                <legend>درجات الطالب بالتفصيل </legend>
+                
+                <div className="w-4/5 mr-2 ">
+                  <label
+                    className="block text-gray-700 font-bold mb-2 text-xl"
+                    htmlFor="id"
+                  >
+                    اسم الطالب
+                  </label>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="id"
+                    type="text"
+                    placeholder="من فضلك ادخل اسم الطالب"
+                    
+                  />
+                </div>
+
+                <div className="w-4/5 mr-2 mt-2">
+                  <label
+                    className="block text-gray-700 font-bold mb-2 text-xl"
+                    htmlFor="id"
+                  >
+                    اسم الكورس
+                  </label>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="id"
+                    type="text"
+                    placeholder="من فضلك ادخل اسم الكورس"
+                    
+                  />
+                </div>
+                <div className="w-4/5 mr-2 mt-2">
+                  <label
+                    className="block text-gray-700 font-bold mb-2 text-xl"
+                    htmlFor="id"
+                  >
+                    الترم
+                  </label>
+                   <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="first">First</option>
+                    <option value="Last">Last</option>
+
+                   </select>
+                </div>
+                <div className="w-4/5 mr-2 mt-2">
+                  <label
+                    className="block text-gray-700 font-bold mb-2 text-xl"
+                    htmlFor="id"
+                  >
+                    الدرجة
+                  </label>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="id"
+                    type="text"
+                    placeholder="من فضلك ادخل درجة الطالب"
+                    
                   />
                 </div>
               </fieldset>
