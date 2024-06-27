@@ -97,6 +97,12 @@ const Login = () => {
         default:
           navigate('/');
       }
+      dispatch(
+        setStudentNotifaction({
+          message: 'تمت عملية التسجيل بنجاح!',
+          type: 'error',
+        })
+      );
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -104,7 +110,12 @@ const Login = () => {
         text: 'Something went wrong!',
         footer: 'Server not response',
       });
-      dispatch(setStudentNotifaction({ message: 'fgghtty', type: 'error' }));
+      dispatch(
+        setStudentNotifaction({
+          message: 'هناك  خطا فى عملية التسجيل !',
+          type: 'error',
+        })
+      );
 
       console.error('Error during login:', error);
       dispatch(SetUserInfo(''));

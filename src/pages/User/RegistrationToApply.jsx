@@ -114,7 +114,9 @@ export default function RegistrationToApply() {
   const handleBack = () => {
     setStep(step - 1);
   };
-
+  // useEffect(() => {
+  //   dispatch(registering(false));
+  // }, []);
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);

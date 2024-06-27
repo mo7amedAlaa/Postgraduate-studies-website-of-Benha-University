@@ -92,7 +92,7 @@ function Home() {
     },
     {
       name: t('ChatbotToAssistTheStudent'),
-      link: '#',
+      link: 'https://chatbot-banha.vercel.app/',
       imgSrc:
         'https://www.asu.edu.eg/141090/_mediacenter/2021/png/4aa70b2c4a21785c4b872fe5e6be37d2.png',
     },

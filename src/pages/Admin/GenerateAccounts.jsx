@@ -7,53 +7,38 @@ import { DataGrid } from '@mui/x-data-grid';
 function GenerateAccounts() {
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'code', headerName: 'كود المادة', width: 150 },
-    { field: 'subName', headerName: ' اسم المادة', width: 150 },
-    { field: 'deg', headerName: 'الدرجة', width: 150 },
-    { field: 'qpa', headerName: 'التقدير', width: 150 },
+    { field: 'code', headerName: ' اسم الطالب', width: 150 },
+    { field: 'subName', headerName: '  الايميل', width: 150 },
+    { field: 'deg', headerName: 'الباسورد', width: 150 },
   ];
 
   const courses = [
     {
       id: 1,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      deg: 79,
+      subName: 'محمد السيد عبدالله ',
+      code: 'moh@fci.edu.eg',
+      deg: 123456789,
       qpa: 3.6,
     },
     {
-      id: 2,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      deg: 96,
-      qpa: 4.6,
+      id: 1,
+      subName: 'إبراهيم أحمد عادل',
+      code: 'ibr@fci.edu.eg',
+      deg: 123456789,
+      qpa: 3.6,
     },
     {
-      id: 3,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      deg: 55,
-      qpa: 3.1,
+      id: 1,
+      subName: 'محمد عماد سيد',
+      code: 'mohem@fci.edu.eg',
+      deg: 123456789,
+      qpa: 3.6,
     },
     {
-      id: 4,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      deg: 72,
-      qpa: 3.2,
-    },
-    {
-      id: 5,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      deg: 45,
-      qpa: 2.5,
-    },
-    {
-      id: 6,
-      subName: 'اسم المادة',
-      code: 'SC2X',
-      deg: 79,
+      id: 1,
+      subName: 'أحمد سيد عادل ',
+      code: 'ahm@fci.edu.eg',
+      deg: 123456789,
       qpa: 3.6,
     },
   ];
@@ -64,19 +49,19 @@ function GenerateAccounts() {
 
         <div className="inline-block my-2">
           <label htmlFor="" className="lableStyle mx-5 ">
-            اسم الطالب
+            اسم
           </label>
           <input type="text" className="inputStyle " />
         </div>
         <div className="inline-block my-2">
           <label htmlFor="" className="lableStyle mx-5  ">
-            الرقم القومى
+            الايميل
           </label>
           <input type="text" className="inputStyle " />
         </div>
         <div className="inline-block my-2">
           <label htmlFor="" className="lableStyle mx-5  ">
-            كود الطالب
+            الباسورد
           </label>
           <input type="text" className="inputStyle " />
         </div>
@@ -93,32 +78,7 @@ function GenerateAccounts() {
           </div>
         </div>
       </fieldset>
-      <div className="graduates mt-5 mb-5 flex lg:justify-center flex-col">
-        <div className="  w-[100%] gap-10 text-center">
-          <h2 className="bg-main text-white text-4xl p-2 font-sans lg:w-[100%] text-center rounded-md">
-            الاجراءات المتبعة لانشاء الايميل الجامعى للطالب
-          </h2>
-        </div>
-        <div className="">
-          <div className="text-2xl p-2 font-semibold font-sans w-[100%] text-start mt-3 flex flex-col">
-            <Link to="/upload-data">
-              1. اسم الطالب بناخد اسمه وناخد اخر 6 ارقام من رقمه القومى
-            </Link>
-            <Link to="" className="mt-5">
-              2.اختصار اسم الكلية
-            </Link>
-            <Link to="" className="mt-5">
-              3. اختصار اسم الجامعة
-            </Link>
-            <Link to="" className="mt-5">
-              4. نطاق إلكتروني أو امتداد للمواقع الإلكترونية
-            </Link>
-            <Link to="" className="mt-5">
-              5. اختصار الدولة الذى يدرس فيها الطالب
-            </Link>
-          </div>
-        </div>
-      </div>
+      <div className="graduates mt-5 mb-5 flex lg:justify-center flex-col"></div>
       <div className=" bg-slate-100     min-h-screen">
         <div className="p-10 container mx-auto">
           <div style={{ height: 400, width: '100%', direction: 'ltr' }}>
